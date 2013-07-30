@@ -1,0 +1,16 @@
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Idea #
+.idea
+
+#mac#
+.DS_Store
+
+#project targets#
+target
+out
