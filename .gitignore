@@ -6,8 +6,6 @@
 *.war
 *.ear
 
-# Idea #
-.idea
 
 #mac#
 .DS_Store
