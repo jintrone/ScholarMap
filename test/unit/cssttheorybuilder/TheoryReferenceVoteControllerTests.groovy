@@ -1,5 +1,4 @@
-package ScholarMap
-
+package scholarmap
 
 
 import org.junit.*

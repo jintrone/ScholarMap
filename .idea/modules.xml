@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ScholarMap.iml" filepath="$PROJECT_DIR$/ScholarMap.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ScholarMap-grailsPlugins.iml" filepath="$PROJECT_DIR$/ScholarMap-grailsPlugins.iml" />
     </modules>
   </component>
 </project>
