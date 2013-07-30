@@ -1,4 +1,4 @@
-package cssttheorybuilder
+package scholarmap
 
 import org.springframework.dao.DataIntegrityViolationException
 

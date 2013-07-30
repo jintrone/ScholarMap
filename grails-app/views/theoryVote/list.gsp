@@ -1,4 +1,4 @@
-<%@ page import="cssttheorybuilder.TheoryVote" %>
+<%@ page import="ScholarMap.TheoryVote" %>
 <!DOCTYPE html>
 <html>
 <head>

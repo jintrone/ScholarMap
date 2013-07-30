@@ -1,13 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="332f8af4-fd71-4561-9829-cd61da8f6ef9" name="Default" comment="" />
+    <list default="true" id="332f8af4-fd71-4561-9829-cd61da8f6ef9" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/grails-app/conf/cssttheorybuilder/LoggedInFilterFilters.groovy" afterPath="$PROJECT_DIR$/grails-app/conf/scholarmap/LoggedInFilterFilters.groovy" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/grails-app/controllers/cssttheorybuilder/DefaultController.groovy" afterPath="$PROJECT_DIR$/grails-app/controllers/scholarmap/DefaultController.groovy" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/grails-app/controllers/cssttheorybuilder/ReferenceController.groovy" afterPath="$PROJECT_DIR$/grails-app/controllers/scholarmap/ReferenceController.groovy" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/grails-app/controllers/cssttheorybuilder/TheoryController.groovy" afterPath="$PROJECT_DIR$/grails-app/controllers/scholarmap/TheoryController.groovy" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/grails-app/controllers/cssttheorybuilder/TheoryReferenceVoteController.groovy" afterPath="$PROJECT_DIR$/grails-app/controllers/scholarmap/TheoryReferenceVoteController.groovy" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/grails-app/controllers/cssttheorybuilder/TheoryTheoryLinkController.groovy" afterPath="$PROJECT_DIR$/grails-app/controllers/scholarmap/TheoryTheoryLinkController.groovy" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/grails-app/controllers/cssttheorybuilder/TheoryVoteController.groovy" afterPath="$PROJECT_DIR$/grails-app/controllers/scholarmap/TheoryVoteController.groovy" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/grails-app/controllers/cssttheorybuilder/UserController.groovy" afterPath="$PROJECT_DIR$/grails-app/controllers/scholarmap/UserController.groovy" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/grails-app/domain/cssttheorybuilder/Reference.groovy" afterPath="$PROJECT_DIR$/grails-app/domain/scholarmap/Reference.groovy" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/grails-app/domain/cssttheorybuilder/Theory.groovy" afterPath="$PROJECT_DIR$/grails-app/domain/scholarmap/Theory.groovy" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/grails-app/domain/cssttheorybuilder/TheoryReferenceVote.groovy" afterPath="$PROJECT_DIR$/grails-app/domain/scholarmap/TheoryReferenceVote.groovy" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/grails-app/domain/cssttheorybuilder/TheoryTheoryLink.groovy" afterPath="$PROJECT_DIR$/grails-app/domain/scholarmap/TheoryTheoryLink.groovy" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/grails-app/domain/cssttheorybuilder/TheoryVote.groovy" afterPath="$PROJECT_DIR$/grails-app/domain/scholarmap/TheoryVote.groovy" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/grails-app/domain/cssttheorybuilder/User.groovy" afterPath="$PROJECT_DIR$/grails-app/domain/scholarmap/User.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.project" afterPath="$PROJECT_DIR$/.project" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/unit/cssttheorybuilder/DefaultControllerTests.groovy" afterPath="$PROJECT_DIR$/test/unit/cssttheorybuilder/DefaultControllerTests.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/unit/cssttheorybuilder/LoggedInFilterFiltersTests.groovy" afterPath="$PROJECT_DIR$/test/unit/cssttheorybuilder/LoggedInFilterFiltersTests.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/unit/cssttheorybuilder/ReferenceControllerTests.groovy" afterPath="$PROJECT_DIR$/test/unit/cssttheorybuilder/ReferenceControllerTests.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/unit/cssttheorybuilder/ReferenceTests.groovy" afterPath="$PROJECT_DIR$/test/unit/cssttheorybuilder/ReferenceTests.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/unit/cssttheorybuilder/TheoryControllerTests.groovy" afterPath="$PROJECT_DIR$/test/unit/cssttheorybuilder/TheoryControllerTests.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/unit/cssttheorybuilder/TheoryReferenceVoteControllerTests.groovy" afterPath="$PROJECT_DIR$/test/unit/cssttheorybuilder/TheoryReferenceVoteControllerTests.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/unit/cssttheorybuilder/TheoryReferenceVoteTests.groovy" afterPath="$PROJECT_DIR$/test/unit/cssttheorybuilder/TheoryReferenceVoteTests.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/unit/cssttheorybuilder/TheoryTests.groovy" afterPath="$PROJECT_DIR$/test/unit/cssttheorybuilder/TheoryTests.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/unit/cssttheorybuilder/TheoryTheoryLinkControllerTests.groovy" afterPath="$PROJECT_DIR$/test/unit/cssttheorybuilder/TheoryTheoryLinkControllerTests.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/unit/cssttheorybuilder/TheoryTheoryLinkTests.groovy" afterPath="$PROJECT_DIR$/test/unit/cssttheorybuilder/TheoryTheoryLinkTests.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/unit/cssttheorybuilder/TheoryVoteControllerTests.groovy" afterPath="$PROJECT_DIR$/test/unit/cssttheorybuilder/TheoryVoteControllerTests.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/unit/cssttheorybuilder/TheoryVoteTests.groovy" afterPath="$PROJECT_DIR$/test/unit/cssttheorybuilder/TheoryVoteTests.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/unit/cssttheorybuilder/UserControllerTests.groovy" afterPath="$PROJECT_DIR$/test/unit/cssttheorybuilder/UserControllerTests.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/unit/cssttheorybuilder/UserTests.groovy" afterPath="$PROJECT_DIR$/test/unit/cssttheorybuilder/UserTests.groovy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/reference/_form.gsp" afterPath="$PROJECT_DIR$/grails-app/views/reference/_form.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/theory/_form.gsp" afterPath="$PROJECT_DIR$/grails-app/views/theory/_form.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/theoryReferenceVote/_form.gsp" afterPath="$PROJECT_DIR$/grails-app/views/theoryReferenceVote/_form.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/theoryTheoryLink/_form.gsp" afterPath="$PROJECT_DIR$/grails-app/views/theoryTheoryLink/_form.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/theoryVote/_form.gsp" afterPath="$PROJECT_DIR$/grails-app/views/theoryVote/_form.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application.properties" afterPath="$PROJECT_DIR$/application.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/reference/create.gsp" afterPath="$PROJECT_DIR$/grails-app/views/reference/create.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/theory/create.gsp" afterPath="$PROJECT_DIR$/grails-app/views/theory/create.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/theoryReferenceVote/create.gsp" afterPath="$PROJECT_DIR$/grails-app/views/theoryReferenceVote/create.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/theoryTheoryLink/create.gsp" afterPath="$PROJECT_DIR$/grails-app/views/theoryTheoryLink/create.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/theoryVote/create.gsp" afterPath="$PROJECT_DIR$/grails-app/views/theoryVote/create.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/reference/edit.gsp" afterPath="$PROJECT_DIR$/grails-app/views/reference/edit.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/theory/edit.gsp" afterPath="$PROJECT_DIR$/grails-app/views/theory/edit.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/theoryReferenceVote/edit.gsp" afterPath="$PROJECT_DIR$/grails-app/views/theoryReferenceVote/edit.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/theoryTheoryLink/edit.gsp" afterPath="$PROJECT_DIR$/grails-app/views/theoryTheoryLink/edit.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/theoryVote/edit.gsp" afterPath="$PROJECT_DIR$/grails-app/views/theoryVote/edit.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/reference/list.gsp" afterPath="$PROJECT_DIR$/grails-app/views/reference/list.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/theory/list.gsp" afterPath="$PROJECT_DIR$/grails-app/views/theory/list.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/theoryReferenceVote/list.gsp" afterPath="$PROJECT_DIR$/grails-app/views/theoryReferenceVote/list.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/theoryTheoryLink/list.gsp" afterPath="$PROJECT_DIR$/grails-app/views/theoryTheoryLink/list.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/theoryVote/list.gsp" afterPath="$PROJECT_DIR$/grails-app/views/theoryVote/list.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/reference/show.gsp" afterPath="$PROJECT_DIR$/grails-app/views/reference/show.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/theory/show.gsp" afterPath="$PROJECT_DIR$/grails-app/views/theory/show.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/theoryReferenceVote/show.gsp" afterPath="$PROJECT_DIR$/grails-app/views/theoryReferenceVote/show.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/theoryTheoryLink/show.gsp" afterPath="$PROJECT_DIR$/grails-app/views/theoryTheoryLink/show.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/theoryVote/show.gsp" afterPath="$PROJECT_DIR$/grails-app/views/theoryVote/show.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/theoryTheoryLink/update.gsp" afterPath="$PROJECT_DIR$/grails-app/views/theoryTheoryLink/update.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/theory/vote.gsp" afterPath="$PROJECT_DIR$/grails-app/views/theory/vote.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grails-app/views/theoryReferenceVote/vote.gsp" afterPath="$PROJECT_DIR$/grails-app/views/theoryReferenceVote/vote.gsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="CSSTTheoryBuilder.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$USER_HOME$/.grails/" />
     <file path="/MainController.groovy" changelist="332f8af4-fd71-4561-9829-cd61da8f6ef9" time="1373462381160" ignored="false" />
     <file path="/MainControllerTests.groovy" changelist="332f8af4-fd71-4561-9829-cd61da8f6ef9" time="1373428903021" ignored="false" />
-    <file path="/Dummy.txt" changelist="332f8af4-fd71-4561-9829-cd61da8f6ef9" time="1374973658546" ignored="false" />
+    <file path="/Dummy.txt" changelist="332f8af4-fd71-4561-9829-cd61da8f6ef9" time="1375209158813" ignored="false" />
     <file path="/fragment.java" changelist="332f8af4-fd71-4561-9829-cd61da8f6ef9" time="1374727760966" ignored="false" />
     <file path="/Theory.groovy" changelist="332f8af4-fd71-4561-9829-cd61da8f6ef9" time="1374728160038" ignored="false" />
     <file path="/Reference.groovy" changelist="332f8af4-fd71-4561-9829-cd61da8f6ef9" time="1374081530966" ignored="false" />
@@ -33,10 +94,9 @@
     <file path="/TheoryTheoryLink.groovy" changelist="332f8af4-fd71-4561-9829-cd61da8f6ef9" time="1373990027842" ignored="false" />
     <file path="/TheoryTheoryLinkController.groovy" changelist="332f8af4-fd71-4561-9829-cd61da8f6ef9" time="1374728364471" ignored="false" />
     <file path="/UrlMappings.groovy" changelist="332f8af4-fd71-4561-9829-cd61da8f6ef9" time="1374081864972" ignored="false" />
-    <file path="$PROJECT_DIR$/test/unit/cssttheorybuilder/DefaultControllerTests.groovy" changelist="332f8af4-fd71-4561-9829-cd61da8f6ef9" time="1374081890741" ignored="false" />
     <file path="/DefaultController.groovy" changelist="332f8af4-fd71-4561-9829-cd61da8f6ef9" time="1374685023884" ignored="false" />
     <file path="/_theories.gsp" changelist="332f8af4-fd71-4561-9829-cd61da8f6ef9" time="1374554773343" ignored="false" />
-    <file path="/LoggedInFilterFilters.groovy" changelist="332f8af4-fd71-4561-9829-cd61da8f6ef9" time="1374252704092" ignored="false" />
+    <file path="/LoggedInFilterFilters.groovy" changelist="332f8af4-fd71-4561-9829-cd61da8f6ef9" time="1375212252668" ignored="false" />
     <file path="/noside.gsp" changelist="332f8af4-fd71-4561-9829-cd61da8f6ef9" time="1374553351269" ignored="false" />
     <file path="/_references.gsp" changelist="332f8af4-fd71-4561-9829-cd61da8f6ef9" time="1374592726611" ignored="false" />
     <file path="/DataSource.groovy" changelist="332f8af4-fd71-4561-9829-cd61da8f6ef9" time="1374682552085" ignored="false" />
@@ -55,7 +115,7 @@
     <file path="$PROJECT_DIR$/../ScratchTeva/src/edu/mit/cci/teva/scratch/analysis/ScratchCsvReader.java" changelist="332f8af4-fd71-4561-9829-cd61da8f6ef9" time="1375044015308" ignored="false" />
     <file path="/ScratchCsvReader.java" changelist="332f8af4-fd71-4561-9829-cd61da8f6ef9" time="1375043907820" ignored="false" />
     <file path="/Config.groovy" changelist="332f8af4-fd71-4561-9829-cd61da8f6ef9" time="1375070658052" ignored="false" />
-    <file path="/a.dummy" changelist="332f8af4-fd71-4561-9829-cd61da8f6ef9" time="1375199106795" ignored="false" />
+    <file path="/a.dummy" changelist="332f8af4-fd71-4561-9829-cd61da8f6ef9" time="1375212807707" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +168,7 @@
       </breakpoint>
     </breakpoint_any>
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/grails-app/controllers/cssttheorybuilder/UserController.groovy" line="15" class="cssttheorybuilder.UserController" package="cssttheorybuilder">
+      <breakpoint url="file://$PROJECT_DIR$/grails-app/controllers/scholarmap/UserController.groovy" line="15" class="cssttheorybuilder.UserController" package="cssttheorybuilder">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -123,7 +183,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/grails-app/controllers/cssttheorybuilder/TheoryVoteController.groovy" line="10" class="cssttheorybuilder.TheoryVoteController" package="cssttheorybuilder">
+      <breakpoint url="file://$PROJECT_DIR$/grails-app/controllers/scholarmap/TheoryVoteController.groovy" line="10" class="cssttheorybuilder.TheoryVoteController" package="cssttheorybuilder">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -148,91 +208,100 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ReferenceController.groovy" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grails-app/controllers/cssttheorybuilder/ReferenceController.groovy">
+      <file leaf-file-name="ReferenceController.groovy" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/grails-app/controllers/scholarmap/ReferenceController.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="80" column="58" selection-start="2967" selection-end="2967" vertical-scroll-proportion="0.0">
+            <state line="4" column="6" selection-start="90" selection-end="90" vertical-scroll-proportion="0.09580839">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TheoryReferenceVoteController.groovy" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grails-app/controllers/cssttheorybuilder/TheoryReferenceVoteController.groovy">
+      <file leaf-file-name="LoggedInFilterFilters.groovy" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grails-app/conf/scholarmap/LoggedInFilterFilters.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="37" selection-start="687" selection-end="687" vertical-scroll-proportion="0.0">
+            <state line="0" column="18" selection-start="18" selection-end="18" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Config.groovy" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grails-app/conf/Config.groovy">
+      <file leaf-file-name="Reference.groovy" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grails-app/domain/scholarmap/Reference.groovy">
+          <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="0" selection-start="2069" selection-end="2069" vertical-scroll-proportion="0.0">
+            <state line="2" column="6" selection-start="26" selection-end="26" vertical-scroll-proportion="-0.5">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="applicationContext.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web-app/WEB-INF/applicationContext.xml">
+      <file leaf-file-name="DefaultController.groovy" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grails-app/controllers/scholarmap/DefaultController.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="2" column="6" selection-start="26" selection-end="26" vertical-scroll-proportion="-1.0434783">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.properties" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application.properties">
+      <file leaf-file-name="User.groovy" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grails-app/domain/scholarmap/User.groovy">
+          <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="8" column="76" selection-start="165" selection-end="165" vertical-scroll-proportion="-2.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".project" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.project">
+      <file leaf-file-name="TheoryVote.groovy" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grails-app/domain/scholarmap/TheoryVote.groovy">
+          <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="10" selection-start="67" selection-end="67" vertical-scroll-proportion="0.051835854">
+            <state line="2" column="6" selection-start="26" selection-end="26" vertical-scroll-proportion="-0.5">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TheoryController.groovy" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grails-app/controllers/cssttheorybuilder/TheoryController.groovy">
+      <file leaf-file-name="TheoryTheoryLink.groovy" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grails-app/domain/scholarmap/TheoryTheoryLink.groovy">
+          <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="26" selection-start="778" selection-end="778" vertical-scroll-proportion="0.0">
+            <state line="2" column="6" selection-start="26" selection-end="26" vertical-scroll-proportion="-0.5">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vote.gsp" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grails-app/views/theoryReferenceVote/vote.gsp">
+      <file leaf-file-name="TheoryReferenceVote.groovy" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grails-app/domain/scholarmap/TheoryReferenceVote.groovy">
+          <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="6" column="4" selection-start="85" selection-end="85" vertical-scroll-proportion="-1.5">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GormStaticApi.groovy" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gvm/grails/current/src/grails-datastore-gorm-1.1.8.RELEASE-sources.jar!/org/grails/datastore/gorm/GormStaticApi.groovy">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="378" column="49" selection-start="11872" selection-end="11872" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
+      <file leaf-file-name="Theory.groovy" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/grails-app/domain/scholarmap/Theory.groovy">
+          <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
+            <state />
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DynamicFinder.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gvm/grails/current/src/grails-datastore-gorm-1.1.8.RELEASE-sources.jar!/org/grails/datastore/gorm/finders/DynamicFinder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="354" column="23" selection-start="15803" selection-end="15803" vertical-scroll-proportion="0.0">
+            <state line="9" column="33" selection-start="147" selection-end="147" vertical-scroll-proportion="-2.25">
               <folding />
             </state>
           </provider>
@@ -245,14 +314,18 @@
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitLogSettings">
+    <option name="myStructureFilterPaths" />
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/grails-app/views/common/_top.gsp" />
-        <option value="$PROJECT_DIR$/grails-app/conf/BuildConfig.groovy" />
-        <option value="$PROJECT_DIR$/grails-app/conf/DataSource.groovy" />
-        <option value="$PROJECT_DIR$/grails-app/controllers/cssttheorybuilder/DefaultController.groovy" />
-        <option value="$PROJECT_DIR$/grails-app/views/theoryReferenceVote/vote.gsp" />
         <option value="$PROJECT_DIR$/grails-app/controllers/cssttheorybuilder/UserController.groovy" />
         <option value="$PROJECT_DIR$/grails-app/domain/cssttheorybuilder/TheoryTheoryLink.groovy" />
         <option value="$PROJECT_DIR$/grails-app/domain/cssttheorybuilder/Theory.groovy" />
@@ -264,16 +337,21 @@
         <option value="$PROJECT_DIR$/grails-app/views/theory/vote.gsp" />
         <option value="$PROJECT_DIR$/grails-app/controllers/cssttheorybuilder/TheoryController.groovy" />
         <option value="$PROJECT_DIR$/grails-app/conf/Config.groovy" />
+        <option value="$PROJECT_DIR$/.project" />
+        <option value="$PROJECT_DIR$/grails-app/conf/scholarmap/LoggedInFilterFilters.groovy" />
+        <option value="$PROJECT_DIR$/grails-app/domain/scholarmap/User.groovy" />
+        <option value="$PROJECT_DIR$/grails-app/domain/scholarmap/Theory.groovy" />
+        <option value="$PROJECT_DIR$/grails-app/domain/scholarmap/TheoryReferenceVote.groovy" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="24" />
+    <option name="x" value="109" />
     <option name="y" value="22" />
     <option name="width" value="1682" />
     <option name="height" value="878" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -306,22 +384,22 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="options.lastSelected" value="appearance" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/web-app/css/main.css" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.side.proportion" value="0.31633836" />
     <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="FullScreen" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
+    <property name="FullScreen" value="false" />
     <property name="gradle.tool.window.active" value="Tasks" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="PublishConfig">
     <servers>
@@ -344,7 +422,7 @@
       <recent name="$PROJECT_DIR$/grails-app/views/theoryReferenceVote" />
     </key>
   </component>
-  <component name="RunManager" selected="Grails.Grails:CSSTTheoryBuilder">
+  <component name="RunManager" selected="Grails.Grails:ScholarMap">
     <configuration default="false" name="All in CSSTTheoryBuilder" type="JUnit" factoryName="JUnit" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="CSSTTheoryBuilder" />
@@ -386,19 +464,6 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -425,6 +490,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -475,7 +553,7 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="false" name="Grails:CSSTTheoryBuilder" type="GrailsRunConfigurationType" factoryName="Grails">
+    <configuration default="false" name="Grails:ScholarMap" type="GrailsRunConfigurationType" factoryName="Grails">
       <module name="ScholarMap" />
       <setting name="vmparams" value="" />
       <setting name="cmdLine" value="run-app" />
@@ -483,12 +561,14 @@
       <setting name="passParentEnv" value="true" />
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <setting name="launchBrowser" value="false" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
     <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Grails.Test" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.All in CSSTTheoryBuilder" />
-      <item index="2" class="java.lang.String" itemvalue="Grails.Grails:CSSTTheoryBuilder" />
+      <item index="1" class="java.lang.String" itemvalue="Grails.Grails:ScholarMap" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.All in CSSTTheoryBuilder" />
     </list>
     <recent_temporary>
       <list size="1">
@@ -522,21 +602,21 @@
     <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
   </component>
   <component name="ToolWindowManager">
-    <frame x="24" y="22" width="1682" height="878" extended-state="0" />
+    <frame x="109" y="22" width="1682" height="878" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298153" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20321761" sideWeight="0.60026383" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32894737" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32849604" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36147758" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24670185" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Grails View" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16992664" sideWeight="0.67105263" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Grails View" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16992664" sideWeight="0.75329816" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25232854" sideWeight="0.27308708" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -545,7 +625,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26644182" sideWeight="0.6730361" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24736843" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24670185" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39605263" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -619,98 +699,7 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/grails-app/views/theoryTheoryLink/update.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="13" selection-start="1062" selection-end="1062" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/theoryTheoryLink/create.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="0" selection-start="2525" selection-end="2525" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/theoryVote/create.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/theory/create.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="12" selection-start="586" selection-end="817" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/theory/vote.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="5" selection-start="1044" selection-end="1044" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/controllers/cssttheorybuilder/DefaultController.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="6" selection-start="33" selection-end="33" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/controllers/cssttheorybuilder/ReferenceController.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="58" selection-start="2967" selection-end="2967" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gvm/grails/current/src/grails-datastore-gorm-1.1.8.RELEASE-sources.jar!/org/grails/datastore/gorm/finders/DynamicFinder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="354" column="23" selection-start="15803" selection-end="15803" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gvm/grails/current/src/grails-datastore-gorm-1.1.8.RELEASE-sources.jar!/org/grails/datastore/gorm/GormStaticApi.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="378" column="49" selection-start="11872" selection-end="11872" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/controllers/cssttheorybuilder/TheoryController.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="26" selection-start="778" selection-end="778" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/views/theoryReferenceVote/vote.gsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/controllers/cssttheorybuilder/TheoryReferenceVoteController.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="37" selection-start="687" selection-end="687" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/grails-app/conf/Config.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="0" selection-start="2069" selection-end="2069" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web-app/WEB-INF/applicationContext.xml">
+    <entry file="file://$PROJECT_DIR$/grails-app/conf/spring/resources.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
@@ -724,9 +713,118 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/conf/BuildConfig.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/.project">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="10" selection-start="67" selection-end="67" vertical-scroll-proportion="0.051835854">
+        <state line="2" column="10" selection-start="67" selection-end="67" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.7.0_21.jdk/Contents/Home/src.zip!/java/util/concurrent/FutureTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="333" column="0" selection-start="10660" selection-end="10660" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/conf/UrlMappings.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="77" selection-start="182" selection-end="182" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/conf/scholarmap/LoggedInFilterFilters.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="18" selection-start="18" selection-end="18" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/domain/scholarmap/User.groovy">
+      <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="76" selection-start="165" selection-end="165" vertical-scroll-proportion="-2.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/domain/scholarmap/TheoryVote.groovy">
+      <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="6" selection-start="26" selection-end="26" vertical-scroll-proportion="-0.5">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/domain/scholarmap/TheoryTheoryLink.groovy">
+      <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="6" selection-start="26" selection-end="26" vertical-scroll-proportion="-0.5">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/domain/scholarmap/TheoryReferenceVote.groovy">
+      <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="4" selection-start="85" selection-end="85" vertical-scroll-proportion="-1.5">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/domain/scholarmap/Theory.groovy">
+      <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="33" selection-start="147" selection-end="147" vertical-scroll-proportion="-2.25">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/domain/scholarmap/Reference.groovy">
+      <provider editor-type-id="org.jetbrains.plugins.grails.perspectives.DomainClassesRelationsEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="6" selection-start="26" selection-end="26" vertical-scroll-proportion="-0.5">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/controllers/scholarmap/DefaultController.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="6" selection-start="26" selection-end="26" vertical-scroll-proportion="-1.0434783">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/target/stacktrace.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="620" column="673" selection-start="55561" selection-end="55561" vertical-scroll-proportion="0.29158512">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grails-app/controllers/scholarmap/ReferenceController.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="6" selection-start="90" selection-end="90" vertical-scroll-proportion="0.09580839">
           <folding />
         </state>
       </provider>

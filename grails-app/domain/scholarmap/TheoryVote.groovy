@@ -1,4 +1,4 @@
-package cssttheorybuilder
+package scholarmap
 
 class TheoryVote {
 

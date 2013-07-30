@@ -7,7 +7,7 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ page import="cssttheorybuilder.Theory" %>
+<%@ page import="ScholarMap.Theory" %>
 <html>
 <head>
     <meta name="layout" content="main">

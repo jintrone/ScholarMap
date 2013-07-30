@@ -1,4 +1,4 @@
-<%@ page import="cssttheorybuilder.Theory" %>
+<%@ page import="ScholarMap.Theory" %>
 <!DOCTYPE html>
 <html>
 <head>
