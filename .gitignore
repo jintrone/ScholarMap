@@ -16,3 +16,9 @@ out
 
 #emacs#
 *~
+
+#intellij#
+.idea/workspace.xml
+.idea/dataSources.xml
+.idea/sqlDataSources.xml
+.idea/dynamic.xml
