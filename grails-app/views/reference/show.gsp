@@ -1,4 +1,4 @@
-<%@ page import="ScholarMap.Reference" %>
+<%@ page import="scholarmap.Reference" %>
 <!DOCTYPE html>
 <html>
 <head>

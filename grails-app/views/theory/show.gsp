@@ -1,4 +1,4 @@
-<%@ page import="ScholarMap.Theory" %>
+<%@ page import="scholarmap.Theory" %>
 <!DOCTYPE html>
 <html>
 <head>

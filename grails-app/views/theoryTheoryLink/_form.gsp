@@ -1,4 +1,4 @@
-<%@ page import="ScholarMap.TheoryTheoryLink" %>
+<%@ page import="scholarmap.TheoryTheoryLink" %>
 
 
 
@@ -7,7 +7,7 @@
 		<g:message code="theoryTheoryLink.fromTheory.label" default="From Theory" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="fromTheory" name="fromTheory.id" from="${ScholarMap.Theory.list()}" optionKey="id" required="" value="${theoryTheoryLinkInstance?.fromTheory?.id}" class="many-to-one"/>
+	<g:select id="fromTheory" name="fromTheory.id" from="${scholarmap.Theory.list()}" optionKey="id" required="" value="${theoryTheoryLinkInstance?.fromTheory?.id}" class="many-to-one"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: theoryTheoryLinkInstance, field: 'toTheory', 'error')} required">
@@ -15,7 +15,7 @@
 		<g:message code="theoryTheoryLink.toTheory.label" default="To Theory" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="toTheory" name="toTheory.id" from="${ScholarMap.Theory.list()}" optionKey="id" required="" value="${theoryTheoryLinkInstance?.toTheory?.id}" class="many-to-one"/>
+	<g:select id="toTheory" name="toTheory.id" from="${scholarmap.Theory.list()}" optionKey="id" required="" value="${theoryTheoryLinkInstance?.toTheory?.id}" class="many-to-one"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: theoryTheoryLinkInstance, field: 'type', 'error')} ">
@@ -31,6 +31,6 @@
 		<g:message code="theoryTheoryLink.user.label" default="User" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="user" name="user.id" from="${ScholarMap.User.list()}" optionKey="id" required="" value="${theoryTheoryLinkInstance?.user?.id}" class="many-to-one"/>
+	<g:select id="user" name="user.id" from="${scholarmap.User.list()}" optionKey="id" required="" value="${theoryTheoryLinkInstance?.user?.id}" class="many-to-one"/>
 </div>
 
