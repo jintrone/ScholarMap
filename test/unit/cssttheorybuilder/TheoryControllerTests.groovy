@@ -1,4 +1,4 @@
-package ScholarMap
+package scholarmap
 
 
 
