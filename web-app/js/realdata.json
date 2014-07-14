@@ -1,0 +1,1128 @@
+{"nodes": [
+    {
+        "id": 1,
+        "name": "Distributed Cognition",
+        "weight": [2]
+    },
+    {
+        "id": 2,
+        "name": "Activity Theory",
+        "weight": [2]
+    },
+    {
+        "id": 3,
+        "name": "Evolutionary dynamics",
+        "weight": [2]
+    },
+    {
+        "id": 4,
+        "name": "social network analysis",
+        "weight": [2]
+    },
+    {
+        "id": 5,
+        "name": "Communities of Practice",
+        "weight": [2]
+    },
+    {
+        "id": 6,
+        "name": "Data mining",
+        "weight": [2]
+    },
+    {
+        "id": 7,
+        "name": "Ethnomethodology",
+        "weight": [2]
+    },
+    {
+        "id": 8,
+        "name": "Creativity theory in cognitive science",
+        "weight": [2]
+    },
+    {
+        "id": 9,
+        "name": "Ethnography",
+        "weight": [2]
+    },
+    {
+        "id": 10,
+        "name": "Collaborative artifacts of lasting value",
+        "weight": [2]
+    },
+    {
+        "id": 11,
+        "name": "The Social Construction of Facts and Artifacts",
+        "weight": [2]
+    },
+    {
+        "id": 12,
+        "name": "Values and Design",
+        "weight": [2]
+    },
+    {
+        "id": 13,
+        "name": "Actor-Network Theory",
+        "weight": [2]
+    },
+    {
+        "id": 14,
+        "name": "Machine Learning",
+        "weight": [2]
+    },
+    {
+        "id": 15,
+        "name": "Values in Social Psychology",
+        "weight": [2]
+    },
+    {
+        "id": 16,
+        "name": "Database Systems",
+        "weight": [2]
+    },
+    {
+        "id": 17,
+        "name": "Schema Theory",
+        "weight": [2]
+    },
+    {
+        "id": 18,
+        "name": "Sociology of culture",
+        "weight": [2]
+    },
+    {
+        "id": 19,
+        "name": "Sociomateriality",
+        "weight": [2]
+    },
+    {
+        "id": 20,
+        "name": "Cyberlaw ",
+        "weight": [2]
+    },
+    {
+        "id": 21,
+        "name": "Augmented Reality (AR) Games",
+        "weight": [2]
+    },
+    {
+        "id": 22,
+        "name": "Human Computer Interaction",
+        "weight": [2]
+    },
+    {
+        "id": 23,
+        "name": "Computer Mediated Communication",
+        "weight": [2]
+    },
+    {
+        "id": 24,
+        "name": "Collaborative smart phone games ",
+        "weight": [2]
+    },
+    {
+        "id": 25,
+        "name": "Cognitive Ergonomics",
+        "weight": [2]
+    },
+    {
+        "id": 26,
+        "name": "Political Economy",
+        "weight": [2]
+    },
+    {
+        "id": 27,
+        "name": "Grounded Theory",
+        "weight": [2]
+    },
+    {
+        "id": 29,
+        "name": "Documentation studies",
+        "weight": [2]
+    },
+    {
+        "id": 30,
+        "name": "Design Science Research",
+        "weight": [2]
+    },
+    {
+        "id": 31,
+        "name": "Identity Theory",
+        "weight": [2]
+    },
+    {
+        "id": 33,
+        "name": "medium-specifity",
+        "weight": [2]
+    },
+    {
+        "id": 35,
+        "name": "Infrastructure Studies",
+        "weight": [2]
+    },
+    {
+        "id": 36,
+        "name": "Technology Assessment",
+        "weight": [2]
+    },
+    {
+        "id": 37,
+        "name": "Digital Inclusion",
+        "weight": [2]
+    },
+    {
+        "id": 38,
+        "name": "Distributed Affect",
+        "weight": [2]
+    },
+    {
+        "id": 39,
+        "name": "Social-Movement Theory",
+        "weight": [2]
+    },
+    {
+        "id": 40,
+        "name": "Feminism",
+        "weight": [2]
+    },
+    {
+        "id": 41,
+        "name": "Conversation Analysis",
+        "weight": [2]
+    },
+    {
+        "id": 42,
+        "name": "Boundary Objects",
+        "weight": [2]
+    },
+    {
+        "id": 43,
+        "name": "Topic Modeling",
+        "weight": [2]
+    },
+    {
+        "id": 44,
+        "name": "Capabilities Approach",
+        "weight": [2]
+    },
+    {
+        "id": 45,
+        "name": "Critical Race Theory",
+        "weight": [2]
+    },
+    {
+        "id": 46,
+        "name": "Computer Supported Argument Visualization",
+        "weight": [2]
+    }
+], "links": [
+    {
+        "source": 0,
+        "target": 1,
+        "value": 2
+    },
+    {
+        "source": 0,
+        "target": 21,
+        "value": 4
+    },
+    {
+        "source": 1,
+        "target": 21,
+        "value": 3
+    },
+    {
+        "source": 10,
+        "target": 22,
+        "value": 1
+    },
+    {
+        "source": 11,
+        "target": 22,
+        "value": 1
+    },
+    {
+        "source": 17,
+        "target": 22,
+        "value": 1
+    },
+    {
+        "source": 21,
+        "target": 22,
+        "value": 3
+    },
+    {
+        "source": 6,
+        "target": 10,
+        "value": 4
+    },
+    {
+        "source": 10,
+        "target": 17,
+        "value": 3
+    },
+    {
+        "source": 10,
+        "target": 18,
+        "value": 2
+    },
+    {
+        "source": 11,
+        "target": 21,
+        "value": 2
+    },
+    {
+        "source": 1,
+        "target": 10,
+        "value": 2
+    },
+    {
+        "source": 0,
+        "target": 10,
+        "value": 1
+    },
+    {
+        "source": 3,
+        "target": 16,
+        "value": 1
+    },
+    {
+        "source": 9,
+        "target": 10,
+        "value": 1
+    },
+    {
+        "source": 9,
+        "target": 17,
+        "value": 1
+    },
+    {
+        "source": 11,
+        "target": 17,
+        "value": 2
+    },
+    {
+        "source": 14,
+        "target": 17,
+        "value": 2
+    },
+    {
+        "source": 21,
+        "target": 24,
+        "value": 2
+    },
+    {
+        "source": 0,
+        "target": 3,
+        "value": 2
+    },
+    {
+        "source": 10,
+        "target": 11,
+        "value": 4
+    },
+    {
+        "source": 4,
+        "target": 8,
+        "value": 4
+    },
+    {
+        "source": 6,
+        "target": 8,
+        "value": 5
+    },
+    {
+        "source": 8,
+        "target": 10,
+        "value": 7
+    },
+    {
+        "source": 4,
+        "target": 26,
+        "value": 2
+    },
+    {
+        "source": 8,
+        "target": 26,
+        "value": 7
+    },
+    {
+        "source": 2,
+        "target": 21,
+        "value": 1
+    },
+    {
+        "source": 4,
+        "target": 21,
+        "value": 2
+    },
+    {
+        "source": 8,
+        "target": 21,
+        "value": 6
+    },
+    {
+        "source": 10,
+        "target": 21,
+        "value": 1
+    },
+    {
+        "source": 14,
+        "target": 21,
+        "value": 1
+    },
+    {
+        "source": 21,
+        "target": 26,
+        "value": 2
+    },
+    {
+        "source": 1,
+        "target": 18,
+        "value": 1
+    },
+    {
+        "source": 10,
+        "target": 29,
+        "value": 1
+    },
+    {
+        "source": 14,
+        "target": 29,
+        "value": 2
+    },
+    {
+        "source": 17,
+        "target": 29,
+        "value": 1
+    },
+    {
+        "source": 4,
+        "target": 6,
+        "value": 2
+    },
+    {
+        "source": 6,
+        "target": 12,
+        "value": 2
+    },
+    {
+        "source": 6,
+        "target": 17,
+        "value": 2
+    },
+    {
+        "source": 6,
+        "target": 18,
+        "value": 2
+    },
+    {
+        "source": 12,
+        "target": 25,
+        "value": 2
+    },
+    {
+        "source": 22,
+        "target": 25,
+        "value": 1
+    },
+    {
+        "source": 20,
+        "target": 30,
+        "value": 1
+    },
+    {
+        "source": 21,
+        "target": 30,
+        "value": 1
+    },
+    {
+        "source": 0,
+        "target": 8,
+        "value": 2
+    },
+    {
+        "source": 1,
+        "target": 8,
+        "value": 2
+    },
+    {
+        "source": 3,
+        "target": 4,
+        "value": 3
+    },
+    {
+        "source": 3,
+        "target": 10,
+        "value": 1
+    },
+    {
+        "source": 3,
+        "target": 12,
+        "value": 1
+    },
+    {
+        "source": 0,
+        "target": 14,
+        "value": 1
+    },
+    {
+        "source": 1,
+        "target": 14,
+        "value": 1
+    },
+    {
+        "source": 6,
+        "target": 21,
+        "value": 2
+    },
+    {
+        "source": 6,
+        "target": 22,
+        "value": 2
+    },
+    {
+        "source": 8,
+        "target": 17,
+        "value": 4
+    },
+    {
+        "source": 8,
+        "target": 18,
+        "value": 4
+    },
+    {
+        "source": 10,
+        "target": 12,
+        "value": 2
+    },
+    {
+        "source": 12,
+        "target": 18,
+        "value": 2
+    },
+    {
+        "source": 0,
+        "target": 26,
+        "value": 1
+    },
+    {
+        "source": 1,
+        "target": 26,
+        "value": 1
+    },
+    {
+        "source": 6,
+        "target": 26,
+        "value": 2
+    },
+    {
+        "source": 9,
+        "target": 26,
+        "value": 1
+    },
+    {
+        "source": 10,
+        "target": 26,
+        "value": 2
+    },
+    {
+        "source": 11,
+        "target": 26,
+        "value": 1
+    },
+    {
+        "source": 12,
+        "target": 26,
+        "value": 1
+    },
+    {
+        "source": 17,
+        "target": 26,
+        "value": 1
+    },
+    {
+        "source": 18,
+        "target": 26,
+        "value": 1
+    },
+    {
+        "source": 26,
+        "target": 27,
+        "value": 2
+    },
+    {
+        "source": 0,
+        "target": 31,
+        "value": 1
+    },
+    {
+        "source": 8,
+        "target": 31,
+        "value": 3
+    },
+    {
+        "source": 12,
+        "target": 31,
+        "value": 3
+    },
+    {
+        "source": 18,
+        "target": 31,
+        "value": 2
+    },
+    {
+        "source": 21,
+        "target": 31,
+        "value": 1
+    },
+    {
+        "source": 26,
+        "target": 31,
+        "value": 1
+    },
+    {
+        "source": 8,
+        "target": 22,
+        "value": 4
+    },
+    {
+        "source": 8,
+        "target": 29,
+        "value": 2
+    },
+    {
+        "source": 8,
+        "target": 12,
+        "value": 3
+    },
+    {
+        "source": 1,
+        "target": 12,
+        "value": 1
+    },
+    {
+        "source": 8,
+        "target": 11,
+        "value": 3
+    },
+    {
+        "source": 11,
+        "target": 14,
+        "value": 2
+    },
+    {
+        "source": 8,
+        "target": 27,
+        "value": 2
+    },
+    {
+        "source": 8,
+        "target": 28,
+        "value": 2
+    },
+    {
+        "source": 3,
+        "target": 15,
+        "value": 2
+    },
+    {
+        "source": 5,
+        "target": 15,
+        "value": 1
+    },
+    {
+        "source": 0,
+        "target": 22,
+        "value": 1
+    },
+    {
+        "source": 3,
+        "target": 22,
+        "value": 2
+    },
+    {
+        "source": 4,
+        "target": 22,
+        "value": 1
+    },
+    {
+        "source": 5,
+        "target": 22,
+        "value": 1
+    },
+    {
+        "source": 22,
+        "target": 23,
+        "value": 1
+    },
+    {
+        "source": 22,
+        "target": 24,
+        "value": 1
+    },
+    {
+        "source": 22,
+        "target": 27,
+        "value": 1
+    },
+    {
+        "source": 22,
+        "target": 30,
+        "value": 1
+    },
+    {
+        "source": 7,
+        "target": 21,
+        "value": 1
+    },
+    {
+        "source": 21,
+        "target": 28,
+        "value": 1
+    },
+    {
+        "source": 9,
+        "target": 11,
+        "value": 1
+    },
+    {
+        "source": 11,
+        "target": 24,
+        "value": 1
+    },
+    {
+        "source": 11,
+        "target": 28,
+        "value": 1
+    },
+    {
+        "source": 0,
+        "target": 24,
+        "value": 1
+    },
+    {
+        "source": 24,
+        "target": 28,
+        "value": 1
+    },
+    {
+        "source": 10,
+        "target": 27,
+        "value": 1
+    },
+    {
+        "source": 18,
+        "target": 27,
+        "value": 1
+    },
+    {
+        "source": 27,
+        "target": 30,
+        "value": 1
+    },
+    {
+        "source": 26,
+        "target": 28,
+        "value": 1
+    },
+    {
+        "source": 10,
+        "target": 14,
+        "value": 1
+    },
+    {
+        "source": 12,
+        "target": 14,
+        "value": 1
+    },
+    {
+        "source": 14,
+        "target": 16,
+        "value": 1
+    },
+    {
+        "source": 14,
+        "target": 18,
+        "value": 1
+    },
+    {
+        "source": 12,
+        "target": 17,
+        "value": 1
+    },
+    {
+        "source": 16,
+        "target": 17,
+        "value": 1
+    },
+    {
+        "source": 17,
+        "target": 18,
+        "value": 1
+    },
+    {
+        "source": 3,
+        "target": 7,
+        "value": 1
+    },
+    {
+        "source": 1,
+        "target": 31,
+        "value": 1
+    },
+    {
+        "source": 4,
+        "target": 31,
+        "value": 1
+    },
+    {
+        "source": 6,
+        "target": 31,
+        "value": 2
+    },
+    {
+        "source": 9,
+        "target": 31,
+        "value": 1
+    },
+    {
+        "source": 10,
+        "target": 31,
+        "value": 1
+    },
+    {
+        "source": 11,
+        "target": 31,
+        "value": 1
+    },
+    {
+        "source": 17,
+        "target": 31,
+        "value": 1
+    },
+    {
+        "source": 19,
+        "target": 31,
+        "value": 2
+    },
+    {
+        "source": 25,
+        "target": 31,
+        "value": 2
+    },
+    {
+        "source": 27,
+        "target": 31,
+        "value": 1
+    },
+    {
+        "source": 2,
+        "target": 32,
+        "value": 1
+    },
+    {
+        "source": 10,
+        "target": 19,
+        "value": 1
+    },
+    {
+        "source": 11,
+        "target": 19,
+        "value": 1
+    },
+    {
+        "source": 12,
+        "target": 19,
+        "value": 1
+    },
+    {
+        "source": 19,
+        "target": 25,
+        "value": 1
+    },
+    {
+        "source": 0,
+        "target": 34,
+        "value": 1
+    },
+    {
+        "source": 3,
+        "target": 5,
+        "value": 2
+    },
+    {
+        "source": 3,
+        "target": 33,
+        "value": 1
+    },
+    {
+        "source": 4,
+        "target": 33,
+        "value": 1
+    },
+    {
+        "source": 8,
+        "target": 33,
+        "value": 1
+    },
+    {
+        "source": 10,
+        "target": 33,
+        "value": 1
+    },
+    {
+        "source": 11,
+        "target": 33,
+        "value": 1
+    },
+    {
+        "source": 19,
+        "target": 33,
+        "value": 1
+    },
+    {
+        "source": 22,
+        "target": 33,
+        "value": 1
+    },
+    {
+        "source": 25,
+        "target": 33,
+        "value": 1
+    },
+    {
+        "source": 31,
+        "target": 33,
+        "value": 1
+    },
+    {
+        "source": 8,
+        "target": 9,
+        "value": 1
+    },
+    {
+        "source": 0,
+        "target": 6,
+        "value": 1
+    },
+    {
+        "source": 1,
+        "target": 6,
+        "value": 1
+    },
+    {
+        "source": 6,
+        "target": 9,
+        "value": 1
+    },
+    {
+        "source": 6,
+        "target": 11,
+        "value": 1
+    },
+    {
+        "source": 6,
+        "target": 20,
+        "value": 1
+    },
+    {
+        "source": 6,
+        "target": 27,
+        "value": 1
+    },
+    {
+        "source": 6,
+        "target": 28,
+        "value": 1
+    },
+    {
+        "source": 6,
+        "target": 29,
+        "value": 1
+    },
+    {
+        "source": 10,
+        "target": 25,
+        "value": 1
+    },
+    {
+        "source": 17,
+        "target": 25,
+        "value": 1
+    },
+    {
+        "source": 10,
+        "target": 36,
+        "value": 1
+    },
+    {
+        "source": 11,
+        "target": 36,
+        "value": 1
+    },
+    {
+        "source": 25,
+        "target": 36,
+        "value": 1
+    },
+    {
+        "source": 29,
+        "target": 36,
+        "value": 1
+    },
+    {
+        "source": 33,
+        "target": 36,
+        "value": 1
+    },
+    {
+        "source": 35,
+        "target": 36,
+        "value": 1
+    },
+    {
+        "source": 5,
+        "target": 37,
+        "value": 1
+    },
+    {
+        "source": 22,
+        "target": 37,
+        "value": 1
+    },
+    {
+        "source": 0,
+        "target": 38,
+        "value": 1
+    },
+    {
+        "source": 1,
+        "target": 38,
+        "value": 1
+    },
+    {
+        "source": 4,
+        "target": 38,
+        "value": 1
+    },
+    {
+        "source": 21,
+        "target": 38,
+        "value": 1
+    },
+    {
+        "source": 22,
+        "target": 38,
+        "value": 1
+    },
+    {
+        "source": 3,
+        "target": 39,
+        "value": 1
+    },
+    {
+        "source": 5,
+        "target": 39,
+        "value": 1
+    },
+    {
+        "source": 22,
+        "target": 39,
+        "value": 1
+    },
+    {
+        "source": 37,
+        "target": 39,
+        "value": 1
+    },
+    {
+        "source": 1,
+        "target": 3,
+        "value": 2
+    },
+    {
+        "source": 2,
+        "target": 3,
+        "value": 1
+    },
+    {
+        "source": 2,
+        "target": 22,
+        "value": 1
+    },
+    {
+        "source": 5,
+        "target": 6,
+        "value": 1
+    },
+    {
+        "source": 3,
+        "target": 8,
+        "value": 2
+    },
+    {
+        "source": 3,
+        "target": 26,
+        "value": 2
+    },
+    {
+        "source": 3,
+        "target": 37,
+        "value": 1
+    },
+    {
+        "source": 4,
+        "target": 37,
+        "value": 1
+    },
+    {
+        "source": 18,
+        "target": 37,
+        "value": 1
+    },
+    {
+        "source": 21,
+        "target": 37,
+        "value": 1
+    },
+    {
+        "source": 5,
+        "target": 13,
+        "value": 1
+    },
+    {
+        "source": 34,
+        "target": 37,
+        "value": 1
+    },
+    {
+        "source": 3,
+        "target": 13,
+        "value": 1
+    },
+    {
+        "source": 3,
+        "target": 17,
+        "value": 1
+    },
+    {
+        "source": 8,
+        "target": 25,
+        "value": 1
+    },
+    {
+        "source": 8,
+        "target": 36,
+        "value": 1
+    },
+    {
+        "source": 8,
+        "target": 38,
+        "value": 1
+    },
+    {
+        "source": 8,
+        "target": 41,
+        "value": 1
+    }
+]}
