@@ -1,16 +1,17 @@
 package csst15
 
-class Reference {
+import csst15.security.User
 
-//    User creator
-    String author
+class Reference {
+    User creator
     Integer year
-    String text
+    String title
+    String content
 
     static constraints = {
     }
 
     static mapping = {
-        text type: "text"
+        content type: "text"
     }
 }
