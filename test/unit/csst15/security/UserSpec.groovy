@@ -27,7 +27,7 @@ class UserSpec extends ConstraintsUnitSpec {
         'nullable' | 'username'    | null
         'nullable' | 'username'    | getEmptyString()
         'valid'    | 'username'    | 'user'
-        'nullable' | 'password'    | ''
+        'nullable' | 'password' | getEmptyString()
         'valid'    | 'password'    | '1'
         'valid'    | 'firstName'   | 'Admin'
         'valid'    | 'firstName'   | null
