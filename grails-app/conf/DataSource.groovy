@@ -17,11 +17,12 @@ hibernate {
 environments {
     development {
         dataSource {
-            dbCreate = "update"
+            logginsql = true
+            dbCreate = "create-drop"
             pooled = true
             driverClassName = "com.mysql.jdbc.Driver"
-            username = "csst"
-            password = "csst"
+            username = "root"
+            password = ""
             dbCreate = "update"
             url = "jdbc:mysql://localhost:3306/csst_v2"
             dialect = org.hibernate.dialect.MySQL5InnoDBDialect

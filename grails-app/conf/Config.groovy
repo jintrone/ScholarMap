@@ -121,3 +121,19 @@ log4j.main = {
 
 
 }
+
+// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'csst15.security.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'csst15.security.UserRole'
+grails.plugin.springsecurity.authority.className = 'csst15.security.Role'
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+        '/'              : ['permitAll'],
+        '/index'         : ['permitAll'],
+        '/index.gsp'     : ['permitAll'],
+        '/assets/**'     : ['permitAll'],
+        '/**/js/**'      : ['permitAll'],
+        '/**/css/**'     : ['permitAll'],
+        '/**/images/**'  : ['permitAll'],
+        '/**/favicon.ico': ['permitAll']
+]
+

@@ -2,7 +2,7 @@ package csst15
 
 class Reference {
 
-    User creator
+//    User creator
     String author
     Integer year
     String text
