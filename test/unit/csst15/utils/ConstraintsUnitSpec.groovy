@@ -15,6 +15,10 @@ class ConstraintsUnitSpec extends Specification {
         ''
     }
 
+    String getEmailText(boolean valid) {
+        valid ? "test@test.am" : "test@t"
+    }
+
     void validateConstraints(obj, field, target) {
         def validated = obj.validate()
         if (target && target != 'valid') {

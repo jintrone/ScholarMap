@@ -13,7 +13,7 @@ class User {
     String lastName
     String email
     String password
-    LocalDate degreeYear
+    Integer degreeYear
     String institution
     byte[] photo
     boolean enabled = true
@@ -29,11 +29,11 @@ class User {
     static constraints = {
         username blank: false, unique: true
         password blank: false
-        email nullable: false, blank: false, unique: true
+        email nullable: false, blank: false, unique: true, email: true
         institution nullable: true
         firstName nullable: true
         lastName nullable: true
-        degreeYear nullable: true, max: LocalDate.now()
+        degreeYear nullable: true, max: LocalDate.now().year
         photo nullable: true
     }
 

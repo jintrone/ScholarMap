@@ -3,11 +3,9 @@ package csst15.security
 import csst15.utils.ConstraintsUnitSpec
 import grails.buildtestdata.mixin.Build
 import grails.test.mixin.TestFor
+import org.joda.time.LocalDate
 import spock.lang.Unroll
 
-/**
- * See the API for {@link grails.test.mixin.support.GrailsUnitTestMixin} for usage instructions
- */
 @Build(User)
 @TestFor(User)
 class UserSpec extends ConstraintsUnitSpec {
@@ -25,13 +23,24 @@ class UserSpec extends ConstraintsUnitSpec {
         validateConstraints(obj, field, target)
 
         where:
-        target     | field       | val
-        'nullable' | 'username'  | null
-        'nullable' | 'username'  | getEmptyString()
-        'valid'    | 'username'  | 'user'
-        'valid'    | 'firstName' | 'Admin'
-        'valid'    | 'firstName' | null
-        'valid'    | 'lastName'  | null
-        'valid'    | 'lastName'  | 'Admin'
+        target     | field         | val
+        'nullable' | 'username'    | null
+        'nullable' | 'username'    | getEmptyString()
+        'valid'    | 'username'    | 'user'
+        'nullable' | 'password'    | ''
+        'valid'    | 'password'    | '1'
+        'valid'    | 'firstName'   | 'Admin'
+        'valid'    | 'firstName'   | null
+        'valid'    | 'lastName'    | null
+        'valid'    | 'lastName'    | 'Admin'
+        'valid'    | 'degreeYear'  | LocalDate.now().year
+        'max'      | 'degreeYear'  | LocalDate.now().plusYears(1).year
+        'valid'    | 'institution' | null
+        'email'    | 'email'       | getEmailText(false)
+        'nullable' | 'email'       | null
+        'nullable' | 'email'       | getEmptyString()
+        'unique'   | 'email'       | 'test@test.com'
+        'valid'    | 'email'       | getEmailText(true)
+        'valid'    | 'photo'       | null
     }
 }
