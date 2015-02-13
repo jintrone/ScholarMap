@@ -30,5 +30,6 @@ class RoleSpec extends ConstraintsUnitSpec {
         'nullable' | 'authority' | null
         'nullable' | 'authority' | getEmptyString()
         'unique'   | 'authority' | Roles.ADMIN.name
+        'valid' | 'authority' | Roles.USER.name
     }
 }
