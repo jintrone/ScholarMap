@@ -88,9 +88,11 @@ grails.hibernate.osiv.readonly = false
 environments {
     development {
         grails.logging.jul.usebridge = true
+        grails.email.skip = true
     }
     production {
         grails.logging.jul.usebridge = false
+        grails.email.skip = false
         // TODO: grails.serverURL = "http://www.changeme.com"
     }
 }
@@ -135,4 +137,3 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/**/favicon.ico': ['permitAll'],
         '/**'            : ['permitAll']
 ]
-

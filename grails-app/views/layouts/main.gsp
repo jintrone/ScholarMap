@@ -27,7 +27,7 @@
                 </section>
             </div>
 
-            <div id="navbar-collapse-1" class="collapse navbar-collapse" ng-controller="AuthCtrl">
+            <div id="navbar-collapse-1" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li><g:link href="#/home">Home</g:link></li>
                     <sec:ifLoggedIn>

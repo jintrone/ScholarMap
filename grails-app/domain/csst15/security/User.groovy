@@ -19,7 +19,7 @@ class User {
     String role
     String department
     byte[] photo
-    boolean enabled = true
+    boolean enabled
     boolean accountExpired
     boolean accountLocked
     boolean passwordExpired
