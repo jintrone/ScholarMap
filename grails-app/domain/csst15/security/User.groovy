@@ -15,6 +15,9 @@ class User {
     String password
     Integer degreeYear
     String institution
+    String specialization
+    String role
+    String department
     byte[] photo
     boolean enabled = true
     boolean accountExpired
@@ -29,10 +32,13 @@ class User {
     static constraints = {
         username blank: false, unique: true
         password blank: false
-        email nullable: false, blank: false, unique: true, email: true
-        institution nullable: true
         firstName nullable: true
         lastName nullable: true
+        email nullable: false, blank: false, unique: true, email: true
+        institution nullable: true
+        specialization nullable: true
+        role nullable: true
+        department nullable: true
         degreeYear nullable: true, max: LocalDate.now().year
         photo nullable: true
     }

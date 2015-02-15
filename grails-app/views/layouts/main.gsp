@@ -4,24 +4,75 @@
 <!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
 <!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"><!--<![endif]-->
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title><g:layoutTitle default="ScholarMap 0.2"/></title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	%{--<link rel="shortcut icon" href="${assetPath(src: 'favicon.ico')}" type="image/x-icon">--}%
-	%{--<link rel="apple-touch-icon" href="${assetPath(src: 'apple-touch-icon.png')}">--}%
-	%{--<link rel="apple-touch-icon" sizes="114x114" href="${assetPath(src: 'apple-touch-icon-retina.png')}">--}%
-	%{--<asset:stylesheet src="application.css"/>--}%
-	%{--<asset:javascript src="application.js"/>--}%
-		<g:layoutHead/>
-	</head>
-	<body>
-	%{--<g:render template="/common/navbar"/>--}%
+<head>
+    <title>Welcome to Scholarmap</title>
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet"/>
+    <link href="${resource(dir: 'css/font-awesome/css', file: 'font-awesome.min.css')}" rel="stylesheet"/>
+    <link href="${resource(dir: '/css/bootstrap', file: 'bootstrap.css')}" rel="stylesheet"/>
+    <link href="${resource(dir: '/css', file: 'main.css')}" rel="stylesheet"/>
+    <link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}">
+</head>
 
-   <g:layoutBody/>
+<body>
+
+<header class="header navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="row">
+            <div class="navbar-header">
+                <button type="button" data-toggle="collapse" data-target="#navbar-collapse-1"
+                        class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span
+                        class="icon-bar"></span></button>
+                <section class="logo text-center">
+                    <g:link controller="home" class="navbar-brand">ScholarMap</g:link>
+                </section>
+            </div>
+
+            <div id="navbar-collapse-1" class="collapse navbar-collapse" ng-controller="AuthCtrl">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><g:link href="#/home">Home</g:link></li>
+                    <sec:ifLoggedIn>
+                        <li class="dropdown text-normal nav-profile">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="hidden-xs">
+                                    <span data-i18n="Lisa Doe">Welcome <sec:username/></span>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu with-arrow">
+                                <li>
+                                    <a href="">
+                                        <i class="fa fa-user"></i>
+                                        <span data-i18n="My Profile">My Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <form name="logout" method="POST" action="${createLink(controller: 'logout')}">
+                                        <input type="hidden" name="" value="">
+                                        <a class="fa fa-sign-out" href="javascript:document.logout.submit()">Logout</a>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    </sec:ifLoggedIn>
+                    <sec:ifNotLoggedIn>
+                        <li>
+                            <g:link controller="login" action="auth">Sign In</g:link>
+                        </li>
+                    </sec:ifNotLoggedIn>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="content" style="margin-top: 150px">
+    <g:layoutBody/>
+</div>
 
 
-    </body>
+<footer class="footer text-center">&copy; Copyright 2015 ScholarMap</footer>
+
+<script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.min.js')}"></script>
+<script type="text/javascript" src="${resource(dir: 'js/bootstrap', file: 'bootstrap.min.js')}"></script>
+</body>
 </html>
 

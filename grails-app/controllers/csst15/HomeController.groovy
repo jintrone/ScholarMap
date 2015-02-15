@@ -1,13 +1,14 @@
 package csst15
 
-//import org.apache.shiro.SecurityUtils
+import grails.plugin.springsecurity.annotation.Secured
+import grails.transaction.Transactional
 
+@Secured(['IS_AUTHENTICATED_ANONYMOUSLY'])
+@Transactional(readOnly = true)
 class HomeController {
+    static allowedMethods = [index: 'GET']
 
-//    def index() {
-//        if (SecurityUtils.subject.isAuthenticated()) {
-//            return redirect(controller:"user",action:"profile")
-//        }
-//        render(uri:"/index")
-//    }
+    def index() {
+        render(view: '/index')
+    }
 }
