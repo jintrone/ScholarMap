@@ -6,4 +6,8 @@ class Position {
     static constraints = {
         name blank: false, unique: true
     }
+
+    static mapping = {
+        version false
+    }
 }

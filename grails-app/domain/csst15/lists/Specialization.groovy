@@ -6,4 +6,8 @@ class Specialization {
     static constraints = {
         title blank: false, unique: true
     }
+
+    static mapping = {
+        version false
+    }
 }

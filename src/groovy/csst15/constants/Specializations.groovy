@@ -6,7 +6,17 @@ package csst15.constants
  */
 enum Specializations {
     COMPUTER_SCIENCE('Computer Science'),
-    ANTHROPOLOGY('Anthropology')
+    ANTHROPOLOGY('Anthropology'),
+    SOCIOLOGY('Sociology'),
+    COMMUNICATIONS('Communications'),
+    ECONOMICS('Economics'),
+    GEOLOGY('Geology'),
+    ADVERTISING('Advertising'),
+    JOURNALISM('Journalism'),
+    PSYCHOLOGY('Psychology'),
+    SOCIAL_PSYCHOLOGY('Social Psychology'),
+    INFORMATION_SCIENCE('Information Science'),
+    FEMINISM('Feminism')
 
     private final String title;
 
