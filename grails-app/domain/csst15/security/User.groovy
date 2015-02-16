@@ -16,7 +16,7 @@ class User {
     Integer degreeYear
     String institution
     String specialization
-    String role
+    String position
     String department
     byte[] photo
     boolean enabled
@@ -37,7 +37,7 @@ class User {
         email nullable: false, blank: false, unique: true, email: true
         institution nullable: true
         specialization nullable: true
-        role nullable: true
+        position nullable: true
         department nullable: true
         degreeYear nullable: true, max: LocalDate.now().year
         photo nullable: true

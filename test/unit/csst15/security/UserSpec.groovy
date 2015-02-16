@@ -43,7 +43,7 @@ class UserSpec extends ConstraintsUnitSpec {
         'valid'    | 'email'          | getEmailText(true)
         'valid'    | 'photo'          | null
         'valid'    | 'specialization' | null
-        'valid'    | 'role'           | null
+        'valid' | 'position' | null
         'valid'    | 'department'     | null
     }
 }
