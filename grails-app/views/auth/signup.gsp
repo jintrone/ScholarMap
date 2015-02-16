@@ -1,3 +1,4 @@
+<%@ page import="csst15.lists.Position" %>
 <g:applyLayout name="main">
     <div class="page-signup">
 
@@ -12,7 +13,7 @@
                 <div class="form-container">
 
                     <section>
-                        <form action='${createLink(controller: 'user', action: 'register')}' method='POST'
+                        <form action='${createLink(controller: 'auth', action: 'register')}' method='POST'
                               id='loginForm' class='form-horizontal text-center' autocomplete='off'>
                             <div class="form-group">
                                 <span class="glyphicon glyphicon-user"></span>
@@ -22,10 +23,38 @@
                             </div>
 
                             <div class="form-group">
+                                <span class="glyphicon glyphicon-user"></span>
+                                <input type="text" name="firstName"
+                                       class="form-control input-lg input-round text-center"
+                                       placeholder="First Name">
+                            </div>
+
+                            <div class="form-group">
+                                <span class="glyphicon glyphicon-user"></span>
+                                <input type="text" name="lastName"
+                                       class="form-control input-lg input-round text-center"
+                                       placeholder="Last Name">
+                            </div>
+
+                            <div class="form-group">
                                 <span class="glyphicon glyphicon-envelope"></span>
                                 <input type="email" name="email"
                                        class="form-control input-lg input-round text-center"
                                        placeholder="Email">
+                            </div>
+
+                            <div class="form-group">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <input type="text" name="institution"
+                                       class="form-control input-lg input-round text-center"
+                                       placeholder="Institution">
+                            </div>
+
+                            <div class="form-group">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <g:select from="${Position.list().name}" noSelection="['': '']" name="position"
+                                          class="form-control input-lg input-round text-center"
+                                          placeholder="Position"/>
                             </div>
 
                             <div class="form-group">
@@ -39,7 +68,7 @@
                                 <span class="glyphicon glyphicon-lock"></span>
                                 <input type="password" name="rpassword"
                                        class="form-control input-lg input-round text-center"
-                                       placeholder="Password">
+                                       placeholder="Confirm Password">
                             </div>
 
                             <div class="form-group">

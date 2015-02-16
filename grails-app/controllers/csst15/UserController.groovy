@@ -1,63 +1,11 @@
 package csst15
 
-import csst15.constants.Roles
-import csst15.security.Role
-import csst15.security.User
-import csst15.security.UserRole
-import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
-import grails.util.Holders
-import grails.validation.ValidationException
 import groovy.util.logging.Slf4j
 
 @Slf4j
 @Transactional(readOnly = true)
 class UserController {
-    def springSecurityService
-
-    static allowedMethods = [signup: 'GET']
-
-
-    @Secured('permitAll')
-    def signup() {
-        render(view: '/user/signup')
-    }
-
-    @Transactional
-    def register() {
-        def user = new User(params)
-        def isRolledback = false
-
-        boolean passwordsMatch = params.password == params.rpassword
-        user.enabled = true
-        User.withTransaction { status ->
-            try {
-                if (!passwordsMatch)
-                    render(view: '/user/signup')
-                user.save(failOnError: true)
-                log.info("Registered user ${user.email} successfully with id ${user.id}.")
-                if (Holders.config.grails.email.skip) {
-                    log.debug "skip email confirmation step. active user"
-                } else {
-//                        TODO: send email
-                }
-            } catch (e) {
-                status.setRollbackOnly()
-                isRolledback = true
-                log.error("Could not save the user with username ${user.username}")
-                log.error("Details of user which has failed to register :\n${user.toString()} ")
-                if (!(e instanceof ValidationException))
-                    flash.error = e.message
-                render(view: '/user/signup', model: [userInstance: user, exception: e])
-            }
-
-            if (!isRolledback) {
-                UserRole.create(user, Role.findByAuthority(Roles.USER.name), true)
-                springSecurityService.reauthenticate(user.username)
-                redirect(controller: 'home')
-            }
-        }
-    }
 
 //    def index() {}
 //

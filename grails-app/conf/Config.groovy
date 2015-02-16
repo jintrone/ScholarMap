@@ -137,3 +137,22 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/**/favicon.ico': ['permitAll'],
         '/**'            : ['permitAll']
 ]
+
+// mail setting
+grails.mail.default.from = '"ScholarMap "<no-reply@scholarmap.com>'
+grails.mail.default.to = 'info@scholarmap.com'
+grails.mail.default.bcc = 'emails@scholarmap.com'
+
+grails {
+    mail {
+
+        host = "smtp.gmail.com"
+        port = 465
+        username = "username"
+        password = "pass"
+        props = ["mail.smtp.auth"                  : "true",
+                 "mail.smtp.socketFactory.port"    : "465",
+                 "mail.smtp.socketFactory.class"   : "javax.net.ssl.SSLSocketFactory",
+                 "mail.smtp.socketFactory.fallback": "false"]
+    }
+}

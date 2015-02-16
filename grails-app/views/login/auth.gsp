@@ -32,16 +32,16 @@
                                 <input type='submit' id="submit"
                                        class="btn btn-primary btn-lg btn-round btn-block text-center"
                                        value='${message(code: "springSecurity.login.button")}'/>
-                                %{--<a href="#/" class="btn btn-primary btn-lg btn-round btn-block text-center">Log in</a>--}%
                             </div>
                         </fieldset>
                     </form>
 
                     <section>
-                        <p class="text-center"><a href="#/pages/forgot-password">Forgot your password?</a></p>
+                        <p class="text-center"><g:link controller="auth"
+                                                       action="forgot_password">Forgot your password?</g:link></p>
 
                         <p class="text-center text-muted text-small">Don't have an account yet?
-                            <g:link controller="user" action="signup">Sign up</g:link></p>
+                            <g:link controller="auth" action="signup">Sign up</g:link></p>
                     </section>
 
                 </div>
