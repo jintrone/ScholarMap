@@ -16,17 +16,17 @@
             <form class="form-horizontal" name="forgotPasswordForm"
                   action="${createLink(controller: 'auth', action: 'resetpassword')}">
                 <div class="form-group">
-                    <span class="glyphicon glyphicon-envelope"></span>
+                    <span class="glyphicon glyphicon-lock"></span>
                     <input type="password" name="password"
                            class="form-control input-lg input-round text-center"
-                           placeholder="Confirm Password">
+                           placeholder="Password">
                 </div>
 
                 <div class="form-group">
-                    <span class="glyphicon glyphicon-envelope"></span>
+                    <span class="glyphicon glyphicon-lock"></span>
                     <input type="password" name="rpassword"
                            class="form-control input-lg input-round text-center"
-                           placeholder="Password">
+                           placeholder="Confirm Password">
                 </div>
                 <g:hiddenField name="passwordResetToken" value="${passwordResetToken}"/>
 
