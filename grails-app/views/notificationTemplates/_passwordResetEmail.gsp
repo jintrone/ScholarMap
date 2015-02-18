@@ -26,4 +26,4 @@
 </div>
 <br><br>
 Regards,<br>
-ScholarMap team
+ScholarMap team.
