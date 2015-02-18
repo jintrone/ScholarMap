@@ -88,7 +88,7 @@ grails.hibernate.osiv.readonly = false
 environments {
     development {
         grails.logging.jul.usebridge = true
-        grails.email.skip = true
+        grails.email.skip = false
     }
     production {
         grails.logging.jul.usebridge = false
@@ -145,14 +145,9 @@ grails.mail.default.bcc = 'emails@scholarmap.com'
 
 grails {
     mail {
-
-        host = "smtp.gmail.com"
-        port = 465
+        host = "smtp.host"
+        port = 25
         username = "username"
-        password = "pass"
-        props = ["mail.smtp.auth"                  : "true",
-                 "mail.smtp.socketFactory.port"    : "465",
-                 "mail.smtp.socketFactory.class"   : "javax.net.ssl.SSLSocketFactory",
-                 "mail.smtp.socketFactory.fallback": "false"]
+        password = "password"
     }
 }

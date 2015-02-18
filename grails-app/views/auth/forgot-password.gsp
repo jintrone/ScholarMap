@@ -13,16 +13,17 @@
 
         <div class="form-container text-center">
 
-            <form class="form-horizontal" name="forgotPasswordForm">
+            <form class="form-horizontal" name="forgotPasswordForm"
+                  action="${createLink(controller: 'auth', action: 'sendresetpasswordemail')}">
                 <div class="form-group">
                     <span class="glyphicon glyphicon-envelope"></span>
-                    <input type="email"
+                    <input type="email" name="email"
                            class="form-control input-lg input-round text-center"
                            placeholder="Email">
                 </div>
 
                 <div class="form-group">
-                    <a href="#/" class="btn btn-lg btn-block btn-primary btn-round">Reset</a>
+                    <input type="submit" class="btn btn-lg btn-block btn-primary btn-round" value="Reset"/>
                 </div>
             </form>
 

@@ -82,6 +82,35 @@ class AuthController {
     }
 
     @Transactional
+    def sendresetpasswordemail() {
+        def user = User.findByEmail(params.email)
+        if (user) {
+            try {
+                user.passwordResetToken = UUID.randomUUID()
+                user.save(failOnError: true)
+                def passwordResetLink = createLink(absolute: true, action: 'passwordresetpage', params: [token: user.passwordResetToken])
+                mailService.sendMail {
+                    to user.email
+                    from mailSender.username
+                    subject message(code: 'password-reset.notification.subject.text')
+                    html groovyPageRenderer.render(template: '/notificationTemplates/passwordResetEmail', model: [name: "${user.firstName} ${user.lastName}", passwordResetLink: passwordResetLink])
+                }
+
+                log.info("Sent password reset email to the user '${user.username}'.")
+                flash.message = "login-page.flash-message.reset-password-mail-sent.text"
+                flash.args = [user.email]
+                redirect(controller: 'login', action: 'auth')
+            } catch (Exception e) {
+                log.error("Could not send the password reset email. Error : ${e.message}", e)
+                flash.error = 'reset-password-page.initiate-reset-password-form.mail-send-error.label'
+                flash.args = [e.message]
+                render view: 'forgot-password'
+            }
+
+        }
+    }
+
+    @Transactional
     def activateuser() {
         def user = User.findByActivationToken(params.activationToken)
         if (user) {
@@ -94,5 +123,59 @@ class AuthController {
             flash.error = "login-page.flash-message.invalid-account-activation-link.text"
 
         redirect(controller: 'login', action: 'auth')
+    }
+
+    def passwordresetpage() {
+        def user = null
+
+        if (params.token)
+            user = User.findByPasswordResetToken(params.token)
+        else if (springSecurityService.isLoggedIn())
+            user = User.findById(springSecurityService.principal.id as Long)
+
+        if (user == null) {
+            flash.error = "login-page.flash-message.invalid-password-reset-link.text"
+            redirect(controller: 'login', action: 'auth')
+            return
+        }
+        [passwordResetToken: params.token]
+    }
+
+    @Transactional
+    def resetpassword() {
+        def passwordMatch = params.password == params.rpassword
+        if (passwordMatch) {
+            User user = null
+            if (params.passwordResetToken && !params.passwordResetToken.empty) {
+                user = User.findByPasswordResetToken(params.passwordResetToken)
+            } else if (springSecurityService.isLoggedIn()) {
+                user = User.findById(springSecurityService.principal.id as Long)
+            }
+
+            if (user) {
+                User.withTransaction { status ->
+                    try {
+                        user.password = params.password
+                        user.passwordResetToken = null
+                        user.save(failOnError: true)
+                        log.debug("Password reset of the user '${user.username}' was successfull.")
+                        flash.message = "login-page.flash-message.password-reset-successful.text"
+                        redirect(controller: 'login', action: 'auth')
+                    } catch (Exception e) {
+                        status.setRollbackOnly()
+                        log.error("Password reset for the user '${user.username} was unsuccessfull. Error : ${e.message}", e)
+                        flash.error = "reset-password-page.reset-password-form.exception-occurred.message.text"
+                        flash.args = [e.message]
+                        render view: 'passwordresetpage', model: [passwordResetToken: params.passwordResetToken]
+                    }
+                }
+            } else {
+                flash.error = "login-page.flash-message.invalid-password-reset-link.text"
+                redirect(controller: 'login', action: 'auth')
+            }
+        } else {
+            flash.error = "reset-password-page.reset-password-form.password-mismatch.message.text"
+            redirect(action: 'passwordresetpage', params: [token: params.passwordResetToken])
+        }
     }
 }

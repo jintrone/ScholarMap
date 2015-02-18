@@ -25,6 +25,7 @@ class User {
     boolean passwordExpired
     // holds the activation token that will be embedded in the activation link, sent to a new user
     String activationToken
+    String passwordResetToken
 
     static transients = ['springSecurityService']
 
@@ -44,6 +45,7 @@ class User {
         degreeYear nullable: true, max: LocalDate.now().year
         photo nullable: true
         activationToken nullable: true
+        passwordResetToken nullable: true
     }
 
     static mapping = {
