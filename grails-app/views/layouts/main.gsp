@@ -1,3 +1,4 @@
+<%@ page import="csst15.security.User" %>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
@@ -39,10 +40,11 @@
                             </a>
                             <ul class="dropdown-menu with-arrow">
                                 <li>
-                                    <a href="">
+                                    <g:link controller="user" action="profile"
+                                            id="${sec.loggedInUserInfo(field: 'id')}">
                                         <i class="fa fa-user"></i>
                                         <span data-i18n="My Profile">My Profile</span>
-                                    </a>
+                                    </g:link>
                                 </li>
                                 <li>
                                     <form name="logout" method="POST" action="${createLink(controller: 'logout')}">

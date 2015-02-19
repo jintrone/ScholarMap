@@ -13,7 +13,7 @@ class SecurityFilters {
 
                 // Ignore direct views (e.g. the default main index page).
                 if (webRequest.controllerName == "user" && webRequest.actionName == "profile") {
-                    accessControl()
+//                    accessControl()
                 } else {
                     return true;
                 }
