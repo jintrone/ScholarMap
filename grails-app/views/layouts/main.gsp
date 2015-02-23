@@ -35,7 +35,7 @@
                         <li class="dropdown text-normal nav-profile">
                             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
                                 <span class="hidden-xs">
-                                    <span data-i18n="Lisa Doe">Welcome <sec:username/></span>
+                                    <span data-i18n="Lisa Doe">Welcome  <csst:userFullName/></span>
                                 </span>
                             </a>
                             <ul class="dropdown-menu with-arrow">
@@ -63,10 +63,7 @@
                 </ul>
             </div>
         </div>
-    </div>
-</header>
-
-<div class="content" style="margin-top: 150px">
+    </dicss<div class="content" style="margin-top: 150px">
     <g:layoutBody/>
 </div>
 

@@ -14,7 +14,7 @@
         <div class="form-container text-center">
 
             <form class="form-horizontal" name="forgotPasswordForm"
-                  action="${createLink(controller: 'auth', action: 'sendresetpasswordemail')}">
+                  action="${createLink(controller: 'auth', action: 'sendResetPasswordEmail')}">
                 <div class="form-group">
                     <span class="glyphicon glyphicon-envelope"></span>
                     <input type="email" name="email"

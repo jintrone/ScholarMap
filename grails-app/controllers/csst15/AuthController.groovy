@@ -1,6 +1,7 @@
 package csst15
 
 import csst15.constants.Roles
+import csst15.lists.Position
 import csst15.security.Role
 import csst15.security.User
 import csst15.security.UserRole
@@ -18,6 +19,7 @@ class AuthController {
     def mailService
     def mailSender
     def groovyPageRenderer
+    def notificationService
 
     static allowedMethods = [signup: 'GET', forgot_password: 'GET', register: 'POST']
 
@@ -31,8 +33,16 @@ class AuthController {
 
     @Transactional
     def register() {
-        def user = new User(params)
-        def isRolledback = false
+        def user = new User(
+                username: params.username,
+                password: params.password,
+                email: params.email,
+                firstName: params.firstName,
+                lastName: params.lastName,
+                institution: params.institution,
+                position: Position.findByName(params.position)
+        )
+        def isRolledBack = false
 
         boolean passwordsMatch = params.password == params.rpassword
         user.enabled = true
@@ -44,13 +54,14 @@ class AuthController {
                 user.save(failOnError: true)
                 log.info("Registered user ${user.email} successfully with id ${user.id}.")
                 if (Holders.config.grails.email.skip) {
-                    log.debug "skip email confirmation step. active user"
+                    log.debug("Skip email confirmation step. Active user")
                 } else {
-                    sendactivationemail(user)
+                    def activationLink = createLink(absolute: true, controller: 'auth', action: 'activateuser', params: [activationToken: user.activationToken])
+                    notificationService.sendActivationEmail(user, activationLink)
                 }
             } catch (e) {
                 status.setRollbackOnly()
-                isRolledback = true
+                isRolledBack = true
                 log.error("Could not save the user with username ${user.username}")
                 log.error("Details of user which has failed to register :\n${user.toString()} ")
                 if (!(e instanceof ValidationException))
@@ -58,7 +69,7 @@ class AuthController {
                 render(view: '/auth/signup', model: [userInstance: user, exception: e])
             }
 
-            if (!isRolledback) {
+            if (!isRolledBack) {
                 UserRole.create(user, Role.findByAuthority(Roles.USER.name), true)
                 springSecurityService.reauthenticate(user.username)
                 redirect(controller: 'home')
@@ -66,37 +77,15 @@ class AuthController {
         }
     }
 
-    def sendactivationemail(User user) {
-        def activationLink = createLink(absolute: true, controller: 'auth', action: 'activateuser', params: [activationToken: user.activationToken])
-        try {
-            mailService.sendMail {
-                to user.email
-                from mailSender.username
-                subject message(code: 'user-registration.notification.subject.text', args: [user.firstName + " " + user.lastName])
-                html groovyPageRenderer.render(template: '/notificationTemplates/userActivationEmail', model: [name: user.firstName + " " + user.lastName, activationLink: activationLink])
-            }
-        } catch (Exception e) {
-            log.error("Could not send the activation email. Exception : ${e.message}", e)
-            throw new Exception(e.message)
-        }
-    }
-
     @Transactional
-    def sendresetpasswordemail() {
+    def sendResetPasswordEmail() {
         def user = User.findByEmail(params.email)
+        user.passwordResetToken = UUID.randomUUID()
+        user.save(failOnError: true)
         if (user) {
             try {
-                user.passwordResetToken = UUID.randomUUID()
-                user.save(failOnError: true)
                 def passwordResetLink = createLink(absolute: true, action: 'passwordresetpage', params: [token: user.passwordResetToken])
-                mailService.sendMail {
-                    to user.email
-                    from mailSender.username
-                    subject message(code: 'password-reset.notification.subject.text')
-                    html groovyPageRenderer.render(template: '/notificationTemplates/passwordResetEmail', model: [name: "${user.firstName} ${user.lastName}", passwordResetLink: passwordResetLink])
-                }
-
-                log.info("Sent password reset email to the user '${user.username}'.")
+                notificationService.sendResetPasswordEmail(user, passwordResetLink)
                 flash.message = "login-page.flash-message.reset-password-mail-sent.text"
                 flash.args = [user.email]
                 redirect(controller: 'login', action: 'auth')

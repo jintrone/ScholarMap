@@ -2,6 +2,9 @@ package csst15.security
 
 import csst15.Entity
 import csst15.ReferenceVote
+import csst15.lists.Department
+import csst15.lists.Position
+import csst15.lists.Specialization
 import org.joda.time.LocalDate
 
 class User {
@@ -15,9 +18,9 @@ class User {
     String password
     Integer degreeYear
     String institution
-    String specialization
-    String position
-    String department
+    Specialization specialization
+    Position position
+    Department department
     byte[] photo
     boolean enabled
     boolean accountExpired
