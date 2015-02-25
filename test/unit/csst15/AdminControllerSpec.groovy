@@ -18,13 +18,16 @@ class AdminControllerSpec extends Specification {
     void "test the board action"() {
         given:
         def user1 = User.build(id: 1)
-        def user2 = User.build(id: 1)
+        def user2 = User.build(id: 2)
+        def generalConf = GeneralConf.build(isRegEnabled: true, id: 1)
+        GeneralConf.metaClass.'static'.findById = { genConfId -> generalConf }
         def roleUser = Role.build(authority: Roles.USER.name)
         Role.metaClass.'static'.findByAuthority = { authority -> roleUser }
         UserRole.metaClass.'static'.findAllByRole = { role -> [user: [user1, user2], role: roleUser] }
 
         expect:
         controller.board().users.size() == 2
+        controller.board().isRegEnabled
     }
 
     void "test the delete action"() {
@@ -59,6 +62,7 @@ class AdminControllerSpec extends Specification {
     void "test disable registration"() {
         setup:
         int id = 1
+        request.method = 'POST'
         def generalConf = GeneralConf.build(isRegEnabled: true, id: id)
         GeneralConf.metaClass.'static'.findById = { genConfId -> generalConf }
 
@@ -72,6 +76,7 @@ class AdminControllerSpec extends Specification {
     void "test enable registration"() {
         setup:
         int id = 1
+        request.method = 'POST'
         def generalConf = GeneralConf.build(isRegEnabled: false, id: id)
         GeneralConf.metaClass.'static'.findById = { genConfId -> generalConf }
 

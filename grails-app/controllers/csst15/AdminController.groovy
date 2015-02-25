@@ -9,6 +9,7 @@ import csst15.security.UserRole
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 import groovy.util.logging.Slf4j
+import org.springframework.http.HttpStatus
 
 @Slf4j
 @Transactional(readOnly = true)
@@ -16,14 +17,15 @@ import groovy.util.logging.Slf4j
 class AdminController {
     static allowedMethods = [
             deleteUser         : 'DELETE',
-            manipulateReg      : 'GET',
+            manipulateReg: 'POST',
             manipulateFieldLock: 'POST',
             board              : 'GET'
     ]
 
     def board() {
         def users = UserRole.findAllByRole(Role.findByAuthority(Roles.USER.name)).user
-        [users: users]
+        def isRegEnabled = GeneralConf.findById(1).isRegEnabled
+        [users: users, isRegEnabled: isRegEnabled]
     }
 
     @Transactional
@@ -40,6 +42,7 @@ class AdminController {
         generalConf.isRegEnabled = !generalConf.isRegEnabled
         generalConf.save(failOnError: true)
         log.info("User registration ability is set to ${generalConf.isRegEnabled}")
+        render status: HttpStatus.OK
     }
 
     @Transactional

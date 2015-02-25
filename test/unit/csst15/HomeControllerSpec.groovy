@@ -16,4 +16,12 @@ class HomeControllerSpec extends Specification {
         then:
         controller.modelAndView.viewName == '/index'
     }
+
+    void "test the about action"() {
+        when:
+        controller.about()
+
+        then:
+        controller.modelAndView.viewName == '/about'
+    }
 }

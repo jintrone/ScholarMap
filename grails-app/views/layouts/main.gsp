@@ -12,6 +12,8 @@
     <link href="${resource(dir: '/css/bootstrap', file: 'bootstrap.css')}" rel="stylesheet"/>
     <link href="${resource(dir: '/css', file: 'main.css')}" rel="stylesheet"/>
     <link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}">
+    <r:require module="application"/>
+    <r:layoutResources/>
 </head>
 
 <body>
@@ -30,7 +32,8 @@
 
             <div id="navbar-collapse-1" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><g:link href="#/home">Home</g:link></li>
+                    <li><g:link controller="home" action="index">Home</g:link></li>
+                    <li><g:link controller="home" action="about">About</g:link></li>
                     <sec:ifLoggedIn>
                         <li class="dropdown text-normal nav-profile">
                             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
@@ -68,13 +71,12 @@
 
 <div class="content" style="margin-top: 150px">
     <g:layoutBody/>
+    <g:render template="/utils/hiddenLinks"/>
+    <r:layoutResources/>
 </div>
 
 
 <footer class="footer text-center">&copy; Copyright 2015 ScholarMap</footer>
-
-<script type="text/javascript" src="${resource(dir: 'js/jquery', file: 'jquery.min.js')}"></script>
-<script type="text/javascript" src="${resource(dir: 'js/bootstrap', file: 'bootstrap.min.js')}"></script>
 </body>
 </html>
 
