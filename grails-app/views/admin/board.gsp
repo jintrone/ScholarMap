@@ -1,4 +1,15 @@
 <g:applyLayout name="main">
+    <section class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Manipulate registration</strong>
+        </div>
+
+        <div class="panel-body" data-ng-controller="AccordionDemoCtrl">
+            <p>Disable/Enable</p>
+            <label class="switch switch-success">
+                <input type="checkbox" id="isRegEnabled" ${isRegEnabled ? 'checked="checked"' : ''}/><i></i>
+            </label>
+        </div>
+    </section>
     <div class="panel panel-default">
         <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> User's list</strong></div>
 

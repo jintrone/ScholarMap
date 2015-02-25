@@ -1,0 +1,1 @@
+<g:hiddenField name="manipulateReg" value="${createLink(controller: 'admin', action: 'manipulateReg')}"/>
