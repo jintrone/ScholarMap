@@ -43,8 +43,7 @@
                             </a>
                             <ul class="dropdown-menu with-arrow">
                                 <li>
-                                    <g:link controller="user" action="profile"
-                                            id="${sec.loggedInUserInfo(field: 'id')}">
+                                    <g:link controller="user" action="profile" params="[username: csst.username()]">
                                         <i class="fa fa-user"></i>
                                         <span data-i18n="My Profile">My Profile</span>
                                     </g:link>

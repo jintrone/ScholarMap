@@ -14,4 +14,10 @@ class UserTagLib {
 
         out << currentUser.firstName + " " + currentUser.lastName
     }
+
+    def username = {
+        def currentUser = springSecurityService.currentUser as User
+
+        out << currentUser.username
+    }
 }

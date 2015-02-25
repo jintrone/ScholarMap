@@ -18,4 +18,14 @@ class UserTagLibSpec extends Specification {
         expect:
         tagLib.userFullName() == firstName + " " + lastName
     }
+
+    void "test username tag"() {
+        given:
+        def username = "testName"
+        def user = User.build(username: username)
+        tagLib.springSecurityService = [currentUser: user]
+
+        expect:
+        tagLib.username() == username
+    }
 }

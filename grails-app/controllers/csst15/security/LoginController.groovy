@@ -65,7 +65,7 @@ class LoginController {
 
         String view = 'auth'
         String postUrl = "${request.contextPath}${config.apf.filterProcessesUrl}"
-        Boolean isRegEnabled = GeneralConf.findById(1).isRegEnabled
+        Boolean isRegEnabled = GeneralConf.get(1).isRegEnabled
         render view: view, model: [postUrl            : postUrl, isRegEnabled: isRegEnabled,
                                    rememberMeParameter: config.rememberMe.parameter]
     }

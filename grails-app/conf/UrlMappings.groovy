@@ -1,17 +1,21 @@
 class UrlMappings {
 
-	static mappings = {
-        "/$controller/$action?/$id?(.$format)?"{
+    static mappings = {
+        "/$controller/$action?/$id?(.$format)?" {
             constraints {
                 // apply constraints here
             }
         }
 
         "/"(controller: "home")
-        "/about"(view:"/about")
-        "500"(view:'/error')
+        "500"(view: '/error')
         "/access-denied"(view: '/access-denied')
 
+        "/user/$username" {
+            controller = "user"
+            action = "profile"
+        }
+
         "/api/user"(resource: 'retrieveGraph')
-	}
+    }
 }

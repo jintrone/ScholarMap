@@ -66,7 +66,7 @@ class BootStrap {
         }
 
         GeneralConf.withTransaction {
-            GeneralConf.findById(1) ?: new GeneralConf().save(failOnError: true)
+            GeneralConf.get(1) ?: new GeneralConf().save(failOnError: true)
         }
     }
 

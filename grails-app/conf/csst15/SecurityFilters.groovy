@@ -6,7 +6,7 @@ class SecurityFilters {
     def filters = {
         signupCheck(controller: 'auth', action: 'signup') {
             before = {
-                def isRegEnabled = GeneralConf.findById(1).isRegEnabled
+                def isRegEnabled = GeneralConf.get(1).isRegEnabled
                 if (!isRegEnabled) {
                     redirect(uri: '/access-denied')
                 }

@@ -15,8 +15,13 @@ class UserController {
 
     static allowedMethods = [update: 'POST']
 
-    def profile(User user) {
-        [user: user]
+    def profile() {
+        def user = User.findByUsername(params.username)
+        if (user) {
+            [user: user]
+        } else {
+            redirect(controller: 'home')
+        }
     }
 
     def edit(User user) {
