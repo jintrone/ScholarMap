@@ -1,5 +1,8 @@
 package csst15
 
+import csst15.conf.FieldLockConf
+import csst15.conf.FieldMandatoryConf
+import csst15.conf.FieldVisibilityConf
 import csst15.constants.Roles
 import csst15.lists.Position
 import csst15.security.Role
@@ -16,9 +19,6 @@ import groovy.util.logging.Slf4j
 @Secured('permitAll')
 class AuthController {
     def springSecurityService
-    def mailService
-    def mailSender
-    def groovyPageRenderer
     def notificationService
 
     static allowedMethods = [signup: 'GET', forgot_password: 'GET', register: 'POST']
@@ -33,6 +33,10 @@ class AuthController {
 
     @Transactional
     def register() {
+        def lockConf = new FieldLockConf()
+        def visConf = new FieldVisibilityConf()
+        def mandConf = new FieldMandatoryConf()
+
         def user = new User(
                 username: params.username,
                 password: params.password,
@@ -40,7 +44,10 @@ class AuthController {
                 firstName: params.firstName,
                 lastName: params.lastName,
                 institution: params.institution,
-                position: Position.findByName(params.position)
+                position: Position.findByName(params.position),
+                lockConf: lockConf,
+                visibilityConf: visConf,
+                mandatoryConf: mandConf
         )
         def isRolledBack = false
 

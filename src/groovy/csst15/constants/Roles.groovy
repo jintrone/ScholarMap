@@ -5,9 +5,9 @@ package csst15.constants
  * Date: 2/13/15.
  */
 enum Roles {
-    ADMIN('ADMIN'),
-    USER('USER'),
-    PUBLIC('PUBLIC')
+    ADMIN('ROLE_ADMIN'),
+    USER('ROLE_USER'),
+    PUBLIC('ROLE_PUBLIC')
 
     private final String name;
 

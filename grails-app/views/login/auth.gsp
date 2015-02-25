@@ -40,8 +40,11 @@
                         <p class="text-center"><g:link controller="auth"
                                                        action="forgot_password">Forgot your password?</g:link></p>
 
-                        <p class="text-center text-muted text-small">Don't have an account yet?
-                            <g:link controller="auth" action="signup">Sign up</g:link></p>
+                        <g:if test="${isRegEnabled}">
+                            <p class="text-center text-muted text-small">Don't have an account yet?
+                            <g:link controller="auth" action="signup">Sign up</g:link>
+                            </p>
+                        </g:if>
                     </section>
 
                 </div>

@@ -1,3 +1,7 @@
+import csst15.conf.FieldLockConf
+import csst15.conf.FieldMandatoryConf
+import csst15.conf.FieldVisibilityConf
+import csst15.conf.GeneralConf
 import csst15.constants.Departments
 import csst15.constants.Positions
 import csst15.constants.Roles
@@ -60,6 +64,10 @@ class BootStrap {
             Specialization.findByTitle(Specializations.INFORMATION_SCIENCE.title) ?: new Specialization(title: Specializations.INFORMATION_SCIENCE.title).save(failOnError: true)
             Specialization.findByTitle(Specializations.FEMINISM.title) ?: new Specialization(title: Specializations.FEMINISM.title).save(failOnError: true)
         }
+
+        GeneralConf.withTransaction {
+            GeneralConf.findById(1) ?: new GeneralConf().save(failOnError: true)
+        }
     }
 
     private void bootstrapSpringSecurityDatabase() {
@@ -83,15 +91,24 @@ class BootStrap {
         User admin = null
         User user = null
         User.withTransaction {
+            def lockConf1 = new FieldLockConf()
+            def lockConf2 = new FieldLockConf()
+            def visConf1 = new FieldVisibilityConf()
+            def visConf2 = new FieldVisibilityConf()
+            def mandConf1 = new FieldMandatoryConf()
+            def mandConf2 = new FieldMandatoryConf()
+
             admin = User.findByEmail("admin@example.com") ?: new User(
                     email: 'admin@example.com',
                     username: 'admin',
                     firstName: 'Admin',
                     lastName: 'Admin',
                     password: '1',
-                    enabled: true
+                    enabled: true,
+                    lockConf: lockConf1,
+                    visibilityConf: visConf1,
+                    mandatoryConf: mandConf1
             ).save(failOnError: true)
-
 
             user = User.findByEmail("user@example.com") ?: new User(
                     email: 'user@example.com',
@@ -99,17 +116,16 @@ class BootStrap {
                     firstName: 'User',
                     lastName: 'User',
                     password: '1',
-                    enabled: true
+                    enabled: true,
+                    lockConf: lockConf2,
+                    visibilityConf: visConf2,
+                    mandatoryConf: mandConf2
             ).save(failOnError: true)
         }
 
         UserRole.withTransaction {
             if (!admin.authorities.contains(adminRole)) {
                 UserRole.create(admin, adminRole)
-            }
-
-            if (!admin.authorities.contains(userRole)) {
-                UserRole.create(admin, userRole)
             }
 
             if (!user.authorities.contains(userRole)) {

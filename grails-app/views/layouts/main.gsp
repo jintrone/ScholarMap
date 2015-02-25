@@ -63,7 +63,10 @@
                 </ul>
             </div>
         </div>
-    </dicss<div class="content" style="margin-top: 150px">
+    </div>
+</header>
+
+<div class="content" style="margin-top: 150px">
     <g:layoutBody/>
 </div>
 
