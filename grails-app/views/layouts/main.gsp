@@ -1,4 +1,4 @@
-<%@ page import="csst15.security.User" %>
+<%@ page import="csst15.constants.Roles; csst15.security.User" %>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
@@ -32,8 +32,10 @@
 
             <div id="navbar-collapse-1" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><g:link controller="home" action="index">Home</g:link></li>
-                    <li><g:link controller="home" action="about">About</g:link></li>
+                    <sec:ifNotGranted roles="${Roles.ADMIN.name}">
+                        <li><g:link controller="home" action="index">Home</g:link></li>
+                        <li><g:link controller="home" action="about">About</g:link></li>
+                    </sec:ifNotGranted>
                     <sec:ifLoggedIn>
                         <li class="dropdown text-normal nav-profile">
                             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">

@@ -17,7 +17,7 @@ import org.springframework.http.HttpStatus
 class AdminController {
     static allowedMethods = [
             deleteUser         : 'DELETE',
-            manipulateReg: 'POST',
+            manipulateReg      : 'POST',
             manipulateFieldLock: 'POST',
             board              : 'GET'
     ]

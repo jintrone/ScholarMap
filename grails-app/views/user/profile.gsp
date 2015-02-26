@@ -11,7 +11,7 @@
 
                         <h3>${user.firstName} ${user.lastName}</h3>
 
-                        <p>${user.position}</p>
+                        <p>${user.position?.name}</p>
                     </div>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <strong><span class="glyphicon glyphicon-th"></span> Profile Info</strong>
-                        <g:if test="${user.id.equals(sec.loggedInUserInfo(field: 'id'))}">
+                        <g:if test="${sec.loggedInUserInfo(field: 'id') == user.id.toString()}">
                             <g:link controller="user" action="edit" id="${user.id}">Edit</g:link>
                         </g:if>
                     </div>
@@ -43,12 +43,12 @@
                                     <li>
                                         <span class="icon glyphicon glyphicon-user"></span>
                                         <label>Specialization</label>
-                                        ${user.specialization}
+                                        ${user.specialization?.title}
                                     </li>
                                     <li>
                                         <span class="icon glyphicon glyphicon-flag"></span>
                                         <label>Department</label>
-                                        ${user.department}
+                                        ${user.department?.title}
                                     </li>
                                 </ul>
 
