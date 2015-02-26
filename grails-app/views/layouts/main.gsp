@@ -32,6 +32,9 @@
 
             <div id="navbar-collapse-1" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
+                    <sec:ifAllGranted roles="${Roles.ADMIN.name}">
+                        <li><g:link controller="admin" action="board">Board</g:link></li>
+                    </sec:ifAllGranted>
                     <sec:ifNotGranted roles="${Roles.ADMIN.name}">
                         <li><g:link controller="home" action="index">Home</g:link></li>
                         <li><g:link controller="home" action="about">About</g:link></li>

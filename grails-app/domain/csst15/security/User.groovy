@@ -56,6 +56,8 @@ class User {
     }
 
     static mapping = {
+        entities cascade: 'all-delete-orphan'
+        references cascade: 'all-delete-orphan'
         password column: '`password`'
     }
 

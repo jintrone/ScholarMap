@@ -10,4 +10,8 @@ class ReferenceVote {
 
     static constraints = {
     }
+
+    static mapping = {
+        version false
+    }
 }

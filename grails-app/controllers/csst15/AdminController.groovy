@@ -16,7 +16,7 @@ import org.springframework.http.HttpStatus
 @Secured(['ROLE_ADMIN'])
 class AdminController {
     static allowedMethods = [
-            deleteUser         : 'DELETE',
+            deleteUser: 'GET',
             manipulateReg      : 'POST',
             manipulateFieldLock: 'POST',
             board              : 'GET'
@@ -29,11 +29,11 @@ class AdminController {
     }
 
     @Transactional
-    def deleteUser(int userId) {
-        log.info("Deleting user with id ${userId}")
-        def user = User.findById(userId)
+    def deleteUser(User user) {
+        UserRole.findByUser(user).delete(flush: true)
         user.delete()
-        log.info("Deleted user with id ${userId}")
+        log.info("Deleted the user with id ${user.id}")
+        redirect(action: 'board')
     }
 
     @Transactional

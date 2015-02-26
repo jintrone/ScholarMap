@@ -33,10 +33,11 @@ class AdminControllerSpec extends Specification {
     void "test the delete action"() {
         setup:
         int id = 1
-        User.build(id: id, username: 'testUser')
+        def user = User.build(id: id, username: 'testUser')
+        UserRole.metaClass.'static'.findByUser = { userInstance -> user }
 
         when:
-        controller.deleteUser(id)
+        controller.deleteUser(user)
 
         then:
         !User.exists(id)

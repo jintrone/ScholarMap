@@ -18,6 +18,7 @@
             <table class="table">
                 <thead>
                 <tr>
+                    <th>Actions</th>
                     <th>id</th>
                     <th>Username</th>
                     <th>Full Name</th>
@@ -28,6 +29,13 @@
                 <tbody>
                 <g:each in="${users}" var="user">
                     <tr>
+                        <td>
+                            <g:link class="glyphicon glyphicon-eye-open" controller="user" action="profile"
+                                    params="[username: user.username]"/>
+                            <g:link class="glyphicon glyphicon-edit" controller="user" action="edit" id="${user.id}"/>
+                            <g:link class="glyphicon glyphicon-remove-sign" controller="admin" action="deleteUser"
+                                    id="${user.id}"/>
+                        </td>
                         <td>${user.id}</td>
                         <td>${user.username}</td>
                         <td>${user.firstName} ${user.lastName}</td>
@@ -35,51 +43,8 @@
                         <td>${user.enabled ? 'true' : 'false'}</td>
                     </tr>
                 </g:each>
-                %{--<tr class="active">--}%
-                %{--<td>Table cell</td>--}%
-                %{--<td>Column content</td>--}%
-                %{--<td>Column content</td>--}%
-                %{--<td>Column content</td>--}%
-                %{--</tr>--}%
-                %{--<tr>--}%
-                %{--<td>Table cell</td>--}%
-                %{--<td>Column content</td>--}%
-                %{--<td>Column content</td>--}%
-                %{--<td>Column content</td>--}%
-                %{--</tr>--}%
-                %{--<tr class="success">--}%
-                %{--<td>Table cell</td>--}%
-                %{--<td>Column content</td>--}%
-                %{--<td>Column content</td>--}%
-                %{--<td>Column content</td>--}%
-                %{--</tr>--}%
-                %{--<tr>--}%
-                %{--<td>Table cell</td>--}%
-                %{--<td>Column content</td>--}%
-                %{--<td>Column content</td>--}%
-                %{--<td>Column content</td>--}%
-                %{--</tr>--}%
-                %{--<tr class="warning">--}%
-                %{--<td>Table cell</td>--}%
-                %{--<td>Column content</td>--}%
-                %{--<td>Column content</td>--}%
-                %{--<td>Column content</td>--}%
-                %{--</tr>--}%
-                %{--<tr>--}%
-                %{--<td>Table cell</td>--}%
-                %{--<td>Column content</td>--}%
-                %{--<td>Column content</td>--}%
-                %{--<td>Column content</td>--}%
-                %{--</tr>--}%
-                %{--<tr class="danger">--}%
-                %{--<td>Table cell</td>--}%
-                %{--<td>Column content</td>--}%
-                %{--<td>Column content</td>--}%
-                %{--<td>Column content</td>--}%
-                %{--</tr>--}%
                 </tbody>
             </table>
-
         </div>
     </div>
 </g:applyLayout>
