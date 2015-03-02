@@ -12,5 +12,46 @@ $(document).ready(function () {
                 console.log('success');
             }
         })
-    })
+    });
+
+    $("#admin_edit_profile").find(".lock").click(function () {
+        $.ajax({
+            url: $("#manipulateLock").val(),
+            type: 'POST',
+            data: {
+                fieldName: $(this).attr('id'),
+                userId: $("#userId").val()
+            },
+            success: function (data) {
+                console.log('success');
+            }
+        })
+    });
+
+    $("#mandatory-sec").find(".mandatory").click(function () {
+        $.ajax({
+            url: $("#manipulateMand").val(),
+            type: 'POST',
+            data: {
+                fieldName: $(this).attr('id')
+            },
+            success: function (data) {
+                console.log('success');
+            }
+        })
+    });
+
+    $("#editPanel").find(".permission").click(function () {
+        $.ajax({
+            url: $("#manipulatePermission").val(),
+            type: 'POST',
+            data: {
+                fieldName: $(this).attr('id'),
+                userId: $("#id").val()
+            },
+            success: function (data) {
+                console.log('success');
+            }
+        })
+    });
 });

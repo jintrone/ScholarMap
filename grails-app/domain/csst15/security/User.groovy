@@ -3,7 +3,6 @@ package csst15.security
 import csst15.Entity
 import csst15.ReferenceVote
 import csst15.conf.FieldLockConf
-import csst15.conf.FieldMandatoryConf
 import csst15.conf.FieldVisibilityConf
 import csst15.lists.Department
 import csst15.lists.Position
@@ -36,7 +35,7 @@ class User {
     static transients = ['springSecurityService']
 
     static hasMany = [references: ReferenceVote, entities: Entity]
-    static hasOne = [lockConf: FieldLockConf, visibilityConf: FieldVisibilityConf, mandatoryConf: FieldMandatoryConf]
+    static hasOne = [lockConf: FieldLockConf, visibilityConf: FieldVisibilityConf]
 
 
     static constraints = {

@@ -1,4 +1,4 @@
-<%@ page import="csst15.lists.Position" %>
+<%@ page import="org.springframework.validation.FieldError; csst15.lists.Position" %>
 <g:applyLayout name="main">
     <div class="page-signup">
 
@@ -13,49 +13,57 @@
                 <div class="form-container">
 
                     <section>
+                        <g:hasErrors bean="${userInstance}">
+                            <ul class="callout callout-danger errors">
+                                <g:eachError bean="${userInstance}" var="error">
+                                    <li><g:message error="${error}"/></li>
+                                </g:eachError>
+                            </ul>
+                        </g:hasErrors>
                         <form action='${createLink(controller: 'auth', action: 'register')}' method='POST'
                               id='loginForm' class='form-horizontal text-center' autocomplete='off'>
                             <div class="form-group">
                                 <span class="glyphicon glyphicon-user"></span>
-                                <input type="text" name="username"
+                                <input type="text" name="username" value="${userInstance?.username}"
                                        class="form-control input-lg input-round text-center"
                                        placeholder="Username">
                             </div>
 
                             <div class="form-group">
                                 <span class="glyphicon glyphicon-user"></span>
-                                <input type="text" name="firstName"
+                                <input type="text" name="firstName" value="${userInstance?.firstName}"
                                        class="form-control input-lg input-round text-center"
                                        placeholder="First Name">
                             </div>
 
                             <div class="form-group">
                                 <span class="glyphicon glyphicon-user"></span>
-                                <input type="text" name="lastName"
+                                <input type="text" name="lastName" value="${userInstance?.lastName}"
                                        class="form-control input-lg input-round text-center"
                                        placeholder="Last Name">
                             </div>
 
                             <div class="form-group">
                                 <span class="glyphicon glyphicon-envelope"></span>
-                                <input type="email" name="email"
+                                <input type="email" name="email" value="${userInstance?.email}"
                                        class="form-control input-lg input-round text-center"
                                        placeholder="Email">
                             </div>
 
-                            <div class="form-group">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                <input type="text" name="institution"
-                                       class="form-control input-lg input-round text-center"
-                                       placeholder="Institution">
-                            </div>
+                            %{--<div class="form-group">--}%
+                            %{--<span class="glyphicon glyphicon-pencil"></span>--}%
+                            %{--<input type="text" name="institution" value="${userInstance?.institution}"--}%
+                            %{--class="form-control input-lg input-round text-center"--}%
+                            %{--placeholder="Institution">--}%
+                            %{--</div>--}%
 
-                            <div class="form-group">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                <g:select from="${Position.list().name}" noSelection="['': '']" name="position"
-                                          class="form-control input-lg input-round text-center"
-                                          placeholder="Position"/>
-                            </div>
+                            %{--<div class="form-group">--}%
+                            %{--<span class="glyphicon glyphicon-pencil"></span>--}%
+                            %{--<g:select from="${Position.list().name}" noSelection="['': '']" name="position"--}%
+                            %{--class="form-control input-lg input-round text-center"--}%
+                            %{--value="${userInstance?.position}"--}%
+                            %{--placeholder="Position"/>--}%
+                            %{--</div>--}%
 
                             <div class="form-group">
                                 <span class="glyphicon glyphicon-lock"></span>
@@ -66,7 +74,7 @@
 
                             <div class="form-group">
                                 <span class="glyphicon glyphicon-lock"></span>
-                                <input type="password" name="rpassword"
+                                <input type="password" name="confirmPassword"
                                        class="form-control input-lg input-round text-center"
                                        placeholder="Confirm Password">
                             </div>

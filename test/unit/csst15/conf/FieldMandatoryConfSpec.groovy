@@ -9,7 +9,7 @@ import spock.lang.Unroll
 @Build(FieldMandatoryConf)
 class FieldMandatoryConfSpec extends ConstraintsUnitSpec {
     def setup() {
-        mockForConstraintsTests(FieldMandatoryConf, [FieldMandatoryConf.build()])
+        mockForConstraintsTests(FieldMandatoryConf, [FieldMandatoryConf.build(fieldName: 'firstName')])
     }
 
     @Unroll("Tested FieldMandatoryConf field #field with the value #val")
@@ -21,26 +21,11 @@ class FieldMandatoryConfSpec extends ConstraintsUnitSpec {
         validateConstraints(obj, field, target)
 
         where:
-        target     | field                       | val
-        'nullable' | 'isUsernameMandatory'       | null
-        'nullable' | 'isUsernameMandatory'       | ''
-        'nullable' | 'isFirstNameMandatory'      | ''
-        'nullable' | 'isFirstNameMandatory'      | null
-        'nullable' | 'isLastNameMandatory'       | ''
-        'nullable' | 'isLastNameMandatory'       | null
-        'nullable' | 'isEmailMandatory'          | ''
-        'nullable' | 'isEmailMandatory'          | null
-        'nullable' | 'isDegreeYearMandatory'     | ''
-        'nullable' | 'isDegreeYearMandatory'     | null
-        'nullable' | 'isInstitutionMandatory'    | ''
-        'nullable' | 'isInstitutionMandatory'    | null
-        'nullable' | 'isSpecializationMandatory' | ''
-        'nullable' | 'isSpecializationMandatory' | null
-        'nullable' | 'isPositionMandatory'       | ''
-        'nullable' | 'isPositionMandatory'       | null
-        'nullable' | 'isDepartmentMandatory'     | ''
-        'nullable' | 'isDepartmentMandatory'     | null
-        'nullable' | 'isPhotoMandatory'          | ''
-        'nullable' | 'isPhotoMandatory'          | null
+        target     | field         | val
+        'nullable' | 'fieldName'   | null
+        'nullable' | 'fieldName'   | ''
+        'unique'   | 'fieldName'   | 'firstName'
+        'nullable' | 'isMandatory' | ''
+        'nullable' | 'isMandatory' | null
     }
 }

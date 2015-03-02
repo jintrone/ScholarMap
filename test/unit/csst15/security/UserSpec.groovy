@@ -1,12 +1,13 @@
 package csst15.security
 
+import csst15.conf.FieldMandatoryConf
 import csst15.utils.ConstraintsUnitSpec
 import grails.buildtestdata.mixin.Build
 import grails.test.mixin.TestFor
 import org.joda.time.LocalDate
 import spock.lang.Unroll
 
-@Build(User)
+@Build([User, FieldMandatoryConf])
 @TestFor(User)
 class UserSpec extends ConstraintsUnitSpec {
 

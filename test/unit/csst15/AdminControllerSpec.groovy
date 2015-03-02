@@ -1,6 +1,8 @@
 package csst15
 
 import csst15.conf.FieldLockConf
+import csst15.conf.FieldMandatoryConf
+import csst15.conf.FieldVisibilityConf
 import csst15.conf.GeneralConf
 import csst15.constants.Roles
 import csst15.security.Role
@@ -13,7 +15,7 @@ import spock.lang.Specification
 
 @TestFor(AdminController)
 @Mock(User)
-@Build([User, GeneralConf, FieldLockConf, Role])
+@Build([User, GeneralConf, FieldLockConf, Role, FieldMandatoryConf, FieldVisibilityConf])
 class AdminControllerSpec extends Specification {
     void "test the board action"() {
         given:
@@ -45,7 +47,7 @@ class AdminControllerSpec extends Specification {
 
     void "test lock field action"() {
         setup:
-        params.fieldName = "username"
+        params.fieldName = "isUsernameLocked"
         request.method = 'POST'
         def id = params.userId = 1
         def user = User.build(id: id)
@@ -86,5 +88,36 @@ class AdminControllerSpec extends Specification {
 
         then:
         generalConf.isRegEnabled
+    }
+
+    void "test the manipulateFieldMand action"() {
+        setup:
+        def fieldName = params.fieldName = 'firstName'
+        request.method = 'POST'
+        def fieldMandConf = FieldMandatoryConf.build(fieldName: fieldName, isMandatory: false)
+        FieldMandatoryConf.metaClass.'static'.findByFieldName = { genConfId -> fieldMandConf }
+
+        when:
+        controller.manipulateFieldMand()
+
+        then:
+        fieldMandConf.isMandatory
+    }
+
+    void "test the manipulateFieldVisibility action"() {
+        setup:
+        params.fieldName = "isUsernameVisible"
+        request.method = 'POST'
+        def id = params.userId = 1
+        def user = User.build(id: id)
+        def visFieldConfig = FieldVisibilityConf.build(user: user, isUsernameVisible: false)
+        User.metaClass.'static'.findById = { userId -> user }
+        FieldVisibilityConf.metaClass.'static'.findByUser = { newUser -> visFieldConfig }
+
+        when:
+        controller.manipulateFieldVisibility()
+
+        then:
+        visFieldConfig.isUsernameVisible
     }
 }

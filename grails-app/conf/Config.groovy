@@ -88,7 +88,8 @@ grails.hibernate.osiv.readonly = false
 environments {
     development {
         grails.logging.jul.usebridge = true
-        grails.email.skip = false
+        grails.email.skip = true
+        grails.serverURL = "http://localhost:8080/scholarMap"
     }
     production {
         grails.logging.jul.usebridge = false
@@ -151,3 +152,5 @@ grails {
         password = "password"
     }
 }
+
+grails.converters.json.default.deep = true

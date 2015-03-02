@@ -18,12 +18,11 @@ environments {
     development {
         dataSource {
             logginsql = true
-            dbCreate = "create-drop"
+            dbCreate = "update"
             pooled = true
             driverClassName = "com.mysql.jdbc.Driver"
             username = "root"
             password = ""
-            dbCreate = "update"
             url = "jdbc:mysql://localhost:3306/csst_v2"
             dialect = org.hibernate.dialect.MySQL5InnoDBDialect
             properties {
@@ -41,7 +40,7 @@ environments {
     }
     production {
         dataSource {
-            dbCreate = "update"
+            dbCreate = "validate"
             pooled = true
             driverClassName = "com.mysql.jdbc.Driver"
             username = "csst"

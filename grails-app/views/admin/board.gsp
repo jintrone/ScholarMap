@@ -1,15 +1,89 @@
 <g:applyLayout name="main">
-    <section class="panel panel-default">
-        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Manipulate registration</strong>
+    <section class="panel panel-default" id="mandatory-sec">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Manipulate fields</strong>
         </div>
 
-        <div class="panel-body" data-ng-controller="AccordionDemoCtrl">
-            <p>Disable/Enable</p>
-            <label class="switch switch-success">
-                <input type="checkbox" id="isRegEnabled" ${isRegEnabled ? 'checked="checked"' : ''}/><i></i>
-            </label>
+        <div class="panel-body">
+            <g:each in="${fieldMandConf}" status="i" var="field">
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        <label for="">${fieldMandConf.get(i).fieldName}</label>
+                    </div>
+
+                    <div class="col-sm-2">
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label class="switch switch-success">
+                            <input type="checkbox" id="${fieldMandConf.get(i).fieldName}"
+                                   class="mandatory" ${fieldMandConf.get(i).isMandatory ? 'checked="checked"' : ''}/><i></i>
+                        </label>
+                    </div>
+                </div>
+            </g:each>
         </div>
     </section>
+
+    <div class="row">
+        <div class="col-md-6">
+            <section class="panel panel-default">
+                <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Manipulate registration
+                </strong>
+                </div>
+
+                <div class="panel-body">
+                    <p>Disable/Enable</p>
+                    <label class="switch switch-success">
+                        <input type="checkbox" id="isRegEnabled" ${isRegEnabled ? 'checked="checked"' : ''}/><i></i>
+                    </label>
+                </div>
+            </section>
+        </div>
+
+        <div class="col-md-6">
+            <section class="panel panel-default">
+                <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Create user</strong>
+                </div>
+
+                <div class="panel-body">
+                    <g:form class="form-horizontal" controller="admin" action="createUser">
+                        <div class="form-group">
+                            <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" id="inputEmail" name="email"
+                                       placeholder="Email">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success">Create</button>
+                            </div>
+                        </div>
+                    </g:form>
+                </div>
+            </section>
+        </div>
+    </div>
+%{--<section class="panel panel-default">--}%
+%{--<div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Manipulate registration</strong>--}%
+%{--</div>--}%
+
+%{--<div class="panel-body">--}%
+%{--<p>Disable/Enable</p>--}%
+%{--<label class="switch switch-success">--}%
+%{--<input type="checkbox" id="isRegEnabled" ${isRegEnabled ? 'checked="checked"' : ''}/><i></i>--}%
+%{--</label>--}%
+%{--</div>--}%
+
+%{--<div class="panel-body">--}%
+%{--<p>Disable/Enable</p>--}%
+%{--<label class="switch switch-success">--}%
+%{--<input type="checkbox" id="sa" ${isRegEnabled ? 'checked="checked"' : ''}/><i></i>--}%
+%{--</label>--}%
+%{--</div>--}%
+%{--</section>--}%
     <div class="panel panel-default">
         <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> User's list</strong></div>
 
@@ -32,7 +106,8 @@
                         <td>
                             <g:link class="glyphicon glyphicon-eye-open" controller="user" action="profile"
                                     params="[username: user.username]"/>
-                            <g:link class="glyphicon glyphicon-edit" controller="user" action="edit" id="${user.id}"/>
+                            <g:link class="glyphicon glyphicon-edit" controller="admin" action="editUserProfile"
+                                    params="[username: user.username]"/>
                             <g:link class="glyphicon glyphicon-remove-sign" controller="admin" action="deleteUser"
                                     id="${user.id}"/>
                         </td>

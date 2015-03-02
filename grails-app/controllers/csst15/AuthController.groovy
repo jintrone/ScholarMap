@@ -1,17 +1,10 @@
 package csst15
 
-import csst15.conf.FieldLockConf
-import csst15.conf.FieldMandatoryConf
-import csst15.conf.FieldVisibilityConf
-import csst15.constants.Roles
-import csst15.lists.Position
-import csst15.security.Role
+import csst15.command.QuickNewUserCommand
 import csst15.security.User
-import csst15.security.UserRole
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 import grails.util.Holders
-import grails.validation.ValidationException
 import groovy.util.logging.Slf4j
 
 @Slf4j
@@ -20,66 +13,39 @@ import groovy.util.logging.Slf4j
 class AuthController {
     def springSecurityService
     def notificationService
+    def userService
 
     static allowedMethods = [signup: 'GET', forgot_password: 'GET', register: 'POST']
 
     def signup() {
-        render(view: '/auth/signup')
+        render(view: 'signup')
     }
 
     def forgot_password() {
-        render(view: '/auth/forgot-password')
+        render(view: 'forgot-password')
     }
 
     @Transactional
-    def register() {
-        def lockConf = new FieldLockConf()
-        def visConf = new FieldVisibilityConf()
-        def mandConf = new FieldMandatoryConf()
+    def register(QuickNewUserCommand userCommand) {
+        if (userCommand.hasErrors())
+            render(view: 'signup', model: [userInstance: userCommand])
+        else {
+            def user = userService.createQuickUser(userCommand)
 
-        def user = new User(
-                username: params.username,
-                password: params.password,
-                email: params.email,
-                firstName: params.firstName,
-                lastName: params.lastName,
-                institution: params.institution,
-                position: Position.findByName(params.position),
-                lockConf: lockConf,
-                visibilityConf: visConf,
-                mandatoryConf: mandConf
-        )
-        def isRolledBack = false
-
-        boolean passwordsMatch = params.password == params.rpassword
-        user.enabled = true
-        user.activationToken = UUID.randomUUID().toString()
-        User.withTransaction { status ->
-            try {
-                if (!passwordsMatch)
-                    render(view: '/auth/signup')
-                user.save(failOnError: true)
-                log.info("Registered user ${user.email} successfully with id ${user.id}.")
+            if (user?.id) {
                 if (Holders.config.grails.email.skip) {
                     log.debug("Skip email confirmation step. Active user")
+                    user.enabled = true
                 } else {
+                    user.activationToken = UUID.randomUUID().toString()
                     def activationLink = createLink(absolute: true, controller: 'auth', action: 'activateuser', params: [activationToken: user.activationToken])
                     notificationService.sendActivationEmail(user, activationLink)
                 }
-            } catch (e) {
-                status.setRollbackOnly()
-                isRolledBack = true
-                log.error("Could not save the user with username ${user.username}")
-                log.error("Details of user which has failed to register :\n${user.toString()} ")
-                if (!(e instanceof ValidationException))
-                    flash.error = e.message
-                render(view: '/auth/signup', model: [userInstance: user, exception: e])
-            }
-
-            if (!isRolledBack) {
-                UserRole.create(user, Role.findByAuthority(Roles.USER.name), true)
-                springSecurityService.reauthenticate(user.username)
+                user.save()
                 redirect(controller: 'home')
+            } else {
+                log.error("Failed to register new user account")
+                render(view: 'signup', model: [userInstance: userCommand])
             }
         }
     }

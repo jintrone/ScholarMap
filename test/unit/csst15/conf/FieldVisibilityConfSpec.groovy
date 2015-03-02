@@ -6,7 +6,7 @@ import grails.test.mixin.TestFor
 import spock.lang.Unroll
 
 @TestFor(FieldVisibilityConf)
-@Build(FieldVisibilityConf)
+@Build([FieldVisibilityConf, FieldMandatoryConf])
 class FieldVisibilityConfSpec extends ConstraintsUnitSpec {
     def setup() {
         mockForConstraintsTests(FieldVisibilityConf, [FieldVisibilityConf.build()])

@@ -1,6 +1,6 @@
 package csst15.lists
 
-class Position {
+class Position implements Serializable {
     String name
 
     static constraints = {

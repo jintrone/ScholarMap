@@ -37,6 +37,7 @@
                     </sec:ifAllGranted>
                     <sec:ifNotGranted roles="${Roles.ADMIN.name}">
                         <li><g:link controller="home" action="index">Home</g:link></li>
+                        <li><g:link controller="home" action="list">Users</g:link></li>
                         <li><g:link controller="home" action="about">About</g:link></li>
                     </sec:ifNotGranted>
                     <sec:ifLoggedIn>

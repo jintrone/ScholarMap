@@ -6,17 +6,10 @@
                 <div class="panel-heading">
                     <strong><span class="glyphicon glyphicon-th"></span> Edit Profile</strong>
                 </div>
-                <g:hasErrors bean="${userCommand}">
-                    <ul class="callout callout-danger errors">
-                        <g:eachError bean="${userCommand}" var="error">
-                            <li><g:message error="${error}"/></li>
-                        </g:eachError>
-                    </ul>
-                </g:hasErrors>
-                <g:form controller="user" action="update" name="update" class="form-horizontal form-validation"
-                        id="${user.id}">
-                    <g:hiddenField name="id" value="${user.id}"/>
-                    <div class="panel-body" data-ng-controller="signupCtrl" id="editPanel">
+
+                <form name="admin_edit_profile" id="admin_edit_profile" class="form-horizontal form-validation">
+                    <g:hiddenField name="userId" value="${user.id}"/>
+                    <div class="panel-body">
 
                         <div class="form-group">
                             <div class="col-sm-3">
@@ -29,12 +22,11 @@
                             </div>
 
                             <div class="col-sm-3">
-                                <g:if test="${!lockConf.isUsernameLocked}">
-                                    <label class="switch switch-success">
-                                        <input type="checkbox" id="isUsernameVisible"
-                                               class="permission" ${visConf.isUsernameVisible ? 'checked="checked"' : ''}/><i></i>
-                                    </label>
-                                </g:if>
+                                %{--<p>Disable/Enable</p>--}%
+                                <label class="switch switch-success">
+                                    <input type="checkbox" id="isUsernameLocked"
+                                           class="lock" ${lockConf.isUsernameLocked ? 'checked="checked"' : ''}/><i></i>
+                                </label>
                             </div>
                         </div>
 
@@ -49,12 +41,11 @@
                             </div>
 
                             <div class="col-sm-3">
-                                <g:if test="${!lockConf.isEmailLocked}">
-                                    <label class="switch switch-success">
-                                        <input type="checkbox" id="isEmailVisible"
-                                               class="permission" ${visConf.isEmailVisible ? 'checked="checked"' : ''}/><i></i>
-                                    </label>
-                                </g:if>
+                                %{--<p>Disable/Enable</p>--}%
+                                <label class="switch switch-success">
+                                    <input type="checkbox" id="isEmailLocked"
+                                           class="lock" ${lockConf.isEmailLocked ? 'checked="checked"' : ''}/><i></i>
+                                </label>
                             </div>
                         </div>
 
@@ -69,12 +60,11 @@
                             </div>
 
                             <div class="col-sm-3">
-                                <g:if test="${!lockConf.isFirstNameLocked}">
-                                    <label class="switch switch-success">
-                                        <input type="checkbox" id="isFirstNameVisible"
-                                               class="permission" ${visConf.isFirstNameVisible ? 'checked="checked"' : ''}/><i></i>
-                                    </label>
-                                </g:if>
+                                %{--<p>Disable/Enable</p>--}%
+                                <label class="switch switch-success">
+                                    <input type="checkbox" id="isFirstNameLocked"
+                                           class="lock" ${lockConf.isFirstNameLocked ? 'checked="checked"' : ''}/><i></i>
+                                </label>
                             </div>
                         </div>
 
@@ -89,12 +79,11 @@
                             </div>
 
                             <div class="col-sm-3">
-                                <g:if test="${!lockConf.isLastNameLocked}">
-                                    <label class="switch switch-success">
-                                        <input type="checkbox" id="isLastNameVisible"
-                                               class="permission" ${visConf.isLastNameVisible ? 'checked="checked"' : ''}/><i></i>
-                                    </label>
-                                </g:if>
+                                %{--<p>Disable/Enable</p>--}%
+                                <label class="switch switch-success">
+                                    <input type="checkbox" id="isLastNameLocked"
+                                           class="lock" ${lockConf.isLastNameLocked ? 'checked="checked"' : ''}/><i></i>
+                                </label>
                             </div>
                         </div>
 
@@ -110,12 +99,11 @@
                             </div>
 
                             <div class="col-sm-3">
-                                <g:if test="${!lockConf.isDegreeYearLocked}">
-                                    <label class="switch switch-success">
-                                        <input type="checkbox" id="isDegreeYearVisible"
-                                               class="permission" ${visConf.isDegreeYearVisible ? 'checked="checked"' : ''}/><i></i>
-                                    </label>
-                                </g:if>
+                                %{--<p>Disable/Enable</p>--}%
+                                <label class="switch switch-success">
+                                    <input type="checkbox" id="isDegreeYearLocked"
+                                           class="lock" ${lockConf.isDegreeYearLocked ? 'checked="checked"' : ''}/><i></i>
+                                </label>
                             </div>
                         </div>
 
@@ -130,12 +118,11 @@
                             </div>
 
                             <div class="col-sm-3">
-                                <g:if test="${!lockConf.isInstitutionLocked}">
-                                    <label class="switch switch-success">
-                                        <input type="checkbox" id="isInstitutionVisible"
-                                               class="permission" ${visConf.isInstitutionVisible ? 'checked="checked"' : ''}/><i></i>
-                                    </label>
-                                </g:if>
+                                %{--<p>Disable/Enable</p>--}%
+                                <label class="switch switch-success">
+                                    <input type="checkbox" id="isInstitutionLocked"
+                                           class="lock" ${lockConf.isInstitutionLocked ? 'checked="checked"' : ''}/><i></i>
+                                </label>
                             </div>
                         </div>
 
@@ -151,12 +138,11 @@
                             </div>
 
                             <div class="col-sm-3">
-                                <g:if test="${!lockConf.isSpecializationLocked}">
-                                    <label class="switch switch-success">
-                                        <input type="checkbox" id="isSpecializationVisible"
-                                               class="permission" ${visConf.isSpecializationVisible ? 'checked="checked"' : ''}/><i></i>
-                                    </label>
-                                </g:if>
+                                %{--<p>Disable/Enable</p>--}%
+                                <label class="switch switch-success">
+                                    <input type="checkbox" id="isSpecializationLocked"
+                                           class="lock" ${lockConf.isSpecializationLocked ? 'checked="checked"' : ''}/><i></i>
+                                </label>
                             </div>
                         </div>
 
@@ -172,12 +158,11 @@
                             </div>
 
                             <div class="col-sm-3">
-                                <g:if test="${!lockConf.isPositionLocked}">
-                                    <label class="switch switch-success">
-                                        <input type="checkbox" id="isPositionVisible"
-                                               class="permission" ${visConf.isPositionVisible ? 'checked="checked"' : ''}/><i></i>
-                                    </label>
-                                </g:if>
+                                %{--<p>Disable/Enable</p>--}%
+                                <label class="switch switch-success">
+                                    <input type="checkbox" id="isPositionLocked"
+                                           class="lock" ${lockConf.isPositionLocked ? 'checked="checked"' : ''}/><i></i>
+                                </label>
                             </div>
                         </div>
 
@@ -193,19 +178,20 @@
                             </div>
 
                             <div class="col-sm-3">
-                                <g:if test="${!lockConf.isDepartmentLocked}">
-                                    <label class="switch switch-success">
-                                        <input type="checkbox" id="isDepartmentVisible"
-                                               class="permission" ${visConf.isDepartmentVisible ? 'checked="checked"' : ''}/><i></i>
-                                    </label>
-                                </g:if>
+                                %{--<p>Disable/Enable</p>--}%
+                                <label class="switch switch-success">
+                                    <input type="checkbox" id="isDepartmentLocked"
+                                           class="lock" ${lockConf.isDepartmentLocked ? 'checked="checked"' : ''}/><i></i>
+                                </label>
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-default btn-block btn-lg">Update</button>
+                        <button type="submit"
+                                class="btn btn-default btn-block btn-lg"
+                                data-ng-disabled="!canSubmit()">Update</button>
 
                     </div>
-                </g:form>
+                </form>
             </div>
         </div>
     </div>

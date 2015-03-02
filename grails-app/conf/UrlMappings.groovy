@@ -16,6 +16,39 @@ class UrlMappings {
             action = "profile"
         }
 
-        "/api/user"(resource: 'retrieveGraph')
+        "/user/edit/$username" {
+            controller = "admin"
+            action = "editUserProfile"
+        }
+
+        "/user/changePasswordPage/$username" {
+            controller = "user"
+            action = "changePasswordPage"
+        }
+
+        "/user/changePassword" {
+            controller = "user"
+            action = "changePassword"
+        }
+
+        "/user/manipulateFieldVisibility" {
+            controller = "user"
+            action = "manipulateFieldVisibility"
+        }
+
+        "/edit/$username" {
+            controller = "user"
+            action = "edit"
+        }
+
+        "/api/v1/people/graphs/force-directed" {
+            controller = "graph"
+            action = "peopleGraph"
+        }
+
+        "/api/v1/references/graphs/force-directed" {
+            controller = "graph"
+            action = "charGraph"
+        }
     }
 }

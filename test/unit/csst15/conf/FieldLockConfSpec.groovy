@@ -6,7 +6,7 @@ import grails.test.mixin.TestFor
 import spock.lang.Unroll
 
 @TestFor(FieldLockConf)
-@Build(FieldLockConf)
+@Build([FieldLockConf, FieldMandatoryConf])
 class FieldLockConfSpec extends ConstraintsUnitSpec {
 
     def setup() {

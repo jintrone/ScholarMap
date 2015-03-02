@@ -4,16 +4,16 @@ import csst15.security.User
 
 class FieldVisibilityConf {
     User user
-    Boolean isUsernameVisible = false
-    Boolean isFirstNameVisible = false
-    Boolean isLastNameVisible = false
-    Boolean isEmailVisible = false
-    Boolean isDegreeYearVisible = false
-    Boolean isInstitutionVisible = false
-    Boolean isSpecializationVisible = false
-    Boolean isPositionVisible = false
-    Boolean isDepartmentVisible = false
-    Boolean isPhotoVisible = false
+    Boolean isUsernameVisible = true
+    Boolean isFirstNameVisible = true
+    Boolean isLastNameVisible = true
+    Boolean isEmailVisible = true
+    Boolean isDegreeYearVisible = true
+    Boolean isInstitutionVisible = true
+    Boolean isSpecializationVisible = true
+    Boolean isPositionVisible = true
+    Boolean isDepartmentVisible = true
+    Boolean isPhotoVisible = true
 
     static constraints = {
     }

@@ -22,7 +22,9 @@
                     <div class="panel-heading">
                         <strong><span class="glyphicon glyphicon-th"></span> Profile Info</strong>
                         <g:if test="${sec.loggedInUserInfo(field: 'id') == user.id.toString()}">
-                            <g:link controller="user" action="edit" id="${user.id}">Edit</g:link>
+                            <g:link controller="user" action="edit" params="[username: user.username]">Edit</g:link>
+                            <g:link controller="user" action="changePasswordPage"
+                                    params="[username: user.username]">Change Password</g:link>
                         </g:if>
                     </div>
 

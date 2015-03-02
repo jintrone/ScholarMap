@@ -1,3 +1,4 @@
+import csst15.*
 import csst15.conf.FieldLockConf
 import csst15.conf.FieldMandatoryConf
 import csst15.conf.FieldVisibilityConf
@@ -12,14 +13,15 @@ import csst15.lists.Specialization
 import csst15.security.Role
 import csst15.security.User
 import csst15.security.UserRole
+import org.codehaus.groovy.grails.commons.DefaultGrailsDomainClass
 
 class BootStrap {
 
     def init = { servletContext ->
         environments {
             development {
-                bootstrapSpringSecurityDatabase()
                 bootstrapUserDetailsDatabase()
+                bootstrapSpringSecurityDatabase()
             }
             production {
                 bootstrapUserDetailsDatabase()
@@ -68,6 +70,17 @@ class BootStrap {
         GeneralConf.withTransaction {
             GeneralConf.get(1) ?: new GeneralConf().save(failOnError: true)
         }
+
+        FieldMandatoryConf.withNewTransaction {
+            def nonUserInput = ["username", "password", "email", "photo", "activationToken", "accountLocked", "lockConf",
+                                "accountExpired", "enabled", "passwordExpired", "passwordResetToken", "visibilityConf"]
+            def userDomainClass = new DefaultGrailsDomainClass(User.class)
+            userDomainClass.persistentProperties.each { field ->
+                if (!nonUserInput.contains(field.name)) {
+                    FieldMandatoryConf.findByFieldName(field.name as String) ?: new FieldMandatoryConf(fieldName: field.name, isMandatory: false).save(failOnError: true)
+                }
+            }
+        }
     }
 
     private void bootstrapSpringSecurityDatabase() {
@@ -107,7 +120,6 @@ class BootStrap {
                     enabled: true,
                     lockConf: lockConf1,
                     visibilityConf: visConf1,
-                    mandatoryConf: mandConf1
             ).save(failOnError: true)
 
             user = User.findByEmail("user@example.com") ?: new User(
@@ -119,7 +131,6 @@ class BootStrap {
                     enabled: true,
                     lockConf: lockConf2,
                     visibilityConf: visConf2,
-                    mandatoryConf: mandConf2
             ).save(failOnError: true)
         }
 
@@ -131,6 +142,45 @@ class BootStrap {
             if (!user.authorities.contains(userRole)) {
                 UserRole.create(user, userRole)
             }
+        }
+
+        def field1 = null
+        def field2 = null
+        def method = null
+        def theory1 = null
+        def theory2 = null
+        def theory3 = null
+        Entity.withTransaction {
+            method = Entity.findByName("User-Centered Design") ?: new Method(name: 'User-Centered Design', description: 'bla bla', type: "method").save(failOnError: true)
+            theory1 = Entity.findByName("Cognitive Anthropology") ?: new Theory(name: 'Cognitive Anthropology', description: 'bla bla', type: "theory").save(failOnError: true)
+            theory2 = Entity.findByName("Critical Theory") ?: new Theory(name: 'Critical Theory', description: 'bla bla', type: "theory").save(failOnError: true)
+            theory3 = Entity.findByName("Cognitive Artifacts") ?: new Theory(name: 'Cognitive Artifacts', description: 'bla bla', type: "theory").save(failOnError: true)
+            field1 = Entity.findByName("Human Computer Interaction") ?: new Field(name: 'Human Computer Interaction', description: 'bla bla', type: "field").save(failOnError: true)
+            field2 = Entity.findByName("Design") ?: new Field(name: 'Design', description: 'bla bla', type: "field").save(failOnError: true)
+
+            user.addToEntities(method)
+            user.addToEntities(theory1)
+            user.addToEntities(theory2)
+            user.addToEntities(theory3)
+            user.addToEntities(field1)
+            user.addToEntities(field2)
+        }
+
+        def reference = null
+        Reference.withTransaction {
+            reference = Reference.findByTitle("Traditional") ?: new Reference(title: 'Traditional', content: 'bla bla', year: 2014, creator: user).save(failOnError: true)
+
+            ReferenceVote.findById(1) ?: new ReferenceVote(reference: reference, user: user, entity: field1).save(failOnError: true)
+        }
+
+        ReferenceAuthor.withTransaction {
+            def author = Author.findById(1) ?: new Author(firstName: 'Emil', lastName: 'Matevosyan').save(failOnError: true)
+            def author2 = Author.findById(2) ?: new Author(firstName: 'Joshua', lastName: 'Introne').save(failOnError: true)
+            def author3 = Author.findById(3) ?: new Author(firstName: 'Joe', lastName: 'Doe').save(failOnError: true)
+
+            ReferenceAuthor.findById(1) ?: new ReferenceAuthor(author: author, reference: reference).save(failOnError: true)
+            ReferenceAuthor.findById(2) ?: new ReferenceAuthor(author: author2, reference: reference).save(failOnError: true)
+            ReferenceAuthor.findById(3) ?: new ReferenceAuthor(author: author3, reference: reference).save(failOnError: true)
         }
     }
 }

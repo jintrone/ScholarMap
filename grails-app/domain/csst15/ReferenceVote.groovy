@@ -2,8 +2,7 @@ package csst15
 
 import csst15.security.User
 
-class ReferenceVote {
-
+class ReferenceVote implements Serializable {
     Entity entity
     Reference reference
     User user

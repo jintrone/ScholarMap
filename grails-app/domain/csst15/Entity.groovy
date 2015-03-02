@@ -6,12 +6,14 @@ import csst15.security.User
 class Entity {
     String name
     String description
+    String type
     static belongsTo = User
     static hasMany = [users: User, references: ReferenceVote]
 
     static constraints = {
         description nullable: true
-        name blank: false
+        name blank: false, unique: true
+        type blank: false
     }
 
     static mapping = {
