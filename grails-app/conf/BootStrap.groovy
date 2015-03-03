@@ -168,7 +168,7 @@ class BootStrap {
 
         def reference = null
         Reference.withTransaction {
-            reference = Reference.findByTitle("Traditional") ?: new Reference(title: 'Traditional', content: 'bla bla', year: 2014, creator: user).save(failOnError: true)
+            reference = Reference.findByCitation("Traditional") ?: new Reference(citation: 'Traditional', content: 'bla bla', year: 2014, creator: user).save(failOnError: true)
 
             ReferenceVote.findById(1) ?: new ReferenceVote(reference: reference, user: user, entity: field1).save(failOnError: true)
         }

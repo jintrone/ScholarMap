@@ -20,12 +20,20 @@
 
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <strong><span class="glyphicon glyphicon-th"></span> Profile Info</strong>
-                        <g:if test="${sec.loggedInUserInfo(field: 'id') == user.id.toString()}">
-                            <g:link controller="user" action="edit" params="[username: user.username]">Edit</g:link>
-                            <g:link controller="user" action="changePasswordPage"
-                                    params="[username: user.username]">Change Password</g:link>
-                        </g:if>
+                        <div class="col-md-3">
+                            <strong><span class="glyphicon glyphicon-th"></span> Profile Info</strong>
+                        </div>
+
+                        <div style="text-align: right">
+                            <g:if test="${sec.loggedInUserInfo(field: 'id') == user.id.toString()}">
+                                <g:link title="Edit Profile" controller="user" action="edit"
+                                        class="glyphicon glyphicon-edit"
+                                        params="[username: user.username]"/>
+                                <g:link title="Change Password" controller="user" action="changePasswordPage"
+                                        class="glyphicon glyphicon-lock"
+                                        params="[username: user.username]"/>
+                            </g:if>
+                        </div>
                     </div>
 
                     <div class="panel-body">
