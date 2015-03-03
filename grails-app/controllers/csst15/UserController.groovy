@@ -4,6 +4,7 @@ import csst15.command.PasswordChangeCommand
 import csst15.command.UpdateUserCommand
 import csst15.conf.FieldLockConf
 import csst15.conf.FieldVisibilityConf
+import csst15.constants.Roles
 import csst15.lists.Department
 import csst15.lists.Position
 import csst15.lists.Specialization
@@ -19,15 +20,23 @@ import org.springframework.http.HttpStatus
 class UserController {
     static allowedMethods = [
             manipulateFieldVisibility: 'POST',
-            changePasswordPage       : 'GET'
+            changePasswordPage: 'GET',
+            update            : 'POST'
     ]
     def springSecurityService
     def uploadService
 
     def profile() {
+        def currentUser = springSecurityService.currentUser as User
+
         def user = User.findByUsername(params.username)
         if (user) {
-            [user: user]
+            if (currentUser && currentUser.authorities.any { it.authority == Roles.ADMIN.name }) {
+                [user: user, isAdmin: true]
+            } else {
+                [user: user]
+            }
+
         } else {
             redirect(controller: 'home')
         }
@@ -52,7 +61,14 @@ class UserController {
     @Transactional
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def update(UpdateUserCommand userCommand) {
-        User user = springSecurityService.currentUser as User
+        User currentUser = springSecurityService.currentUser as User
+        User user = null
+
+        if (currentUser.authorities.any { it.authority == Roles.ADMIN.name }) {
+            user = User.findById(params.userId)
+        } else {
+            user = currentUser
+        }
 
         if (!user) {
             redirect(controller: 'login', action: 'auth')

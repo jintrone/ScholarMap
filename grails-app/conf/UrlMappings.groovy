@@ -41,6 +41,16 @@ class UrlMappings {
             action = "edit"
         }
 
+        "/user/update" {
+            controller = "user"
+            action = "update"
+        }
+
+        "/user/update" {
+            controller = "user"
+            action = "update"
+        }
+
         "/api/v1/people/graphs/force-directed" {
             controller = "graph"
             action = "peopleGraph"

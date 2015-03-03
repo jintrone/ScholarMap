@@ -13,9 +13,8 @@
                         </g:eachError>
                     </ul>
                 </g:hasErrors>
-                <g:form controller="user" action="update" name="update" class="form-horizontal form-validation"
-                        id="${user.id}">
-                    <g:hiddenField name="id" value="${user.id}"/>
+                <g:form controller="user" action="update" name="update" class="form-horizontal form-validation">
+                    <g:hiddenField name="userId" value="${user.id}"/>
                     <div class="panel-body" data-ng-controller="signupCtrl" id="editPanel">
 
                         <div class="form-group">

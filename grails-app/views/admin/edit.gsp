@@ -2,12 +2,19 @@
 <g:applyLayout name="main">
     <div class="panel panel-default" xmlns="http://www.w3.org/1999/html">
         <div class="panel-body">
-            <div class="col-md-6">
+            <div class="col-md-6" id="admin_edit_profile">
                 <div class="panel-heading">
                     <strong><span class="glyphicon glyphicon-th"></span> Edit Profile</strong>
                 </div>
-
-                <form name="admin_edit_profile" id="admin_edit_profile" class="form-horizontal form-validation">
+                <g:hasErrors bean="${userCommand}">
+                    <ul class="callout callout-danger errors">
+                        <g:eachError bean="${userCommand}" var="error">
+                            <li><g:message error="${error}"/></li>
+                        </g:eachError>
+                    </ul>
+                </g:hasErrors>
+                <g:form controller="user" action="update" name="update" class="form-horizontal form-validation"
+                        id="${user.id}">
                     <g:hiddenField name="userId" value="${user.id}"/>
                     <div class="panel-body">
 
@@ -191,7 +198,7 @@
                                 data-ng-disabled="!canSubmit()">Update</button>
 
                     </div>
-                </form>
+                </g:form>
             </div>
         </div>
     </div>
