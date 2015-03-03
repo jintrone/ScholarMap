@@ -47,7 +47,7 @@ $(document).ready(function () {
             type: 'POST',
             data: {
                 fieldName: $(this).attr('id'),
-                userId: $("#id").val()
+                userId: $("#userId").val()
             },
             success: function (data) {
                 console.log('success');

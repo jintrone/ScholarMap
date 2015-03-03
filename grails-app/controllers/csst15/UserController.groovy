@@ -150,7 +150,7 @@ class UserController {
                 render status: HttpStatus.OK
             } else {
                 log.debug("fieldName not specified.")
-                redirect(action: 'profile', params: [username: user.username])
+                redirect(action: 'profile', params: [username: user?.username])
             }
         } else {
             log.debug("fieldName not specified.")
