@@ -81,7 +81,7 @@
 </div>
 
 
-<footer class="footer text-center">&copy; Copyright 2015 ScholarMap</footer>
+<footer class="footer text-center" style="color: beige">&copy; Copyright 2015 ScholarMap</footer>
 </body>
 </html>
 

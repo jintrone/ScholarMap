@@ -103,21 +103,4 @@ class AdminControllerSpec extends Specification {
         then:
         fieldMandConf.isMandatory
     }
-
-    void "test the manipulateFieldVisibility action"() {
-        setup:
-        params.fieldName = "isUsernameVisible"
-        request.method = 'POST'
-        def id = params.userId = 1
-        def user = User.build(id: id)
-        def visFieldConfig = FieldVisibilityConf.build(user: user, isUsernameVisible: false)
-        User.metaClass.'static'.findById = { userId -> user }
-        FieldVisibilityConf.metaClass.'static'.findByUser = { newUser -> visFieldConfig }
-
-        when:
-        controller.manipulateFieldVisibility()
-
-        then:
-        visFieldConfig.isUsernameVisible
-    }
 }

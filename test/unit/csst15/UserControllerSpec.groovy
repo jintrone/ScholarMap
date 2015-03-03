@@ -1,21 +1,31 @@
 package csst15
 
-import grails.test.mixin.TestMixin
-import grails.test.mixin.support.GrailsUnitTestMixin
+import csst15.conf.FieldVisibilityConf
+import csst15.security.User
+import grails.buildtestdata.mixin.Build
+import grails.test.mixin.TestFor
 import spock.lang.Specification
 
 /**
  * See the API for {@link grails.test.mixin.support.GrailsUnitTestMixin} for usage instructions
  */
-@TestMixin(GrailsUnitTestMixin)
+@TestFor(UserController)
+@Build([User, FieldVisibilityConf])
 class UserControllerSpec extends Specification {
+    void "test the manipulateFieldVisibility action"() {
+        setup:
+        params.fieldName = "isUsernameVisible"
+        request.method = 'POST'
+        def id = params.userId = 1
+        def user = User.build(id: id)
+        def visFieldConfig = FieldVisibilityConf.build(user: user, isUsernameVisible: false)
+        User.metaClass.'static'.findById = { userId -> user }
+        FieldVisibilityConf.metaClass.'static'.findByUser = { newUser -> visFieldConfig }
 
-    def setup() {
-    }
+        when:
+        controller.manipulateFieldVisibility()
 
-    def cleanup() {
-    }
-
-    void "test something"() {
+        then:
+        visFieldConfig.isUsernameVisible
     }
 }
