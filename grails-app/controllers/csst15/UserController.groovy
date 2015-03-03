@@ -107,13 +107,13 @@ class UserController {
         def user = springSecurityService.currentUser as User
 
         if (user) {
-            if (command.hasErrors()) {
-                render(view: 'changePassword', model: [command: command, user: user])
-            } else {
+            if (command.validate()) {
                 user.password = command.newPassword
                 user.save(failOnError: true)
                 log.debug("Password change of the user '${user.username}' was successfull.")
                 redirect(action: 'profile', params: [username: user.username])
+            } else {
+                render(view: 'changePassword', model: [command: command, user: user])
             }
         } else {
             redirect(controller: 'home')
@@ -123,7 +123,6 @@ class UserController {
     @Transactional
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def manipulateFieldVisibility() {
-        println "==================="
         def user = User.findById(params.userId)
         if (params.fieldName) {
             def fieldName = params.fieldName
