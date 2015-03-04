@@ -8,13 +8,13 @@
                 <div class="panel panel-profile">
                     <div class="panel-heading text-center bg-info">
                         <img alt="" src="images/g1.jpg" class="img-circle img80_80">
-                        <g:if test="${(user.visibilityConf.isFirstNameVisible && user.visibilityConf.isLastNameVisible) || isOwner || isAdmin}">
+                        <g:if test="${hasCurrentUser || (user.visibilityConf.isFirstNameVisible && user.visibilityConf.isLastNameVisible)}">
                             <h3>${user.firstName} ${user.lastName}</h3>
                         </g:if>
-                        <g:elseif test="${user.visibilityConf.isUsernameVisible || isOwner || isAdmin}">
+                        <g:elseif test="${hasCurrentUser || user.visibilityConf.isUsernameVisible}">
                             <h3>${user.username}</h3>
                         </g:elseif>
-                        <g:if test="${user.visibilityConf.isPositionVisible || isOwner || isAdmin}">
+                        <g:if test="${hasCurrentUser || user.visibilityConf.isPositionVisible}">
                             <p>${user.position?.name}</p>
                         </g:if>
                     </div>
@@ -41,35 +41,35 @@
                         <div class="media">
                             <div class="media-body">
                                 <ul class="list-unstyled list-info">
-                                    <g:if test="${user.visibilityConf.isEmailVisible || isOwner || isAdmin}">
+                                    <g:if test="${hasCurrentUser || user.visibilityConf.isEmailVisible}">
                                         <li>
                                             <span class="icon glyphicon glyphicon-envelope"></span>
                                             <label>Email</label>
                                             ${user.email}
                                         </li>
                                     </g:if>
-                                    <g:if test="${user.visibilityConf.isDegreeYearVisible || isOwner || isAdmin}">
+                                    <g:if test="${hasCurrentUser || user.visibilityConf.isDegreeYearVisible}">
                                         <li>
                                             <span class="icon glyphicon glyphicon-user"></span>
                                             <label>Degree Year</label>
                                             ${user.degreeYear}
                                         </li>
                                     </g:if>
-                                    <g:if test="${user.visibilityConf.isInstitutionVisible || isOwner || isAdmin}">
+                                    <g:if test="${hasCurrentUser || user.visibilityConf.isInstitutionVisible}">
                                         <li>
                                             <span class="icon glyphicon glyphicon-user"></span>
                                             <label>Institution</label>
                                             ${user.institution}
                                         </li>
                                     </g:if>
-                                    <g:if test="${user.visibilityConf.isSpecializationVisible || isOwner || isAdmin}">
+                                    <g:if test="${hasCurrentUser || user.visibilityConf.isSpecializationVisible}">
                                         <li>
                                             <span class="icon glyphicon glyphicon-user"></span>
                                             <label>Specialization</label>
                                             ${user.specialization?.title}
                                         </li>
                                     </g:if>
-                                    <g:if test="${user.visibilityConf.isDepartmentVisible || isOwner || isAdmin}">
+                                    <g:if test="${hasCurrentUser || user.visibilityConf.isDepartmentVisible}">
                                         <li>
                                             <span class="icon glyphicon glyphicon-flag"></span>
                                             <label>Department</label>

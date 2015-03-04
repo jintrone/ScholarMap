@@ -31,8 +31,8 @@ class UserController {
 
         def user = User.findByUsername(params.username)
         if (user) {
-            if (currentUser && currentUser.authorities.any { it.authority == Roles.ADMIN.name }) {
-                [user: user, isAdmin: true]
+            if (currentUser) {
+                [user: user, hasCurrentUser: true]
             } else {
                 [user: user]
             }
