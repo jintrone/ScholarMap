@@ -2,6 +2,8 @@ package csst15
 
 import org.apache.commons.lang3.text.WordUtils
 
+import java.text.Normalizer
+
 /**
  * Created by Emil Matevosyan
  * Date: 2/24/15.
@@ -26,5 +28,16 @@ public final class GeneralUtils {
 
     public static String constructVisibleField(String fieldName) {
         return PREFIX.concat(WordUtils.capitalize(fieldName)).concat(VISIBLE_SUFFIX)
+    }
+
+    public static String constructReferenceUrl(String prefix, String source) {
+        def refUrl = Normalizer.normalize(source.toLowerCase(), Normalizer.Form.NFD)
+                .replaceAll("\\p{InCombiningDiacriticalMarks}+", "")
+                .replaceAll("[^\\p{Alnum}]+", "-")
+                .replace("--", "-").replace("--", "-")
+                .replaceAll('[^a-z0-9]+$', "")
+                .replaceAll("^[^a-z0-9]+", "")
+
+        "/" + prefix + "/" + refUrl
     }
 }

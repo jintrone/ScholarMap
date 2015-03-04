@@ -1,6 +1,6 @@
 package csst15
 
-class ReferenceAuthor {
+class ReferenceAuthor implements Serializable {
     Reference reference
     Author author
 
@@ -8,6 +8,7 @@ class ReferenceAuthor {
     }
 
     static mapping = {
+        id composite: ['reference', 'author']
         version false
     }
 }

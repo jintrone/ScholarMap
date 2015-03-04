@@ -167,10 +167,18 @@ class BootStrap {
         }
 
         def reference = null
+        def reference1 = null
         Reference.withTransaction {
             reference = Reference.findByCitation("Traditional") ?: new Reference(citation: 'Traditional', content: 'bla bla', year: 2014, creator: user).save(failOnError: true)
+            reference1 = Reference.findByCitation("Another Ref") ?: new Reference(citation: 'Another Ref', content: 'bla bla', year: 2013, creator: user).save(failOnError: true)
 
-            ReferenceVote.findById(1) ?: new ReferenceVote(reference: reference, user: user, entity: field1).save(failOnError: true)
+            new ReferenceVote(reference: reference, user: user, entity: field1).save(failOnError: true)
+            new ReferenceVote(reference: reference, user: user, entity: theory1).save(failOnError: true)
+            new ReferenceVote(reference: reference, user: user, entity: theory2).save(failOnError: true)
+            new ReferenceVote(reference: reference, user: user, entity: theory3).save(failOnError: true)
+            new ReferenceVote(reference: reference1, user: user, entity: theory2).save(failOnError: true)
+            new ReferenceVote(reference: reference1, user: user, entity: theory3).save(failOnError: true)
+            new ReferenceVote(reference: reference1, user: user, entity: field2).save(failOnError: true)
         }
 
         ReferenceAuthor.withTransaction {
@@ -178,9 +186,10 @@ class BootStrap {
             def author2 = Author.findById(2) ?: new Author(firstName: 'Joshua', lastName: 'Introne').save(failOnError: true)
             def author3 = Author.findById(3) ?: new Author(firstName: 'Joe', lastName: 'Doe').save(failOnError: true)
 
-            ReferenceAuthor.findById(1) ?: new ReferenceAuthor(author: author, reference: reference).save(failOnError: true)
-            ReferenceAuthor.findById(2) ?: new ReferenceAuthor(author: author2, reference: reference).save(failOnError: true)
-            ReferenceAuthor.findById(3) ?: new ReferenceAuthor(author: author3, reference: reference).save(failOnError: true)
+            new ReferenceAuthor(author: author, reference: reference).save(failOnError: true)
+            new ReferenceAuthor(author: author2, reference: reference).save(failOnError: true)
+            new ReferenceAuthor(author: author3, reference: reference).save(failOnError: true)
+            new ReferenceAuthor(reference: reference1, author: author3).save(failOnError: true)
         }
     }
 }

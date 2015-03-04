@@ -58,6 +58,11 @@ class UrlMappings {
 
         "/api/v1/references/graphs/force-directed" {
             controller = "graph"
+            action = "refGraph"
+        }
+
+        "/api/v1/characteristics/graphs/force-directed" {
+            controller = "graph"
             action = "charGraph"
         }
     }
