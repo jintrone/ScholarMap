@@ -8,6 +8,7 @@ import grails.converters.JSON
 import grails.rest.RestfulController
 import groovy.json.JsonBuilder
 
+import static csst15.GeneralUtils.constructOnlyParam
 import static csst15.GeneralUtils.constructReferenceUrl
 
 class GraphController extends RestfulController {
@@ -18,9 +19,49 @@ class GraphController extends RestfulController {
     }
 
     def charGraph() {
+        def entityList = null
+        if (params.only)
+            entityList = params.only.tokenize(',')
+
+
+
+        def entities = Entity.list()
+        def references = Reference.list()
+        def users = UserRole.findAllByRole(Role.findByAuthority(Roles.USER.name))*.user.unique()
+
         def builder = new JsonBuilder()
         def root = builder {
             nodes(
+                    entities.collect { Entity entity ->
+                        if (!entityList || (entityList && constructOnlyParam(entity.type) in entityList)) {
+                            [
+                                    name        : entity.name,
+                                    type        : entity.type,
+                                    relative_url: constructReferenceUrl(entity.type, entity.name),
+                                    people      : (ReferenceVote.findAllByEntity(entity).user.unique().id),
+                                    references  :
+                                            ReferenceVote.findAllByEntity(entity).reference.unique().collect {
+                                                [id: it.id]
+                                            }
+                            ]
+                        }
+                    }
+            )
+
+
+            attributes(
+                    people:
+                            users.collect { u ->
+                                [
+                                        id          : u.id,
+                                        name        : u.firstName + " " + u.lastName,
+                                        relative_url: constructReferenceUrl("user", u.username)
+                                ]
+                            },
+                    references:
+                            references.collect { Reference reference ->
+                                [id: reference.id, name: reference.citation, relative_url: constructReferenceUrl("reference", reference.citation.substring(0, 10))]
+                            }
             )
         }
 

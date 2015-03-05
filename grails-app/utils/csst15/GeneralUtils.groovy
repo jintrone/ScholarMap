@@ -40,4 +40,24 @@ public final class GeneralUtils {
 
         "/" + prefix + "/" + refUrl
     }
+
+    public static constructOnlyParam(String entityType) {
+        def result = null
+        switch (entityType) {
+            case "method":
+                result = "methods"
+                break
+            case "field":
+                result = "fields"
+                break
+            case "venue":
+                result = "venues"
+                break
+            case "theory":
+                result = "theories"
+                break
+        }
+
+        return result
+    }
 }
