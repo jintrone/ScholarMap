@@ -9,6 +9,8 @@ class Reference {
     String content
 
     static constraints = {
+        citation blank: false, maxSize: 500
+        content blank: false, maxSize: 5000
     }
 
     static mapping = {

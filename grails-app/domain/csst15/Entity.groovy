@@ -1,12 +1,13 @@
 package csst15
 
+import csst15.constants.EntityType
 import csst15.security.User
 
 
 class Entity {
     String name
     String description
-    String type
+    EntityType type
     static belongsTo = User
     static hasMany = [users: User, references: ReferenceVote]
 
@@ -39,12 +40,4 @@ class Entity {
             return "area"
         } else return s
     }
-
-//   Collection getUserReferences(User u) {
-//        Collection result = references.findAll { ReferenceVote vote ->
-//            vote.user.id == u.id
-//
-//        }
-//       result?:Collections.emptySet()
-//    }
 }

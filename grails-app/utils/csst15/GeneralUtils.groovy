@@ -1,8 +1,11 @@
 package csst15
 
+import csst15.constants.EntityType
 import org.apache.commons.lang3.text.WordUtils
 
 import java.text.Normalizer
+
+import static csst15.constants.EntityType.*
 
 /**
  * Created by Emil Matevosyan
@@ -30,7 +33,7 @@ public final class GeneralUtils {
         return PREFIX.concat(WordUtils.capitalize(fieldName)).concat(VISIBLE_SUFFIX)
     }
 
-    public static String constructReferenceUrl(String prefix, String source) {
+    public static String constructReferenceUrl(def prefix, String source) {
         def refUrl = Normalizer.normalize(source.toLowerCase(), Normalizer.Form.NFD)
                 .replaceAll("\\p{InCombiningDiacriticalMarks}+", "")
                 .replaceAll("[^\\p{Alnum}]+", "-")
@@ -41,19 +44,19 @@ public final class GeneralUtils {
         "/" + prefix + "/" + refUrl
     }
 
-    public static constructOnlyParam(String entityType) {
+    public static constructOnlyParam(EntityType entityType) {
         def result = null
         switch (entityType) {
-            case "method":
+            case METHOD:
                 result = "methods"
                 break
-            case "field":
+            case FIELD:
                 result = "fields"
                 break
-            case "venue":
+            case VENUE:
                 result = "venues"
                 break
-            case "theory":
+            case THEORY:
                 result = "theories"
                 break
         }

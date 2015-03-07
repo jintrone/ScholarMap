@@ -10,6 +10,7 @@ import groovy.json.JsonBuilder
 
 import static csst15.GeneralUtils.constructOnlyParam
 import static csst15.GeneralUtils.constructReferenceUrl
+import static csst15.constants.EntityType.*
 
 class GraphController extends RestfulController {
     static responseFormats = ['json', 'xml']
@@ -71,10 +72,10 @@ class GraphController extends RestfulController {
     def refGraph() {
         def referencesAuthor = ReferenceAuthor.findAll()
         def referencesVote = ReferenceVote.findAll()
-        def allMethods = Entity.findAllByType("method")
-        def allTheories = Entity.findAllByType("theory")
-        def allVenues = Entity.findAllByType("venue")
-        def allFields = Entity.findAllByType("field")
+        def allMethods = Entity.findAllByType(METHOD)
+        def allTheories = Entity.findAllByType(THEORY)
+        def allVenues = Entity.findAllByType(VENUE)
+        def allFields = Entity.findAllByType(FIELD)
 
         def builder = new JsonBuilder()
         def root = builder {
@@ -82,10 +83,10 @@ class GraphController extends RestfulController {
                     referencesAuthor.reference.unique().collect { Reference reference ->
                         def authors = referencesAuthor.findAll { ReferenceAuthor refAuth -> refAuth.reference == reference }.author
                         def entities = referencesVote.findAll { ReferenceVote refVote -> refVote.reference == reference }.entity
-                        def methods = entities.findAll { Entity method -> method.type == "method" }
-                        def theories = entities.findAll { Entity theory -> theory.type == "theory" }
-                        def fields = entities.findAll { Entity field -> field.type == "field" }
-                        def venues = entities.findAll { Entity venue -> venue.type == "venue" }
+                        def methods = entities.findAll { Entity method -> method.type == METHOD }
+                        def theories = entities.findAll { Entity theory -> theory.type == THEORY }
+                        def fields = entities.findAll { Entity field -> field.type == FIELD }
+                        def venues = entities.findAll { Entity venue -> venue.type == VENUE }
                         [
                                 citation    : reference.citation,
                                 year        : reference.year,
@@ -103,22 +104,22 @@ class GraphController extends RestfulController {
             attributes(
                     methods:
                             allMethods.collect { Entity method ->
-                                [id: method.id, name: method.name, relative_url: constructReferenceUrl("method", method.name)]
+                                [id: method.id, name: method.name, relative_url: constructReferenceUrl(METHOD, method.name)]
                             },
 
                     theories:
                             allTheories.collect { Entity theory ->
-                                [id: theory.id, name: theory.name, relative_url: constructReferenceUrl("theory", theory.name)]
+                                [id: theory.id, name: theory.name, relative_url: constructReferenceUrl(THEORY, theory.name)]
                             },
 
                     fields:
                             allFields.collect { Entity field ->
-                                [id: field.id, name: field.name, relative_url: constructReferenceUrl("field", field.name)]
+                                [id: field.id, name: field.name, relative_url: constructReferenceUrl(FIELD, field.name)]
                             },
 
                     venues:
                             allVenues.collect { Entity venue ->
-                                [id: venue.id, name: venue.name, relative_url: constructReferenceUrl("venue", venue.name)]
+                                [id: venue.id, name: venue.name, relative_url: constructReferenceUrl(VENUE, venue.name)]
                             }
             )
         }
@@ -128,20 +129,20 @@ class GraphController extends RestfulController {
 
     def peopleGraph() {
         def users = UserRole.findAllByRole(Role.findByAuthority(Roles.USER.name))*.user.unique()
-        def methods = Entity.findAllByType("method")
-        def theories = Entity.findAllByType("theory")
-        def venues = Entity.findAllByType("venue")
-        def fields = Entity.findAllByType("field")
+        def methods = Entity.findAllByType(METHOD)
+        def theories = Entity.findAllByType(THEORY)
+        def venues = Entity.findAllByType(VENUE)
+        def fields = Entity.findAllByType(FIELD)
         def references = Reference.list()
 
         def builder = new JsonBuilder()
         def root = builder {
             nodes(
                     users.collect { User u ->
-                        def userMethods = u.entities.findAll { Entity method -> method.type == "method" }
-                        def userTheories = u.entities.findAll { Entity theory -> theory.type == "theory" }
-                        def userFields = u.entities.findAll { Entity field -> field.type == "field" }
-                        def userVenues = u.entities.findAll { Entity venue -> venue.type == "venue" }
+                        def userMethods = u.entities.findAll { Entity method -> method.type == METHOD }
+                        def userTheories = u.entities.findAll { Entity theory -> theory.type == THEORY }
+                        def userFields = u.entities.findAll { Entity field -> field.type == FIELD }
+                        def userVenues = u.entities.findAll { Entity venue -> venue.type == VENUE }
                         [
                                 name        : u.firstName + " " + u.lastName,
                                 department  : u.department?.title ?: "",
@@ -157,22 +158,22 @@ class GraphController extends RestfulController {
             attributes(
                     methods:
                             methods.collect { Entity method ->
-                                [id: method.id, name: method.name, relative_url: constructReferenceUrl("method", method.name)]
+                                [id: method.id, name: method.name, relative_url: constructReferenceUrl(METHOD, method.name)]
                             },
 
                     theories:
                             theories.collect { Entity theory ->
-                                [id: theory.id, name: theory.name, relative_url: constructReferenceUrl("theory", theory.name)]
+                                [id: theory.id, name: theory.name, relative_url: constructReferenceUrl(THEORY, theory.name)]
                             },
 
                     fields:
                             fields.collect { Entity field ->
-                                [id: field.id, name: field.name, relative_url: constructReferenceUrl("field", field.name)]
+                                [id: field.id, name: field.name, relative_url: constructReferenceUrl(FIELD, field.name)]
                             },
 
                     venues:
                             venues.collect { Entity venue ->
-                                [id: venue.id, name: venue.name, relative_url: constructReferenceUrl("venue", venue.name)]
+                                [id: venue.id, name: venue.name, relative_url: constructReferenceUrl(VENUE, venue.name)]
                             },
                     references:
                             references.collect { Reference reference ->

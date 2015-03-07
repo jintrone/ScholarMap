@@ -3,10 +3,7 @@ import csst15.conf.FieldLockConf
 import csst15.conf.FieldMandatoryConf
 import csst15.conf.FieldVisibilityConf
 import csst15.conf.GeneralConf
-import csst15.constants.Departments
-import csst15.constants.Positions
-import csst15.constants.Roles
-import csst15.constants.Specializations
+import csst15.constants.*
 import csst15.lists.Department
 import csst15.lists.Position
 import csst15.lists.Specialization
@@ -151,12 +148,12 @@ class BootStrap {
         def theory2 = null
         def theory3 = null
         Entity.withTransaction {
-            method = Entity.findByName("User-Centered Design") ?: new Method(name: 'User-Centered Design', description: 'bla bla', type: "method").save(failOnError: true)
-            theory1 = Entity.findByName("Cognitive Anthropology") ?: new Theory(name: 'Cognitive Anthropology', description: 'bla bla', type: "theory").save(failOnError: true)
-            theory2 = Entity.findByName("Critical Theory") ?: new Theory(name: 'Critical Theory', description: 'bla bla', type: "theory").save(failOnError: true)
-            theory3 = Entity.findByName("Cognitive Artifacts") ?: new Theory(name: 'Cognitive Artifacts', description: 'bla bla', type: "theory").save(failOnError: true)
-            field1 = Entity.findByName("Human Computer Interaction") ?: new Field(name: 'Human Computer Interaction', description: 'bla bla', type: "field").save(failOnError: true)
-            field2 = Entity.findByName("Design") ?: new Field(name: 'Design', description: 'bla bla', type: "field").save(failOnError: true)
+            method = Entity.findByName("User-Centered Design") ?: new Method(name: 'User-Centered Design', description: 'bla bla', type: EntityType.METHOD).save(failOnError: true)
+            theory1 = Entity.findByName("Cognitive Anthropology") ?: new Theory(name: 'Cognitive Anthropology', description: 'bla bla', type: EntityType.THEORY).save(failOnError: true)
+            theory2 = Entity.findByName("Critical Theory") ?: new Theory(name: 'Critical Theory', description: 'bla bla', type: EntityType.THEORY).save(failOnError: true)
+            theory3 = Entity.findByName("Cognitive Artifacts") ?: new Theory(name: 'Cognitive Artifacts', description: 'bla bla', type: EntityType.THEORY).save(failOnError: true)
+            field1 = Entity.findByName("Human Computer Interaction") ?: new Field(name: 'Human Computer Interaction', description: 'bla bla', type: EntityType.FIELD).save(failOnError: true)
+            field2 = Entity.findByName("Design") ?: new Field(name: 'Design', description: 'bla bla', type: EntityType.FIELD).save(failOnError: true)
 
             user.addToEntities(method)
             user.addToEntities(theory1)
