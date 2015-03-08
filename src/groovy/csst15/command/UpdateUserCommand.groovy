@@ -11,7 +11,6 @@ import org.joda.time.LocalDate
 
 @Validateable
 class UpdateUserCommand {
-    Long id
     String username
     String email
     String firstName
