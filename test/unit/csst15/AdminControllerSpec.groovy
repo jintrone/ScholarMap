@@ -14,7 +14,7 @@ import grails.test.mixin.TestFor
 import spock.lang.Specification
 
 @TestFor(AdminController)
-@Mock(User)
+@Mock([User, FieldMandatoryConf])
 @Build([User, GeneralConf, FieldLockConf, Role, FieldMandatoryConf, FieldVisibilityConf])
 class AdminControllerSpec extends Specification {
     void "test the board action"() {
@@ -118,5 +118,43 @@ class AdminControllerSpec extends Specification {
 
         then:
         fieldMandConf.isMandatory
+    }
+
+    void "test the manipulateFieldMand action when fieldName not exists"() {
+        setup:
+        request.method = 'POST'
+        def fieldMandConf = new FieldMandatoryConf(fieldName: 'field1')
+        FieldMandatoryConf.metaClass.'static'.findByFieldName = { genConfId -> fieldMandConf }
+
+        when:
+        controller.manipulateFieldMand()
+
+        then:
+        response.redirectUrl.contains('/admin/board')
+    }
+
+    void "test the editUserProfile action"() {
+        setup:
+        def username = "testUser"
+        def user = User.build(username: username)
+        User.metaClass.'static'.findByUsername = { usrName -> user }
+
+        when:
+        controller.editUserProfile()
+
+        then:
+        controller.modelAndView.viewName == "/admin/edit"
+        controller.modelAndView.model.user == user
+    }
+
+    void "test the editUserProfile action when user not found"() {
+        setup:
+        User.metaClass.'static'.findByUsername = { usrName -> null }
+
+        when:
+        controller.editUserProfile()
+
+        then:
+        response.redirectUrl.contains('/admin/board')
     }
 }
