@@ -18,7 +18,6 @@ import org.springframework.http.HttpStatus
 @Secured(['ROLE_ADMIN'])
 class AdminController {
     def userService
-    def notificationService
 
     static allowedMethods = [
             deleteUser               : 'GET',
