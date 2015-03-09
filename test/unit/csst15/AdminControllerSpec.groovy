@@ -62,6 +62,22 @@ class AdminControllerSpec extends Specification {
         lockFieldConfig.isUsernameLocked
     }
 
+    void "test lock field action when fieldName not found"() {
+        setup:
+        request.method = 'POST'
+        def id = params.userId = 1
+        def user = User.build(id: id)
+        def lockFieldConfig = FieldLockConf.build(user: user, isUsernameLocked: false)
+        User.metaClass.'static'.findById = { userId -> user }
+        FieldLockConf.metaClass.'static'.findByUser = { newUser -> lockFieldConfig }
+
+        when:
+        controller.manipulateFieldLock()
+
+        then:
+        response.redirectUrl.contains('/admin/editUserProfile')
+    }
+
     void "test disable registration"() {
         setup:
         int id = 1
