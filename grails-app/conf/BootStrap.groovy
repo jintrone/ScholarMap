@@ -70,7 +70,7 @@ class BootStrap {
 
         FieldMandatoryConf.withNewTransaction {
             def nonUserInput = ["username", "password", "email", "photo", "activationToken", "accountLocked", "lockConf",
-                                "accountExpired", "enabled", "passwordExpired", "passwordResetToken", "visibilityConf"]
+                                "accountExpired", "enabled", "entities", "passwordExpired", "passwordResetToken", "visibilityConf"]
             def userDomainClass = new DefaultGrailsDomainClass(User.class)
             userDomainClass.persistentProperties.each { field ->
                 if (!nonUserInput.contains(field.name)) {

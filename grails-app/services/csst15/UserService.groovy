@@ -1,9 +1,13 @@
 package csst15
 
 import csst15.command.QuickNewUserCommand
+import csst15.command.RequiredFieldsCommand
 import csst15.conf.FieldLockConf
 import csst15.conf.FieldVisibilityConf
 import csst15.constants.Roles
+import csst15.lists.Department
+import csst15.lists.Position
+import csst15.lists.Specialization
 import csst15.security.Role
 import csst15.security.User
 import csst15.security.UserRole
@@ -14,6 +18,7 @@ import groovy.util.logging.Slf4j
 @Transactional
 class UserService {
     def notificationService
+    def springSecurityService
 
     def createQuickUser(QuickNewUserCommand userCommand) {
         def user = new User()
@@ -53,23 +58,26 @@ class UserService {
         return null
     }
 
-//    def createUser(NewUserCommand userCommand) {
-//        def user = new User()
-//        user.properties = userCommand.properties
-//        user.position = Position.findByName(userCommand.position as String)
-//        user.specialization = Specialization.findByTitle(userCommand.specialization as String)
-//        user.department = Department.findByTitle(userCommand.department as String)
-//
-//        if (user.save(flush: true)) {
-//            addDefaultRole(user)
-//            return user
-//        } else {
-//            log.error("User creation attempt failed")
-//            log.error(user.errors.dump())
-//        }
-//
-//        return null
-//    }
+    def updateProfile(RequiredFieldsCommand command, User user) {
+        user.firstName = command.firstName ? command.firstName : user.firstName
+        user.lastName = command.lastName ? command.lastName : user.lastName
+        user.degreeYear = command.degreeYear ? command.degreeYear : user.degreeYear
+        user.institution = command.institution ? command.institution : user.institution
+        user.department = command.department ? Department.findByTitle(command.department) : user.department
+        user.position = command.position ? Position.findByName(command.position) : user.position
+        user.specialization = command.specialization ? Specialization.findByTitle(command.specialization) : user.specialization
+
+        if (user.save(flush: true)) {
+            log.info("Updated user with id ${user.id}")
+            return user
+        } else {
+            log.error("User creation attempt failed")
+            log.error(user.errors.dump())
+        }
+
+        return null
+    }
+
 
     private void addDefaultRole(User user) {
         def role = Role.findByAuthority(Roles.USER.name)

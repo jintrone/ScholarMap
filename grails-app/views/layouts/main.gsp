@@ -44,7 +44,7 @@
                         <li class="dropdown text-normal nav-profile">
                             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
                                 <span class="hidden-xs">
-                                    <span data-i18n="Lisa Doe">Welcome  <csst:userFullName/></span>
+                                    <span>Welcome  <csst:userFullName/></span>
                                 </span>
                             </a>
                             <ul class="dropdown-menu with-arrow">

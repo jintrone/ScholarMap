@@ -11,6 +11,9 @@ class UrlMappings {
         "500"(view: '/error')
         "/access-denied"(view: '/access-denied')
 
+        "/login/$action?"(controller: "login")
+        "/logout/$action?"(controller: "logout")
+
         "/user/$username" {
             controller = "user"
             action = "profile"
@@ -44,6 +47,16 @@ class UrlMappings {
         "/user/update" {
             controller = "user"
             action = "update"
+        }
+
+        "/user/fillRequiredFields" {
+            controller = "user"
+            action = "fillRequiredFields"
+        }
+
+        "/user/updateRequiredFields" {
+            controller = "user"
+            action = "updateRequiredFields"
         }
 
         "/user/update" {

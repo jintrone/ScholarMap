@@ -4,6 +4,13 @@
  */
 
 $(document).ready(function () {
+    if ($("#isRequired").length > 0) {
+        $('#fillRequiredModal').modal({
+            keyboard: false,
+            backdrop: 'static'
+        })
+    }
+
     $("#isRegEnabled").click(function () {
         $.ajax({
             url: $("#manipulateReg").val(),

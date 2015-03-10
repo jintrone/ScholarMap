@@ -1,13 +1,17 @@
 <g:applyLayout name="main">
     <g:set var="isOwner" value="${sec.loggedInUserInfo(field: 'id') == user.id.toString()}"/>
     <div class="page page-profile">
-
         <div class="row">
             <div class="col-md-6">
 
                 <div class="panel panel-profile">
                     <div class="panel-heading text-center bg-info">
-                        <img alt="" src="images/g1.jpg" class="img-circle img80_80">
+                        <g:if test="${user.photo}">
+                            <img alt="" src="images/g1.jpg" class="img-circle img80_80">
+                        </g:if>
+                        <g:else>
+                            <g:img alt="" uri="/images/default-user.png" class="img-circle img80_80"/>
+                        </g:else>
                         <g:if test="${hasCurrentUser || (user.visibilityConf.isFirstNameVisible && user.visibilityConf.isLastNameVisible)}">
                             <h3>${user.firstName} ${user.lastName}</h3>
                         </g:if>

@@ -1,8 +1,10 @@
 package csst15
 
 import csst15.command.PasswordChangeCommand
+import csst15.command.RequiredFieldsCommand
 import csst15.command.UpdateUserCommand
 import csst15.conf.FieldLockConf
+import csst15.conf.FieldMandatoryConf
 import csst15.conf.FieldVisibilityConf
 import csst15.constants.Roles
 import csst15.lists.Department
@@ -20,11 +22,14 @@ import org.springframework.http.HttpStatus
 class UserController {
     static allowedMethods = [
             manipulateFieldVisibility: 'POST',
-            changePasswordPage: 'GET',
-            update            : 'POST'
+            changePasswordPage  : 'GET',
+            update              : 'POST',
+            fillRequiredFields  : 'GET',
+            updateRequiredFields: 'POST'
     ]
     def springSecurityService
     def uploadService
+    def userService
 
     def profile() {
         def currentUser = springSecurityService.currentUser as User
@@ -55,6 +60,41 @@ class UserController {
             }
         } else {
             redirect(controller: 'admin')
+        }
+    }
+
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def fillRequiredFields() {
+        def user = springSecurityService.currentUser as User
+        if (user) {
+            if (user.id == springSecurityService.principal.id) {
+                def mandatoryFields = FieldMandatoryConf.findAllByIsMandatory(true).fieldName
+                [user: user, mandatoryFields: mandatoryFields]
+            } else {
+                redirect(uri: '/access-denied')
+            }
+        } else {
+            redirect(controller: 'admin')
+        }
+    }
+
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    @Transactional
+    def updateRequiredFields(RequiredFieldsCommand command) {
+        if (command.hasErrors()) {
+            redirect(action: 'fillRequiredFields')
+        } else {
+            if (springSecurityService.principal.id.toString() == params.userId?.toString()) {
+                def user = userService.updateProfile(command, springSecurityService.currentUser as User)
+
+                if (user) {
+                    redirect(controller: 'home')
+                } else {
+                    redirect(action: 'fillRequiredFields')
+                }
+            } else {
+                redirect(uri: '/access-denied')
+            }
         }
     }
 

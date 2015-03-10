@@ -50,7 +50,7 @@
                         <div class="form-group">
                             <label for="inputEmail" class="col-sm-2 control-label">Email</label>
 
-                            <div class="col-sm-10">
+                            <div class="col-sm-8">
                                 <input type="email" class="form-control" id="inputEmail" name="email"
                                        placeholder="Email">
                             </div>
@@ -66,24 +66,6 @@
             </section>
         </div>
     </div>
-%{--<section class="panel panel-default">--}%
-%{--<div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Manipulate registration</strong>--}%
-%{--</div>--}%
-
-%{--<div class="panel-body">--}%
-%{--<p>Disable/Enable</p>--}%
-%{--<label class="switch switch-success">--}%
-%{--<input type="checkbox" id="isRegEnabled" ${isRegEnabled ? 'checked="checked"' : ''}/><i></i>--}%
-%{--</label>--}%
-%{--</div>--}%
-
-%{--<div class="panel-body">--}%
-%{--<p>Disable/Enable</p>--}%
-%{--<label class="switch switch-success">--}%
-%{--<input type="checkbox" id="sa" ${isRegEnabled ? 'checked="checked"' : ''}/><i></i>--}%
-%{--</label>--}%
-%{--</div>--}%
-%{--</section>--}%
     <div class="panel panel-default">
         <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> User's list</strong></div>
 
