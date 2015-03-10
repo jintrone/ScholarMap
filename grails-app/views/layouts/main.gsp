@@ -31,18 +31,40 @@
             </div>
 
             <div id="navbar-collapse-1" class="collapse navbar-collapse">
+                <sec:ifLoggedIn>
+                    <div class="nav navbar-nav navbar-btn" style="margin-left: 350px">
+                        %{--<g:link controller="entity" class="btn btn-w-md btn-gap-v btn-primary" action="index">Create</g:link>--}%
+
+                    </div>
+                </sec:ifLoggedIn>
                 <ul class="nav navbar-nav navbar-right">
                     <sec:ifAllGranted roles="${Roles.ADMIN.name}">
                         <li><g:link controller="admin" action="board">Board</g:link></li>
                     </sec:ifAllGranted>
                     <sec:ifNotGranted roles="${Roles.ADMIN.name}">
                         <li><g:link controller="home" action="index">Home</g:link></li>
+                        <sec:ifLoggedIn>
+                            <li class="dropdown">
+                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">Create</a>
+
+                                <div class="dropdown-menu pull-right with-arrow panel panel-default">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                            <g:link controller="reference" action="create">Reference</g:link>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <g:link controller="entity" action="index">Entity</g:link>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </sec:ifLoggedIn>
                         <li><g:link controller="home" action="list">Users</g:link></li>
                         <li><g:link controller="home" action="about">About</g:link></li>
                     </sec:ifNotGranted>
                     <sec:ifLoggedIn>
                         <li class="dropdown text-normal nav-profile">
-                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="javascript:voisec:ifLoggedInopdown-toggle" data-toggle="dropdown">
                                 <span class="hidden-xs">
                                     <span>Welcome  <csst:userFullName/></span>
                                 </span>
