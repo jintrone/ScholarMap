@@ -53,18 +53,19 @@
                                             <g:link controller="reference" action="create">Reference</g:link>
                                         </li>
                                         <li class="list-group-item">
-                                            <g:link controller="entity" action="index">Entity</g:link>
+                                            <g:link controller="entity" action="create">Entity</g:link>
                                         </li>
                                     </ul>
                                 </div>
                             </li>
                         </sec:ifLoggedIn>
                         <li><g:link controller="home" action="list">Users</g:link></li>
+                        <li><g:link controller="home" action="entities">Entities</g:link></li>
                         <li><g:link controller="home" action="about">About</g:link></li>
                     </sec:ifNotGranted>
                     <sec:ifLoggedIn>
                         <li class="dropdown text-normal nav-profile">
-                            <a href="javascript:voisec:ifLoggedInopdown-toggle" data-toggle="dropdown">
+                            <a href="javascript:void(0);" data-toggle="dropdown">
                                 <span class="hidden-xs">
                                     <span>Welcome  <csst:userFullName/></span>
                                 </span>

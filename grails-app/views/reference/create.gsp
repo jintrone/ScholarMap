@@ -24,8 +24,8 @@
 
                         <div class="form-group">
                             <label for="content">Content</label>
-                            <textarea name="content" value="${referenceCommand?.content}" rows="10" id="content"
-                                      class="form-control" placeholder="Content"></textarea>
+                            <textarea name="content" rows="10" id="content"
+                                      class="form-control" placeholder="Content">${referenceCommand?.content}</textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </g:form>

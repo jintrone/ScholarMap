@@ -23,4 +23,11 @@ class HomeController {
         def userList = UserRole.findAllByRole(Role.findByAuthority(Roles.USER.name)).user
         render(view: '/list', model: [users: userList])
     }
+
+    def entities() {
+        def entities = Entity.list()
+        def references = Reference.list()
+
+        render(view: '/entities', model: [entities: entities, references: references])
+    }
 }

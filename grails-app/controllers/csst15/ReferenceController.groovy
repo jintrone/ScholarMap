@@ -27,7 +27,7 @@ class ReferenceController {
             def reference = referenceService.createReference(referenceCommand)
 
             if (reference) {
-                redirect(controller: 'home')
+                redirect(controller: 'home', action: 'entities')
             } else {
                 render(view: 'create', model: [referenceCommand: referenceCommand])
             }
