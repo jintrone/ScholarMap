@@ -7,19 +7,22 @@ import groovy.util.logging.Slf4j
 
 @Slf4j
 @Transactional(readOnly = true)
-@Secured(['ROLE_USER'])
 class ReferenceController {
     def referenceService
 
     static allowedMethods = [
-            submitReference: 'POST'
+            submit: 'POST',
+            create: 'GET',
+            view  : 'GET'
     ]
 
+    @Secured(['ROLE_USER'])
     def create() {
         []
     }
 
     @Transactional
+    @Secured(['ROLE_USER'])
     def submit(ReferenceCommand referenceCommand) {
         if (referenceCommand.hasErrors()) {
             render(view: 'create', model: [referenceCommand: referenceCommand])
@@ -31,6 +34,16 @@ class ReferenceController {
             } else {
                 render(view: 'create', model: [referenceCommand: referenceCommand])
             }
+        }
+    }
+
+    def view() {
+        if (params.id) {
+            def reference = Reference.findById(params.id)
+
+            [reference: reference]
+        } else {
+            redirect(controller: 'home', action: 'entities')
         }
     }
 }

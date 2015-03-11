@@ -7,18 +7,21 @@ import groovy.util.logging.Slf4j
 
 @Slf4j
 @Transactional(readOnly = true)
-@Secured(['ROLE_USER'])
 class EntityController {
     def entityService
 
     static allowedMethods = [
-            submit: 'POST'
+            submit: 'POST',
+            view  : 'GET',
+            create: 'GET'
     ]
 
+    @Secured(['ROLE_USER'])
     def create() {
     }
 
     @Transactional
+    @Secured(['ROLE_USER'])
     def submit(EntityCommand command) {
         if (command.hasErrors()) {
             render(view: 'create', model: [command: command])
@@ -30,6 +33,15 @@ class EntityController {
             } else {
                 render(view: 'create', model: [command: command])
             }
+        }
+    }
+
+    def view() {
+        if (params.id) {
+            def entity = Entity.findById(params.id)
+            [entity: entity]
+        } else {
+            redirect(controller: 'home', action: 'entities')
         }
     }
 }

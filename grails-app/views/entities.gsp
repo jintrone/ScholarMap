@@ -8,9 +8,7 @@
                 <table class="table table-striped table-bordered">
                     <thead>
                     <tr>
-                        <sec:ifLoggedIn>
-                            <th>Actions</th>
-                        </sec:ifLoggedIn>
+                        <th>Actions</th>
                         <th>Name</th>
                         <th>Type</th>
                     </tr>
@@ -19,9 +17,15 @@
                     <tbody>
                     <g:each in="${entities}" var="entity">
                         <tr>
-                            <sec:ifLoggedIn>
-                                <td>${entity.name}</td>
-                            </sec:ifLoggedIn>
+                            <td>
+                                <g:link class="glyphicon glyphicon-eye-open" controller="entity" action="view"
+                                        params="[id: entity.id]"/>
+                                <sec:ifLoggedIn>
+                                    <g:link class="glyphicon glyphicon-edit" controller="entity"
+                                            params="[id: entity.id]"
+                                            action="view"/>
+                                </sec:ifLoggedIn>
+                            </td>
                             <td>${entity.name}</td>
                             <td>${entity.type}</td>
                         </tr>
@@ -42,9 +46,7 @@
                 <table class="table table-striped table-bordered">
                     <thead>
                     <tr>
-                        <sec:ifLoggedIn>
-                            <th>Actions</th>
-                        </sec:ifLoggedIn>
+                        <th>Actions</th>
                         <th>Citation</th>
                         <th>Year</th>
                     </tr>
@@ -53,9 +55,14 @@
                     <tbody>
                     <g:each in="${references}" var="reference">
                         <tr>
-                            <sec:ifLoggedIn>
-                                <td>${reference.citation}</td>
-                            </sec:ifLoggedIn>
+                            <td>
+                                <g:link class="glyphicon glyphicon-eye-open" controller="reference" action="view"
+                                        params="[id: reference.id]"/>
+                                <sec:ifLoggedIn>
+                                    <g:link class="glyphicon glyphicon-edit" controller="admin"
+                                            action="editUserProfile"/>
+                                </sec:ifLoggedIn>
+                            </td>
                             <td>${reference.citation}</td>
                             <td>${reference.year}</td>
                         </tr>
