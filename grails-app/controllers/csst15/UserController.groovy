@@ -43,7 +43,7 @@ class UserController {
             }
 
         } else {
-            redirect(controller: 'home')
+            redirect(uri: '/not-found')
         }
     }
 

@@ -10,6 +10,7 @@ class UrlMappings {
         "/"(controller: "home")
         "500"(view: '/error')
         "/access-denied"(view: '/access-denied')
+        "/not-found"(view: '/not-found')
 
         "/login/$action?"(controller: "login")
         "/logout/$action?"(controller: "logout")
