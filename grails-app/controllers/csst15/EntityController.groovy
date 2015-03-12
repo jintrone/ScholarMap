@@ -13,7 +13,9 @@ class EntityController {
     static allowedMethods = [
             submit: 'POST',
             view  : 'GET',
-            create: 'GET'
+            create: 'GET',
+            edit  : 'GET',
+            update: 'POST'
     ]
 
     @Secured(['ROLE_USER'])
@@ -42,6 +44,35 @@ class EntityController {
             [entity: entity]
         } else {
             redirect(controller: 'home', action: 'entities')
+        }
+    }
+
+    @Secured(['ROLE_USER'])
+    def edit() {
+        if (params.id) {
+            def entity = Entity.findById(params.id)
+            [entity: entity]
+        } else {
+            redirect(controller: 'home', action: 'entities')
+        }
+    }
+
+    @Secured(['ROLE_USER'])
+    @Transactional
+    def update(EntityCommand command) {
+        if (command.hasErrors()) {
+            render(view: 'edit', model: [command: command])
+        } else {
+            if (params.entityId) {
+                def entity = Entity.findById(params.entityId)
+
+                if (entityService.updateEntity(entity, command)) {
+                    redirect(action: 'view', params: [id: entity.id])
+                }
+            } else {
+                log.info("Reference id not found")
+                redirect(controller: 'home', action: 'entities')
+            }
         }
     }
 }

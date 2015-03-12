@@ -3,7 +3,9 @@ package csst15
 import csst15.command.ReferenceCommand
 import csst15.security.User
 import grails.transaction.Transactional
+import groovy.util.logging.Slf4j
 
+@Slf4j
 @Transactional
 class ReferenceService {
     def springSecurityService
@@ -23,5 +25,17 @@ class ReferenceService {
         }
 
         return null
+    }
+
+    def updateReference(Reference reference, ReferenceCommand command) {
+        reference.properties = command.properties
+
+        if (reference.save(flush: true)) {
+            log.info("Updated reference with id ${reference.id}")
+            return true
+        }
+
+        log.error("Failed to update reference with id ${reference.id}")
+        return false
     }
 }

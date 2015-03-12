@@ -3,7 +3,9 @@ package csst15
 import csst15.command.EntityCommand
 import csst15.security.User
 import grails.transaction.Transactional
+import groovy.util.logging.Slf4j
 
+@Slf4j
 @Transactional
 class EntityService {
     def springSecurityService
@@ -26,5 +28,17 @@ class EntityService {
         }
 
         return null
+    }
+
+    def updateEntity(Entity entity, EntityCommand command) {
+        entity.properties = command.properties
+
+        if (entity.save(flush: true)) {
+            log.info("Updated entity with id ${entity.id}")
+            return true
+        }
+
+        log.error("Failed to update entity with id ${entity.id}")
+        return false
     }
 }
