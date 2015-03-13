@@ -49,7 +49,7 @@ class User {
         position nullable: true
         department nullable: true
         degreeYear nullable: true, max: LocalDate.now().year
-        photo nullable: true
+        photo nullable: true, maxSize: 3 * 1024 * 1024
         activationToken nullable: true
         passwordResetToken nullable: true
     }

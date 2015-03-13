@@ -7,7 +7,8 @@
                 <div class="panel panel-profile">
                     <div class="panel-heading text-center bg-info">
                         <g:if test="${user.photo}">
-                            <img alt="" src="images/g1.jpg" class="img-circle img80_80">
+                            <img class="img-circle img80_80"
+                                 src="${createLink(controller: 'user', action: 'avatar_image', id: user.id)}"/>
                         </g:if>
                         <g:else>
                             <g:img alt="" uri="/images/default-user.png" class="img-circle img80_80"/>

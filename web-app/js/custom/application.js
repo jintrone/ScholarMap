@@ -61,4 +61,9 @@ $(document).ready(function () {
             }
         })
     });
+
+    $("#changePhoto").click(function () {
+        $("#photoPanel").find(".simplePanel").remove();
+        $("#photoPanel").append($("#photoPanelClone").clone().css("display", "block"));
+    });
 });

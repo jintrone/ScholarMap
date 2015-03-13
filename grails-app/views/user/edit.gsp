@@ -13,9 +13,15 @@
                         </g:eachError>
                     </ul>
                 </g:hasErrors>
-                <g:form url="${createLink(controller: 'user', action: 'update')}" id="${user.id}" name="update" class="form-horizontal form-validation">
+                <g:form url="${createLink(controller: 'user', action: 'update')}" id="${user.id}"
+                        enctype="multipart/form-data" name="update" class="form-horizontal form-validation">
                     <g:render template="form" model="[user: user, visConf: visConf, lockConf: lockConf]"/>
                 </g:form>
+                <div id="photoPanelClone" class="simplePanel" style="display: none">
+                    <input type="file" name="photo" title="Choose File"/>
+
+                    <div class="space"></div>
+                </div>
             </div>
         </div>
     </div>

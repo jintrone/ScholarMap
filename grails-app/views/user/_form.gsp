@@ -16,7 +16,7 @@
             <g:if test="${!lockConf.isUsernameLocked}">
                 <label class="switch switch-success">
                     <input type="checkbox" id="isUsernameVisible"
-                           class="permission" ${visConf.isUsernameVisible ? 'checked="checked"' : ''}/><i></i>
+                           class="permission" ${visConf?.isUsernameVisible ? 'checked="checked"' : ''}/><i></i>
                 </label>
             </g:if>
         </div>
@@ -36,7 +36,7 @@
             <g:if test="${!lockConf.isEmailLocked}">
                 <label class="switch switch-success">
                     <input type="checkbox" id="isEmailVisible"
-                           class="permission" ${visConf.isEmailVisible ? 'checked="checked"' : ''}/><i></i>
+                           class="permission" ${visConf?.isEmailVisible ? 'checked="checked"' : ''}/><i></i>
                 </label>
             </g:if>
         </div>
@@ -56,7 +56,7 @@
             <g:if test="${!lockConf.isFirstNameLocked}">
                 <label class="switch switch-success">
                     <input type="checkbox" id="isFirstNameVisible"
-                           class="permission" ${visConf.isFirstNameVisible ? 'checked="checked"' : ''}/><i></i>
+                           class="permission" ${visConf?.isFirstNameVisible ? 'checked="checked"' : ''}/><i></i>
                 </label>
             </g:if>
         </div>
@@ -76,7 +76,7 @@
             <g:if test="${!lockConf.isLastNameLocked}">
                 <label class="switch switch-success">
                     <input type="checkbox" id="isLastNameVisible"
-                           class="permission" ${visConf.isLastNameVisible ? 'checked="checked"' : ''}/><i></i>
+                           class="permission" ${visConf?.isLastNameVisible ? 'checked="checked"' : ''}/><i></i>
                 </label>
             </g:if>
         </div>
@@ -97,7 +97,7 @@
             <g:if test="${!lockConf.isDegreeYearLocked}">
                 <label class="switch switch-success">
                     <input type="checkbox" id="isDegreeYearVisible"
-                           class="permission" ${visConf.isDegreeYearVisible ? 'checked="checked"' : ''}/><i></i>
+                           class="permission" ${visConf?.isDegreeYearVisible ? 'checked="checked"' : ''}/><i></i>
                 </label>
             </g:if>
         </div>
@@ -117,7 +117,7 @@
             <g:if test="${!lockConf.isInstitutionLocked}">
                 <label class="switch switch-success">
                     <input type="checkbox" id="isInstitutionVisible"
-                           class="permission" ${visConf.isInstitutionVisible ? 'checked="checked"' : ''}/><i></i>
+                           class="permission" ${visConf?.isInstitutionVisible ? 'checked="checked"' : ''}/><i></i>
                 </label>
             </g:if>
         </div>
@@ -138,7 +138,7 @@
             <g:if test="${!lockConf.isSpecializationLocked}">
                 <label class="switch switch-success">
                     <input type="checkbox" id="isSpecializationVisible"
-                           class="permission" ${visConf.isSpecializationVisible ? 'checked="checked"' : ''}/><i></i>
+                           class="permission" ${visConf?.isSpecializationVisible ? 'checked="checked"' : ''}/><i></i>
                 </label>
             </g:if>
         </div>
@@ -159,7 +159,7 @@
             <g:if test="${!lockConf.isPositionLocked}">
                 <label class="switch switch-success">
                     <input type="checkbox" id="isPositionVisible"
-                           class="permission" ${visConf.isPositionVisible ? 'checked="checked"' : ''}/><i></i>
+                           class="permission" ${visConf?.isPositionVisible ? 'checked="checked"' : ''}/><i></i>
                 </label>
             </g:if>
         </div>
@@ -180,12 +180,36 @@
             <g:if test="${!lockConf.isDepartmentLocked}">
                 <label class="switch switch-success">
                     <input type="checkbox" id="isDepartmentVisible"
-                           class="permission" ${visConf.isDepartmentVisible ? 'checked="checked"' : ''}/><i></i>
+                           class="permission" ${visConf?.isDepartmentVisible ? 'checked="checked"' : ''}/><i></i>
                 </label>
             </g:if>
         </div>
     </div>
 
-    <button type="submit" class="btn btn-default btn-block btn-lg">Update</button>
+    <div class="form-group">
+        <div class="col-sm-3">
+            <label for="">Photo</label>
+        </div>
+
+        <div class="col-sm-6" id="photoPanel">
+            <div class="simplePanel">
+                <g:if test="${user.photo}">
+                    <img class="img-circle img80_80"
+                         src="${createLink(controller: 'user', action: 'avatar_image', id: user.id)}"/>
+                    <a href="javascript:void(0);" id="changePhoto">Change photo</a>
+                </g:if>
+                <g:else>
+                    <input type="file" name="photo" title="Choose File"/>
+
+                    <div class="space"></div>
+                </g:else>
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-da btn-block btn-lg">Update</button>
 
 </div>

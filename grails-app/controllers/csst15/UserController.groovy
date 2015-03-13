@@ -197,5 +197,18 @@ class UserController {
             redirect(action: 'profile', params: [username: user.username])
         }
     }
+
+    def avatar_image() {
+        def user = User.get(params.id)
+        if (!user || !user.photo) {
+            response.sendError(404)
+            return
+        }
+        response.contentType = "png"
+        response.contentLength = user.photo.size()
+        OutputStream out = response.outputStream
+        out.write(user.photo)
+        out.close()
+    }
 }
 
