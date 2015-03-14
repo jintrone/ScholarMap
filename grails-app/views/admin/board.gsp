@@ -1,6 +1,6 @@
 <g:applyLayout name="main">
     <section class="panel panel-default" id="mandatory-sec">
-        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Manipulate fields</strong>
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Set required fields</strong>
         </div>
 
         <div class="panel-body">
