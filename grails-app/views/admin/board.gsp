@@ -174,6 +174,7 @@
                                    id="referenceTable">
                                 <thead>
                                 <tr>
+                                    <th></th>
                                     <th>Actions</th>
                                     <th>Citation</th>
                                     <th>Year</th>
@@ -183,6 +184,9 @@
                                 <tbody>
                                 <g:each in="${references}" var="reference">
                                     <tr>
+                                        <td>
+                                            <g:checkBox name="checkBox"/>
+                                        </td>
                                         <td>
                                             <g:link class="glyphicon glyphicon-eye-open" controller="reference"
                                                     action="view"
@@ -215,6 +219,7 @@
                             <table class="table table-striped table-bordered display" cellspacing="0" id="entityTable">
                                 <thead>
                                 <tr>
+                                    <th></th>
                                     <th>Actions</th>
                                     <th>Name</th>
                                     <th>Type</th>
@@ -224,6 +229,9 @@
                                 <tbody>
                                 <g:each in="${entities}" var="entity">
                                     <tr>
+                                        <td>
+                                            <g:checkBox name="checkBox"/>
+                                        </td>
                                         <td>
                                             <g:link class="glyphicon glyphicon-eye-open" controller="entity"
                                                     action="view"

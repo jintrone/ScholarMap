@@ -30,15 +30,15 @@
 
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <strong style="padding-right: 25px"><span class="glyphicon glyphicon-th"></span> Profile Info
+                        <strong style="padding-right: 205px"><span class="glyphicon glyphicon-th"></span> Profile Info
                         </strong>
                         <g:if test="${isOwner}">
                             <g:link title="Edit Profile" controller="user" action="edit"
                                     class="glyphicon glyphicon-edit"
-                                    params="[username: user.username]"/>
+                                    params="[username: user.username]">Edit Profile</g:link>
                             <g:link title="Change Password" controller="user" action="changePasswordPage"
                                     class="glyphicon glyphicon-lock"
-                                    params="[username: user.username]"/>
+                                    params="[username: user.username]">Change Password</g:link>
                         </g:if>
                     </div>
 
@@ -48,35 +48,35 @@
                                 <ul class="list-unstyled list-info">
                                     <g:if test="${hasCurrentUser || user.visibilityConf.isEmailVisible}">
                                         <li>
-                                            <span class="icon glyphicon glyphicon-envelope"></span>
+                                            <span class="icon glyphicon"></span>
                                             <label>Email</label>
                                             ${user.email}
                                         </li>
                                     </g:if>
                                     <g:if test="${hasCurrentUser || user.visibilityConf.isDegreeYearVisible}">
                                         <li>
-                                            <span class="icon glyphicon glyphicon-user"></span>
+                                            <span class="icon glyphicon"></span>
                                             <label>Degree Year</label>
                                             ${user.degreeYear}
                                         </li>
                                     </g:if>
                                     <g:if test="${hasCurrentUser || user.visibilityConf.isInstitutionVisible}">
                                         <li>
-                                            <span class="icon glyphicon glyphicon-user"></span>
+                                            <span class="icon glyphicon"></span>
                                             <label>Institution</label>
                                             ${user.institution}
                                         </li>
                                     </g:if>
                                     <g:if test="${hasCurrentUser || user.visibilityConf.isSpecializationVisible}">
                                         <li>
-                                            <span class="icon glyphicon glyphicon-user"></span>
+                                            <span class="icon glyphicon"></span>
                                             <label>Specialization</label>
                                             ${user.specialization?.title}
                                         </li>
                                     </g:if>
                                     <g:if test="${hasCurrentUser || user.visibilityConf.isDepartmentVisible}">
                                         <li>
-                                            <span class="icon glyphicon glyphicon-flag"></span>
+                                            <span class="icon glyphicon"></span>
                                             <label>Department</label>
                                             ${user.department?.title}
                                         </li>
