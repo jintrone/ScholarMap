@@ -34,9 +34,11 @@ class AdminController {
 
     def board() {
         def users = UserRole.findAllByRole(Role.findByAuthority(Roles.USER.name)).user
+        def entities = Entity.list()
+        def references = Reference.list()
         def isRegEnabled = GeneralConf.findById(1).isRegEnabled
         def fieldMandConf = FieldMandatoryConf.list()
-        [users: users, isRegEnabled: isRegEnabled, fieldMandConf: fieldMandConf]
+        [users: users, isRegEnabled: isRegEnabled, fieldMandConf: fieldMandConf, references: references, entities: entities]
     }
 
     @Transactional
