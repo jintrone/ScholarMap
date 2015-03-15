@@ -66,4 +66,8 @@ $(document).ready(function () {
         $("#photoPanel").find(".simplePanel").remove();
         $("#photoPanel").append($("#photoPanelClone").clone().css("display", "block"));
     });
+
+    $("#importUser").click(function () {
+        $('#myModal').modal('show')
+    });
 });

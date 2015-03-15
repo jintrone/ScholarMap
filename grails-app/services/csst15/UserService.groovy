@@ -1,5 +1,6 @@
 package csst15
 
+import csst15.command.LoadUserCommand
 import csst15.command.QuickNewUserCommand
 import csst15.command.RequiredFieldsCommand
 import csst15.conf.FieldLockConf
@@ -52,10 +53,60 @@ class UserService {
             return user
         } else {
             log.error("User creation attempt failed")
-            log.error(user.errors.dump())
+            log.error(user?.errors?.dump())
         }
 
         return null
+    }
+
+    def createUser(Map fieldsMap) {
+        for (int i = 1; i <= fieldsMap.size(); i++) {
+            LoadUserCommand loadUserCommand = new LoadUserCommand()
+            List fields = fieldsMap.get(i)
+
+            if (fields?.size() > 0) {
+                def user = new User()
+                loadUserCommand.username = fields?.get(0)
+                loadUserCommand.email = fields?.get(1)
+                loadUserCommand.firstName = fields?.get(2)
+                loadUserCommand.lastName = fields?.get(3)
+                loadUserCommand.institution = fields?.get(4)
+                loadUserCommand.degreeYear = fields?.get(5)
+                loadUserCommand.position = fields?.get(6)
+                loadUserCommand.department = fields?.get(7)
+                loadUserCommand.specialization = fields?.get(8)
+
+                if (loadUserCommand.validate()) {
+                    user.username = loadUserCommand.username
+                    user.email = loadUserCommand.email
+                    user.firstName = loadUserCommand.firstName
+                    user.lastName = loadUserCommand.lastName
+                    user.degreeYear = loadUserCommand.degreeYear
+                    def password = makeRandomPassword()
+                    user.password = password
+                    user.enabled = true
+                    user.institution = loadUserCommand.institution
+                    user.department = loadUserCommand.department ? Department.findByTitle(loadUserCommand.department) : user.department
+                    user.position = loadUserCommand.position ? Position.findByName(loadUserCommand.position) : user.position
+                    user.specialization = loadUserCommand.specialization ? Specialization.findByTitle(loadUserCommand.specialization) : user.specialization
+                    user.lockConf = new FieldLockConf()
+                    user.visibilityConf = new FieldVisibilityConf()
+
+                    if (user.save()) {
+                        log.info("Created user with username: ${user.username}, id: ${user.id}")
+                        addDefaultRole(user)
+                        notificationService.sendInvitationToUser(user, password)
+
+                    } else {
+                        log.error("User creation attempt failed")
+                        log.error(user?.errors?.dump())
+                    }
+                }
+            }
+
+        }
+
+        return true
     }
 
     def updateProfile(RequiredFieldsCommand command, User user) {

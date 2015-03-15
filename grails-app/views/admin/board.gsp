@@ -59,13 +59,41 @@
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <button type="submit" class="btn btn-success">Create</button>
+                                <a href="javascript:void(0);" class="btn btn-warning" id="importUser">Import Users</a>
                             </div>
                         </div>
                     </g:form>
+                    <div class="modal fade" id="myModal" style="display: none" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <g:form enctype="multipart/form-data" controller="admin" action="importUser">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                    </div>
+
+                                    <div class="modal-body">
+
+                                        <input type="file" name="xlsFile"/>
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default"
+                                                data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Import</button>
+                                    </div>
+                                </div>
+                            </g:form>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
     </div>
+
     <div class="panel panel-default">
         <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> User's list</strong></div>
 

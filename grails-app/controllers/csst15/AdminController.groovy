@@ -18,6 +18,7 @@ import org.springframework.http.HttpStatus
 @Secured(['ROLE_ADMIN'])
 class AdminController {
     def userService
+    def excelService
 
     static allowedMethods = [
             deleteUser               : 'GET',
@@ -114,6 +115,14 @@ class AdminController {
             render(view: 'edit', model: [user: user, lockConf: fieldsLockConf])
         } else {
             redirect(controller: 'admin')
+        }
+    }
+
+    @Transactional
+    def importUser() {
+        def fileName = 'xlsFile'
+        if (excelService.readExcelData(request, fileName)) {
+            redirect(action: 'board')
         }
     }
 }
