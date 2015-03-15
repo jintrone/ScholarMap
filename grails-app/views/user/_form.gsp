@@ -8,7 +8,7 @@
         </div>
 
         <div class="col-sm-6">
-            <input type="text" class="form-control" name="username" placeholder="Username"
+            <input type="text" class="form-control" name="username" placeholder="Not set"
                    value="${user.username}"/>
         </div>
 
@@ -29,7 +29,7 @@
 
         <div class="col-sm-6">
             <input type="email" class="form-control" name="email" value="${user.email}"
-                   placeholder="E-mail"/>
+                   placeholder="Not set"/>
         </div>
 
         <div class="col-sm-3">
@@ -48,7 +48,7 @@
         </div>
 
         <div class="col-sm-6">
-            <input type="text" class="form-control" name="firstName" placeholder="First Name"
+            <input type="text" class="form-control" name="firstName" placeholder="Not set"
                    value="${user.firstName}"/>
         </div>
 
@@ -68,7 +68,7 @@
         </div>
 
         <div class="col-sm-6">
-            <input type="text" class="form-control" name="lastName" placeholder="Last Name"
+            <input type="text" class="form-control" name="lastName" placeholder="Not set"
                    value="${user.lastName}"/>
         </div>
 
@@ -89,7 +89,7 @@
 
         <div class="col-sm-6">
             <input type="text" class="form-control" name="degreeYear"
-                   placeholder="Degree year: min value 1900"
+                   placeholder="Not set"
                    value="${user.degreeYear}"/>
         </div>
 
@@ -109,7 +109,7 @@
         </div>
 
         <div class="col-sm-6">
-            <input type="text" class="form-control" name="institution" placeholder="Institution"
+            <input type="text" class="form-control" name="institution" placeholder="Not set"
                    value="${user.institution}"/>
         </div>
 
@@ -129,8 +129,8 @@
         </div>
 
         <div class="col-sm-6">
-            <g:select from="${Specialization.list().title}" noSelection="['': '']"
-                      class="form-control" name="specialization" placeholder="Specialization"
+            <g:select from="${Specialization.list().title}" noSelection="['': 'Not set']"
+                      class="form-control" name="specialization" placeholder="Not set"
                       value="${user.specialization?.title}"/>
         </div>
 
@@ -150,8 +150,8 @@
         </div>
 
         <div class="col-sm-6">
-            <g:select from="${Position.list().name}" noSelection="['': '']"
-                      class="form-control" name="position" placeholder="Position"
+            <g:select from="${Position.list().name}" noSelection="['': 'Not set']"
+                      class="form-control" name="position" placeholder="Not set"
                       value="${user.position?.name}"/>
         </div>
 
@@ -171,8 +171,8 @@
         </div>
 
         <div class="col-sm-6">
-            <g:select from="${Department.list().title}" noSelection="['': '']"
-                      class="form-control" name="department" placeholder="Department"
+            <g:select from="${Department.list().title}" noSelection="['': 'Not set']"
+                      class="form-control" name="department" placeholder="Not set"
                       value="${user.department?.title}"/>
         </div>
 
