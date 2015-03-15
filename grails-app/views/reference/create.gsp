@@ -4,9 +4,16 @@
 
         <div class="col-md-8">
             <section class="panel panel-default">
-                <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Create Reference
-                </strong>
+                <div class="panel-heading">
+                    <strong><span class="glyphicon glyphicon-th"></span> Create Reference</strong>
                 </div>
+                <g:hasErrors bean="${referenceCommand}">
+                    <ul class="callout callout-danger errors">
+                        <g:eachError bean="${referenceCommand}" var="error">
+                            <li><g:message error="${error}"/></li>
+                        </g:eachError>
+                    </ul>
+                </g:hasErrors>
 
                 <div class="panel-body">
                     <g:form controller="reference" action="submit" method="post">
