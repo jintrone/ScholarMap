@@ -10,7 +10,7 @@ import spock.lang.Specification
 class ReferenceControllerSpec extends Specification {
     void "test create action"() {
         expect:
-        controller.create() == []
+        controller.create() == null
     }
 
     void "test submit action when reference creation failed"() {
@@ -38,6 +38,6 @@ class ReferenceControllerSpec extends Specification {
         controller.submit(refCmd)
 
         then:
-        response.redirectedUrl == '/home'
+        response.redirectedUrl == '/home/entities'
     }
 }

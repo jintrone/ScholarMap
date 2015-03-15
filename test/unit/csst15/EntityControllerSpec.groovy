@@ -25,4 +25,32 @@ class EntityControllerSpec extends Specification {
         controller.modelAndView.model.command == entityCommand
         controller.modelAndView.viewName == '/entity/create'
     }
+
+    void "test the submit action when failed to create"() {
+        setup:
+        request.method = 'POST'
+        def entityCommand = new EntityCommand(type: 'Method', name: 'Method1', description: 'Method1 desc')
+        controller.entityService = [createEntity: { command -> null }]
+
+        when:
+        controller.submit(entityCommand)
+
+        then:
+        controller.modelAndView.model.command == entityCommand
+        controller.modelAndView.viewName == '/entity/create'
+    }
+
+    void "test the submit action when successfully created"() {
+        setup:
+        request.method = 'POST'
+        def entityCommand = new EntityCommand(type: 'Method', name: 'Method2', description: 'Method2 desc')
+        def entity = Entity.build()
+        controller.entityService = [createEntity: { command -> entity }]
+
+        when:
+        controller.submit(entityCommand)
+
+        then:
+        response.redirectedUrl == '/home/entities'
+    }
 }

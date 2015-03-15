@@ -15,7 +15,7 @@ import spock.lang.Specification
 
 @TestFor(AdminController)
 @Mock([User, FieldMandatoryConf])
-@Build([User, GeneralConf, FieldLockConf, Role, FieldMandatoryConf, FieldVisibilityConf])
+@Build([User, GeneralConf, FieldLockConf, Role, FieldMandatoryConf, FieldVisibilityConf, Entity, Reference])
 class AdminControllerSpec extends Specification {
     void "test the board action"() {
         given:
