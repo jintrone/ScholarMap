@@ -25,7 +25,7 @@ class EntityController {
     @Transactional
     @Secured(['ROLE_USER'])
     def submit(EntityCommand command) {
-        if (command.hasErrors()) {
+        if (!command.validate()) {
             render(view: 'create', model: [command: command])
         } else {
             def entity = entityService.createEntity(command)
