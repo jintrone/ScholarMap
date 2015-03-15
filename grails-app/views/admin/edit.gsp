@@ -20,16 +20,15 @@
 
                         <div class="form-group">
                             <div class="col-sm-3">
-                                <label for="">User Name</label>
+                                <label for="username">User Name</label>
                             </div>
 
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" name="username" placeholder="Not set"
+                                <g:input type="text" class="form-control" name="username" placeholder="Not set"
                                        value="${user.username}"/>
                             </div>
 
                             <div class="col-sm-3">
-                                %{--<p>Disable/Enable</p>--}%
                                 <label class="switch switch-success">
                                     <input type="checkbox" id="isUsernameLocked"
                                            class="lock" ${lockConf.isUsernameLocked ? 'checked="checked"' : ''}/><i></i>
@@ -39,16 +38,15 @@
 
                         <div class="form-group">
                             <div class="col-sm-3">
-                                <label for="">Email</label>
+                                <label for="email">Email</label>
                             </div>
 
                             <div class="col-sm-6">
-                                <input type="email" class="form-control" name="email" value="${user.email}"
+                                <g:input type="email" class="form-control" name="email" value="${user.email}"
                                        placeholder="Not set"/>
                             </div>
 
                             <div class="col-sm-3">
-                                %{--<p>Disable/Enable</p>--}%
                                 <label class="switch switch-success">
                                     <input type="checkbox" id="isEmailLocked"
                                            class="lock" ${lockConf.isEmailLocked ? 'checked="checked"' : ''}/><i></i>
@@ -58,16 +56,15 @@
 
                         <div class="form-group">
                             <div class="col-sm-3">
-                                <label for="">First Name</label>
+                                <label for="firstName">First Name</label>
                             </div>
 
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" name="firstName" placeholder="Not set"
+                                <g:input type="text" class="form-control" name="firstName" placeholder="Not set"
                                        value="${user.firstName}"/>
                             </div>
 
                             <div class="col-sm-3">
-                                %{--<p>Disable/Enable</p>--}%
                                 <label class="switch switch-success">
                                     <input type="checkbox" id="isFirstNameLocked"
                                            class="lock" ${lockConf.isFirstNameLocked ? 'checked="checked"' : ''}/><i></i>
@@ -77,16 +74,15 @@
 
                         <div class="form-group">
                             <div class="col-sm-3">
-                                <label for="">Last Name</label>
+                                <label for="lastName">Last Name</label>
                             </div>
 
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" name="lastName" placeholder="Not set"
+                                <g:input type="text" class="form-control" name="lastName" placeholder="Not set"
                                        value="${user.lastName}"/>
                             </div>
 
                             <div class="col-sm-3">
-                                %{--<p>Disable/Enable</p>--}%
                                 <label class="switch switch-success">
                                     <input type="checkbox" id="isLastNameLocked"
                                            class="lock" ${lockConf.isLastNameLocked ? 'checked="checked"' : ''}/><i></i>
@@ -96,17 +92,16 @@
 
                         <div class="form-group">
                             <div class="col-sm-3">
-                                <label for="">Degree Year</label>
+                                <label for="degreeYear">Degree Year</label>
                             </div>
 
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" name="degreeYear"
+                                <g:input type="text" class="form-control" name="degreeYear"
                                        placeholder="Not set"
                                        value="${user.degreeYear}"/>
                             </div>
 
                             <div class="col-sm-3">
-                                %{--<p>Disable/Enable</p>--}%
                                 <label class="switch switch-success">
                                     <input type="checkbox" id="isDegreeYearLocked"
                                            class="lock" ${lockConf.isDegreeYearLocked ? 'checked="checked"' : ''}/><i></i>
@@ -116,16 +111,15 @@
 
                         <div class="form-group">
                             <div class="col-sm-3">
-                                <label for="">Institution</label>
+                                <label for="institution">Institution</label>
                             </div>
 
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" name="institution" placeholder="Not set"
+                                <g:input type="text" class="form-control" name="institution" placeholder="Not set"
                                        value="${user.institution}"/>
                             </div>
 
                             <div class="col-sm-3">
-                                %{--<p>Disable/Enable</p>--}%
                                 <label class="switch switch-success">
                                     <input type="checkbox" id="isInstitutionLocked"
                                            class="lock" ${lockConf.isInstitutionLocked ? 'checked="checked"' : ''}/><i></i>
@@ -135,7 +129,7 @@
 
                         <div class="form-group">
                             <div class="col-sm-3">
-                                <label for="">Specialization</label>
+                                <label for="specialization">Specialization</label>
                             </div>
 
                             <div class="col-sm-6">
@@ -154,7 +148,7 @@
 
                         <div class="form-group">
                             <div class="col-sm-3">
-                                <label for="">Position</label>
+                                <label for="position">Position</label>
                             </div>
 
                             <div class="col-sm-6">
@@ -174,7 +168,7 @@
 
                         <div class="form-group">
                             <div class="col-sm-3">
-                                <label for="">Department</label>
+                                <label for="department">Department</label>
                             </div>
 
                             <div class="col-sm-6">
