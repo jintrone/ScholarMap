@@ -76,4 +76,6 @@ $(document).ready(function () {
     $("#referenceTable").dataTable({});
 
     $("#usersTable").dataTable({});
+
+    $("#listTable").dataTable({});
 });
