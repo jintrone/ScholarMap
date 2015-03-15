@@ -125,7 +125,7 @@
 
                     <div class="panel-body">
 
-                        <table class="table">
+                        <table class="table display" cellspacing="0" id="usersTable">
                             <thead>
                             <tr>
                                 <th>Actions</th>
@@ -170,7 +170,8 @@
                     <div class="panel-body">
 
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered">
+                            <table class="table table-striped table-bordered display" cellspacing="0"
+                                   id="referenceTable">
                                 <thead>
                                 <tr>
                                     <th>Actions</th>
@@ -211,7 +212,7 @@
                     <div class="panel-body">
 
                         <div class="table-responsive">
-                            <table class="table table-striped table-bordered">
+                            <table class="table table-striped table-bordered display" cellspacing="0" id="entityTable">
                                 <thead>
                                 <tr>
                                     <th>Actions</th>

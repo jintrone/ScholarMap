@@ -70,4 +70,10 @@ $(document).ready(function () {
     $("#importUser").click(function () {
         $('#myModal').modal('show')
     });
+
+    $("#entityTable").dataTable({});
+
+    $("#referenceTable").dataTable({});
+
+    $("#usersTable").dataTable({});
 });
