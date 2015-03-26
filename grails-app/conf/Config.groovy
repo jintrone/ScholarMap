@@ -158,3 +158,13 @@ grails {
 }
 
 grails.converters.json.default.deep = true
+
+cors.enabled=true
+cors.url.pattern = '/*'
+cors.headers=[
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Credentials': true,
+    'Access-Control-Allow-Headers': 'origin, authorization, accept, content-type, x-requested-with',
+    'Access-Control-Allow-Methods': 'GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS',
+    'Access-Control-Max-Age': 3600
+    ]
