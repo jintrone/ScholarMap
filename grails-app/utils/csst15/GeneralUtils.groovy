@@ -3,6 +3,7 @@ package csst15
 import csst15.constants.EntityType
 import org.apache.commons.lang3.text.WordUtils
 
+import java.security.MessageDigest
 import java.text.Normalizer
 
 import static csst15.constants.EntityType.*
@@ -62,5 +63,11 @@ public final class GeneralUtils {
         }
 
         return result
+    }
+
+    public static String generateMD5(String s) {
+        MessageDigest digest = MessageDigest.getInstance("MD5")
+        digest.update(s.bytes);
+        new BigInteger(1, digest.digest()).toString(16).padLeft(32, '0').toString()
     }
 }

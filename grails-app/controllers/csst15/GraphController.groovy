@@ -92,7 +92,7 @@ class GraphController extends RestfulController {
                                 year        : reference.year,
                                 authors     : authors.firstName,
                                 department  : reference.creator?.department?.title ?: "",
-                                relative_url: constructReferenceUrl("reference", reference.citation.substring(0, 10)),
+                                relative_url: constructReferenceUrl("reference", ReferenceAuthor.findByReference(reference).author.lastName + reference.year + reference.hash),
                                 methods     : (methods.id),
                                 fields      : (fields.id),
                                 venues      : (venues.id),
