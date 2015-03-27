@@ -22,6 +22,8 @@ class ReferenceSpec extends ConstraintsUnitSpec {
 
         where:
         target     | field      | val
+        'nullable' | 'hash' | null
+        'nullable' | 'hash' | getEmptyString()
         'nullable' | 'citation' | null
         'nullable' | 'citation' | getEmptyString()
         'maxSize'  | 'citation' | getCustomTextWithLength(501)

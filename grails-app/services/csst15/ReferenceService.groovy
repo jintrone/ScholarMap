@@ -15,6 +15,7 @@ class ReferenceService {
 
         reference.properties = command.properties
         reference.creator = springSecurityService.currentUser as User
+        reference.hash = GeneralUtils.generateMD5(reference.citation)
 
         if (reference.save(flush: true)) {
             log.info("Created reference with id ${reference.id}")
