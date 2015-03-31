@@ -58,6 +58,7 @@ grails.project.dependency.resolution = {
         compile 'org.apache.poi:poi:3.9'
         compile 'org.apache.poi:poi-ooxml:3.9'
         compile 'org.apache.poi:poi-ooxml-schemas:3.9'
+        compile 'com.google.guava:guava:18.0'
     }
 
     plugins {

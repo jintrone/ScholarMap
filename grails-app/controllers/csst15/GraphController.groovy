@@ -1,5 +1,6 @@
 package csst15
 
+import com.google.common.base.Joiner
 import csst15.constants.Roles
 import csst15.security.Role
 import csst15.security.User
@@ -82,15 +83,16 @@ class GraphController extends RestfulController {
             nodes(
                     referencesAuthor.reference.unique().collect { Reference reference ->
                         def authors = referencesAuthor.findAll { ReferenceAuthor refAuth -> refAuth.reference == reference }.author
+                        def authorStr = Joiner.on(",").join(authors.firstName)
                         def entities = referencesVote.findAll { ReferenceVote refVote -> refVote.reference == reference }.entity
-                        def methods = entities.findAll { Entity method -> method.type == METHOD }
-                        def theories = entities.findAll { Entity theory -> theory.type == THEORY }
-                        def fields = entities.findAll { Entity field -> field.type == FIELD }
-                        def venues = entities.findAll { Entity venue -> venue.type == VENUE }
+                        def methods = entities.findAll { Entity method -> method.type == METHOD }.unique()
+                        def theories = entities.findAll { Entity theory -> theory.type == THEORY }.unique()
+                        def fields = entities.findAll { Entity field -> field.type == FIELD }.unique()
+                        def venues = entities.findAll { Entity venue -> venue.type == VENUE }.unique()
                         [
                                 citation    : reference.citation,
                                 year        : reference.year,
-                                authors     : authors.firstName,
+                                authors: authorStr,
                                 department  : reference.creator?.department?.title ?: "",
                                 relative_url: constructReferenceUrl("reference", ReferenceAuthor.findByReference(reference).author.lastName + reference.year + reference.hash),
                                 methods     : (methods.id),
