@@ -5,7 +5,6 @@ import csst15.constants.Roles
 import csst15.security.Role
 import csst15.security.User
 import csst15.security.UserRole
-import grails.converters.JSON
 import grails.rest.RestfulController
 import groovy.json.JsonBuilder
 
@@ -67,7 +66,7 @@ class GraphController extends RestfulController {
             )
         }
 
-        render(root as JSON)
+        render(builder.toPrettyString())
     }
 
     def refGraph() {
@@ -126,16 +125,16 @@ class GraphController extends RestfulController {
             )
         }
 
-        render(root as JSON)
+        render(builder.toPrettyString())
     }
 
     def peopleGraph() {
         def users = UserRole.findAllByRole(Role.findByAuthority(Roles.USER.name))*.user.unique()
-        def methods = Entity.findAllByType(METHOD)
-        def theories = Entity.findAllByType(THEORY)
-        def venues = Entity.findAllByType(VENUE)
-        def fields = Entity.findAllByType(FIELD)
-        def references = Reference.list()
+        def allMethods = Entity.findAllByType(METHOD)
+        def allTheories = Entity.findAllByType(THEORY)
+        def allVenues = Entity.findAllByType(VENUE)
+        def allFields = Entity.findAllByType(FIELD)
+        def allReferences = Reference.list()
 
         def builder = new JsonBuilder()
         def root = builder {
@@ -157,34 +156,55 @@ class GraphController extends RestfulController {
                     }
             )
 
-            attributes(
-                    methods:
-                            methods.collect { Entity method ->
-                                [id: method.id, name: method.name, relative_url: constructReferenceUrl(METHOD, method.name)]
-                            },
+            attributes {
+                "methods" {
+                    for (Entity method : allMethods) {
+                        "${method.id}" {
+                            name "${method.name}"
+                            relative_url "${constructReferenceUrl(METHOD.name.toLowerCase(), method.name)}"
+                        }
+                    }
+                }
 
-                    theories:
-                            theories.collect { Entity theory ->
-                                [id: theory.id, name: theory.name, relative_url: constructReferenceUrl(THEORY, theory.name)]
-                            },
+                "theories" {
+                    for (Entity theory : allTheories) {
+                        "${theory.id}" {
+                            name "${theory.name}"
+                            relative_url "${constructReferenceUrl(THEORY.name.toLowerCase(), theory.name)}"
+                        }
+                    }
+                }
 
-                    fields:
-                            fields.collect { Entity field ->
-                                [id: field.id, name: field.name, relative_url: constructReferenceUrl(FIELD, field.name)]
-                            },
+                "fields" {
+                    for (Entity field : allFields) {
+                        "${field.id}" {
+                            name "${field.name}"
+                            relative_url "${constructReferenceUrl(FIELD.name.toLowerCase(), field.name)}"
+                        }
+                    }
+                }
 
-                    venues:
-                            venues.collect { Entity venue ->
-                                [id: venue.id, name: venue.name, relative_url: constructReferenceUrl(VENUE, venue.name)]
-                            },
-                    references:
-                            references.collect { Reference reference ->
-                                [id: reference.id, name: reference.citation, relative_url: constructReferenceUrl("reference", reference.citation.substring(0, 10))]
-                            }
-            )
+                "venues" {
+                    for (Entity venue : allVenues) {
+                        "${field.id}" {
+                            name "${venue.name}"
+                            relative_url "${constructReferenceUrl(VENUE.name.toLowerCase(), venue.name)}"
+                        }
+                    }
+                }
+
+                "references" {
+                    for (Reference reference : allReferences) {
+                        "${reference.id}" {
+                            name "${reference.citation}"
+                            relative_url "${constructReferenceUrl("reference", ReferenceAuthor.findByReference(reference).author.lastName + reference.year + reference.hash)}"
+                        }
+                    }
+                }
+            }
         }
 
 
-        render(root as JSON)
+        render(builder.toPrettyString())
     }
 }
