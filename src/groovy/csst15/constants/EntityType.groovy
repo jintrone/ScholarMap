@@ -5,5 +5,18 @@ package csst15.constants
  * Date: 3/1/15.
  */
 enum EntityType {
-    METHOD, FIELD, VENUE, THEORY
+    METHOD('Method'),
+    FIELD('Field'),
+    VENUE('Venue'),
+    THEORY('Theory')
+
+    private final String name
+
+    EntityType(String name) {
+        this.name = name
+    }
+
+    String getName() {
+        return name
+    }
 }

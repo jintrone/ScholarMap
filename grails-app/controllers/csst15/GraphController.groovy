@@ -38,7 +38,7 @@ class GraphController extends RestfulController {
                         if (!entityList || (entityList && constructOnlyParam(entity.type) in entityList)) {
                             [
                                     name        : entity.name,
-                                    type        : entity.type,
+                                    type: entity.type.name,
                                     relative_url: constructReferenceUrl(entity.type, entity.name),
                                     people      : (ReferenceVote.findAllByEntity(entity).user.unique().id),
                                     references  :
