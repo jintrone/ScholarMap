@@ -76,6 +76,7 @@ class GraphController extends RestfulController {
         def allTheories = Entity.findAllByType(THEORY)
         def allVenues = Entity.findAllByType(VENUE)
         def allFields = Entity.findAllByType(FIELD)
+        def users = UserRole.findAllByRole(Role.findByAuthority(Roles.USER.name))*.user.unique()
 
         def builder = new JsonBuilder()
         def root = builder {
@@ -102,27 +103,52 @@ class GraphController extends RestfulController {
                     }
             )
 
-            attributes(
-                    methods:
-                            allMethods.collect { Entity method ->
-                                [id: method.id, name: method.name, relative_url: constructReferenceUrl(METHOD, method.name)]
-                            },
+            attributes {
+                "methods" {
+                    allMethods.collect { method ->
+                        "${method.id}" {
+                            name "${method.name}"
+                            relative_url "${constructReferenceUrl(METHOD.name.toLowerCase(), method.name)}"
+                        }
+                    }
+                }
 
-                    theories:
-                            allTheories.collect { Entity theory ->
-                                [id: theory.id, name: theory.name, relative_url: constructReferenceUrl(THEORY, theory.name)]
-                            },
+                "theories" {
+                    allTheories.collect { theory ->
+                        "${theory.id}" {
+                            name "${theory.name}"
+                            relative_url "${constructReferenceUrl(THEORY.name.toLowerCase(), theory.name)}"
+                        }
+                    }
+                }
 
-                    fields:
-                            allFields.collect { Entity field ->
-                                [id: field.id, name: field.name, relative_url: constructReferenceUrl(FIELD, field.name)]
-                            },
+                "fields" {
+                    allFields.collect { field ->
+                        "${field.id}" {
+                            name "${field.name}"
+                            relative_url "${constructReferenceUrl(FIELD.name.toLowerCase(), field.name)}"
+                        }
+                    }
+                }
 
-                    venues:
-                            allVenues.collect { Entity venue ->
-                                [id: venue.id, name: venue.name, relative_url: constructReferenceUrl(VENUE, venue.name)]
-                            }
-            )
+                "venues" {
+                    allVenues.collect { venue ->
+                        "${venue.id}" {
+                            name "${venue.name}"
+                            relative_url "${constructReferenceUrl(VENUE.name.toLowerCase(), venue.name)}"
+                        }
+                    }
+                }
+
+                "people" {
+                    users.collect { user ->
+                        "${user.id}" {
+                            name "${user.firstName} ${user.lastName}"
+                            relative_url "${constructReferenceUrl("user", user.username)}"
+                        }
+                    }
+                }
+            }
         }
 
         render(builder.toPrettyString())
@@ -158,7 +184,7 @@ class GraphController extends RestfulController {
 
             attributes {
                 "methods" {
-                    for (Entity method : allMethods) {
+                    allMethods.collect { method ->
                         "${method.id}" {
                             name "${method.name}"
                             relative_url "${constructReferenceUrl(METHOD.name.toLowerCase(), method.name)}"
@@ -167,7 +193,7 @@ class GraphController extends RestfulController {
                 }
 
                 "theories" {
-                    for (Entity theory : allTheories) {
+                    allTheories.collect { theory ->
                         "${theory.id}" {
                             name "${theory.name}"
                             relative_url "${constructReferenceUrl(THEORY.name.toLowerCase(), theory.name)}"
@@ -176,7 +202,7 @@ class GraphController extends RestfulController {
                 }
 
                 "fields" {
-                    for (Entity field : allFields) {
+                    allFields.collect { field ->
                         "${field.id}" {
                             name "${field.name}"
                             relative_url "${constructReferenceUrl(FIELD.name.toLowerCase(), field.name)}"
@@ -185,8 +211,8 @@ class GraphController extends RestfulController {
                 }
 
                 "venues" {
-                    for (Entity venue : allVenues) {
-                        "${field.id}" {
+                    allVenues.collect { venue ->
+                        "${venue.id}" {
                             name "${venue.name}"
                             relative_url "${constructReferenceUrl(VENUE.name.toLowerCase(), venue.name)}"
                         }
@@ -194,7 +220,7 @@ class GraphController extends RestfulController {
                 }
 
                 "references" {
-                    for (Reference reference : allReferences) {
+                    allReferences.collect { reference ->
                         "${reference.id}" {
                             name "${reference.citation}"
                             relative_url "${constructReferenceUrl("reference", ReferenceAuthor.findByReference(reference).author.lastName + reference.year + reference.hash)}"
