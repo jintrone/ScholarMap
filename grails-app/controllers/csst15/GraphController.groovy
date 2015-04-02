@@ -166,10 +166,10 @@ class GraphController extends RestfulController {
         def root = builder {
             nodes(
                     users.collect { User u ->
-                        def userMethods = u.entities.findAll { Entity method -> method.type == METHOD }
-                        def userTheories = u.entities.findAll { Entity theory -> theory.type == THEORY }
-                        def userFields = u.entities.findAll { Entity field -> field.type == FIELD }
-                        def userVenues = u.entities.findAll { Entity venue -> venue.type == VENUE }
+                        def userMethods = u.entities.findAll { Entity method -> method.type == METHOD }.unique()
+                        def userTheories = u.entities.findAll { Entity theory -> theory.type == THEORY }.unique()
+                        def userFields = u.entities.findAll { Entity field -> field.type == FIELD }.unique()
+                        def userVenues = u.entities.findAll { Entity venue -> venue.type == VENUE }.unique()
                         [
                                 name        : u.firstName + " " + u.lastName,
                                 department  : u.department?.title ?: "",
