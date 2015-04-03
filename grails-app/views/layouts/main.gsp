@@ -99,18 +99,16 @@
                             <ul class="dropdown-menu with-arrow">
                                 <li>
                                     <g:link controller="user" action="profile" params="[username: csst.username()]">
-                                        <i class="fa fa-user"></i><span data-i18n="Interests">Interests</span>
+                                        <span data-i18n="Interests">Interests</span>
                                     </g:link>
                                 </li>
                                 <li>
                                     <g:link controller="user" action="profile" params="[username: csst.username()]">
-                                        <i class="fa fa-user"></i><span data-i18n="My Profile">My Profile</span>
+                                        <span data-i18n="My Profile">My Profile</span>
                                     </g:link>
                                 </li>
                                 <li>
-                                    <g:link controller="logout">
-                                        <i class="fa fa-sign-out"></i><span>Logout</span>
-                                    </g:link>
+                                    <g:link controller="logout"><span>Logout</span></g:link>
                                 </li>
                             </ul>
                         </li>
