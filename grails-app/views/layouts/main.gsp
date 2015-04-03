@@ -60,7 +60,33 @@
                             </li>
                         </sec:ifLoggedIn>
                         <li><g:link controller="home" action="list">Users</g:link></li>
-                        <li><g:link controller="home" action="entities">Entities</g:link></li>
+                    %{--<li><g:link controller="home" action="entities">Explore</g:link></li>--}%
+                        <li class="dropdown text-normal nav-profile">
+                            <a href="javascript:void(0);" data-toggle="dropdown">
+                                <span class="hidden-xs">
+                                    <span>Explore</span>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <g:link controller="user" action="profile"><span
+                                            data-i18n="Interests">Areas</span></g:link>
+                                </li>
+                                <li>
+                                    <g:link controller="user" action="profile"><span
+                                            data-i18n="My Profile">Theories</span></g:link>
+                                </li>
+                                <li>
+                                    <g:link controller="logout"><span>Methods</span></g:link>
+                                </li>
+                                <li>
+                                    <g:link controller="logout"><span>Venues</span></g:link>
+                                </li>
+                                <li>
+                                    <g:link controller="logout"><span>References</span></g:link>
+                                </li>
+                            </ul>
+                        </li>
                         <li><g:link controller="home" action="about">About</g:link></li>
                     </sec:ifNotGranted>
                     <sec:ifLoggedIn>
@@ -71,6 +97,11 @@
                                 </span>
                             </a>
                             <ul class="dropdown-menu with-arrow">
+                                <li>
+                                    <g:link controller="user" action="profile" params="[username: csst.username()]">
+                                        <i class="fa fa-user"></i><span data-i18n="Interests">Interests</span>
+                                    </g:link>
+                                </li>
                                 <li>
                                     <g:link controller="user" action="profile" params="[username: csst.username()]">
                                         <i class="fa fa-user"></i><span data-i18n="My Profile">My Profile</span>
