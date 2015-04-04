@@ -6,4 +6,3 @@
 </g:each>
 
 <hr/>
-<p><g:link controller="entity" action="summary" params="[type:type]"><em>See more -></em></g:link></p>

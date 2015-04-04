@@ -22,6 +22,7 @@ import org.springframework.http.HttpStatus
 class UserController {
     static allowedMethods = [
             manipulateFieldVisibility: 'POST',
+            interests           : 'GET',
             changePasswordPage  : 'GET',
             update              : 'POST',
             fillRequiredFields  : 'GET',
@@ -155,6 +156,14 @@ class UserController {
                 render(view: 'changePassword', model: [user: user])
             }
         }
+    }
+
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def interests() {
+        println "==================="
+        println "interests"
+        println "==================="
+        render(view: 'interests')
     }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])

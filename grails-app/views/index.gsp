@@ -19,21 +19,25 @@
             <div class="col-sm-3">
                 <h2>Areas</h2>
                 <g:render template="/common/shortEntityList" model="[type: 'field']"/>
+                <p><g:link controller="home" action="areas"><em>See more -></em></g:link></p>
             </div>
 
             <div class="col-sm-3">
                 <h2>Theories</h2>
                 <g:render template="/common/shortEntityList" model="[type: 'theory']"/>
+                <p><g:link controller="home" action="theories"><em>See more -></em></g:link></p>
             </div>
 
             <div class="col-sm-3">
                 <h2>Methods</h2>
                 <g:render template="/common/shortEntityList" model="[type: 'method']"/>
+                <p><g:link controller="home" action="methods"><em>See more -></em></g:link></p>
             </div>
 
             <div class="col-sm-3">
                 <h2>Venues</h2>
                 <g:render template="/common/shortEntityList" model="[type: 'venue']"/>
+                <p><g:link controller="home" action="venues"><em>See more -></em></g:link></p>
             </div>
         </div>
 

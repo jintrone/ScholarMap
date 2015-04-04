@@ -69,21 +69,19 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <g:link controller="user" action="profile"><span
-                                            data-i18n="Interests">Areas</span></g:link>
+                                    <g:link controller="home" action="areas"><span>Areas</span></g:link>
                                 </li>
                                 <li>
-                                    <g:link controller="user" action="profile"><span
-                                            data-i18n="My Profile">Theories</span></g:link>
+                                    <g:link controller="home" action="theories"><span>Theories</span></g:link>
                                 </li>
                                 <li>
-                                    <g:link controller="logout"><span>Methods</span></g:link>
+                                    <g:link controller="home" action="methods"><span>Methods</span></g:link>
                                 </li>
                                 <li>
-                                    <g:link controller="logout"><span>Venues</span></g:link>
+                                    <g:link controller="home" action="venues"><span>Venues</span></g:link>
                                 </li>
                                 <li>
-                                    <g:link controller="logout"><span>References</span></g:link>
+                                    <g:link controller="home" action="references"><span>References</span></g:link>
                                 </li>
                             </ul>
                         </li>
@@ -98,13 +96,17 @@
                             </a>
                             <ul class="dropdown-menu with-arrow">
                                 <li>
-                                    <g:link controller="user" action="profile" params="[username: csst.username()]">
-                                        <span data-i18n="Interests">Interests</span>
-                                    </g:link>
+                                    <g:link controller="user" action="interests"><span
+                                            data-i18n="Interests">Interests</span></g:link>
                                 </li>
                                 <li>
                                     <g:link controller="user" action="profile" params="[username: csst.username()]">
                                         <span data-i18n="My Profile">My Profile</span>
+                                    </g:link>
+                                </li>
+                                <li>
+                                    <g:link controller="user" action="profile" params="[username: csst.username()]">
+                                        <span data-i18n="My Profile">References</span>
                                     </g:link>
                                 </li>
                                 <li>
@@ -124,7 +126,7 @@
     </div>
 </header>
 
-<div class="content" style="margin-top: 150px">
+<div class="content" style="margin-top: 100px">
     <g:layoutBody/>
     <g:render template="/utils/hiddenLinks"/>
     <r:layoutResources/>
