@@ -35,6 +35,11 @@ class UrlMappings {
             action = "methods"
         }
 
+        "/references" {
+            controller = "home"
+            action = "references"
+        }
+
         "/user/$username" {
             controller = "user"
             action = "profile"
