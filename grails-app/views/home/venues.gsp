@@ -1,3 +1,4 @@
+<%@ page import="csst15.ReferenceVote" %>
 <g:applyLayout name="main">
     <div class="row">
         <div class="col-md-1"></div>
@@ -39,7 +40,7 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>Actions</th>
+                                <th>Interest</th>
                                 <th>Name</th>
                                 <th>Description</th>
                                 <th>References</th>
@@ -49,18 +50,11 @@
                             <tbody>
                             <g:each in="${venues}" var="venue">
                                 <tr>
-                                    <td>
-                                        <g:link class="glyphicon glyphicon-eye-open" controller="entity" action="view"
-                                                params="[id: venue.id]"/>
-                                        <sec:ifLoggedIn>
-                                            <g:link class="glyphicon glyphicon-edit" controller="entity"
-                                                    params="[id: venue.id]"
-                                                    action="edit"/>
-                                        </sec:ifLoggedIn>
-                                    </td>
-                                    <td>${venue.name}</td>
+                                    <td>${ReferenceVote.findAllByEntity(venue).user?.unique()?.size()}</td>
+                                    <td><g:link controller="entity" action="view"
+                                                params="[id: venue.id]">${venue.name}</g:link></td>
                                     <td>${venue.description}</td>
-                                    <td></td>
+                                    <td>${ReferenceVote.findAllByReferenceNotIsNullAndEntity(venue)?.size()}</td>
                                 </tr>
                             </g:each>
                             </tbody>

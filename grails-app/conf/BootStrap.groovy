@@ -1,24 +1,31 @@
-import csst15.*
 import csst15.conf.FieldLockConf
 import csst15.conf.FieldMandatoryConf
 import csst15.conf.FieldVisibilityConf
 import csst15.conf.GeneralConf
-import csst15.constants.*
+import csst15.constants.Departments
+import csst15.constants.Positions
+import csst15.constants.Roles
+import csst15.constants.Specializations
 import csst15.lists.Department
 import csst15.lists.Position
 import csst15.lists.Specialization
 import csst15.security.Role
 import csst15.security.User
 import csst15.security.UserRole
+import grails.util.Holders
+import groovy.sql.Sql
 import org.codehaus.groovy.grails.commons.DefaultGrailsDomainClass
 
 class BootStrap {
+    def grailsApplication
+    def dataSource
 
     def init = { servletContext ->
         environments {
             development {
-                bootstrapUserDetailsDatabase()
+//                bootstrapUserDetailsDatabase()
                 bootstrapSpringSecurityDatabase()
+//                executeSqlScript('data/csst_dummy_data.sql')
             }
             production {
                 bootstrapUserDetailsDatabase()
@@ -141,52 +148,68 @@ class BootStrap {
             }
         }
 
-        def field1 = null
-        def field2 = null
-        def method = null
-        def theory1 = null
-        def theory2 = null
-        def theory3 = null
-        Entity.withTransaction {
-            method = Entity.findByName("User-Centered Design") ?: new Method(name: 'User-Centered Design', description: 'bla bla', type: EntityType.METHOD).save(failOnError: true)
-            theory1 = Entity.findByName("Cognitive Anthropology") ?: new Theory(name: 'Cognitive Anthropology', description: 'bla bla', type: EntityType.THEORY).save(failOnError: true)
-            theory2 = Entity.findByName("Critical Theory") ?: new Theory(name: 'Critical Theory', description: 'bla bla', type: EntityType.THEORY).save(failOnError: true)
-            theory3 = Entity.findByName("Cognitive Artifacts") ?: new Theory(name: 'Cognitive Artifacts', description: 'bla bla', type: EntityType.THEORY).save(failOnError: true)
-            field1 = Entity.findByName("Human Computer Interaction") ?: new Field(name: 'Human Computer Interaction', description: 'bla bla', type: EntityType.FIELD).save(failOnError: true)
-            field2 = Entity.findByName("Design") ?: new Field(name: 'Design', description: 'bla bla', type: EntityType.FIELD).save(failOnError: true)
+//        def field1 = null
+//        def field2 = null
+//        def method = null
+//        def theory1 = null
+//        def theory2 = null
+//        def theory3 = null
+//        Entity.withTransaction {
+//            method = Entity.findByName("User-Centered Design") ?: new Method(name: 'User-Centered Design', description: 'bla bla', type: EntityType.METHOD).save(failOnError: true)
+//            theory1 = Entity.findByName("Cognitive Anthropology") ?: new Theory(name: 'Cognitive Anthropology', description: 'bla bla', type: EntityType.THEORY).save(failOnError: true)
+//            theory2 = Entity.findByName("Critical Theory") ?: new Theory(name: 'Critical Theory', description: 'bla bla', type: EntityType.THEORY).save(failOnError: true)
+//            theory3 = Entity.findByName("Cognitive Artifacts") ?: new Theory(name: 'Cognitive Artifacts', description: 'bla bla', type: EntityType.THEORY).save(failOnError: true)
+//            field1 = Entity.findByName("Human Computer Interaction") ?: new Field(name: 'Human Computer Interaction', description: 'bla bla', type: EntityType.FIELD).save(failOnError: true)
+//            field2 = Entity.findByName("Design") ?: new Field(name: 'Design', description: 'bla bla', type: EntityType.FIELD).save(failOnError: true)
+//
+//            user.addToEntities(method)
+//            user.addToEntities(theory1)
+//            user.addToEntities(theory2)
+//            user.addToEntities(theory3)
+//            user.addToEntities(field1)
+//            user.addToEntities(field2)
+//        }
+//
+//        def reference = null
+//        def reference1 = null
+//        Reference.withTransaction {
+//            reference = Reference.findByCitation("Traditional") ?: new Reference(citation: 'Traditional', content: 'bla bla', year: 2014, creator: user, hash: GeneralUtils.generateMD5("Traditional")).save(failOnError: true)
+//            reference1 = Reference.findByCitation("Another Ref") ?: new Reference(citation: 'Another Ref', content: 'bla bla', year: 2013, creator: user, hash: GeneralUtils.generateMD5("Another Ref")).save(failOnError: true)
+//
+//            new ReferenceVote(reference: reference, user: user, entity: field1).save(failOnError: true)
+//            new ReferenceVote(reference: reference, user: user, entity: theory1).save(failOnError: true)
+//            new ReferenceVote(reference: reference, user: user, entity: theory2).save(failOnError: true)
+//            new ReferenceVote(reference: reference, user: user, entity: theory3).save(failOnError: true)
+//            new ReferenceVote(reference: reference1, user: user, entity: theory2).save(failOnError: true)
+//            new ReferenceVote(reference: reference1, user: user, entity: theory3).save(failOnError: true)
+//            new ReferenceVote(reference: reference1, user: user, entity: field2).save(failOnError: true)
+//        }
+//
+//        ReferenceAuthor.withTransaction {
+//            def author = Author.findById(1) ?: new Author(firstName: 'Emil', lastName: 'Matevosyan').save(failOnError: true)
+//            def author2 = Author.findById(2) ?: new Author(firstName: 'Joshua', lastName: 'Introne').save(failOnError: true)
+//            def author3 = Author.findById(3) ?: new Author(firstName: 'Joe', lastName: 'Doe').save(failOnError: true)
+//
+//            new ReferenceAuthor(author: author, reference: reference).save(failOnError: true)
+//            new ReferenceAuthor(author: author2, reference: reference).save(failOnError: true)
+//            new ReferenceAuthor(author: author3, reference: reference).save(failOnError: true)
+//            new ReferenceAuthor(reference: reference1, author: author3).save(failOnError: true)
+//        }
+    }
 
-            user.addToEntities(method)
-            user.addToEntities(theory1)
-            user.addToEntities(theory2)
-            user.addToEntities(theory3)
-            user.addToEntities(field1)
-            user.addToEntities(field2)
-        }
+    private void executeSqlScript(String filePath) {
+        Sql sql = new Sql(dataSource)
+        try {
+            if (Holders.config.dataSource.dbCreate.equals('create')) {
+                String sqlFilePath = grailsApplication.parentContext.servletContext.getRealPath(filePath)
+                new File(sqlFilePath).eachLine {
+                    println it
+                    sql.execute(it)
+                }
+            }
 
-        def reference = null
-        def reference1 = null
-        Reference.withTransaction {
-            reference = Reference.findByCitation("Traditional") ?: new Reference(citation: 'Traditional', content: 'bla bla', year: 2014, creator: user, hash: GeneralUtils.generateMD5("Traditional")).save(failOnError: true)
-            reference1 = Reference.findByCitation("Another Ref") ?: new Reference(citation: 'Another Ref', content: 'bla bla', year: 2013, creator: user, hash: GeneralUtils.generateMD5("Another Ref")).save(failOnError: true)
-
-            new ReferenceVote(reference: reference, user: user, entity: field1).save(failOnError: true)
-            new ReferenceVote(reference: reference, user: user, entity: theory1).save(failOnError: true)
-            new ReferenceVote(reference: reference, user: user, entity: theory2).save(failOnError: true)
-            new ReferenceVote(reference: reference, user: user, entity: theory3).save(failOnError: true)
-            new ReferenceVote(reference: reference1, user: user, entity: theory2).save(failOnError: true)
-            new ReferenceVote(reference: reference1, user: user, entity: theory3).save(failOnError: true)
-            new ReferenceVote(reference: reference1, user: user, entity: field2).save(failOnError: true)
-        }
-
-        ReferenceAuthor.withTransaction {
-            def author = Author.findById(1) ?: new Author(firstName: 'Emil', lastName: 'Matevosyan').save(failOnError: true)
-            def author2 = Author.findById(2) ?: new Author(firstName: 'Joshua', lastName: 'Introne').save(failOnError: true)
-            def author3 = Author.findById(3) ?: new Author(firstName: 'Joe', lastName: 'Doe').save(failOnError: true)
-
-            new ReferenceAuthor(author: author, reference: reference).save(failOnError: true)
-            new ReferenceAuthor(author: author2, reference: reference).save(failOnError: true)
-            new ReferenceAuthor(author: author3, reference: reference).save(failOnError: true)
-            new ReferenceAuthor(reference: reference1, author: author3).save(failOnError: true)
+        } finally {
+            sql.close()
         }
     }
 }

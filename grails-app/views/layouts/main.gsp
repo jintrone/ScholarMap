@@ -59,8 +59,7 @@
                                 </div>
                             </li>
                         </sec:ifLoggedIn>
-                        <li><g:link controller="home" action="list">Users</g:link></li>
-                    %{--<li><g:link controller="home" action="entities">Explore</g:link></li>--}%
+                        <li><g:link controller="home" action="list">People</g:link></li>
                         <li class="dropdown text-normal nav-profile">
                             <a href="javascript:void(0);" data-toggle="dropdown">
                                 <span class="hidden-xs">

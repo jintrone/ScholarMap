@@ -1,3 +1,4 @@
+<%@ page import="csst15.ReferenceVote" %>
 <g:applyLayout name="main">
     <div class="row">
         <div class="col-md-1"></div>
@@ -39,7 +40,7 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>Actions</th>
+                                <th>Interest</th>
                                 <th>Name</th>
                                 <th>Description</th>
                                 <th>References</th>
@@ -49,18 +50,14 @@
                             <tbody>
                             <g:each in="${theories}" var="theory">
                                 <tr>
+                                    <td>${ReferenceVote.findAllByEntity(theory).user?.unique()?.size()}</td>
                                     <td>
-                                        <g:link class="glyphicon glyphicon-eye-open" controller="entity" action="view"
-                                                params="[id: theory.id]"/>
-                                        <sec:ifLoggedIn>
-                                            <g:link class="glyphicon glyphicon-edit" controller="entity"
-                                                    params="[id: theory.id]"
-                                                    action="edit"/>
-                                        </sec:ifLoggedIn>
+                                        <g:link controller="entity" action="view" params="[id: theory.id]">
+                                            ${theory.name}
+                                        </g:link>
                                     </td>
-                                    <td>${theory.name}</td>
                                     <td>${theory.description}</td>
-                                    <td></td>
+                                    <td>${ReferenceVote.findAllByReferenceNotIsNullAndEntity(theory)?.size()}</td>
                                 </tr>
                             </g:each>
                             </tbody>
