@@ -52,6 +52,7 @@ class User {
         photo nullable: true, maxSize: 3 * 1024 * 1024
         activationToken nullable: true
         passwordResetToken nullable: true
+        entities nullable: true
     }
 
     static mapping = {

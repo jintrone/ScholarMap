@@ -55,6 +55,11 @@ class UrlMappings {
             action = "interests"
         }
 
+        "/interest/delete" {
+            controller = "user"
+            action = "deleteInterest"
+        }
+
         "/user/fillRequiredFields" {
             controller = "user"
             action = "fillRequiredFields"

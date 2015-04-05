@@ -31,6 +31,35 @@
     <div class="row">
         <div class="col-md-1"></div>
 
+        <div class="modal fade" id="deleteInterestModal" style="display: none" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <g:form controller="user" action="deleteInterest" method="post">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"
+                                    aria-label="Close"><span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">Alert</h4>
+                        </div>
+
+                        <div class="modal-body">
+
+                            <p>Are you sure you want to delete this interest ?</p>
+                            <g:hiddenField name="entityId"/>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default"
+                                    data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Delete</button>
+                        </div>
+                    </div>
+                </g:form>
+            </div>
+        </div>
+
         <div class="col-md-10">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -47,7 +76,9 @@
                                     <th>Name</th>
                                     <th>Description</th>
                                     <th>References</th>
-                                    <th>Actions</th>
+                                    <g:if test="${currentUser.username.equals(sec.username().toString())}">
+                                        <th>Actions</th>
+                                    </g:if>
                                 </tr>
                                 </thead>
 
@@ -58,8 +89,14 @@
                                         <td>${entity?.name}</td>
                                         <td>${entity?.description}</td>
                                         <td>${ReferenceVote.findAllByReferenceNotIsNullAndEntity(entity)?.reference?.unique()?.size()}</td>
-                                        <td><g:link class="glyphicon glyphicon-remove" title="Remove"
-                                                    controller="entity" action="view" params="[id: entity.id]"/></td>
+                                        <g:if test="${currentUser.username.equals(sec.username().toString())}">
+                                            <td>
+                                                <a href="javascript:void(0);"
+                                                   class="glyphicon glyphicon-remove remove-interest"
+                                                   title="Remove"></a>
+                                                <g:hiddenField name="entityHiddenId" value="${entity?.id}"/>
+                                            </td>
+                                        </g:if>
                                     </tr>
                                 </g:each>
                                 </tbody>

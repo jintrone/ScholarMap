@@ -71,6 +71,11 @@ $(document).ready(function () {
         $('#myModal').modal('show')
     });
 
+    $(".remove-interest").click(function () {
+        $('#deleteInterestModal').modal('show');
+        $("#entityId").val($(this).next().val());
+    });
+
     $("#entityTable").dataTable({});
 
     $("#referenceTable").dataTable({});

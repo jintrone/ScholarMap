@@ -15,6 +15,8 @@ class Entity {
         description nullable: true
         name blank: false, unique: true
         type blank: false
+        users nullable: true
+        references nullable: true
     }
 
     static mapping = {

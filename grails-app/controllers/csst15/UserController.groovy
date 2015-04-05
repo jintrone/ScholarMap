@@ -26,7 +26,8 @@ class UserController {
             changePasswordPage  : 'GET',
             update              : 'POST',
             fillRequiredFields  : 'GET',
-            updateRequiredFields: 'POST'
+            updateRequiredFields: 'POST',
+            deleteInterest      : 'POST'
     ]
     def springSecurityService
     def uploadService
@@ -163,7 +164,7 @@ class UserController {
         def user = User.findByUsername(params.username)
         if (user) {
             def entities = ReferenceVote.findAllByUser(user)?.entity?.unique()
-            render(view: 'interests', model: [entities: entities])
+            render(view: 'interests', model: [entities: entities, currentUser: user])
         } else {
             redirect(controller: 'login', action: 'auth')
         }
@@ -208,6 +209,24 @@ class UserController {
         } else {
             log.debug("fieldName not specified.")
             redirect(action: 'profile', params: [username: user.username])
+        }
+    }
+
+    @Transactional
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def deleteInterest() {
+        def entityId = params.entityId
+        def currentUser = springSecurityService.currentUser as User
+        def entity = Entity.get(entityId)
+        if (currentUser) {
+            if (entityId) {
+                ReferenceVote.findAllByEntityAndUser(entity, currentUser).collect { it.delete(flush: true) }
+                currentUser.removeFromEntities(entity)
+                log.info("Deleted the interest with id ${entityId} for user with id ${currentUser.id}")
+                redirect(action: 'interests', params: [username: currentUser.username])
+            }
+        } else {
+            redirect(controller: 'login', action: 'auth')
         }
     }
 
