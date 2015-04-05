@@ -9,7 +9,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingOne">
                         <h4 class="panel-title">
-                            <strong style="padding-right: 25px"><span class="glyphicon glyphicon-th"></span>
+                            <strong style="padding-right: 25px"><span class="glyphicon glyphicon-th"></span> Details for
                                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
                                    aria-expanded="true"
                                    aria-controls="collapseOne">
