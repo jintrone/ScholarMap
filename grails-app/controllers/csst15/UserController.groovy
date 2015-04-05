@@ -160,10 +160,14 @@ class UserController {
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def interests() {
-        println "==================="
-        println "interests"
-        println "==================="
-        render(view: 'interests')
+        def user = User.findByUsername(params.username)
+        if (user) {
+            def entities = ReferenceVote.findAllByUser(user)?.entity?.unique()
+            render(view: 'interests', model: [entities: entities])
+        } else {
+            redirect(controller: 'login', action: 'auth')
+        }
+
     }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])

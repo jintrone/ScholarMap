@@ -43,8 +43,14 @@ class AdminController {
 
     @Transactional
     def deleteUser(User user) {
-        UserRole.findByUser(user).delete(flush: true)
-        user.delete()
+        UserRole.findAllByUser(user).collect {
+            it.delete(flush: true)
+        }
+        ReferenceVote.findAllByUser(user).collect {
+            it.delete(flush: true)
+        }
+
+        user.delete(flush: true)
         log.info("Deleted the user with id ${user.id}")
         redirect(action: 'board')
     }

@@ -78,4 +78,11 @@ $(document).ready(function () {
     $("#usersTable").dataTable({});
 
     $("#listTable").dataTable({});
+
+    $("#interestTable").dataTable({
+        "paging": false,
+        "ordering": true,
+        "info": false,
+        "bFilter": false
+    });
 });

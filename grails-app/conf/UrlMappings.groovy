@@ -50,7 +50,7 @@ class UrlMappings {
             action = "update"
         }
 
-        "/user/interest" {
+        "/user/interest/$username" {
             controller = "user"
             action = "interests"
         }

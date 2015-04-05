@@ -90,12 +90,13 @@
                         <li class="dropdown text-normal nav-profile">
                             <a href="javascript:void(0);" data-toggle="dropdown">
                                 <span class="hidden-xs">
-                                    <span>Welcome  <csst:userFullName/></span>
+                                    <span>Welcome,  <csst:userFullName/></span>
                                 </span>
                             </a>
                             <ul class="dropdown-menu with-arrow">
                                 <li>
-                                    <g:link controller="user" action="interests"><span
+                                    <g:link controller="user" action="interests"
+                                            params="[username: csst.username()]"><span
                                             data-i18n="Interests">Interests</span></g:link>
                                 </li>
                                 <li>

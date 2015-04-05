@@ -18,6 +18,7 @@ class Entity {
     }
 
     static mapping = {
+        users cascade: 'all-delete-orphan'
         description type: "text"
     }
 
