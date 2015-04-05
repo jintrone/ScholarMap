@@ -6,7 +6,7 @@ package csst15.constants
  */
 enum EntityType {
     METHOD('Method'),
-    FIELD('Field'),
+    FIELD('Area'),
     VENUE('Venue'),
     THEORY('Theory')
 

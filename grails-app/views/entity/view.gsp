@@ -4,6 +4,24 @@
         <div class="col-md-1"></div>
 
         <div class="col-md-10">
+            <ol class="breadcrumb-alt">
+                <li><a href="javascript:void(0);">Explore</a></li>
+                <li>
+                    <g:if test="${entity.type.name.equals("Area")}">
+                        <g:link controller="home" action="areas">${entity.type.name}</g:link>
+                    </g:if>
+                    <g:elseif test="${entity.type.name.equals("Theory")}">
+                        <g:link controller="home" action="theories">${entity.type.name}</g:link>
+                    </g:elseif>
+                    <g:elseif test="${entity.type.name.equals("Method")}">
+                        <g:link controller="home" action="methods">${entity.type.name}</g:link>
+                    </g:elseif>
+                    <g:elseif test="${entity.type.name.equals("Venue")}">
+                        <g:link controller="home" action="venues">${entity.type.name}</g:link>
+                    </g:elseif>
+                </li>
+                <li class="active"><a href="javascript:void(0);">${entity.name}</a></li>
+            </ol>
 
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">

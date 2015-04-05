@@ -4,6 +4,11 @@
         <div class="col-md-1"></div>
 
         <div class="col-md-10">
+            <ol class="breadcrumb-alt">
+                <li><a href="javascript:void(0);">Explore</a></li>
+                <li><a href="javascript:void(0);">Area</a></li>
+            </ol>
+
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingOne">

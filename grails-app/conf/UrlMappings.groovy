@@ -15,6 +15,26 @@ class UrlMappings {
         "/login/$action?"(controller: "login")
         "/logout/$action?"(controller: "logout")
 
+        "/areas" {
+            controller = "home"
+            action = "areas"
+        }
+
+        "/theories" {
+            controller = "home"
+            action = "theories"
+        }
+
+        "/venues" {
+            controller = "home"
+            action = "venues"
+        }
+
+        "/methods" {
+            controller = "home"
+            action = "methods"
+        }
+
         "/user/$username" {
             controller = "user"
             action = "profile"
