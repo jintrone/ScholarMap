@@ -59,7 +59,7 @@
                                         </g:link>
                                     </td>
                                     <td>${area.description}</td>
-                                    <td>${ReferenceVote.findAllByReferenceNotIsNullAndEntity(area)?.size()}</td>
+                                    <td>${ReferenceVote.findAllByReferenceNotIsNullAndEntity(area)?.reference?.unique()?.size()}</td>
                                 </tr>
                             </g:each>
                             </tbody>

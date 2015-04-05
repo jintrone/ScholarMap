@@ -50,11 +50,11 @@
                             <tbody>
                             <g:each in="${methods}" var="method">
                                 <tr>
-                                    <td>${ReferenceVote.findAllByEntity(method).user?.unique()?.size()}</td>
+                                    <td>${ReferenceVote.findAllByEntity(method)?.user?.unique()?.size()}</td>
                                     <td><g:link controller="entity" action="view"
                                                 params="[id: method.id]">${method.name}</g:link></td>
                                     <td>${method.description}</td>
-                                    <td>${ReferenceVote.findAllByReferenceNotIsNullAndEntity(method)?.size()}</td>
+                                    <td>${ReferenceVote.findAllByReferenceNotIsNullAndEntity(method)?.reference?.unique()?.size()}</td>
                                 </tr>
                             </g:each>
                             </tbody>

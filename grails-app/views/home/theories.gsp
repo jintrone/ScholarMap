@@ -57,7 +57,7 @@
                                         </g:link>
                                     </td>
                                     <td>${theory.description}</td>
-                                    <td>${ReferenceVote.findAllByReferenceNotIsNullAndEntity(theory)?.size()}</td>
+                                    <td>${ReferenceVote.findAllByReferenceNotIsNullAndEntity(theory)?.reference?.unique()?.size()}</td>
                                 </tr>
                             </g:each>
                             </tbody>

@@ -54,7 +54,7 @@
                                     <td><g:link controller="entity" action="view"
                                                 params="[id: venue.id]">${venue.name}</g:link></td>
                                     <td>${venue.description}</td>
-                                    <td>${ReferenceVote.findAllByReferenceNotIsNullAndEntity(venue)?.size()}</td>
+                                    <td>${ReferenceVote.findAllByReferenceNotIsNullAndEntity(venue)?.reference?.unique()?.size()}</td>
                                 </tr>
                             </g:each>
                             </tbody>
