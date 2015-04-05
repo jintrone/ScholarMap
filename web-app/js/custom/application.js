@@ -90,4 +90,18 @@ $(document).ready(function () {
         "info": false,
         "bFilter": false
     });
+
+    $("#entityPeopleTable").dataTable({
+        "paging": false,
+        "ordering": true,
+        "info": false,
+        "bFilter": false
+    });
+
+    $("#entityRefTable").dataTable({
+        "paging": false,
+        "ordering": true,
+        "info": false,
+        "bFilter": false
+    });
 });
