@@ -1,4 +1,4 @@
-<%@ page import="com.google.common.base.Joiner; org.apache.commons.lang.ArrayUtils; csst15.ReferenceAuthor" %>
+<%@ page import="csst15.ReferenceVote; com.google.common.base.Joiner; org.apache.commons.lang.ArrayUtils; csst15.ReferenceAuthor" %>
 <g:applyLayout name="main">
     <div class="row">
         <div class="col-md-1"></div>
@@ -48,6 +48,7 @@
                                 <th>Authors</th>
                                 <th>Year</th>
                                 <th>Citation</th>
+                                <th>Votes</th>
                             </tr>
                             </thead>
 
@@ -57,6 +58,7 @@
                                     <td>${Joiner.on(',').skipNulls().join(ReferenceAuthor.findAllByReference(reference)?.author?.lastName)}</td>
                                     <td>${reference.year}</td>
                                     <td>${reference.citation}</td>
+                                    <td>${ReferenceVote.countByReference(reference)}</td>
                                 </tr>
                             </g:each>
                             </tbody>
