@@ -70,8 +70,8 @@ class EntityController {
                     redirect(action: 'view', params: [id: entity.id])
                 }
             } else {
-                log.info("Reference id not found")
-                redirect(controller: 'home', action: 'entities')
+                log.info("Entity id not found")
+                redirect(controller: 'home')
             }
         }
     }

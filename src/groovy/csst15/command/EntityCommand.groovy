@@ -9,12 +9,10 @@ import grails.validation.Validateable
 
 @Validateable
 class EntityCommand {
-    String type
     String name
     String description
 
     static constraints = {
-        type blank: false
         name blank: false, unique: true
         description blank: false, maxSize: 5000
     }

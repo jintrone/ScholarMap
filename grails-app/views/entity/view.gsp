@@ -1,5 +1,45 @@
 <%@ page import="csst15.ReferenceAuthor; com.google.common.base.Joiner; csst15.ReferenceVote" %>
 <g:applyLayout name="main">
+
+    <div class="modal fade" id="editEntityModal" style="display: none" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <g:form controller="entity" action="update" method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close"><span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Edit Entity</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <g:hiddenField name="entityId" value="${entity.id}"/>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" value="${entity?.name}" class="form-control" id="name"
+                                   placeholder="Not set">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea maxlength="5000" name="description" rows="10" id="description"
+                                      class="form-control"
+                                      placeholder="Not set">${entity?.description}</textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"
+                                data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </div>
+            </g:form>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-1"></div>
 
@@ -25,16 +65,23 @@
 
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingOne">
-                        <h4 class="panel-title">
-                            <strong style="padding-right: 25px"><span class="glyphicon glyphicon-th"></span> Details for
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                                   aria-expanded="true"
-                                   aria-controls="collapseOne">
-                                    ${entity.name}
-                                </a>
-                            </strong>
-                        </h4>
+                    <div class="panel-heading" style="padding: 20px; height: 50px" role="tab" id="headingOne">
+                        <div class="col-md-11">
+                            <h4 class="panel-title">
+                                <strong style="padding-right: 25px"><span
+                                        class="glyphicon glyphicon-th"></span> Details for
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                       aria-expanded="true"
+                                       aria-controls="collapseOne">
+                                        ${entity.name}
+                                    </a>
+                                </strong>
+                            </h4>
+                        </div>
+
+                        <div class="col-md-1">
+                            <a href="javascript:void(0);" class="edit-entity" title="Edit">Edit</a>
+                        </div>
                     </div>
 
                     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"

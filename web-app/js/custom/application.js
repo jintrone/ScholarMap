@@ -104,4 +104,8 @@ $(document).ready(function () {
         "info": false,
         "bFilter": false
     });
+
+    $(".edit-entity").click(function () {
+        $('#editEntityModal').modal('show')
+    });
 });
