@@ -8,6 +8,7 @@
                 <li><a href="javascript:void(0);">Explore</a></li>
                 <li><a href="javascript:void(0);">Reference</a></li>
             </ol>
+
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingOne">
@@ -45,6 +46,7 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
+                                <th>Action</th>
                                 <th>Authors</th>
                                 <th>Year</th>
                                 <th>Citation</th>
@@ -55,6 +57,8 @@
                             <tbody>
                             <g:each in="${references}" var="reference">
                                 <tr>
+                                    <td><g:link class="glyphicon glyphicon-eye-open" controller="reference"
+                                                action="view" params="[id: reference.id]"/></td>
                                     <td>${Joiner.on(',').skipNulls().join(ReferenceAuthor.findAllByReference(reference)?.author?.lastName)}</td>
                                     <td>${reference.year}</td>
                                     <td>${reference.citation}</td>

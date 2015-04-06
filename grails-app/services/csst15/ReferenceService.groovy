@@ -30,6 +30,7 @@ class ReferenceService {
 
     def updateReference(Reference reference, ReferenceCommand command) {
         reference.properties = command.properties
+        reference.hash = GeneralUtils.generateMD5(reference.citation)
 
         if (reference.save(flush: true)) {
             log.info("Updated reference with id ${reference.id}")

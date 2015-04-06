@@ -128,7 +128,7 @@
                                         <th>Name</th>
                                         <th>Position</th>
                                         <th>Department</th>
-                                        <th>Other Theories</th>
+                                        <th>Other ${entity.type.name}</th>
                                     </tr>
                                     </thead>
                                     <tbody>

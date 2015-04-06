@@ -108,4 +108,8 @@ $(document).ready(function () {
     $(".edit-entity").click(function () {
         $('#editEntityModal').modal('show')
     });
+
+    $(".edit-reference").click(function () {
+        $('#editReferenceModal').modal('show')
+    });
 });

@@ -61,14 +61,13 @@ class ReferenceController {
     @Transactional
     def update(ReferenceCommand command) {
         if (command.hasErrors()) {
-            render(view: 'edit', [reference: command])
+            render(view: 'edit', model: [reference: command])
         } else {
             if (params.referenceId) {
                 def reference = Reference.findById(params.referenceId)
 
-                if (referenceService.updateReference(reference, command)) {
-                    redirect(action: 'view', params: [id: reference.id])
-                }
+                referenceService.updateReference(reference, command)
+                redirect(action: 'view', params: [id: reference.id])
             } else {
                 log.info("Reference id not found")
                 redirect(controller: 'home', action: 'entities')
