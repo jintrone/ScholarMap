@@ -80,7 +80,9 @@
                         </div>
 
                         <div class="col-md-1">
-                            <a href="javascript:void(0);" class="edit-entity" title="Edit">Edit</a>
+                            <sec:ifLoggedIn>
+                                <a href="javascript:void(0);" class="edit-entity" title="Edit">Edit</a>
+                            </sec:ifLoggedIn>
                         </div>
                     </div>
 
