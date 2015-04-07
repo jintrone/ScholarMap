@@ -42,7 +42,7 @@ class GraphController extends RestfulController {
                                     people      : (ReferenceVote.findAllByEntity(entity).user.unique().id),
                                     references  :
                                             ReferenceVote.findAllByEntity(entity).reference.unique().collect {
-                                                [id: it.id]
+                                                [id: it.id, weight: ReferenceVote.countByReference(it)]
                                             }
                             ]
                         }
