@@ -238,7 +238,7 @@ class UserController {
         if (currentUser) {
             if (entityId) {
                 ReferenceVote.findAllByEntityAndUser(entity, currentUser).collect { it.delete(flush: true) }
-                currentUser.removeFromEntities(entity)
+//                currentUser.removeFromEntities(entity)
                 log.info("Deleted the interest with id ${entityId} for user with id ${currentUser.id}")
                 redirect(action: 'interests', params: [username: currentUser.username])
             }
