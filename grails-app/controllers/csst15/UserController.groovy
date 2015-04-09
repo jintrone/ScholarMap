@@ -6,6 +6,7 @@ import csst15.command.UpdateUserCommand
 import csst15.conf.FieldLockConf
 import csst15.conf.FieldMandatoryConf
 import csst15.conf.FieldVisibilityConf
+import csst15.constants.EntityType
 import csst15.constants.Roles
 import csst15.lists.Department
 import csst15.lists.Position
@@ -27,7 +28,8 @@ class UserController {
             update              : 'POST',
             fillRequiredFields  : 'GET',
             updateRequiredFields: 'POST',
-            deleteInterest      : 'POST'
+            deleteInterest      : 'POST',
+            addInterest         : "POST"
     ]
     def springSecurityService
     def uploadService
@@ -209,6 +211,21 @@ class UserController {
         } else {
             log.debug("fieldName not specified.")
             redirect(action: 'profile', params: [username: user.username])
+        }
+    }
+
+    @Transactional
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def addInterest() {
+        def currentUser = springSecurityService.currentUser as User
+
+        if (currentUser) {
+            def entity = new Entity(type: EntityType.FIELD, name: params.name, description: params.description).save(flush: true)
+            currentUser.addToEntities(entity)
+            new ReferenceVote(user: currentUser, reference: null, entity: entity).save(flush: true)
+            render(status: HttpStatus.OK)
+        } else {
+            redirect(controller: 'login', action: 'auth')
         }
     }
 

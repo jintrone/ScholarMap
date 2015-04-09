@@ -8,6 +8,8 @@ class ReferenceVote implements Serializable {
     User user
 
     static constraints = {
+        reference nullable: true
+        entity nullable: true
     }
 
     static mapping = {

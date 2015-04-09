@@ -50,6 +50,11 @@ class UrlMappings {
             action = "editUserProfile"
         }
 
+        "/user/addInterest" {
+            controller = "user"
+            action = "addInterest"
+        }
+
         "/user/changePasswordPage/$username" {
             controller = "user"
             action = "changePasswordPage"

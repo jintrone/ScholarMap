@@ -106,10 +106,30 @@ $(document).ready(function () {
     });
 
     $(".edit-entity").click(function () {
-        $('#editEntityModal').modal('show')
+        $('#editEntityModal').modal('show');
     });
 
     $(".edit-reference").click(function () {
-        $('#editReferenceModal').modal('show')
+        $('#editReferenceModal').modal('show');
+    });
+
+    $("#addNewEntity").click(function () {
+        $('#addInterestModal').modal('show');
+    });
+
+    $("#addInterestBtn").click(function () {
+        $.ajax({
+            type: 'POST',
+            url: $("#addInterestURL").val(),
+            data: {
+                type: $("#type").val(),
+                name: $("#name").val(),
+                description: $("#description").val()
+            },
+            success: function (data) {
+                $('#addInterestModal').modal('hide');
+                $('#addReferenceModal').modal('show');
+            }
+        });
     });
 });

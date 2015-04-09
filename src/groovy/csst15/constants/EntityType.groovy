@@ -10,7 +10,7 @@ enum EntityType {
     VENUE('Venue'),
     THEORY('Theory')
 
-    private final String name
+    private String name
 
     EntityType(String name) {
         this.name = name
