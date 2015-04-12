@@ -129,6 +129,8 @@ $(document).ready(function () {
             success: function (data) {
                 $('#addInterestModal').modal('hide');
                 $('#addReferenceModal').modal('show');
+                $('#interestRecords').find('table').remove();
+                $('#interestRecords').append(data);
             }
         });
     });

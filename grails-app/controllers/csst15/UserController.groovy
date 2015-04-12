@@ -223,7 +223,8 @@ class UserController {
             if (entity.save(flush: true)) {
                 currentUser.addToEntities(entity)
                 new ReferenceVote(user: currentUser, reference: null, entity: entity).save(flush: true)
-                render(status: HttpStatus.OK)
+                def entities = ReferenceVote.findAllByUser(currentUser)?.entity?.unique()
+                render(template: 'interestRecords', model: [entities: entities, currentUser: currentUser])
             } else {
                 render(status: HttpStatus.BAD_REQUEST)
             }
