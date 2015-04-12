@@ -22,7 +22,16 @@
                 </g:link>
             </td>
             <td>${entity?.description}</td>
-            <td>${ReferenceVote.findAllByReferenceNotIsNullAndEntity(entity)?.reference?.unique()?.size()}</td>
+            <td>
+                <g:if test="${!ReferenceVote.findAllByReferenceNotIsNullAndEntity(entity)}">
+                    <g:link controller="user" action="references" params="[entityId: entity?.id]">
+                        Add
+                    </g:link>
+                </g:if>
+                <g:else>
+                    ${ReferenceVote.findAllByReferenceNotIsNullAndEntity(entity)?.reference?.unique()?.size()}
+                </g:else>
+            </td>
             <g:if test="${currentUser.username.equals(sec.username().toString())}">
                 <td>
                     <a href="javascript:void(0);"
@@ -52,7 +61,7 @@
             </div>
 
             <div class="modal-footer">
-                <g:link controller="user" action="references" params="[entity: newEntity?.id]"
+                <g:link controller="user" action="references" params="[entityId: newEntity?.id]"
                         class="btn btn-primary">Add Reference</g:link>
             </div>
         </div>

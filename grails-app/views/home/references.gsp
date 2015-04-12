@@ -14,7 +14,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">References</a>
+                            <a data-toggle="collapse" data-parent="#accordion"
+                               href="#collapseOne">References Summary</a>
                         </h4>
                     </div>
 
@@ -36,7 +37,7 @@
         <div class="col-md-10">
 
             <section class="panel panel-default">
-                <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> References Summary
+                <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> References
                 </strong></div>
 
                 <div class="panel-body">

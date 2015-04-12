@@ -55,6 +55,16 @@ class UrlMappings {
             action = "addInterest"
         }
 
+        "/user/references/$entityId" {
+            controller = "user"
+            action = "references"
+        }
+
+        "/user/referenceVote" {
+            controller = "user"
+            action = "referenceVote"
+        }
+
         "/user/changePasswordPage/$username" {
             controller = "user"
             action = "changePasswordPage"

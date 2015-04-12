@@ -56,7 +56,7 @@
                     <g:link controller="home" action="venues">Reference</g:link>
                 </li>
                 <li class="active"><a
-                        href="javascript:void(0);">${ReferenceAuthor.findByReference(reference).author.lastName} ${reference.year}</a>
+                        href="javascript:void(0);">${ReferenceAuthor.findByReference(reference)?.author?.lastName} ${reference?.year}</a>
                 </li>
             </ol>
 
@@ -66,7 +66,7 @@
                         <div class="col-md-11">
                             <h4 class="panel-title">
                                 <strong style="padding-right: 25px"><span
-                                        class="glyphicon glyphicon-th"></span> Details for ${ReferenceAuthor.findByReference(reference).author.lastName} ${reference.year}
+                                        class="glyphicon glyphicon-th"></span> Details for ${ReferenceAuthor.findByReference(reference)?.author?.lastName} ${reference?.year}
                                 </strong>
                             </h4>
                         </div>

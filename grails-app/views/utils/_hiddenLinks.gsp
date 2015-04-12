@@ -4,3 +4,4 @@
 <g:hiddenField name="manipulatePermission"
                value="${createLink(controller: 'user', action: 'manipulateFieldVisibility')}"/>
 <g:hiddenField name="addInterestURL" value="${createLink(controller: 'user', action: 'addInterest')}"/>
+<g:hiddenField name="referenceVoteURL" value="${createLink(controller: 'user', action: 'referenceVote')}"/>

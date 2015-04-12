@@ -170,8 +170,8 @@
                                                 var="reference">
                                             <tr>
                                                 <td>${Joiner.on(',').skipNulls().join(ReferenceAuthor.findAllByReference(reference)?.author?.lastName)}</td>
-                                                <td>${reference.year}</td>
-                                                <td>${reference.citation}</td>
+                                                <td>${reference?.year}</td>
+                                                <td>${reference?.citation}</td>
                                             </tr>
                                         </g:each>
                                         </tbody>

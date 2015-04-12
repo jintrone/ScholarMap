@@ -62,9 +62,10 @@ $(document).ready(function () {
         })
     });
 
+    var photoPanel = $("#photoPanel");
     $("#changePhoto").click(function () {
-        $("#photoPanel").find(".simplePanel").remove();
-        $("#photoPanel").append($("#photoPanelClone").clone().css("display", "block"));
+        photoPanel.find(".simplePanel").remove();
+        photoPanel.append($("#photoPanelClone").clone().css("display", "block"));
     });
 
     $("#importUser").click(function () {
@@ -127,16 +128,49 @@ $(document).ready(function () {
                 description: $("#description").val()
             },
             success: function (data) {
+                var interestRecords = $('#interestRecords');
                 $('#addInterestModal').modal('hide');
-                $('#interestRecords').find('table').remove();
-                $('#interestRecords').find('#addReferenceModal').remove();
-                $('#interestRecords').append(data);
+                interestRecords.find('table').remove();
+                interestRecords.find('#addReferenceModal').remove();
+                interestRecords.append(data);
                 $('#addReferenceModal').modal('show');
                 resetFields($('#addInterestModal'));
 
             }
         });
     });
+
+    var availableReferences = $("#availableReferences");
+    availableReferences.find(".select-reference").click(function () {
+        alert($(this).attr('id'));
+        $.ajax({
+            type: 'POST',
+            url: $("#referenceVoteURL").val(),
+            data: {
+                refId: $(this).attr('id'),
+                entity: $("#availableRefPanel").find("#entity").val()
+            },
+            success: function (data) {
+                alert(data);
+                $(this).removeClass("glyphicon-star-empty").addClass("yourClass").addClass('glyphicon-star');
+                //$('#interestRecords').find('table').remove();
+                //$('#interestRecords').find('#addReferenceModal').remove();
+                //$('#interestRecords').append(data);
+                //$('#addReferenceModal').modal('show');
+                //resetFields($('#addInterestModal'));
+
+            }
+        });
+    });
+
+    availableReferences.dataTable({
+        "paging": true,
+        "ordering": true,
+        "info": false,
+        "bFilter": true
+    });
+
+
 });
 
 function resetFields(container) {

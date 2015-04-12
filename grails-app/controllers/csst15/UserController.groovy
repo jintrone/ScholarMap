@@ -164,7 +164,7 @@ class UserController {
     def interests() {
         def user = User.findByUsername(params.username)
         if (user) {
-            def entities = ReferenceVote.findAllByUser(user)?.entity?.unique()
+            def entities = user.entities
             render(view: 'interests', model: [entities: entities, currentUser: user])
         } else {
             redirect(controller: 'login', action: 'auth')
@@ -222,9 +222,8 @@ class UserController {
             def entity = new Entity(type: GeneralUtils.constructEntityType(params.type), name: params.name, description: params.description)
             if (entity.save(flush: true)) {
                 currentUser.addToEntities(entity)
-                new ReferenceVote(user: currentUser, reference: null, entity: entity).save(flush: true)
-                def entities = ReferenceVote.findAllByUser(currentUser)?.entity?.unique()
-                render(template: 'interestRecords', model: [newEntityName: entity.name, entities: entities, currentUser: currentUser])
+                def entities = currentUser.entities
+                render(template: 'interestRecords', model: [newEntity: entity, entities: entities, currentUser: currentUser])
             } else {
                 render(status: HttpStatus.BAD_REQUEST)
             }
@@ -262,6 +261,39 @@ class UserController {
         OutputStream out = response.outputStream
         out.write(user.photo)
         out.close()
+    }
+
+    def references() {
+        def allReferences = Reference.list()
+        def entity = Entity.get(params.entityId)
+        def currentUser = springSecurityService.currentUser as User
+        def selectedReferences = ReferenceVote.findAllByEntityAndReferenceIsNotNullAndUser(entity, currentUser)?.reference
+        def availableReferences = allReferences.findAll { reference ->
+            !selectedReferences.contains(reference)
+        }
+
+        render(view: 'references', model: [entity: entity, availableReferences: availableReferences, selectedReferences: selectedReferences])
+    }
+
+    @Transactional
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def referenceVote() {
+        def reference = Reference.get(params.refId)
+        def entity = Entity.get(params.entity)
+        def currentUser = springSecurityService.currentUser as User
+
+        if (reference && entity) {
+            new ReferenceVote(user: currentUser, reference: reference, entity: entity).save(flush: true)
+//            def refVote = ReferenceVote.findByUserAndEntity(currentUser, entity)
+
+//             if (refVote) {
+//                 refVote.reference = reference
+//                 refVote.save(flush: true)
+
+            render(status: HttpStatus.OK, id: reference.id)
+        } else {
+            render(status: HttpStatus.BAD_REQUEST)
+        }
     }
 }
 
