@@ -14,7 +14,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Methods</a>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Methods Summary</a>
                         </h4>
                     </div>
 

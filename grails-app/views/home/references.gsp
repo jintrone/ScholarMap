@@ -36,8 +36,8 @@
         <div class="col-md-10">
 
             <section class="panel panel-default">
-                <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> References</strong>
-                </div>
+                <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> References Summary
+                </strong></div>
 
                 <div class="panel-body">
 
