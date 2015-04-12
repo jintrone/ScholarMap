@@ -45,23 +45,23 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>Action</th>
                                 <th>Authors</th>
                                 <th>Year</th>
                                 <th>Citation</th>
                                 <th>Votes</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
 
                             <tbody>
                             <g:each in="${references}" var="reference">
                                 <tr>
-                                    <td><g:link class="glyphicon glyphicon-eye-open" controller="reference"
-                                                action="view" params="[id: reference.id]"/></td>
                                     <td>${Joiner.on(',').skipNulls().join(ReferenceAuthor.findAllByReference(reference)?.author?.lastName)}</td>
                                     <td>${reference.year}</td>
                                     <td>${reference.citation}</td>
                                     <td>${ReferenceVote.countByReference(reference)}</td>
+                                    <td><g:link class="glyphicon glyphicon-eye-open" controller="reference"
+                                                action="view" params="[id: reference.id]"/></td>
                                 </tr>
                             </g:each>
                             </tbody>
