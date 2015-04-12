@@ -43,22 +43,6 @@
                     </sec:ifAllGranted>
                     <sec:ifNotGranted roles="${Roles.ADMIN.name}">
                         <li><g:link controller="home" action="index">Home</g:link></li>
-                        <sec:ifLoggedIn>
-                            <li class="dropdown">
-                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">Create</a>
-
-                                <div class="dropdown-menu pull-right with-arrow panel panel-default">
-                                    <ul class="list-group">
-                                        <li class="list-group-item">
-                                            <g:link controller="reference" action="create">Reference</g:link>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <g:link controller="entity" action="create">Entity</g:link>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </sec:ifLoggedIn>
                         <li><g:link controller="home" action="list">People</g:link></li>
                         <li class="dropdown text-normal nav-profile">
                             <a href="javascript:void(0);" data-toggle="dropdown">
