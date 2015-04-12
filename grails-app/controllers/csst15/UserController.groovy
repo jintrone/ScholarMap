@@ -224,7 +224,7 @@ class UserController {
                 currentUser.addToEntities(entity)
                 new ReferenceVote(user: currentUser, reference: null, entity: entity).save(flush: true)
                 def entities = ReferenceVote.findAllByUser(currentUser)?.entity?.unique()
-                render(template: 'interestRecords', model: [entities: entities, currentUser: currentUser])
+                render(template: 'interestRecords', model: [newEntityName: entity.name, entities: entities, currentUser: currentUser])
             } else {
                 render(status: HttpStatus.BAD_REQUEST)
             }
@@ -243,7 +243,6 @@ class UserController {
         if (currentUser) {
             if (entityId) {
                 ReferenceVote.findAllByEntityAndUser(entity, currentUser).collect { it.delete(flush: true) }
-//                currentUser.removeFromEntities(entity)
                 log.info("Deleted the interest with id ${entityId} for user with id ${currentUser.id}")
                 redirect(action: 'interests', params: [username: currentUser.username])
             }

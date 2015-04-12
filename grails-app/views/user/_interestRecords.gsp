@@ -31,3 +31,25 @@
     </g:each>
     </tbody>
 </table>
+
+<div class="modal fade" id="addReferenceModal" style="display: none" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">${newEntityName}</h4>
+            </div>
+
+            <div class="modal-body">
+                ${newEntityName} has been added. Please take the time to add a reference.
+            </div>
+
+            <div class="modal-footer">
+                <a href="javascript:void(0);" id="addRefBtn" class="btn btn-primary">Add Reference</a>
+            </div>
+        </div>
+    </div>
+</div>

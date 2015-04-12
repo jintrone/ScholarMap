@@ -93,7 +93,6 @@
     <div class="modal fade" id="addInterestModal" style="display: none" tabindex="-1" role="dialog"
          aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            %{--<g:form controller="entity" action="update" method="post">--}%
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"
@@ -128,29 +127,6 @@
                     <button type="button" class="btn btn-default"
                             data-dismiss="modal">Cancel</button>
                     <a href="javascript:void(0);" id="addInterestBtn" class="btn btn-primary">Add</a>
-                </div>
-            </div>
-            %{--</g:form>--}%
-        </div>
-    </div>
-
-    <div class="modal fade" id="addReferenceModal" style="display: none" tabindex="-1" role="dialog"
-         aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"
-                            aria-label="Close"><span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title">Participatory Design</h4>
-                </div>
-
-                <div class="modal-body">
-                    Participatory Design has been added. Please take the time to add a reference to two.
-                </div>
-
-                <div class="modal-footer">
-                    <a href="javascript:void(0);" id="addRefBtn" class="btn btn-primary">Add Reference</a>
                 </div>
             </div>
         </div>

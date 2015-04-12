@@ -128,10 +128,19 @@ $(document).ready(function () {
             },
             success: function (data) {
                 $('#addInterestModal').modal('hide');
-                $('#addReferenceModal').modal('show');
                 $('#interestRecords').find('table').remove();
+                $('#interestRecords').find('#addReferenceModal').remove();
                 $('#interestRecords').append(data);
+                $('#addReferenceModal').modal('show');
+                resetFields($('#addInterestModal'));
+
             }
         });
     });
 });
+
+function resetFields(container) {
+    container.find('input').val("");
+    container.find('select').val("");
+    container.find('textarea').val("");
+}
