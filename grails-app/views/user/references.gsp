@@ -18,7 +18,7 @@
                 <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Selected References
                 </strong></div>
 
-                <div class="panel-body" id="availableRefPanel">
+                <div class="panel-body" id="selectedRefPanel">
                     <g:hiddenField name="entity" value="${entity?.id}"/>
                     <div class="table-responsive">
                         <g:render template="selectedReferences" model="[selectedReferences: selectedReferences]"/>

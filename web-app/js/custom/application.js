@@ -142,23 +142,17 @@ $(document).ready(function () {
 
     var availableReferences = $("#availableReferences");
     availableReferences.find(".select-reference").click(function () {
-        alert($(this).attr('id'));
         $.ajax({
             type: 'POST',
             url: $("#referenceVoteURL").val(),
             data: {
                 refId: $(this).attr('id'),
-                entity: $("#availableRefPanel").find("#entity").val()
+                entity: $("#selectedRefPanel").find("#entity").val()
             },
             success: function (data) {
-                alert(data);
-                $(this).removeClass("glyphicon-star-empty").addClass("yourClass").addClass('glyphicon-star');
-                //$('#interestRecords').find('table').remove();
-                //$('#interestRecords').find('#addReferenceModal').remove();
-                //$('#interestRecords').append(data);
-                //$('#addReferenceModal').modal('show');
-                //resetFields($('#addInterestModal'));
-
+                $("#" + data.id).removeClass("glyphicon-star-empty").addClass('glyphicon-star');
+                $("#selectedRefPanel").find('.table-responsive table').remove();
+                $("#selectedRefPanel").find('.table-responsive').append(data);
             }
         });
     });

@@ -284,13 +284,8 @@ class UserController {
 
         if (reference && entity) {
             new ReferenceVote(user: currentUser, reference: reference, entity: entity).save(flush: true)
-//            def refVote = ReferenceVote.findByUserAndEntity(currentUser, entity)
-
-//             if (refVote) {
-//                 refVote.reference = reference
-//                 refVote.save(flush: true)
-
-            render(status: HttpStatus.OK, id: reference.id)
+            def selectedReferences = ReferenceVote.findAllByEntityAndReferenceIsNotNullAndUser(entity, currentUser)?.reference
+            render(template: 'selectedReferences', model: [selectedReferences: selectedReferences, id: reference.id])
         } else {
             render(status: HttpStatus.BAD_REQUEST)
         }
