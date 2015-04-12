@@ -65,6 +65,26 @@ public final class GeneralUtils {
         return result
     }
 
+    public static constructEntityType(String input) {
+        def type
+        switch (input) {
+            case "Method":
+                type = METHOD
+                break
+            case "Area":
+                type = FIELD
+                break
+            case "Theory":
+                type = THEORY
+                break
+            case "Venue":
+                type = VENUE
+                break
+        }
+
+        return type
+    }
+
     public static String generateMD5(String s) {
         MessageDigest digest = MessageDigest.getInstance("MD5")
         digest.update(s.bytes);
