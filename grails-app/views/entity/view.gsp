@@ -63,25 +63,19 @@
                 <li class="active"><a href="javascript:void(0);">${entity.name}</a></li>
             </ol>
 
-            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel-group" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
-                    <div class="panel-heading" style="padding: 20px; height: 50px" role="tab" id="headingOne">
+                    <div class="panel-heading" style="padding-bottom: 20px; padding-top: 20px; height: 50px" role="tab">
                         <div class="col-md-11">
                             <h4 class="panel-title">
                                 <strong style="padding-right: 25px"><span
-                                        class="glyphicon glyphicon-th"></span> Details for
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                                       aria-expanded="true"
-                                       aria-controls="collapseOne">
-                                        ${entity.name}
-                                    </a>
-                                </strong>
+                                        class="glyphicon glyphicon-th"></span> Details for ${entity.name}</strong>
                             </h4>
                         </div>
 
                         <div class="col-md-1">
                             <sec:ifLoggedIn>
-                                <a href="javascript:void(0);" class="edit-entity" title="Edit">Edit</a>
+                                <p style="cursor: pointer" class="edit-entity" title="Edit">Edit</p>
                             </sec:ifLoggedIn>
                         </div>
                     </div>
