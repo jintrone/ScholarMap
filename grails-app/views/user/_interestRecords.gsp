@@ -16,7 +16,11 @@
     <g:each in="${entities}" var="entity">
         <tr>
             <td>${entity?.type?.name}</td>
-            <td>${entity?.name}</td>
+            <td>
+                <g:link controller="entity" action="view" params="[id: entity.id]">
+                    ${entity?.name}
+                </g:link>
+            </td>
             <td>${entity?.description}</td>
             <td>${ReferenceVote.findAllByReferenceNotIsNullAndEntity(entity)?.reference?.unique()?.size()}</td>
             <g:if test="${currentUser.username.equals(sec.username().toString())}">
@@ -40,15 +44,16 @@
                 <button type="button" class="close" data-dismiss="modal"
                         aria-label="Close"><span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title">${newEntityName}</h4>
+                <h4 class="modal-title">${newEntity?.name}</h4>
             </div>
 
             <div class="modal-body">
-                ${newEntityName} has been added. Please take the time to add a reference.
+                ${newEntity?.name} has been added. Please take the time to add a reference.
             </div>
 
             <div class="modal-footer">
-                <a href="javascript:void(0);" id="addRefBtn" class="btn btn-primary">Add Reference</a>
+                <g:link controller="user" action="references" params="[entity: newEntity?.id]"
+                        class="btn btn-primary">Add Reference</g:link>
             </div>
         </div>
     </div>
