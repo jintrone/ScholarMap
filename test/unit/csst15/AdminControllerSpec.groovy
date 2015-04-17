@@ -9,13 +9,11 @@ import csst15.security.Role
 import csst15.security.User
 import csst15.security.UserRole
 import grails.buildtestdata.mixin.Build
-import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
 @TestFor(AdminController)
-@Mock([User, FieldMandatoryConf])
-@Build([User, GeneralConf, FieldLockConf, Role, FieldMandatoryConf, FieldVisibilityConf, Entity, Reference])
+@Build([User, GeneralConf, FieldLockConf, Role, FieldMandatoryConf, FieldVisibilityConf, Entity, Reference, UserRole, ReferenceVote])
 class AdminControllerSpec extends Specification {
     void "test the board action"() {
         given:

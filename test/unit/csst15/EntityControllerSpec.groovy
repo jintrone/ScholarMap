@@ -16,7 +16,7 @@ class EntityControllerSpec extends Specification {
     void "test the submit action with errors"() {
         setup:
         request.method = 'POST'
-        def entityCommand = new EntityCommand(type: 'Method')
+        def entityCommand = new EntityCommand()
 
         when:
         controller.submit(entityCommand)
@@ -29,7 +29,7 @@ class EntityControllerSpec extends Specification {
     void "test the submit action when failed to create"() {
         setup:
         request.method = 'POST'
-        def entityCommand = new EntityCommand(type: 'Method', name: 'Method1', description: 'Method1 desc')
+        def entityCommand = new EntityCommand(name: 'Method1', description: 'Method1 desc')
         controller.entityService = [createEntity: { command -> null }]
 
         when:
@@ -43,7 +43,7 @@ class EntityControllerSpec extends Specification {
     void "test the submit action when successfully created"() {
         setup:
         request.method = 'POST'
-        def entityCommand = new EntityCommand(type: 'Method', name: 'Method2', description: 'Method2 desc')
+        def entityCommand = new EntityCommand(name: 'Method2', description: 'Method2 desc')
         def entity = Entity.build()
         controller.entityService = [createEntity: { command -> entity }]
 
