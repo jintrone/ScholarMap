@@ -88,11 +88,11 @@
                                         <span data-i18n="My Profile">My Profile</span>
                                     </g:link>
                                 </li>
-                                <li>
-                                    <g:link controller="user" action="profile" params="[username: csst.username()]">
-                                        <span data-i18n="My Profile">References</span>
-                                    </g:link>
-                                </li>
+                                %{--<li>--}%
+                                %{--<g:link controller="user" action="profile" params="[username: csst.username()]">--}%
+                                %{--<span data-i18n="My Profile">References</span>--}%
+                                %{--</g:link>--}%
+                                %{--</li>--}%
                                 <li>
                                     <g:link controller="logout"><span>Logout</span></g:link>
                                 </li>
