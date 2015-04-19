@@ -85,6 +85,8 @@ class InterestsController {
             ReferenceVote.findByEntityAndReference(entity, reference).collect { it.delete(flush: true) }
             log.info("Downvoted the entity with id ${entity.id}")
             redirect(action: 'references', params: [entityId: entity.id])
+        } else {
+            redirect(uri: '/not-found')
         }
     }
 
@@ -92,12 +94,15 @@ class InterestsController {
     def references() {
         def allReferences = Reference.list()
         def entity = Entity.findById(params.entityId)
-        def selectedReferences = ReferenceVote.findAllByEntityAndReferenceIsNotNull(entity)?.reference?.unique()
-        def availableReferences = allReferences.findAll { reference ->
-            !selectedReferences.contains(reference)
+        if (entity) {
+            def selectedReferences = ReferenceVote.findAllByEntityAndReferenceIsNotNull(entity)?.reference?.unique()
+            def availableReferences = allReferences.findAll { reference ->
+                !selectedReferences.contains(reference)
+            }
+            render(view: '/user/references', model: [entity: entity, availableReferences: availableReferences, selectedReferences: selectedReferences])
+        } else {
+            redirect(uri: '/not-found')
         }
-
-        render(view: '/user/references', model: [entity: entity, availableReferences: availableReferences, selectedReferences: selectedReferences])
     }
 
     @Transactional

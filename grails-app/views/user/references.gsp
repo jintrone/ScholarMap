@@ -7,7 +7,7 @@
             <ol class="breadcrumb-alt">
                 <li><a href="javascript:void(0);">Profile</a></li>
                 <li>
-                    <g:link controller="entity" action="view" params="[id: entity.id]">
+                    <g:link controller="entity" action="view" params="[id: entity?.id]">
                         ${entity?.name}
                     </g:link>
                 </li>
@@ -16,7 +16,7 @@
 
             <div id="refTablesContainer">
                 <g:render template="/user/referenceList"
-                          model="[entityId: entity.id, selectedReferences: selectedReferences, availableReferences: availableReferences]"/>
+                          model="[entityId: entity?.id, selectedReferences: selectedReferences, availableReferences: availableReferences]"/>
             </div>
         </div>
 
@@ -36,7 +36,7 @@
 
             <div class="modal-body">
                 <g:form controller="interests" action="addReference">
-                    <g:hiddenField name="entity" value="${entity.id}"/>
+                    <g:hiddenField name="entity" value="${entity?.id}"/>
                     <div class="form-group">
                         <label for="year">Year</label>
                         <g:textField class="form-control" name="year" placeholder="Not set"/>
