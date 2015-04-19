@@ -1,4 +1,4 @@
-<%@ page import="csst15.ReferenceAuthor; com.google.common.base.Joiner; csst15.ReferenceVote" %>
+<%@ page import="csst15.UserEntity; csst15.ReferenceAuthor; com.google.common.base.Joiner; csst15.ReferenceVote" %>
 <g:applyLayout name="main">
 
     <div class="modal fade" id="editEntityModal" style="display: none" tabindex="-1" role="dialog"
@@ -126,7 +126,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <g:each in="${ReferenceVote.findAllByEntity(entity)?.user?.unique()}" var="user">
+                                    <g:each in="${UserEntity.findAllByEntity(entity)?.user?.unique()}" var="user">
                                         <tr>
                                             <td>
                                                 <g:link controller="user" action="profile"

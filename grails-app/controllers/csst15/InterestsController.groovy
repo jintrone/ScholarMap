@@ -25,8 +25,8 @@ class InterestsController {
         if (currentUser) {
             def entity = Entity.findWhere(name: params.name) ?: new Entity(type: GeneralUtils.constructEntityType(params.type), name: params.name, description: params.description).save(flush: true)
             if (entity?.id) {
-                currentUser.addToEntities(entity)
-                def entities = currentUser.entities
+                UserEntity.create(currentUser, entity)
+                def entities = UserEntity.findAllByUser(currentUser)?.entity
                 render(template: '/user/interestRecords', model: [newEntity: entity, entities: entities, currentUser: currentUser])
             } else {
                 render(status: HttpStatus.BAD_REQUEST)

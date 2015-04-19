@@ -1,21 +1,18 @@
 package csst15
 
 import csst15.constants.EntityType
-import csst15.security.User
-
 
 class Entity {
     String name
     String description
     EntityType type
-    static belongsTo = [user: User]
+//    static belongsTo = [user: User]
 //    static hasMany = [users: User, references: ReferenceVote]
 
     static constraints = {
         description nullable: true
         name blank: false, unique: true
         type blank: false
-        user nullable: true
     }
 
     static mapping = {

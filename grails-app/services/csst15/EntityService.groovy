@@ -19,7 +19,7 @@ class EntityService {
 
             if (entity.save(flush: true)) {
                 log.info("Created entity with id ${entity.id}")
-                user.addToEntities(entity)
+                UserEntity.create(user, entity)
                 return entity
             } else {
                 log.error("User creation attempt failed")

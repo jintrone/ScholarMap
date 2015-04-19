@@ -1,6 +1,5 @@
 package csst15.security
 
-import csst15.Entity
 import csst15.Reference
 import csst15.conf.FieldLockConf
 import csst15.conf.FieldVisibilityConf
@@ -34,7 +33,7 @@ class User {
 
     static transients = ['springSecurityService']
 
-    static hasMany = [entities: Entity, references: Reference]
+    static hasMany = [references: Reference]
     static hasOne = [lockConf: FieldLockConf, visibilityConf: FieldVisibilityConf]
 
 
@@ -56,7 +55,6 @@ class User {
     }
 
     static mapping = {
-//        entities cascade: 'all-delete-orphan'
         references cascade: 'all-delete-orphan'
         password column: '`password`'
     }

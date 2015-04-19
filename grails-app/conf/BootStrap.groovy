@@ -160,12 +160,12 @@ class BootStrap {
             field1 = Entity.findByName("Human Computer Interaction") ?: new Field(name: 'Human Computer Interaction', description: 'bla bla', type: EntityType.FIELD).save(failOnError: true)
             field2 = Entity.findByName("Design") ?: new Field(name: 'Design', description: 'bla bla', type: EntityType.FIELD).save(failOnError: true)
 
-            user.addToEntities(method)
-            user.addToEntities(theory1)
-            user.addToEntities(theory2)
-            user.addToEntities(theory3)
-            user.addToEntities(field1)
-            user.addToEntities(field2)
+            UserEntity.create(user, method)
+            UserEntity.create(user, theory1)
+            UserEntity.create(user, theory2)
+            UserEntity.create(user, theory3)
+            UserEntity.create(user, field1)
+            UserEntity.create(user, field2)
         }
 
         def reference = null
