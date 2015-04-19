@@ -108,7 +108,8 @@ class InterestsController {
         } else {
             def reference = referenceService.createReference(referenceCommand)
             def entity = Entity.get(params.entity)
-
+            def currentUser = springSecurityService.currentUser as User
+            new ReferenceVote(user: currentUser, reference: reference, entity: entity).save(flush: true)
             if (reference) {
                 redirect(action: 'references', params: [entityId: entity.id])
             } else {
