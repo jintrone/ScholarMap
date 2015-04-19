@@ -162,7 +162,7 @@ class UserController {
     def interests() {
         def user = User.findByUsername(params.username)
         if (user) {
-            def entities = UserEntity.findByUser(user)?.entity
+            def entities = UserEntity.findAllByUser(user)?.entity
             render(view: 'interests', model: [entities: entities, currentUser: user])
         } else {
             redirect(controller: 'login', action: 'auth')
