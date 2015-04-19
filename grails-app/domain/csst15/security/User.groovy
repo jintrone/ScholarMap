@@ -1,7 +1,7 @@
 package csst15.security
 
 import csst15.Entity
-import csst15.ReferenceVote
+import csst15.Reference
 import csst15.conf.FieldLockConf
 import csst15.conf.FieldVisibilityConf
 import csst15.lists.Department
@@ -34,7 +34,7 @@ class User {
 
     static transients = ['springSecurityService']
 
-    static hasMany = [references: ReferenceVote, entities: Entity]
+    static hasMany = [entities: Entity, references: Reference]
     static hasOne = [lockConf: FieldLockConf, visibilityConf: FieldVisibilityConf]
 
 
@@ -52,11 +52,11 @@ class User {
         photo nullable: true, maxSize: 3 * 1024 * 1024
         activationToken nullable: true
         passwordResetToken nullable: true
-        entities nullable: true
+        references nullable: true
     }
 
     static mapping = {
-        entities cascade: 'all-delete-orphan'
+//        entities cascade: 'all-delete-orphan'
         references cascade: 'all-delete-orphan'
         password column: '`password`'
     }

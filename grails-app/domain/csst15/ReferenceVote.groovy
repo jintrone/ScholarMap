@@ -6,6 +6,7 @@ class ReferenceVote implements Serializable {
     Entity entity
     Reference reference
     User user
+    Date dateCreated
 
     static constraints = {
         reference nullable: true

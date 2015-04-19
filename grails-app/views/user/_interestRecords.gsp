@@ -24,12 +24,12 @@
             <td>${entity?.description}</td>
             <td>
                 <g:if test="${!ReferenceVote.findAllByReferenceNotIsNullAndEntity(entity)}">
-                    <g:link controller="user" action="references" params="[entityId: entity?.id]">
-                        Add
-                    </g:link>
+                    <g:link controller="interests" action="references" params="[entityId: entity?.id]">Add</g:link>
                 </g:if>
                 <g:else>
-                    ${ReferenceVote.findAllByReferenceNotIsNullAndEntity(entity)?.reference?.unique()?.size()}
+                    <g:link controller="interests" action="references" params="[entityId: entity?.id]">
+                        ${ReferenceVote.findAllByReferenceNotIsNullAndEntity(entity)?.reference?.unique()?.size()}
+                    </g:link>
                 </g:else>
             </td>
             <g:if test="${currentUser.username.equals(sec.username().toString())}">
@@ -61,7 +61,7 @@
             </div>
 
             <div class="modal-footer">
-                <g:link controller="user" action="references" params="[entityId: newEntity?.id]"
+                <g:link controller="interests" action="references" params="[entityId: newEntity?.id]"
                         class="btn btn-primary">Add Reference</g:link>
             </div>
         </div>

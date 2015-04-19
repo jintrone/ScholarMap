@@ -53,7 +53,7 @@
             <ol class="breadcrumb-alt">
                 <li><a href="javascript:void(0);">Explore</a></li>
                 <li>
-                    <g:link controller="home" action="venues">Reference</g:link>
+                    <g:link controller="home" action="references">Reference</g:link>
                 </li>
                 <li class="active"><a
                         href="javascript:void(0);">${ReferenceAuthor.findByReference(reference)?.author?.lastName} ${reference?.year}</a>

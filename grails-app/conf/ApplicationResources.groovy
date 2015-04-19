@@ -11,6 +11,11 @@ modules = {
         resource url: 'js/jquery/jquery.min.js'
     }
 
+    jquery_ui {
+        resource url: 'js/jquery/jquery-ui.min.js'
+        resource url: 'css/jquery/jquery-ui.css'
+    }
+
     dataTable {
         dependsOn 'jquery'
         resource url: 'js/jquery/jquery.dataTables.min.js'
@@ -20,6 +25,7 @@ modules = {
     application {
         dependsOn 'dataTable'
         dependsOn 'bootstrap'
+        dependsOn 'jquery_ui'
         resource url: 'js/custom/application.js'
     }
 }

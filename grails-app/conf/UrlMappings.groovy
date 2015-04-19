@@ -50,20 +50,20 @@ class UrlMappings {
             action = "editUserProfile"
         }
 
-        "/user/addInterest" {
-            controller = "user"
-            action = "addInterest"
-        }
-
-        "/user/references/$entityId" {
-            controller = "user"
-            action = "references"
-        }
-
-        "/user/referenceVote" {
-            controller = "user"
-            action = "referenceVote"
-        }
+//        "/user/addInterest" {
+//            controller = "user"
+//            action = "addInterest"
+//        }
+//
+//        "/user/references/$entityId" {
+//            controller = "user"
+//            action = "references"
+//        }
+//
+//        "/user/referenceVote" {
+//            controller = "user"
+//            action = "referenceVote"
+//        }
 
         "/user/changePasswordPage/$username" {
             controller = "user"
@@ -95,9 +95,9 @@ class UrlMappings {
             action = "interests"
         }
 
-        "/interest/delete" {
-            controller = "user"
-            action = "deleteInterest"
+        "/interest/downvote/$id/$entityId" {
+            controller = "interests"
+            action = "removeVote"
         }
 
         "/user/fillRequiredFields" {

@@ -34,13 +34,13 @@
         <div class="modal fade" id="deleteInterestModal" style="display: none" tabindex="-1" role="dialog"
              aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-                <g:form controller="user" action="deleteInterest" method="post">
+                <g:form controller="interests" action="deleteInterest" method="post">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"
                                     aria-label="Close"><span aria-hidden="true">&times;</span>
                             </button>
-                            <h4 class="modal-title" id="myModalLabel">Alert</h4>
+                            <h4 class="modal-title" id="myModalLabel">Delete Interest</h4>
                         </div>
 
                         <div class="modal-body">
@@ -90,8 +90,7 @@
         <div class="col-md-1"></div>
     </div>
 
-    <div class="modal fade" id="addInterestModal" style="display: none" tabindex="-1" role="dialog"
-         aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addInterestModal" style="display: none">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -108,10 +107,9 @@
                                   class="form-control" name="type" placeholder="Type"/>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group ui-front">
                         <label for="name">Name</label>
-                        <input type="text" name="name" class="form-control" id="name"
-                               placeholder="Not set">
+                        <csst:autocomplete name="name" action="loadInterests" class="form-control" id="name"/>
                     </div>
 
                     <div class="form-group">

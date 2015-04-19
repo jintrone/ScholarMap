@@ -8,19 +8,17 @@ class Entity {
     String name
     String description
     EntityType type
-    static belongsTo = User
-    static hasMany = [users: User, references: ReferenceVote]
+    static belongsTo = [user: User]
+//    static hasMany = [users: User, references: ReferenceVote]
 
     static constraints = {
         description nullable: true
         name blank: false, unique: true
         type blank: false
-        users nullable: true
-        references nullable: true
+        user nullable: true
     }
 
     static mapping = {
-        users cascade: 'all-delete-orphan'
         description type: "text"
     }
 

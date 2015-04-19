@@ -4,6 +4,13 @@
  */
 
 $(document).ready(function () {
+    $("#addInterestModal").find("#name").autocomplete({
+        //source: availableTags
+    });
+    //$("#addInterestModal").find("#name").attr('autocomplete', 'on');
+
+
+
     if ($("#isRequired").length > 0) {
         $('#fillRequiredModal').modal({
             keyboard: false,
@@ -140,6 +147,26 @@ $(document).ready(function () {
         });
     });
 
+    refVote();
+
+    $("#availableReferences").dataTable({
+        "paging": true,
+        "ordering": true,
+        "info": false,
+        "bFilter": true
+    });
+
+    showRefModal();
+
+});
+
+function resetFields(container) {
+    container.find('input').val("");
+    container.find('select').val("");
+    container.find('textarea').val("");
+}
+
+function refVote() {
     var availableReferences = $("#availableReferences");
     availableReferences.find(".select-reference").click(function () {
         $.ajax({
@@ -150,25 +177,17 @@ $(document).ready(function () {
                 entity: $("#selectedRefPanel").find("#entity").val()
             },
             success: function (data) {
-                $("#" + data.id).removeClass("glyphicon-star-empty").addClass('glyphicon-star');
-                $("#selectedRefPanel").find('.table-responsive table').remove();
-                $("#selectedRefPanel").find('.table-responsive').append(data);
+                $("#referenceTablesPanel").remove();
+                $("#refTablesContainer").append(data);
+                refVote();
+                showRefModal();
             }
         });
     });
+}
 
-    availableReferences.dataTable({
-        "paging": true,
-        "ordering": true,
-        "info": false,
-        "bFilter": true
+function showRefModal() {
+    $("#addNewRefBtn").click(function () {
+        $('#addNewReferenceModal').modal('show');
     });
-
-
-});
-
-function resetFields(container) {
-    container.find('input').val("");
-    container.find('select').val("");
-    container.find('textarea').val("");
 }

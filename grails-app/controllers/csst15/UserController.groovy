@@ -27,8 +27,6 @@ class UserController {
             update              : 'POST',
             fillRequiredFields  : 'GET',
             updateRequiredFields: 'POST',
-            deleteInterest      : 'POST',
-            addInterest         : "POST"
     ]
     def springSecurityService
     def uploadService
@@ -213,43 +211,6 @@ class UserController {
         }
     }
 
-    @Transactional
-    @Secured(['IS_AUTHENTICATED_FULLY'])
-    def addInterest() {
-        def currentUser = springSecurityService.currentUser as User
-
-        if (currentUser) {
-            def entity = new Entity(type: GeneralUtils.constructEntityType(params.type), name: params.name, description: params.description)
-            if (entity.save(flush: true)) {
-                currentUser.addToEntities(entity)
-                def entities = currentUser.entities
-                render(template: 'interestRecords', model: [newEntity: entity, entities: entities, currentUser: currentUser])
-            } else {
-                render(status: HttpStatus.BAD_REQUEST)
-            }
-
-        } else {
-            redirect(controller: 'login', action: 'auth')
-        }
-    }
-
-    @Transactional
-    @Secured(['IS_AUTHENTICATED_FULLY'])
-    def deleteInterest() {
-        def entityId = params.entityId
-        def currentUser = springSecurityService.currentUser as User
-        def entity = Entity.get(entityId)
-        if (currentUser) {
-            if (entityId) {
-                ReferenceVote.findAllByEntityAndUser(entity, currentUser).collect { it.delete(flush: true) }
-                log.info("Deleted the interest with id ${entityId} for user with id ${currentUser.id}")
-                redirect(action: 'interests', params: [username: currentUser.username])
-            }
-        } else {
-            redirect(controller: 'login', action: 'auth')
-        }
-    }
-
     def avatar_image() {
         def user = User.get(params.id)
         if (!user || !user.photo) {
@@ -261,34 +222,6 @@ class UserController {
         OutputStream out = response.outputStream
         out.write(user.photo)
         out.close()
-    }
-
-    def references() {
-        def allReferences = Reference.list()
-        def entity = Entity.get(params.entityId)
-        def currentUser = springSecurityService.currentUser as User
-        def selectedReferences = ReferenceVote.findAllByEntityAndReferenceIsNotNullAndUser(entity, currentUser)?.reference
-        def availableReferences = allReferences.findAll { reference ->
-            !selectedReferences.contains(reference)
-        }
-
-        render(view: 'references', model: [entity: entity, availableReferences: availableReferences, selectedReferences: selectedReferences])
-    }
-
-    @Transactional
-    @Secured(['IS_AUTHENTICATED_FULLY'])
-    def referenceVote() {
-        def reference = Reference.get(params.refId)
-        def entity = Entity.get(params.entity)
-        def currentUser = springSecurityService.currentUser as User
-
-        if (reference && entity) {
-            new ReferenceVote(user: currentUser, reference: reference, entity: entity).save(flush: true)
-            def selectedReferences = ReferenceVote.findAllByEntityAndReferenceIsNotNullAndUser(entity, currentUser)?.reference
-            render(template: 'selectedReferences', model: [selectedReferences: selectedReferences, id: reference.id])
-        } else {
-            render(status: HttpStatus.BAD_REQUEST)
-        }
     }
 }
 
