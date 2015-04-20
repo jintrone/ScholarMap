@@ -166,10 +166,10 @@ class GraphController extends RestfulController {
         def root = builder {
             nodes(
                     users.collect { User u ->
-                        def userMethods = u.entities.findAll { Entity method -> method.type == METHOD }.unique()
-                        def userTheories = u.entities.findAll { Entity theory -> theory.type == THEORY }.unique()
-                        def userFields = u.entities.findAll { Entity field -> field.type == FIELD }.unique()
-                        def userVenues = u.entities.findAll { Entity venue -> venue.type == VENUE }.unique()
+                        def userMethods = UserEntity.findAllByUser(u).entity.findAll { Entity method -> method.type == METHOD }.unique()
+                        def userTheories = UserEntity.findAllByUser(u).entity.findAll { Entity theory -> theory.type == THEORY }.unique()
+                        def userFields = UserEntity.findAllByUser(u).entity.findAll { Entity field -> field.type == FIELD }.unique()
+                        def userVenues = UserEntity.findAllByUser(u).entity.findAll { Entity venue -> venue.type == VENUE }.unique()
                         [
                                 name        : u.firstName + " " + u.lastName,
                                 department  : u.department?.title ?: "",
@@ -223,7 +223,7 @@ class GraphController extends RestfulController {
                     allReferences.collect { reference ->
                         "${reference.id}" {
                             name "${reference.citation}"
-                            relative_url "${constructReferenceUrl("reference", ReferenceAuthor.findByReference(reference).author.lastName + reference.year + reference.hash)}"
+                            relative_url "${constructReferenceUrl("reference", ReferenceAuthor.findByReference(reference)?.author?.lastName ?: '' + reference?.year + reference?.hash)}"
                         }
                     }
                 }

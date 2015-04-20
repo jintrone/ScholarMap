@@ -35,7 +35,7 @@ public final class GeneralUtils {
     }
 
     public static String constructReferenceUrl(def prefix, String source) {
-        def refUrl = Normalizer.normalize(source.toLowerCase(), Normalizer.Form.NFD)
+        def refUrl = Normalizer.normalize(source?.toLowerCase(), Normalizer.Form.NFD)
                 .replaceAll("\\p{InCombiningDiacriticalMarks}+", "")
                 .replaceAll("[^\\p{Alnum}]+", "-")
                 .replace("--", "-").replace("--", "-")
