@@ -51,7 +51,7 @@
             <div class="col-md-2">
                 <sec:ifLoggedIn>
                     <a href="javascript:void(0);" id="addNewRefBtn" class="btn btn-success"
-                       title="Add New Reference">Add New Reference</a>
+                       title="Create New Reference">Create New Reference</a>
                 </sec:ifLoggedIn>
             </div>
         </div>
