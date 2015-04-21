@@ -78,8 +78,13 @@
                             <td>${reference?.citation}</td>
                             <td>${ReferenceVote.countByReference(reference)}</td>
                             <td>
-                                <p class="select-reference glyphicon glyphicon-star-empty"
-                                   style="cursor: pointer" id="${reference?.id}"></p>
+                                <g:link class="glyphicon glyphicon-eye-open" controller="reference"
+                                        action="view" params="[id: reference?.id]"/>
+                                <sec:ifLoggedIn>
+                                    <a href="javascript:void(0);"
+                                       class="select-reference glyphicon glyphicon-star-empty"
+                                       style="cursor: pointer" id="${reference?.id}"></a>
+                                </sec:ifLoggedIn>
                             </td>
                         </tr>
                     </g:each>
