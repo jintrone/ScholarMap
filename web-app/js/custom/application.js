@@ -148,7 +148,12 @@ $(document).ready(function () {
     });
 
     refVote();
+    applyDatatable();
+    showRefModal();
 
+});
+
+function applyDatatable() {
     $("#availableReferences").dataTable({
         "paging": true,
         "ordering": true,
@@ -162,10 +167,7 @@ $(document).ready(function () {
         "info": false,
         "bFilter": true
     });
-
-    showRefModal();
-
-});
+}
 
 function resetFields(container) {
     container.find('input').val("");
@@ -188,6 +190,7 @@ function refVote() {
                 $("#refTablesContainer").append(data);
                 refVote();
                 showRefModal();
+                applyDatatable();
             }
         });
     });

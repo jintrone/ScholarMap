@@ -44,11 +44,11 @@
     <section class="panel panel-default">
         <div class="panel-heading" style="padding: 20px; height: 80px">
 
-            <div class="col-md-10">
+            <div class="col-md-9">
                 <strong><span class="glyphicon glyphicon-th"></span> Available References</strong>
             </div>
 
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <sec:ifLoggedIn>
                     <a href="javascript:void(0);" id="addNewRefBtn" class="btn btn-success"
                        title="Create New Reference">Create New Reference</a>
@@ -66,7 +66,7 @@
                         <th>Year</th>
                         <th>Citation</th>
                         <th>Votes</th>
-                        <th>Vote</th>
+                        <th>Select</th>
                     </tr>
                     </thead>
 
@@ -82,7 +82,7 @@
                                         action="view" params="[id: reference?.id]"/>
                                 <sec:ifLoggedIn>
                                     <a href="javascript:void(0);"
-                                       class="select-reference glyphicon glyphicon-star-empty"
+                                       class="select-reference glyphicon glyphicon-arrow-up"
                                        style="cursor: pointer" id="${reference?.id}"></a>
                                 </sec:ifLoggedIn>
                             </td>
