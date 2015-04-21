@@ -7,7 +7,7 @@
         <div class="panel-body" id="selectedRefPanel">
             <g:hiddenField name="entity" value="${entityId}"/>
             <div class="table-responsive">
-                <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered" id="selectedReferences">
                     <thead>
                     <tr>
                         <th>Authors</th>

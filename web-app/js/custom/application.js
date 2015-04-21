@@ -156,6 +156,13 @@ $(document).ready(function () {
         "bFilter": true
     });
 
+    $("#selectedReferences").dataTable({
+        "paging": true,
+        "ordering": true,
+        "info": false,
+        "bFilter": true
+    });
+
     showRefModal();
 
 });
