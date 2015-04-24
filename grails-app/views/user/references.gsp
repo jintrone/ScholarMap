@@ -49,13 +49,6 @@
                                   placeholder="Not set"></textarea>
                     </div>
 
-                    <div class="form-group">
-                        <label for="content">Content</label>
-                        <textarea maxlength="5000" name="content" rows="5" id="content"
-                                  class="form-control"
-                                  placeholder="Not set"></textarea>
-                    </div>
-
                     </div>
 
                     <div class="modal-footer">
