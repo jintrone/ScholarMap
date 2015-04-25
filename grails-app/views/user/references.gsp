@@ -43,7 +43,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="citation">Citation</label>
+                        <label for="citation">Full Citation</label>
                         <textarea maxlength="500" name="citation" rows="5" id="citation"
                                   class="form-control"
                                   placeholder="Not set"></textarea>

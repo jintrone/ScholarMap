@@ -48,7 +48,7 @@
                             <tr>
                                 <th>Authors</th>
                                 <th>Year</th>
-                                <th>Citation</th>
+                                <th>Full Citation</th>
                                 <th>Votes</th>
                                 <th>Action</th>
                             </tr>
