@@ -5,6 +5,7 @@
             <div class="col-md-6">
                 <div class="panel-heading">
                     <strong><span class="glyphicon glyphicon-th"></span> Edit Profile</strong>
+                    <span style="margin-left: 350px">Visibility</span>
                 </div>
                 <g:hasErrors bean="${userCommand}">
                     <ul class="callout callout-danger errors">
