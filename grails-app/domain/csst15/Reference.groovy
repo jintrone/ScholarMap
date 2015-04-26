@@ -11,7 +11,7 @@ class Reference {
 
     static constraints = {
         citation blank: false, maxSize: 500
-        content blank: false, maxSize: 5000
+        content nullable: true, maxSize: 5000
         hash blank: false
     }
 

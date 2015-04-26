@@ -4,12 +4,9 @@
  */
 
 $(document).ready(function () {
-    $("#addInterestModal").find("#name").autocomplete({
-        //source: availableTags
+    $("#addInterestModal").find("#type").change(function () {
+        $("#addInterestModal").find("#name").attr("collectfield", $(this).val());
     });
-    //$("#addInterestModal").find("#name").attr('autocomplete', 'on');
-
-
 
     if ($("#isRequired").length > 0) {
         $('#fillRequiredModal').modal({

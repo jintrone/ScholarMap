@@ -5,3 +5,4 @@
                value="${createLink(controller: 'user', action: 'manipulateFieldVisibility')}"/>
 <g:hiddenField name="addInterestURL" value="${createLink(controller: 'interests', action: 'addInterest')}"/>
 <g:hiddenField name="referenceVoteURL" value="${createLink(controller: 'interests', action: 'referenceVote')}"/>
+<g:hiddenField name="loadEntityURL" value="${createLink(controller: 'autoComplete', action: 'loadEntity')}"/>

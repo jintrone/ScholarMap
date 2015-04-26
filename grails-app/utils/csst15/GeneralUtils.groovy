@@ -80,6 +80,8 @@ public final class GeneralUtils {
             case "Venue":
                 type = VENUE
                 break
+            default:
+                return null
         }
 
         return type

@@ -66,7 +66,7 @@ class InterestsController {
         if (reference && entity) {
             new ReferenceVote(user: currentUser, reference: reference, entity: entity).save(flush: true)
             def allReferences = Reference.list()
-            def selectedReferences = ReferenceVote.findAllByEntityAndReferenceIsNotNull(entity)?.reference?.unique()
+            def selectedReferences = ReferenceVote.findAllByEntityAndReferenceIsNotNull(entity, [cache: true])?.reference?.unique()
             def availableReferences = allReferences.findAll { ref ->
                 !selectedReferences.contains(ref)
             }
@@ -82,7 +82,7 @@ class InterestsController {
         def reference = Reference.findById(params.id)
         def entity = Entity.findById(params.entityId)
         if (entity && reference) {
-            ReferenceVote.findByEntityAndReference(entity, reference).collect { it.delete(flush: true) }
+            ReferenceVote.findByEntityAndReference(entity, reference, [cache: true]).collect { it.delete(flush: true) }
             log.info("Downvoted the entity with id ${entity.id}")
             redirect(action: 'references', params: [entityId: entity.id])
         } else {
@@ -95,7 +95,7 @@ class InterestsController {
         def allReferences = Reference.list()
         def entity = Entity.findById(params.entityId)
         if (entity) {
-            def selectedReferences = ReferenceVote.findAllByEntityAndReferenceIsNotNull(entity)?.reference?.unique()
+            def selectedReferences = ReferenceVote.findAllByEntityAndReferenceIsNotNull(entity, [cache: true])?.reference?.unique()
             def availableReferences = allReferences.findAll { reference ->
                 !selectedReferences.contains(reference)
             }
