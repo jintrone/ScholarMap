@@ -10,13 +10,6 @@
                 function(data) {
                   resp(data)
                 })
-%{--function(data) {--}%
-%{--var items = [];--}%
-%{--var x = $.each(data, function(index) {--}%
-%{--items.push(data[index].name);--}%
-%{--});--}%
-%{--resp(items);--}%
-%{--});--}%
     },
     dataType: 'json',
     focus: function(event, ui) {
