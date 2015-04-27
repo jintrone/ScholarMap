@@ -49,9 +49,39 @@
                                   placeholder="Not set"></textarea>
                     </div>
 
+                    <div class="form-group">
+                        %{--<div class="row clearfix">--}%
+                        %{--<div class="col-md-12 column">--}%
+                        <table class="table table-bordered table-hover" id="tab_logic">
+                            <thead>
+                            <tr>
+                                <th class="text-center">
+                                    #
+                                </th>
+                                <th class="text-center">
+                                    Author
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr id='addr0'>
+                                <td>
+                                    1
+                                </td>
+                                <td>
+                                    <input type="text" name='fullName' placeholder='Not set' class="form-control"/>
+                                </td>
+                            </tr>
+                            <tr id='addr1'></tr>
+                            </tbody>
+                        </table>
+                        %{--</div>--}%
+                        %{--</div>--}%
+                        <a id="add_row" class="btn btn-default pull-left">Add Row</a>
+                        <a id='delete_row' class="pull-right btn btn-default">Delete Row</a>
                     </div>
 
-                    <div class="modal-footer">
+                    <div class="modal-footer" style="margin-top: 60px">
                         <button type="button" class="btn btn-default"
                                 data-dismiss="modal">Cancel</button>
                         <button id="addReferenceBtn" class="btn btn-primary">Add</button>

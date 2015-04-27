@@ -5,6 +5,7 @@ import csst15.security.User
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 import groovy.util.logging.Slf4j
+import org.apache.commons.lang3.StringUtils
 import org.springframework.http.HttpStatus
 
 @Slf4j
@@ -113,9 +114,16 @@ class InterestsController {
         } else {
             def reference = referenceService.createReference(referenceCommand)
             def entity = Entity.get(params.entity)
-            def currentUser = springSecurityService.currentUser as User
-            new ReferenceVote(user: currentUser, reference: reference, entity: entity).save(flush: true)
+            def authorName = []
+            def author
+            params.list('fullName').each { name ->
+                authorName = StringUtils.split(name)
+                author = Author.findByFirstNameAndLastName(authorName[0], authorName[1]) ?: new Author(firstName: authorName[0], lastName: authorName[1]).save()
+                new ReferenceAuthor(reference: reference, author: author).save(flush: true)
+            }
             if (reference) {
+                def currentUser = springSecurityService.currentUser as User
+                new ReferenceVote(user: currentUser, reference: reference, entity: entity).save(flush: true)
                 redirect(action: 'references', params: [entityId: entity.id])
             } else {
                 render(view: 'create', model: [referenceCommand: referenceCommand])

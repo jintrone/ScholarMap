@@ -23,7 +23,6 @@ class BootStrap {
             development {
                 bootstrapUserDetailsDatabase()
                 bootstrapSpringSecurityDatabase()
-//                executeSqlScript('data/csst_dummy_data.sql')
             }
             production {
                 bootstrapUserDetailsDatabase()
