@@ -12,8 +12,7 @@ import groovy.json.JsonOutput
 @Transactional(readOnly = true)
 class HomeController {
     static allowedMethods = [
-            index: 'GET',
-            areas: 'GET'
+            index: 'GET'
     ]
 
     def index() {
