@@ -12,6 +12,9 @@
                             <g:if test="${hasCurrentUser || (user.visibilityConf.isFirstNameVisible && user.visibilityConf.isLastNameVisible)}">
                                 ${user.firstName} ${user.lastName}
                             </g:if>
+                            <g:elseif test="${hasCurrentUser || user.visibilityConf.isUsernameVisible}">
+                                ${user.username}
+                            </g:elseif>
                         </strong>
                     </div>
                 </div>
@@ -19,7 +22,7 @@
                 <div class="panel-body">
                     <div class="col-md-4">
                         <div class="panel panel-profile">
-                            <div class="panel-heading text-center bg-info">
+                            <div class="panel-heading text-center">
                                 <g:if test="${user.photo}">
                                     <img class="img-circle img120_120"
                                          src="${createLink(controller: 'user', action: 'avatar_image', id: user.id)}"/>
@@ -27,18 +30,8 @@
                                 <g:else>
                                     <g:img alt="" uri="/images/default-user.png" class="img-circle img120_120"/>
                                 </g:else>
-                                <g:if test="${hasCurrentUser || (user.visibilityConf.isFirstNameVisible && user.visibilityConf.isLastNameVisible)}">
-                                    <h3>${user.firstName} ${user.lastName}</h3>
-                                </g:if>
-                                <g:elseif test="${hasCurrentUser || user.visibilityConf.isUsernameVisible}">
-                                    <h3>${user.username}</h3>
-                                </g:elseif>
-                                <g:if test="${hasCurrentUser || user.visibilityConf.isPositionVisible}">
-                                    <p>${user.position?.name}</p>
-                                </g:if>
                             </div>
                         </div>
-
                     </div>
 
                     <div class="col-md-8">
@@ -81,6 +74,13 @@
                                                     <span class="icon glyphicon"></span>
                                                     <label>Department</label>
                                                     ${user.department?.title}
+                                                </li>
+                                            </g:if>
+                                            <g:if test="${hasCurrentUser || user.visibilityConf.isPositionVisible}">
+                                                <li>
+                                                    <span class="icon glyphicon"></span>
+                                                    <label>Position</label>
+                                                    ${user.position?.name}
                                                 </li>
                                             </g:if>
                                         </ul>
