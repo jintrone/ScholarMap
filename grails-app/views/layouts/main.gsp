@@ -32,10 +32,7 @@
 
             <div id="navbar-collapse-1" class="collapse navbar-collapse">
                 <sec:ifLoggedIn>
-                    <div class="nav navbar-nav navbar-btn" style="margin-left: 350px">
-                        %{--<g:link controller="entity" class="btn btn-w-md btn-gap-v btn-primary" action="index">Create</g:link>--}%
-
-                    </div>
+                    <div class="nav navbar-nav navbar-btn" style="margin-left: 350px"></div>
                 </sec:ifLoggedIn>
                 <ul class="nav navbar-nav navbar-right">
                     <sec:ifAllGranted roles="${Roles.ADMIN.name}">

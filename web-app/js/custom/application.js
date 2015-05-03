@@ -20,6 +20,8 @@ $(document).ready(function () {
     });
 
 
+    setMethodsDataTable();
+
     $("#addInterestModal").find("#type").change(function () {
         $("#addInterestModal").find("#name").attr("collectfield", $(this).val());
     });
@@ -212,5 +214,22 @@ function refVote() {
 function showRefModal() {
     $("#addNewRefBtn").click(function () {
         $('#addNewReferenceModal').modal('show');
+    });
+}
+
+function setMethodsDataTable() {
+    $("#allMethodsTable").dataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": './home/methods',
+            "type": "POST"
+        },
+        "columns": [
+            {"data": "interest"},
+            {"data": "name"},
+            {"data": "description"},
+            {"data": "references"}
+        ]
     });
 }

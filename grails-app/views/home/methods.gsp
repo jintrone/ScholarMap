@@ -40,7 +40,7 @@
                 <div class="panel-body">
 
                     <div class="table-responsive">
-                        <table class="table table-striped table-bordered">
+                        <table id="allMethodsTable" class="table table-striped table-bordered">
                             <thead>
                             <tr>
                                 <th>Interest</th>
@@ -51,15 +51,15 @@
                             </thead>
 
                             <tbody>
-                            <g:each in="${methods}" var="method">
-                                <tr>
-                                    <td>${ReferenceVote.findAllByEntity(method)?.user?.unique()?.size()}</td>
-                                    <td><g:link controller="entity" action="view"
-                                                params="[id: method.id]">${method.name}</g:link></td>
-                                    <td>${method.description}</td>
-                                    <td>${ReferenceVote.findAllByReferenceNotIsNullAndEntity(method)?.reference?.unique()?.size()}</td>
-                                </tr>
-                            </g:each>
+                            %{--<g:each in="${methods}" var="method">--}%
+                            %{--<tr>--}%
+                            %{--<td>${ReferenceVote.findAllByEntity(method)?.user?.unique()?.size()}</td>--}%
+                            %{--<td><g:link controller="entity" action="view"--}%
+                            %{--params="[id: method.id]">${method.name}</g:link></td>--}%
+                            %{--<td>${method.description}</td>--}%
+                            %{--<td>${ReferenceVote.findAllByReferenceNotIsNullAndEntity(method)?.reference?.unique()?.size()}</td>--}%
+                            %{--</tr>--}%
+                            %{--</g:each>--}%
                             </tbody>
                         </table>
                     </div>

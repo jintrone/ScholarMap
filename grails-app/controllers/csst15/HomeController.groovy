@@ -6,6 +6,7 @@ import csst15.security.Role
 import csst15.security.UserRole
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
+import groovy.json.JsonOutput
 
 @Secured(['IS_AUTHENTICATED_ANONYMOUSLY'])
 @Transactional(readOnly = true)
@@ -48,9 +49,43 @@ class HomeController {
     }
 
     def methods() {
-        def allMethods = Entity.findAllByType(EntityType.METHOD)
+        if (request.method == "POST") {
+            def c = Entity.createCriteria()
+            def allMethods = c.list(max: Integer.parseInt(params.length), offset: params.start) {
+                eq("type", EntityType.METHOD)
+                or {
+                    ilike("name", "%${params.'search[value]'}%")
+                    ilike("description", "%${params.'search[value]'}%")
+                }
+                order("name", params."order[0][dir]")
+            }
+            def count = Entity.createCriteria().count() {
+                eq("type", EntityType.METHOD)
+                or {
+                    ilike("name", "%${params.'search[value]'}%")
+                    ilike("description", "%${params.'search[value]'}%")
+                }
+            }
 
-        [methods: allMethods]
+            def json = JsonOutput.toJson(
+                    draw: params.draw,
+                    recordsTotal: allMethods.totalCount,
+                    recordsFiltered: count,
+                    data:
+                            allMethods.collect { method ->
+                                [
+                                        interest   : "${ReferenceVote.findAllByEntity(method)?.user?.unique()?.size()}",
+                                        name       : method.name,
+                                        description: method.description,
+                                        references : "${ReferenceVote.findAllByReferenceNotIsNullAndEntity(method)?.reference?.unique()?.size()}"
+                                ]
+                            }
+            )
+
+            render(json)
+        } else {
+            render(view: 'methods')
+        }
     }
 
     def venues() {
