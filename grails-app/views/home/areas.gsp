@@ -41,7 +41,7 @@
                 <div class="panel-body">
 
                     <div class="table-responsive">
-                        <table class="table table-striped table-bordered">
+                        <table id="allFieldsTable" class="table table-striped table-bordered">
                             <thead>
                             <tr>
                                 <th>Interest</th>
@@ -52,18 +52,18 @@
                             </thead>
 
                             <tbody>
-                            <g:each in="${areas}" var="area">
-                                <tr>
-                                    <td>${ReferenceVote.findAllByEntity(area).user?.unique()?.size()}</td>
-                                    <td>
-                                        <g:link controller="entity" action="view" params="[id: area.id]">
-                                            ${area.name}
-                                        </g:link>
-                                    </td>
-                                    <td>${area.description}</td>
-                                    <td>${ReferenceVote.findAllByReferenceNotIsNullAndEntity(area)?.reference?.unique()?.size()}</td>
-                                </tr>
-                            </g:each>
+                            %{--<g:each in="${areas}" var="area">--}%
+                            %{--<tr>--}%
+                            %{--<td>${ReferenceVote.findAllByEntity(area).user?.unique()?.size()}</td>--}%
+                            %{--<td>--}%
+                            %{--<g:link controller="entity" action="view" params="[id: area.id]">--}%
+                            %{--${area.name}--}%
+                            %{--</g:link>--}%
+                            %{--</td>--}%
+                            %{--<td>${area.description}</td>--}%
+                            %{--<td>${ReferenceVote.findAllByReferenceNotIsNullAndEntity(area)?.reference?.unique()?.size()}</td>--}%
+                            %{--</tr>--}%
+                            %{--</g:each>--}%
                             </tbody>
                         </table>
                     </div>

@@ -41,7 +41,7 @@
                 <div class="panel-body">
 
                     <div class="table-responsive">
-                        <table class="table table-striped table-bordered">
+                        <table id="allTheoriesTable" class="table table-striped table-bordered">
                             <thead>
                             <tr>
                                 <th>Interest</th>
@@ -52,18 +52,18 @@
                             </thead>
 
                             <tbody>
-                            <g:each in="${theories}" var="theory">
-                                <tr>
-                                    <td>${ReferenceVote.findAllByEntity(theory).user?.unique()?.size()}</td>
-                                    <td>
-                                        <g:link controller="entity" action="view" params="[id: theory.id]">
-                                            ${theory.name}
-                                        </g:link>
-                                    </td>
-                                    <td>${theory.description}</td>
-                                    <td>${ReferenceVote.findAllByReferenceNotIsNullAndEntity(theory)?.reference?.unique()?.size()}</td>
-                                </tr>
-                            </g:each>
+                            %{--<g:each in="${theories}" var="theory">--}%
+                            %{--<tr>--}%
+                            %{--<td>${ReferenceVote.findAllByEntity(theory).user?.unique()?.size()}</td>--}%
+                            %{--<td>--}%
+                            %{--<g:link controller="entity" action="view" params="[id: theory.id]">--}%
+                            %{--${theory.name}--}%
+                            %{--</g:link>--}%
+                            %{--</td>--}%
+                            %{--<td>${theory.description}</td>--}%
+                            %{--<td>${ReferenceVote.findAllByReferenceNotIsNullAndEntity(theory)?.reference?.unique()?.size()}</td>--}%
+                            %{--</tr>--}%
+                            %{--</g:each>--}%
                             </tbody>
                         </table>
                     </div>

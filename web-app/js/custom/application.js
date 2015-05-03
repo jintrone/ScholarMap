@@ -21,6 +21,9 @@ $(document).ready(function () {
 
 
     setMethodsDataTable();
+    setVenuesDataTable();
+    setFieldsDataTable();
+    setTheoriesDataTable();
 
     $("#addInterestModal").find("#type").change(function () {
         $("#addInterestModal").find("#name").attr("collectfield", $(this).val());
@@ -223,6 +226,57 @@ function setMethodsDataTable() {
         "serverSide": true,
         "ajax": {
             "url": './home/methods',
+            "type": "POST"
+        },
+        "columns": [
+            {"data": "interest"},
+            {"data": "name"},
+            {"data": "description"},
+            {"data": "references"}
+        ]
+    });
+}
+
+function setVenuesDataTable() {
+    $("#allVenuesTable").dataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": './home/venues',
+            "type": "POST"
+        },
+        "columns": [
+            {"data": "interest"},
+            {"data": "name"},
+            {"data": "description"},
+            {"data": "references"}
+        ]
+    });
+}
+
+function setFieldsDataTable() {
+    $("#allFieldsTable").dataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": './home/areas',
+            "type": "POST"
+        },
+        "columns": [
+            {"data": "interest"},
+            {"data": "name"},
+            {"data": "description"},
+            {"data": "references"}
+        ]
+    });
+}
+
+function setTheoriesDataTable() {
+    $("#allTheoriesTable").dataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": './home/theories',
             "type": "POST"
         },
         "columns": [

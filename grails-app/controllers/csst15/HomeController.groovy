@@ -37,15 +37,83 @@ class HomeController {
     }
 
     def areas() {
-        def allAreas = Entity.findAllByType(EntityType.FIELD)
+        if (request.method == "POST") {
+            def c = Entity.createCriteria()
+            def allAreas = c.list(max: Integer.parseInt(params.length), offset: params.start) {
+                eq("type", EntityType.FIELD)
+                or {
+                    ilike("name", "%${params.'search[value]'}%")
+                    ilike("description", "%${params.'search[value]'}%")
+                }
+                order("name", params."order[0][dir]")
+            }
+            def count = Entity.createCriteria().count() {
+                eq("type", EntityType.FIELD)
+                or {
+                    ilike("name", "%${params.'search[value]'}%")
+                    ilike("description", "%${params.'search[value]'}%")
+                }
+            }
 
-        [areas: allAreas]
+            def json = JsonOutput.toJson(
+                    draw: params.draw,
+                    recordsTotal: allAreas.totalCount,
+                    recordsFiltered: count,
+                    data:
+                            allAreas.collect { area ->
+                                [
+                                        interest   : "${ReferenceVote.findAllByEntity(area)?.user?.unique()?.size()}",
+                                        name       : area.name,
+                                        description: area.description,
+                                        references : "${ReferenceVote.findAllByReferenceNotIsNullAndEntity(area)?.reference?.unique()?.size()}"
+                                ]
+                            }
+            )
+
+            render(json)
+        } else {
+            render(view: 'areas')
+        }
     }
 
     def theories() {
-        def allTheories = Entity.findAllByType(EntityType.THEORY)
+        if (request.method == "POST") {
+            def c = Entity.createCriteria()
+            def allTheories = c.list(max: Integer.parseInt(params.length), offset: params.start) {
+                eq("type", EntityType.THEORY)
+                or {
+                    ilike("name", "%${params.'search[value]'}%")
+                    ilike("description", "%${params.'search[value]'}%")
+                }
+                order("name", params."order[0][dir]")
+            }
+            def count = Entity.createCriteria().count() {
+                eq("type", EntityType.THEORY)
+                or {
+                    ilike("name", "%${params.'search[value]'}%")
+                    ilike("description", "%${params.'search[value]'}%")
+                }
+            }
 
-        [theories: allTheories]
+            def json = JsonOutput.toJson(
+                    draw: params.draw,
+                    recordsTotal: allTheories.totalCount,
+                    recordsFiltered: count,
+                    data:
+                            allTheories.collect { theory ->
+                                [
+                                        interest   : "${ReferenceVote.findAllByEntity(theory)?.user?.unique()?.size()}",
+                                        name       : theory.name,
+                                        description: theory.description,
+                                        references : "${ReferenceVote.findAllByReferenceNotIsNullAndEntity(theory)?.reference?.unique()?.size()}"
+                                ]
+                            }
+            )
+
+            render(json)
+        } else {
+            render(view: 'theories')
+        }
     }
 
     def methods() {
@@ -89,9 +157,43 @@ class HomeController {
     }
 
     def venues() {
-        def allVenues = Entity.findAllByType(EntityType.VENUE)
+        if (request.method == "POST") {
+            def c = Entity.createCriteria()
+            def allVenues = c.list(max: Integer.parseInt(params.length), offset: params.start) {
+                eq("type", EntityType.VENUE)
+                or {
+                    ilike("name", "%${params.'search[value]'}%")
+                    ilike("description", "%${params.'search[value]'}%")
+                }
+                order("name", params."order[0][dir]")
+            }
+            def count = Entity.createCriteria().count() {
+                eq("type", EntityType.VENUE)
+                or {
+                    ilike("name", "%${params.'search[value]'}%")
+                    ilike("description", "%${params.'search[value]'}%")
+                }
+            }
 
-        [venues: allVenues]
+            def json = JsonOutput.toJson(
+                    draw: params.draw,
+                    recordsTotal: allVenues.totalCount,
+                    recordsFiltered: count,
+                    data:
+                            allVenues.collect { venue ->
+                                [
+                                        interest   : "${ReferenceVote.findAllByEntity(venue)?.user?.unique()?.size()}",
+                                        name       : venue.name,
+                                        description: venue.description,
+                                        references : "${ReferenceVote.findAllByReferenceNotIsNullAndEntity(venue)?.reference?.unique()?.size()}"
+                                ]
+                            }
+            )
+
+            render(json)
+        } else {
+            render(view: 'venues')
+        }
     }
 
     def references() {
