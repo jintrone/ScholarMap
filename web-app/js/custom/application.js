@@ -7,7 +7,7 @@ $(document).ready(function () {
 
     var i = 1;
     $("#add_row").click(function () {
-        $('#addr' + i).html("<td>" + (i + 1) + "</td><td><input name='fullName' type='text' placeholder='Not set' class='form-control input-md'  /> </td>");
+        $('#addr' + i).html("<td>" + (i + 1) + "</td><td><input name='fullName' type='text' placeholder='Last name, First name' class='form-control input-md'  /> </td>");
 
         $('#tab_logic').append('<tr id="addr' + (i + 1) + '"></tr>');
         i++;
@@ -179,6 +179,9 @@ function applyDatatable() {
         "bFilter": true
     });
 
+    //setAvailableRefsDataTable();
+    //setSelectedRefsDataTable();
+
     $("#selectedReferences").dataTable({
         "paging": true,
         "ordering": true,
@@ -304,6 +307,42 @@ function setTheoriesDataTable() {
             },
             {"data": "description"},
             {"data": "references"}
+        ]
+    });
+}
+
+function setAvailableRefsDataTable() {
+    $("#availableReferences").dataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": './loadAvailableReferences',
+            "type": "POST"
+        },
+        "columns": [
+            {"data": "authors"},
+            {"data": "year"},
+            {"data": "citation"},
+            {"data": "votes"},
+            {"data": null}
+        ]
+    });
+}
+
+function setSelectedRefsDataTable() {
+    $("#selectedReferences").dataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": './interests/loadSelectedReferences',
+            "type": "POST"
+        },
+        "columns": [
+            {"data": "author"},
+            {"data": "year"},
+            {"data": "citation"},
+            {"data": "votes"},
+            {"data": null}
         ]
     });
 }

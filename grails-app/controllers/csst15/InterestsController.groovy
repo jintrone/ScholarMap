@@ -117,8 +117,8 @@ class InterestsController {
             def authorName = []
             def author
             params.list('fullName').each { name ->
-                authorName = StringUtils.split(name)
-                author = Author.findByFirstNameAndLastName(authorName[0], authorName[1]) ?: new Author(firstName: authorName[0], lastName: authorName[1]).save()
+                authorName = StringUtils.split(name, ',')
+                author = Author.findByFirstNameAndLastName(authorName[1], authorName[0]) ?: new Author(firstName: authorName[1], lastName: authorName[0]).save()
                 new ReferenceAuthor(reference: reference, author: author).save(flush: true)
             }
             if (reference) {
