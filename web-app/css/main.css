@@ -9157,6 +9157,12 @@ img.img80_80 {
     height: 80px
 }
 
+img.img120_120 {
+    width: 120px;
+    height: 120px;
+}
+
+
 .label {
     padding: .5em .8em
 }

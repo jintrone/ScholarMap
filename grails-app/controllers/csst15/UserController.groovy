@@ -22,7 +22,6 @@ import org.springframework.http.HttpStatus
 class UserController {
     static allowedMethods = [
             manipulateFieldVisibility: 'POST',
-            interests           : 'GET',
             changePasswordPage  : 'GET',
             update              : 'POST',
             fillRequiredFields  : 'GET',
@@ -34,11 +33,11 @@ class UserController {
 
     def profile() {
         def currentUser = springSecurityService.currentUser as User
-
         def user = User.findByUsername(params.username)
         if (user) {
+            def entities = UserEntity.findAllByUser(user)?.entity
             if (currentUser) {
-                [user: user, hasCurrentUser: true]
+                [user: user, hasCurrentUser: true, entities: entities]
             } else {
                 [user: user]
             }
@@ -156,18 +155,6 @@ class UserController {
                 render(view: 'changePassword', model: [user: user])
             }
         }
-    }
-
-    @Secured(['IS_AUTHENTICATED_FULLY'])
-    def interests() {
-        def user = User.findByUsername(params.username)
-        if (user) {
-            def entities = UserEntity.findAllByUser(user)?.entity
-            render(view: 'interests', model: [entities: entities, currentUser: user])
-        } else {
-            redirect(controller: 'login', action: 'auth')
-        }
-
     }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])

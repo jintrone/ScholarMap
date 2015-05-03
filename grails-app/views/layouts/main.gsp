@@ -79,20 +79,10 @@
                             </a>
                             <ul class="dropdown-menu with-arrow">
                                 <li>
-                                    <g:link controller="user" action="interests"
-                                            params="[username: csst.username()]"><span
-                                            data-i18n="Interests">Interests</span></g:link>
-                                </li>
-                                <li>
                                     <g:link controller="user" action="profile" params="[username: csst.username()]">
                                         <span data-i18n="My Profile">My Profile</span>
                                     </g:link>
                                 </li>
-                                %{--<li>--}%
-                                %{--<g:link controller="user" action="profile" params="[username: csst.username()]">--}%
-                                %{--<span data-i18n="My Profile">References</span>--}%
-                                %{--</g:link>--}%
-                                %{--</li>--}%
                                 <li>
                                     <g:link controller="logout"><span>Logout</span></g:link>
                                 </li>

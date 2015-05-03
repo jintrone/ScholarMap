@@ -164,7 +164,16 @@
 
             <div role="tabpanel" class="tab-pane" id="messages" style="margin-top: 15px">
                 <section class="panel panel-default">
-                    <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> References</strong>
+                    <div class="panel-heading" style="padding: 20px; height: 80px">
+
+                        <div class="col-md-11">
+                            <strong><span class="glyphicon glyphicon-th"></span> References</strong>
+                        </div>
+
+                        <div class="col-md-1">
+                            <a href="javascript:void(0);" id="addNewRefBtn" class="btn btn-success"
+                               title="Merge">Merge</a>
+                        </div>
                     </div>
 
                     <div class="panel-body">
