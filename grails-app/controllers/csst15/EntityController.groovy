@@ -39,8 +39,8 @@ class EntityController {
     }
 
     def view() {
-        if (params.id) {
-            def entity = Entity.findById(params.id)
+        if (params.name) {
+            def entity = Entity.findByName(params.name)
             [entity: entity]
         } else {
             redirect(controller: 'home', action: 'entities')

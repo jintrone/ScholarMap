@@ -230,7 +230,12 @@ function setMethodsDataTable() {
         },
         "columns": [
             {"data": "interest"},
-            {"data": "name"},
+            {
+                "data": "name",
+                "mRender": function (data, type, full) {
+                    return "<a href='./entity/view?name=" + data + "'>" + data + "</a>";
+                }
+            },
             {"data": "description"},
             {"data": "references"}
         ]
@@ -247,7 +252,12 @@ function setVenuesDataTable() {
         },
         "columns": [
             {"data": "interest"},
-            {"data": "name"},
+            {
+                "data": "name",
+                "mRender": function (data, type, full) {
+                    return "<a href='./entity/view?name=" + data + "'>" + data + "</a>";
+                }
+            },
             {"data": "description"},
             {"data": "references"}
         ]
@@ -264,7 +274,12 @@ function setFieldsDataTable() {
         },
         "columns": [
             {"data": "interest"},
-            {"data": "name"},
+            {
+                "data": "name",
+                "mRender": function (data, type, full) {
+                    return "<a href='./entity/view?name=" + data + "'>" + data + "</a>";
+                }
+            },
             {"data": "description"},
             {"data": "references"}
         ]
@@ -281,7 +296,12 @@ function setTheoriesDataTable() {
         },
         "columns": [
             {"data": "interest"},
-            {"data": "name"},
+            {
+                "data": "name",
+                "mRender": function (data, type, full) {
+                    return "<a href='./entity/view?name=" + data + "'>" + data + "</a>";
+                }
+            },
             {"data": "description"},
             {"data": "references"}
         ]
