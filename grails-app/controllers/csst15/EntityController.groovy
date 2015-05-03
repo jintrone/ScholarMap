@@ -41,9 +41,20 @@ class EntityController {
     def view() {
         if (params.name) {
             def entity = Entity.findByName(params.name)
-            [entity: entity]
+            if (entity) {
+                [entity: entity]
+            } else {
+                redirect(uri: '/not-found')
+            }
+        } else if (params.id) {
+            def entity = Entity.findById(params.id)
+            if (entity) {
+                [entity: entity]
+            } else {
+                redirect(uri: '/not-found')
+            }
         } else {
-            redirect(controller: 'home', action: 'entities')
+            redirect(uri: '/not-found')
         }
     }
 
