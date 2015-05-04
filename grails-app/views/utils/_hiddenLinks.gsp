@@ -6,3 +6,6 @@
 <g:hiddenField name="addInterestURL" value="${createLink(controller: 'interests', action: 'addInterest')}"/>
 <g:hiddenField name="referenceVoteURL" value="${createLink(controller: 'interests', action: 'referenceVote')}"/>
 <g:hiddenField name="loadEntityURL" value="${createLink(controller: 'autoComplete', action: 'loadEntity')}"/>
+<g:hiddenField name="loadAuthorRefs" value="${createLink(controller: 'autoComplete', action: 'loadAuthorRefs')}"/>
+<g:hiddenField name="loadAuthorRefsDetails"
+               value="${createLink(controller: 'autoComplete', action: 'loadRefAuthorDetails')}"/>

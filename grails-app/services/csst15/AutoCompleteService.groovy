@@ -8,7 +8,7 @@ import grails.transaction.Transactional
 class AutoCompleteService {
 
 
-    def autoComplete(params) {
+    def loadEntity(params) {
         def results = Entity.createCriteria().list {
             if (params.type) {
                 and {
@@ -32,5 +32,23 @@ class AutoCompleteService {
         }
 
         return results.name as JSON
+    }
+
+    def loadAuthors(params) {
+        def results = Author.createCriteria().list {
+            or {
+                ilike("firstName", "%${params.term}%")
+                ilike("lastName", "%${params.term}%")
+            }
+
+            maxResults(Integer.parseInt(params.max, 10))
+            order("lastName", params.order)
+        }.unique()
+
+        results = results.collect { result ->
+            result.lastName + "," + result.firstName
+        }
+
+        return results as JSON
     }
 }

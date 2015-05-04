@@ -48,8 +48,10 @@
                 <tbody>
                 <tr id='addr0'>
                     <td>1</td>
-                    <td>
-                        <input type="text" name='fullName' placeholder='Last name, First name' class="form-control"/>
+                    <td class="ui-front">
+                        <csst:authorsAutocomplete name="fullName" action="loadAuthors" class="form-control" id="name"
+                                                  placeholder='Last name, First name'/>
+                        %{--<input type="text" name='fullName' placeholder='Last name, First name' class="form-control"/>--}%
                     </td>
                 </tr>
                 <tr id='addr1'></tr>
@@ -69,6 +71,19 @@
             <textarea maxlength="500" name="citation" rows="5" id="citation"
                       class="form-control"
                       placeholder="Not set"></textarea>
+        </div>
+
+        <div class="form-group">
+            <table class="table table-bordered table-hover" id="ref_tab" style="display: none">
+                <thead>
+                </thead>
+                <tbody>
+                <tr class="tempRow" style="cursor: pointer">
+                    <g:hiddenField name="tempId"/>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
 
         <div class="modal-footer" style="margin-top: 60px">
