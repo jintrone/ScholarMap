@@ -24,11 +24,11 @@
                         <div class="panel panel-profile">
                             <div class="panel-heading text-center">
                                 <g:if test="${user.photo}">
-                                    <img class="img-circle img120_120"
+                                    <img class="img-circle img300_300"
                                          src="${createLink(controller: 'user', action: 'avatar_image', id: user.id)}"/>
                                 </g:if>
                                 <g:else>
-                                    <g:img alt="" uri="/images/default-user.png" class="img-circle img120_120"/>
+                                    <g:img alt="" uri="/images/default-user.png" class="img-circle img300_300"/>
                                 </g:else>
                             </div>
                         </div>

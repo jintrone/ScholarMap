@@ -9162,6 +9162,10 @@ img.img120_120 {
     height: 120px;
 }
 
+img.img300_300 {
+    width: 300px;
+    height: 300px;
+}
 
 .label {
     padding: .5em .8em
