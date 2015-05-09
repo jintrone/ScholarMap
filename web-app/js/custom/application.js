@@ -219,8 +219,13 @@ function refVote() {
 
 function showRefModal() {
     $("#addNewRefBtn").click(function () {
+        clearRefModalFields();
         $('#addNewReferenceModal').modal('show');
     });
+}
+
+function clearRefModalFields() {
+    $("#addNewReferenceModal").find('input').val("");
 }
 
 function setMethodsDataTable() {
