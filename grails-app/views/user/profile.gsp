@@ -146,10 +146,10 @@
                     </div>
 
                     <div class="col-md-1">
-                        <sec:ifLoggedIn>
+                        <g:if test="${isOwner}">
                             <a href="javascript:void(0);" id="addNewEntity" class="btn btn-success"
                                title="Edit">Add New</a>
-                        </sec:ifLoggedIn>
+                        </g:if>
                     </div>
                 </div>
 
