@@ -39,7 +39,7 @@ class UserController {
             if (currentUser) {
                 [user: user, hasCurrentUser: true, entities: entities]
             } else {
-                [user: user]
+                [user: user, entities: entities]
             }
 
         } else {
