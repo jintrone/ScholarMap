@@ -159,7 +159,7 @@
                                            id="entityRefTable">
                                         <thead>
                                         <tr>
-                                            <th>Authors</th>
+                                            <th style="width: 150px !important;">Authors</th>
                                             <th>Year</th>
                                             <th>Citation</th>
                                             <th>Action</th>

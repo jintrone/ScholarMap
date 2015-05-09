@@ -46,7 +46,7 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>Authors</th>
+                                <th style="width: 200px !important;">Authors</th>
                                 <th>Year</th>
                                 <th>Full Citation</th>
                                 <th>Votes</th>
@@ -57,7 +57,7 @@
                             <tbody>
                             <g:each in="${references}" var="reference">
                                 <tr>
-                                    <td>${Joiner.on(',').skipNulls().join(ReferenceAuthor.findAllByReference(reference)?.author?.lastName)}</td>
+                                    <td>${Joiner.on('; ').skipNulls().join(ReferenceAuthor.findAllByReference(reference)?.author?.lastName)}</td>
                                     <td>${reference.year}</td>
                                     <td>${reference.citation}</td>
                                     <td>${ReferenceVote.countByReference(reference)}</td>
