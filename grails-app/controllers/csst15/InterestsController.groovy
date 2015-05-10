@@ -71,7 +71,7 @@ class InterestsController {
             def availableReferences = allReferences.findAll { ref ->
                 !selectedReferences.contains(ref)
             }
-            render(template: '/user/referenceList', model: [entityId: entity.id, selectedReferences: selectedReferences, availableReferences: availableReferences])
+            render(template: '/user/referenceList', model: [isOwner: true, entityId: entity.id, selectedReferences: selectedReferences, availableReferences: availableReferences])
         } else {
             render(status: HttpStatus.BAD_REQUEST)
         }
@@ -83,9 +83,10 @@ class InterestsController {
         def reference = Reference.findById(params.id)
         def entity = Entity.findById(params.entityId)
         if (entity && reference) {
+            def currentUser = springSecurityService.currentUser as User
             ReferenceVote.findByEntityAndReference(entity, reference, [cache: true]).collect { it.delete(flush: true) }
             log.info("Downvoted the entity with id ${entity.id}")
-            redirect(action: 'references', params: [entityId: entity.id])
+            redirect(action: 'references', params: [user: currentUser.id, entityId: entity.id])
         } else {
             redirect(uri: '/not-found')
         }
