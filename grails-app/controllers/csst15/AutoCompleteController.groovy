@@ -51,12 +51,16 @@ class AutoCompleteController {
     def loadRefAuthorDetails() {
         if (params.id) {
             def reference = Reference.findById(params.id)
-            def refAuthor = ReferenceAuthor.findByReference(reference)
-
+            def refAuthor = ReferenceAuthor.findAllByReference(reference)
             def results = refAuthor.collect { result ->
                 [
                         citation: result.reference.citation,
-                        year    : result.reference.year
+                        year   : result.reference.year,
+                        authors:
+                                refAuthor.author.collect { a ->
+                                    a.lastName + "," + a.firstName
+                                }
+
                 ]
             }
 

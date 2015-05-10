@@ -52,13 +52,11 @@
             <table class="table table-bordered table-hover" id="tab_logic">
                 <thead>
                 <tr>
-                    <th class="text-center">#</th>
                     <th class="text-center">Author</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr id='addr0'>
-                    <td>1</td>
                     <td class="ui-front">
                         <csst:authorsAutocomplete name="fullName" action="loadAuthors" class="form-control" id="name"
                                                   placeholder='Last name, First name'/>

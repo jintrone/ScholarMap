@@ -17,7 +17,6 @@
                 return false;
             },
             select: function(event, ui) {
-                console.log(ui.item);
                 $.ajax({
                     type: 'POST',
                     url: $("#loadAuthorRefs").val(),
@@ -29,12 +28,10 @@
                         $("#ref_tab").css('display', 'block');
                         $("#ref_tab").find("tr:gt(0)").remove();
                         for(var i = 0; i < data.length; i ++) {
-                            console.log(data[i].citation);
                             $("#ref_tab").find("tr:first").clone().appendTo("#ref_tab tbody").find('td').text(data[i].citation);
                             $("#ref_tab").find("tr input").eq(i+1).val(data[i].id);
-
                         }
-                        myFunc();
+                        setReferenceDetails();
                     }
                 });
                 $("#${attrs.id}").val(ui.item.value);
@@ -45,7 +42,7 @@
 
     });
 
-    function myFunc() {
+    function setReferenceDetails() {
        $("#ref_tab").find("tr:gt(0)").each(function() {
             $(this).click(function() {
                 $.ajax({
@@ -56,6 +53,12 @@
                     type: 'POST',
                     dateType:'json',
                     success: function(data) {
+                        $("#tab_logic").find("tbody tr:gt(0)").remove();
+                        $.each(data[0].authors, function(index, val) {
+                            if(val != $("#tab_logic").find("tbody tr:first input").val()) {
+                                $("#tab_logic").find("tbody tr:first").clone().appendTo("#tab_logic tbody").find('input').val(val);
+                            }
+                        });
                         $("#citation").val(data[0].citation);
                         $("#year").val(data[0].year);
                     }
