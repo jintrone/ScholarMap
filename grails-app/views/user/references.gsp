@@ -6,13 +6,23 @@
 
         <div class="col-md-10">
             <ol class="breadcrumb-alt">
-                <li><a href="javascript:void(0);">Profile</a></li>
+                <g:if test="${isOwner}">
+                    <li>
+                        <g:link controller="user" action="profile"
+                                params="[username: user?.username]">My Profile</g:link>
+                    </li>
+                </g:if>
+                <g:else>
+                    <li>
+                        <g:link controller="user" action="profile"
+                                params="[username: user?.username]">${user.firstName} ${user.lastName}'s Profile</g:link>
+                    </li>
+                </g:else>
                 <li>
                     <g:link controller="entity" action="view" params="[id: entity?.id]">
-                        ${entity?.name}
+                        Selected references for '<b>${entity?.name}</b>'
                     </g:link>
                 </li>
-                <li><a href="javascript:void(0);">References</a></li>
             </ol>
 
             <div id="refTablesContainer">
