@@ -170,7 +170,7 @@
                                         <g:each in="${ReferenceVote.findAllByEntity(entity)?.reference?.unique()}"
                                                 var="reference">
                                             <tr>
-                                                <td>${Joiner.on('; ').skipNulls().join(ReferenceAuthor.findAllByReference(reference)?.author?.lastName)}</td>
+                                                <td><csst:author reference="${reference}"/></td>
                                                 <td>${reference?.year}</td>
                                                 <td>${reference?.citation}</td>
                                                 <td><g:link class="glyphicon glyphicon-eye-open" controller="reference"

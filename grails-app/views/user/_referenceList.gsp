@@ -21,7 +21,7 @@
                     <tbody>
                     <g:each in="${selectedReferences}" var="reference">
                         <tr>
-                            <td>${Joiner.on('; ').skipNulls().join(ReferenceAuthor.findAllByReference(reference)?.author?.lastName)}</td>
+                            <td><csst:author reference="${reference}"/></td>
                             <td>${reference?.year}</td>
                             <td>${reference?.citation}</td>
                             <td>${ReferenceVote.findAllByReference(reference)?.unique()?.size()}</td>
@@ -74,7 +74,7 @@
                         <tbody>
                         <g:each in="${availableReferences}" var="reference">
                             <tr>
-                                <td>${Joiner.on('; ').skipNulls().join(ReferenceAuthor.findAllByReference(reference)?.author?.lastName)}</td>
+                                <td><csst:author reference="${reference}"/></td>
                                 <td>${reference?.year}</td>
                                 <td>${reference?.citation}</td>
                                 <td>${ReferenceVote.countByReference(reference)}</td>

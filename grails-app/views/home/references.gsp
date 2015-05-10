@@ -57,7 +57,7 @@
                             <tbody>
                             <g:each in="${references}" var="reference">
                                 <tr>
-                                    <td>${Joiner.on('; ').skipNulls().join(ReferenceAuthor.findAllByReference(reference)?.author?.lastName)}</td>
+                                    <td><csst:author reference="${reference}"/></td>
                                     <td>${reference.year}</td>
                                     <td>${reference.citation}</td>
                                     <td>${ReferenceVote.countByReference(reference)}</td>
