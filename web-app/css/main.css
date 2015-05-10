@@ -13031,7 +13031,7 @@ body {
     margin-bottom: 0;
 }
 
-.modal .modal-body {
-    max-height: 580px;
+#matchedRefTable {
+    max-height: 200px;
     overflow-y: auto;
 }

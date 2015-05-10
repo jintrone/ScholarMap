@@ -226,6 +226,9 @@ function showRefModal() {
 
 function clearRefModalFields() {
     $("#addNewReferenceModal").find('.modal-dialog .form-group input').val("");
+    $("#addNewReferenceModal").find('.modal-dialog .form-group textarea').val("");
+    $("#ref_tab").find("tr:gt(0)").remove();
+    $("#ref_tab").css('display', 'none');
 }
 
 function setMethodsDataTable() {

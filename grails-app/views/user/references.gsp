@@ -84,7 +84,7 @@
                       placeholder="Not set"></textarea>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" id="matchedRefTable">
             <table class="table table-bordered table-hover" id="ref_tab" style="display: none">
                 <thead>
                 </thead>
