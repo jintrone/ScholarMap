@@ -97,7 +97,7 @@ class InterestsController {
         def allReferences = Reference.list()
         def entity = Entity.findById(params.entityId)
         def user = User.get(params.user)
-        if (entity) {
+        if (entity && user) {
             def selectedReferences = ReferenceVote.findAllByEntityAndReferenceIsNotNull(entity, [cache: true])?.reference?.unique()
             def availableReferences = allReferences.findAll { reference ->
                 !selectedReferences.contains(reference)
