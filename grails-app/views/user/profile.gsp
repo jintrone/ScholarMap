@@ -157,7 +157,7 @@
                     <div class="media">
                         <div class="media-body" id="interestRecords">
                             <g:render template="interestRecords"
-                                      model="[entities: entities, currentUser: user]"/>
+                                      model="[entities: entities, user: user]"/>
                         </div>
                     </div>
                 </div>

@@ -28,7 +28,7 @@ class InterestsController {
             if (entity?.id) {
                 UserEntity.create(currentUser, entity)
                 def entities = UserEntity.findAllByUser(currentUser)?.entity
-                render(template: '/user/interestRecords', model: [newEntity: entity, entities: entities, currentUser: currentUser])
+                render(template: '/user/interestRecords', model: [newEntity: entity, entities: entities, user: currentUser])
             } else {
                 render(status: HttpStatus.BAD_REQUEST)
             }
@@ -95,12 +95,13 @@ class InterestsController {
     def references() {
         def allReferences = Reference.list()
         def entity = Entity.findById(params.entityId)
+        def user = User.get(params.user)
         if (entity) {
             def selectedReferences = ReferenceVote.findAllByEntityAndReferenceIsNotNull(entity, [cache: true])?.reference?.unique()
             def availableReferences = allReferences.findAll { reference ->
                 !selectedReferences.contains(reference)
             }
-            render(view: '/user/references', model: [entity: entity, availableReferences: availableReferences, selectedReferences: selectedReferences])
+            render(view: '/user/references', model: [user: user, entity: entity, availableReferences: availableReferences, selectedReferences: selectedReferences])
         } else {
             redirect(uri: '/not-found')
         }
@@ -124,7 +125,7 @@ class InterestsController {
             if (reference) {
                 def currentUser = springSecurityService.currentUser as User
                 new ReferenceVote(user: currentUser, reference: reference, entity: entity).save(flush: true)
-                redirect(action: 'references', params: [entityId: entity.id])
+                redirect(action: 'references', params: [user: currentUser.id, entityId: entity.id])
             } else {
                 render(view: 'create', model: [referenceCommand: referenceCommand])
             }

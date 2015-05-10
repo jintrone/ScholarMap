@@ -19,11 +19,11 @@
             select: function(event, ui) {
                 console.log(ui.item);
                 $.ajax({
+                    type: 'POST',
+                    url: $("#loadAuthorRefs").val(),
                     data: {
                         name: ui.item.value
                     },
-                    url: $("#loadAuthorRefs").val(),
-                    type: 'POST',
                     dateType:'json',
                     success: function(data) {
                         $("#ref_tab").css('display', 'block');

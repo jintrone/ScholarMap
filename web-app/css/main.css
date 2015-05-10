@@ -13030,3 +13030,8 @@ body {
 .panel-group .panel-body ol:last-child {
     margin-bottom: 0;
 }
+
+.modal .modal-body {
+    max-height: 580px;
+    overflow-y: auto;
+}

@@ -6,7 +6,7 @@
         <th>Name</th>
         <th>Description</th>
         <th>References</th>
-        <g:if test="${currentUser.username.equals(sec.username().toString())}">
+        <g:if test="${user.username.equals(sec.username().toString())}">
             <th>Actions</th>
         </g:if>
     </tr>
@@ -27,12 +27,12 @@
                     <g:link controller="interests" action="references" params="[entityId: entity?.id]">Add</g:link>
                 </g:if>
                 <g:else>
-                    <g:link controller="interests" action="references" params="[entityId: entity?.id]">
+                    <g:link controller="interests" action="references" params="[user: user.id, entityId: entity?.id]">
                         ${ReferenceVote.findAllByReferenceNotIsNullAndEntity(entity)?.reference?.unique()?.size()}
                     </g:link>
                 </g:else>
             </td>
-            <g:if test="${currentUser.username.equals(sec.username().toString())}">
+            <g:if test="${user.username.equals(sec.username().toString())}">
                 <td>
                     <a href="javascript:void(0);"
                        class="glyphicon glyphicon-remove remove-interest"

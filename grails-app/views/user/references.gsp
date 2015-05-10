@@ -1,5 +1,6 @@
 <%@ page import="csst15.ReferenceVote; com.google.common.base.Joiner; org.apache.commons.lang.ArrayUtils; csst15.ReferenceAuthor" %>
 <g:applyLayout name="main">
+    <g:set var="isOwner" value="${sec.loggedInUserInfo(field: 'id') == user?.id?.toString()}"/>
     <div class="row">
         <div class="col-md-1"></div>
 
@@ -16,7 +17,7 @@
 
             <div id="refTablesContainer">
                 <g:render template="/user/referenceList"
-                          model="[entityId: entity?.id, selectedReferences: selectedReferences, availableReferences: availableReferences]"/>
+                          model="[isOwner: isOwner, entityId: entity?.id, selectedReferences: selectedReferences, availableReferences: availableReferences]"/>
             </div>
         </div>
 

@@ -225,7 +225,7 @@ function showRefModal() {
 }
 
 function clearRefModalFields() {
-    $("#addNewReferenceModal").find('input').val("");
+    $("#addNewReferenceModal").find('.modal-dialog .form-group input').val("");
 }
 
 function setMethodsDataTable() {

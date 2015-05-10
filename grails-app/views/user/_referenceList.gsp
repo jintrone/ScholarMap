@@ -21,17 +21,17 @@
                     <tbody>
                     <g:each in="${selectedReferences}" var="reference">
                         <tr>
-                            <td>${Joiner.on(';').skipNulls().join(ReferenceAuthor.findAllByReference(reference)?.author?.lastName)}</td>
+                            <td>${Joiner.on('; ').skipNulls().join(ReferenceAuthor.findAllByReference(reference)?.author?.lastName)}</td>
                             <td>${reference?.year}</td>
                             <td>${reference?.citation}</td>
                             <td>${ReferenceVote.findAllByReference(reference)?.unique()?.size()}</td>
                             <td>
                                 <g:link class="glyphicon glyphicon-eye-open" controller="reference"
                                         action="view" params="[id: reference?.id]"/>
-                                <sec:ifLoggedIn>
+                                <g:if test="${isOwner}">
                                     <g:link class="glyphicon glyphicon-remove" controller="interests"
                                             action="removeVote" params="[id: reference?.id, entityId: entityId]"/>
-                                </sec:ifLoggedIn>
+                                </g:if>
                             </td>
                         </tr>
                     </g:each>
@@ -41,57 +41,59 @@
         </div>
     </section>
 
-    <section class="panel panel-default">
-        <div class="panel-heading" style="padding: 20px; height: 80px">
+    <g:if test="${isOwner}">
+        <section class="panel panel-default">
+            <div class="panel-heading" style="padding: 20px; height: 80px">
 
-            <div class="col-md-9">
-                <strong><span class="glyphicon glyphicon-th"></span> Available References</strong>
+                <div class="col-md-9">
+                    <strong><span class="glyphicon glyphicon-th"></span> Available References</strong>
+                </div>
+
+                <div class="col-md-3">
+                    <sec:ifLoggedIn>
+                        <a href="javascript:void(0);" id="addNewRefBtn" class="btn btn-success"
+                           title="Create New Reference">Create New Reference</a>
+                    </sec:ifLoggedIn>
+                </div>
             </div>
 
-            <div class="col-md-3">
-                <sec:ifLoggedIn>
-                    <a href="javascript:void(0);" id="addNewRefBtn" class="btn btn-success"
-                       title="Create New Reference">Create New Reference</a>
-                </sec:ifLoggedIn>
-            </div>
-        </div>
+            <div class="panel-body">
 
-        <div class="panel-body">
-
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered" id="availableReferences">
-                    <thead>
-                    <tr>
-                        <th>Authors</th>
-                        <th>Year</th>
-                        <th>Citation</th>
-                        <th>Votes</th>
-                        <th>Select</th>
-                    </tr>
-                    </thead>
-
-                    <tbody>
-                    <g:each in="${availableReferences}" var="reference">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered" id="availableReferences">
+                        <thead>
                         <tr>
-                            <td>${Joiner.on('; ').skipNulls().join(ReferenceAuthor.findAllByReference(reference)?.author?.lastName)}</td>
-                            <td>${reference?.year}</td>
-                            <td>${reference?.citation}</td>
-                            <td>${ReferenceVote.countByReference(reference)}</td>
-                            <td>
-                                <g:link class="glyphicon glyphicon-eye-open" controller="reference"
-                                        action="view" params="[id: reference?.id]"/>
-                                <sec:ifLoggedIn>
-                                    <a href="javascript:void(0);"
-                                       class="select-reference glyphicon glyphicon-arrow-up"
-                                       style="cursor: pointer" id="${reference?.id}"></a>
-                                </sec:ifLoggedIn>
-                            </td>
+                            <th>Authors</th>
+                            <th>Year</th>
+                            <th>Citation</th>
+                            <th>Votes</th>
+                            <th>Select</th>
                         </tr>
-                    </g:each>
-                    </tbody>
-                </table>
-            </div>
+                        </thead>
 
-        </div>
-    </section>
+                        <tbody>
+                        <g:each in="${availableReferences}" var="reference">
+                            <tr>
+                                <td>${Joiner.on('; ').skipNulls().join(ReferenceAuthor.findAllByReference(reference)?.author?.lastName)}</td>
+                                <td>${reference?.year}</td>
+                                <td>${reference?.citation}</td>
+                                <td>${ReferenceVote.countByReference(reference)}</td>
+                                <td>
+                                    <g:link class="glyphicon glyphicon-eye-open" controller="reference"
+                                            action="view" params="[id: reference?.id]"/>
+                                    <sec:ifLoggedIn>
+                                        <a href="javascript:void(0);"
+                                           class="select-reference glyphicon glyphicon-arrow-up"
+                                           style="cursor: pointer" id="${reference?.id}"></a>
+                                    </sec:ifLoggedIn>
+                                </td>
+                            </tr>
+                        </g:each>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </section>
+    </g:if>
 </div>

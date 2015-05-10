@@ -1,8 +1,10 @@
 package csst15
 
 import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
 import org.apache.commons.lang3.StringUtils
 
+@Secured(['IS_AUTHENTICATED_FULLY'])
 class AutoCompleteController {
     def autoCompleteService
 
