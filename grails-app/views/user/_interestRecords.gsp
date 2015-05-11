@@ -24,7 +24,8 @@
             <td>${entity?.description}</td>
             <td>
                 <g:if test="${!ReferenceVote.findAllByReferenceNotIsNullAndEntity(entity)}">
-                    <g:link controller="interests" action="references" params="[entityId: entity?.id]">Add</g:link>
+                    <g:link controller="interests" action="references"
+                            params="[user: user.id, entityId: entity?.id]">Add</g:link>
                 </g:if>
                 <g:else>
                     <g:link controller="interests" action="references" params="[user: user.id, entityId: entity?.id]">
