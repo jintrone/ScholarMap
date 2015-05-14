@@ -2,6 +2,7 @@ package csst15
 
 import csst15.command.ReferenceCommand
 import csst15.security.User
+import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 import groovy.util.logging.Slf4j
@@ -15,7 +16,9 @@ class InterestsController {
 
     static allowedMethods = [
             deleteInterest: 'POST',
-            addInterest   : "POST"
+            addInterest            : "POST",
+            loadAvailableReferences: 'POST',
+            loadSelectedReferences : 'POST'
     ]
 
     @Transactional
@@ -56,6 +59,85 @@ class InterestsController {
         }
     }
 
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def loadAvailableReferences() {
+        def entity = Entity.get(params.entity)
+        def available = Reference.createCriteria().list(max: Integer.parseInt(params.length), offset: params.start) {
+            or {
+                ilike("citation", "%${params.'search[value]'}%")
+            }
+            order("citation", params."order[0][dir]")
+        }
+
+        def count = Reference.createCriteria().count() {
+            or {
+                ilike("citation", "%${params.'search[value]'}%")
+            }
+        }
+
+        def results = [
+                draw           : params.draw,
+                recordsTotal   : available.totalCount,
+                recordsFiltered: count,
+                data           :
+                        available.collect { reference ->
+                            [
+                                    year    : reference.year,
+                                    citation: reference.citation,
+                                    author  :
+                                            ReferenceAuthor.findAllByReference(reference).author.collect { a ->
+                                                a.lastName + " " + a.firstName.getAt(0) + "."
+                                            },
+                                    votes   : "${ReferenceVote.findAllByReference(reference)?.unique()?.size()}",
+                                    id      : "?entity=" + entity.id + "&refId=" + reference.id
+                            ]
+                        }
+        ]
+
+        render(results as JSON)
+    }
+
+    def loadSelectedReferences() {
+        def entity = Entity.get(params.entity)
+        if (entity) {
+            def selectedReferencesVote = ReferenceVote.createCriteria().list(max: Integer.parseInt(params.length), offset: params.start) {
+                createAlias('reference', 'r')
+                eq("entity", entity)
+                ilike("r.citation", "%${params.'search[value]'}%")
+            }
+
+            def count = ReferenceVote.createCriteria().count() {
+                createAlias('reference', 'r')
+                eq("entity", entity)
+                ilike("r.citation", "%${params.'search[value]'}%")
+            }
+
+            def results = [
+                    draw           : params.draw,
+                    recordsTotal   : selectedReferencesVote.totalCount,
+                    recordsFiltered: count,
+                    data           :
+                            selectedReferencesVote.collect { vote ->
+                                [
+                                        year    : vote.reference.year,
+                                        citation: vote.reference.citation,
+                                        author  :
+                                                ReferenceAuthor.findAllByReference(vote.reference).author.collect { a ->
+                                                    a.lastName + " " + a.firstName.getAt(0) + "."
+                                                },
+                                        votes   : "${ReferenceVote.findAllByReference(vote.reference)?.unique()?.size()}",
+                                        id      : "?entityId=" + entity.id + "&id=" + vote.reference.id
+                                ]
+                            }
+            ]
+
+            render(results as JSON)
+        } else {
+            redirect(uri: '/not-found')
+        }
+
+    }
+
 
     @Transactional
     @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -66,12 +148,8 @@ class InterestsController {
 
         if (reference && entity) {
             new ReferenceVote(user: currentUser, reference: reference, entity: entity).save(flush: true)
-            def allReferences = Reference.list()
-            def selectedReferences = ReferenceVote.findAllByEntityAndReferenceIsNotNull(entity, [cache: true])?.reference?.unique()
-            def availableReferences = allReferences.findAll { ref ->
-                !selectedReferences.contains(ref)
-            }
-            render(template: '/user/referenceList', model: [isOwner: true, entityId: entity.id, selectedReferences: selectedReferences, availableReferences: availableReferences])
+            log.info("Voted the reference with id ${reference.id}")
+            redirect(action: 'references', params: [user: currentUser.id, entityId: entity.id])
         } else {
             render(status: HttpStatus.BAD_REQUEST)
         }
@@ -85,7 +163,7 @@ class InterestsController {
         if (entity && reference) {
             def currentUser = springSecurityService.currentUser as User
             ReferenceVote.findByEntityAndReference(entity, reference, [cache: true]).collect { it.delete(flush: true) }
-            log.info("Downvoted the entity with id ${entity.id}")
+            log.info("Downvoted the reference with id ${reference.id}")
             redirect(action: 'references', params: [user: currentUser.id, entityId: entity.id])
         } else {
             redirect(uri: '/not-found')
@@ -94,15 +172,10 @@ class InterestsController {
 
 
     def references() {
-        def allReferences = Reference.list()
         def entity = Entity.findById(params.entityId)
         def user = User.get(params.user)
         if (entity && user) {
-            def selectedReferences = ReferenceVote.findAllByEntityAndReferenceIsNotNull(entity, [cache: true])?.reference?.unique()
-            def availableReferences = allReferences.findAll { reference ->
-                !selectedReferences.contains(reference)
-            }
-            render(view: '/user/references', model: [user: user, entity: entity, availableReferences: availableReferences, selectedReferences: selectedReferences])
+            render(view: '/user/references', model: [user: user, entity: entity])
         } else {
             redirect(uri: '/not-found')
         }

@@ -172,22 +172,22 @@ $(document).ready(function () {
 });
 
 function applyDatatable() {
-    $("#availableReferences").dataTable({
-        "paging": true,
-        "ordering": true,
-        "info": false,
-        "bFilter": true
-    });
+    //$("#availableReferences").dataTable({
+    //    "paging": true,
+    //    "ordering": true,
+    //    "info": false,
+    //    "bFilter": true
+    //});
 
-    //setAvailableRefsDataTable();
-    //setSelectedRefsDataTable();
+    setAvailableRefsDataTable();
+    setSelectedRefsDataTable();
 
-    $("#selectedReferences").dataTable({
-        "paging": true,
-        "ordering": true,
-        "info": false,
-        "bFilter": true
-    });
+    //$("#selectedReferences").dataTable({
+    //    "paging": true,
+    //    "ordering": true,
+    //    "info": false,
+    //    "bFilter": true
+    //});
 }
 
 function resetFields(container) {
@@ -327,14 +327,23 @@ function setAvailableRefsDataTable() {
         "serverSide": true,
         "ajax": {
             "url": './loadAvailableReferences',
-            "type": "POST"
+            "type": "POST",
+            'data': {
+                entity: $("#entity").val()
+            }
         },
         "columns": [
-            {"data": "authors"},
+            {"data": "author"},
             {"data": "year"},
             {"data": "citation"},
             {"data": "votes"},
-            {"data": null}
+            {
+                "data": "id",
+                "mRender": function (data, type, full) {
+                    return "<a class='glyphicon glyphicon-eye-open' href='/scholarMap/reference/view" + data + "'></a>" +
+                        "<a class='select-reference glyphicon glyphicon-arrow-up' href='/scholarMap/interests/referenceVote" + data + "'></a>";
+                }
+            }
         ]
     });
 }
@@ -344,15 +353,24 @@ function setSelectedRefsDataTable() {
         "processing": true,
         "serverSide": true,
         "ajax": {
-            "url": './interests/loadSelectedReferences',
-            "type": "POST"
+            "url": './loadSelectedReferences',
+            "type": "POST",
+            'data': {
+                entity: $("#entity").val()
+            }
         },
         "columns": [
             {"data": "author"},
             {"data": "year"},
             {"data": "citation"},
             {"data": "votes"},
-            {"data": null}
+            {
+                "data": "id",
+                "mRender": function (data, type, full) {
+                    return "<a class='glyphicon glyphicon-eye-open' href='/scholarMap/reference/view" + data + "'></a>" +
+                        "<a class='glyphicon glyphicon-remove' href='/scholarMap/interests/removeVote" + data + "'></a>";
+                }
+            }
         ]
     });
 }
