@@ -38,6 +38,6 @@ class ReferenceControllerSpec extends Specification {
         controller.submit(refCmd)
 
         then:
-        response.redirectedUrl == '/home/entities'
+        response.redirectedUrl == '/home/references'
     }
 }
