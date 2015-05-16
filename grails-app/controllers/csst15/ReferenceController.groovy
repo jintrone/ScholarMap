@@ -30,7 +30,7 @@ class ReferenceController {
             def reference = referenceService.createReference(referenceCommand)
 
             if (reference) {
-                redirect(controller: 'home', action: 'entities')
+                redirect(controller: 'home', action: 'references')
             } else {
                 render(view: 'create', model: [referenceCommand: referenceCommand])
             }
@@ -43,7 +43,8 @@ class ReferenceController {
 
             [reference: reference]
         } else {
-            redirect(controller: 'home', action: 'entities')
+            log.info("Reference id not found")
+            redirect(uri: '/not-found')
         }
     }
 
@@ -53,7 +54,8 @@ class ReferenceController {
             def reference = Reference.findById(params.id)
             [reference: reference]
         } else {
-            redirect(controller: 'home', action: 'entities')
+            log.info("Reference id not found")
+            redirect(uri: '/not-found')
         }
     }
 
@@ -70,7 +72,7 @@ class ReferenceController {
                 redirect(action: 'view', params: [id: reference.id])
             } else {
                 log.info("Reference id not found")
-                redirect(controller: 'home', action: 'entities')
+                redirect(uri: '/not-found')
             }
         }
     }
