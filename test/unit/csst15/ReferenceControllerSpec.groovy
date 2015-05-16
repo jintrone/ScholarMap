@@ -16,7 +16,7 @@ class ReferenceControllerSpec extends Specification {
     void "test submit action when reference creation failed"() {
         setup:
         request.method = 'POST'
-        def refCmd = new ReferenceCommand(year: '2014', content: 'content', citation: 'citation')
+        def refCmd = new ReferenceCommand(year: '2014', citation: 'citation')
         controller.referenceService = [createReference: { command -> null }]
 
         when:
@@ -30,7 +30,7 @@ class ReferenceControllerSpec extends Specification {
     void "test submit action when reference created"() {
         setup:
         request.method = 'POST'
-        def refCmd = new ReferenceCommand(year: '2014', content: 'content', citation: 'citation')
+        def refCmd = new ReferenceCommand(year: '2014', citation: 'citation')
         def ref = Reference.build()
         controller.referenceService = [createReference: { command -> ref }]
 

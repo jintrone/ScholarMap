@@ -22,14 +22,14 @@ class ReferenceSpec extends ConstraintsUnitSpec {
 
         where:
         target     | field      | val
-        'nullable' | 'hash' | null
-        'nullable' | 'hash' | getEmptyString()
+        'nullable' | 'hash'    | null
+        'nullable' | 'hash'    | getEmptyString()
         'nullable' | 'citation' | null
         'nullable' | 'citation' | getEmptyString()
         'maxSize'  | 'citation' | getCustomTextWithLength(501)
         'valid'    | 'citation' | getCustomTextWithLength(500)
-        'nullable' | 'content'  | null
-        'nullable' | 'content'  | getEmptyString()
+        'valid'    | 'content' | null
+        'valid'    | 'content' | getEmptyString()
         'maxSize'  | 'content'  | getCustomTextWithLength(5001)
         'valid'    | 'content'  | getCustomTextWithLength(5000)
         'nullable' | 'creator'  | null

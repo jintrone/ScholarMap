@@ -14,7 +14,7 @@ class ReferenceServiceSpec extends Specification {
         given:
         def user = User.build()
         def citation = 'citation'
-        def command = new ReferenceCommand(year: '2014', content: 'content', citation: citation)
+        def command = new ReferenceCommand(year: '2014', citation: citation)
         service.springSecurityService = [currentUser: user]
 
         expect:
