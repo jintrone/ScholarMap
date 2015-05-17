@@ -82,8 +82,8 @@ class InterestsController {
 
         def results = [
                 draw           : params.draw,
-                recordsTotal   : available.totalCount,
-                recordsFiltered: count,
+                recordsTotal   : (available.totalCount - selectedReferences.size()),
+                recordsFiltered: (count - selectedReferences.size()),
                 data           :
                         availableReferences.collect { reference ->
                             [
