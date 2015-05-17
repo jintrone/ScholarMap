@@ -333,7 +333,7 @@ function setAvailableRefsDataTable() {
             }
         },
         "columns": [
-            {"data": "author"},
+            {"data": "author[; ]"},
             {"data": "year"},
             {"data": "citation"},
             {"data": "votes"},
@@ -361,7 +361,7 @@ function setSelectedRefsDataTable() {
             }
         },
         "columns": [
-            {"data": "author"},
+            {"data": "author[; ]"},
             {"data": "year"},
             {"data": "citation"},
             {"data": "votes"},
