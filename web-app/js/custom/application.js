@@ -356,7 +356,8 @@ function setSelectedRefsDataTable() {
             "url": './loadSelectedReferences',
             "type": "POST",
             'data': {
-                entity: $("#entity").val()
+                entity: $("#entity").val(),
+                isOwner: $("#isOwner").val()
             }
         },
         "columns": [
@@ -367,8 +368,13 @@ function setSelectedRefsDataTable() {
             {
                 "data": "id",
                 "mRender": function (data, type, full) {
-                    return "<a class='glyphicon glyphicon-eye-open' href='/scholarMap/reference/view" + data + "'></a>" +
-                        "<a class='glyphicon glyphicon-remove' href='/scholarMap/interests/removeVote" + data + "'></a>";
+                    if (full.isOwner == true) {
+                        return "<a class='glyphicon glyphicon-eye-open' href='/scholarMap/reference/view" + data + "'></a>" +
+                            "<a class='glyphicon glyphicon-remove' href='/scholarMap/interests/removeVote" + data + "'></a>";
+                    } else {
+                        return "<a class='glyphicon glyphicon-eye-open' href='/scholarMap/reference/view" + data + "'></a>";
+                    }
+
                 }
             }
         ]

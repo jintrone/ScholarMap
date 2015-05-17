@@ -1,6 +1,7 @@
 <%@ page import="csst15.ReferenceVote; com.google.common.base.Joiner; org.apache.commons.lang.ArrayUtils; csst15.ReferenceAuthor" %>
 <g:applyLayout name="main">
     <g:set var="isOwner" value="${sec.loggedInUserInfo(field: 'id') == user?.id?.toString()}"/>
+    <g:hiddenField name="isOwner" value="${isOwner}"/>
     <div class="row">
         <div class="col-md-1"></div>
 
@@ -26,8 +27,6 @@
             </ol>
 
             <div id="refTablesContainer">
-                %{--<g:render template="/user/referenceList"--}%
-                %{--model="[isOwner: isOwner, entityId: entity?.id, selectedReferences: selectedReferences, availableReferences: availableReferences]"/>--}%
                 <div id="referenceTablesPanel">
                     <section class="panel panel-default">
                         <div class="panel-heading"><strong><span
@@ -49,22 +48,6 @@
                                     </thead>
 
                                     <tbody>
-                                    %{--<g:each in="${selectedReferences}" var="reference">--}%
-                                    %{--<tr>--}%
-                                    %{--<td><csst:author reference="${reference}"/></td>--}%
-                                    %{--<td>${reference?.year}</td>--}%
-                                    %{--<td>${reference?.citation}</td>--}%
-                                    %{--<td>${ReferenceVote.findAllByReference(reference)?.unique()?.size()}</td>--}%
-                                    %{--<td>--}%
-                                    %{--<g:link class="glyphicon glyphicon-eye-open" controller="reference"--}%
-                                    %{--action="view" params="[id: reference?.id]"/>--}%
-                                    %{--<g:if test="${isOwner}">--}%
-                                    %{--<g:link class="glyphicon glyphicon-remove" controller="interests"--}%
-                                    %{--action="removeVote" params="[id: reference?.id, entityId: entity?.id]"/>--}%
-                                    %{--</g:if>--}%
-                                    %{--</td>--}%
-                                    %{--</tr>--}%
-                                    %{--</g:each>--}%
                                     </tbody>
                                 </table>
                             </div>
@@ -102,23 +85,6 @@
                                         </thead>
 
                                         <tbody>
-                                        %{--<g:each in="${availableReferences}" var="reference">--}%
-                                        %{--<tr class="${reference?.id}">--}%
-                                        %{--<td><csst:author reference="${reference}"/></td>--}%
-                                        %{--<td>${reference?.year}</td>--}%
-                                        %{--<td>${reference?.citation}</td>--}%
-                                        %{--<td>${ReferenceVote.countByReference(reference)}</td>--}%
-                                        %{--<td>--}%
-                                        %{--<g:link class="glyphicon glyphicon-eye-open" controller="reference"--}%
-                                        %{--action="view" params="[id: reference?.id]"/>--}%
-                                        %{--<sec:ifLoggedIn>--}%
-                                        %{--<a href="javascript:void(0);"--}%
-                                        %{--class="select-reference glyphicon glyphicon-arrow-up"--}%
-                                        %{--style="cursor: pointer" id="${reference?.id}"></a>--}%
-                                        %{--</sec:ifLoggedIn>--}%
-                                        %{--</td>--}%
-                                        %{--</tr>--}%
-                                        %{--</g:each>--}%
                                         </tbody>
                                     </table>
                                 </div>

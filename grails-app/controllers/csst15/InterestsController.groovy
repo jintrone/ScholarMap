@@ -117,24 +117,48 @@ class InterestsController {
                 ilike("r.citation", "%${params.'search[value]'}%")
             }
 
-            def results = [
-                    draw           : params.draw,
-                    recordsTotal   : selectedReferencesVote.totalCount,
-                    recordsFiltered: count,
-                    data           :
-                            selectedReferencesVote.collect { vote ->
-                                [
-                                        year    : vote.reference.year,
-                                        citation: vote.reference.citation,
-                                        author  :
-                                                ReferenceAuthor.findAllByReference(vote.reference).author.collect { a ->
-                                                    a.lastName + " " + a.firstName.getAt(0) + "."
-                                                },
-                                        votes   : "${ReferenceVote.findAllByReference(vote.reference)?.unique()?.size()}",
-                                        id      : "?entityId=" + entity.id + "&id=" + vote.reference.id
-                                ]
-                            }
-            ]
+            def results
+            if (params.isOwner == "true") {
+                results = [
+                        draw           : params.draw,
+                        recordsTotal   : selectedReferencesVote.totalCount,
+                        recordsFiltered: count,
+                        data           :
+                                selectedReferencesVote.collect { vote ->
+                                    [
+                                            year    : vote.reference.year,
+                                            citation: vote.reference.citation,
+                                            author  :
+                                                    ReferenceAuthor.findAllByReference(vote.reference).author.collect { a ->
+                                                        a.lastName + " " + a.firstName.getAt(0) + "."
+                                                    },
+                                            votes   : "${ReferenceVote.findAllByReference(vote.reference)?.unique()?.size()}",
+                                            id      : "?entityId=" + entity.id + "&id=" + vote.reference.id,
+                                            isOwner : true
+                                    ]
+                                }
+                ]
+            } else {
+                results = [
+                        draw           : params.draw,
+                        recordsTotal   : selectedReferencesVote.totalCount,
+                        recordsFiltered: count,
+                        data           :
+                                selectedReferencesVote.collect { vote ->
+                                    [
+                                            year    : vote.reference.year,
+                                            citation: vote.reference.citation,
+                                            author  :
+                                                    ReferenceAuthor.findAllByReference(vote.reference).author.collect { a ->
+                                                        a.lastName + " " + a.firstName.getAt(0) + "."
+                                                    },
+                                            votes   : "${ReferenceVote.findAllByReference(vote.reference)?.unique()?.size()}",
+                                            id      : "?entityId=" + entity.id + "&id=" + vote.reference.id
+                                    ]
+                                }
+                ]
+            }
+
 
             render(results as JSON)
         } else {
