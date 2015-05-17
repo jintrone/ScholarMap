@@ -54,4 +54,16 @@ class UserControllerSpec extends Specification {
         then:
         controller.modelAndView.viewName == '/user/changePassword'
     }
+
+    void "test profile action when user not found"() {
+        setup:
+        controller.springSecurityService = [currentUser: null]
+        User.metaClass.'static'.findByUsername = { username -> null }
+
+        when:
+        controller.profile()
+
+        then:
+        response.redirectedUrl == "/not-found"
+    }
 }
