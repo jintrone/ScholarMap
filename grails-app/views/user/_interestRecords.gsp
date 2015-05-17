@@ -62,7 +62,7 @@
             </div>
 
             <div class="modal-footer">
-                <g:link controller="interests" action="references" params="[entityId: newEntity?.id]"
+                <g:link controller="interests" action="references" params="[user: user.id, entityId: newEntity?.id]"
                         class="btn btn-primary">Add Reference</g:link>
             </div>
         </div>
