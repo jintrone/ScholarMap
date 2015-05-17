@@ -62,11 +62,16 @@ class InterestsController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def loadAvailableReferences() {
         def entity = Entity.get(params.entity)
+        def selectedReferences = ReferenceVote.findAllByEntityAndReferenceIsNotNull(entity, [cache: true])?.reference?.unique()
         def available = Reference.createCriteria().list(max: Integer.parseInt(params.length), offset: params.start) {
             or {
                 ilike("citation", "%${params.'search[value]'}%")
             }
             order("citation", params."order[0][dir]")
+        }
+
+        def availableReferences = available.findAll { reference ->
+            !selectedReferences.id.contains(reference.id)
         }
 
         def count = Reference.createCriteria().count() {
@@ -80,7 +85,7 @@ class InterestsController {
                 recordsTotal   : available.totalCount,
                 recordsFiltered: count,
                 data           :
-                        available.collect { reference ->
+                        availableReferences.collect { reference ->
                             [
                                     year    : reference.year,
                                     citation: reference.citation,
