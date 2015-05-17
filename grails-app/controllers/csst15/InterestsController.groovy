@@ -4,10 +4,10 @@ import csst15.command.ReferenceCommand
 import csst15.security.User
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
-import grails.transaction.Transactional
 import groovy.util.logging.Slf4j
 import org.apache.commons.lang3.StringUtils
 import org.springframework.http.HttpStatus
+import org.springframework.transaction.annotation.Transactional
 
 @Slf4j
 class InterestsController {

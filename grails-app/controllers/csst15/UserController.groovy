@@ -12,10 +12,10 @@ import csst15.lists.Position
 import csst15.lists.Specialization
 import csst15.security.User
 import grails.plugin.springsecurity.annotation.Secured
-import grails.transaction.Transactional
 import grails.validation.ValidationException
 import groovy.util.logging.Slf4j
 import org.springframework.http.HttpStatus
+import org.springframework.transaction.annotation.Transactional
 
 @Slf4j
 @Transactional(readOnly = true)
