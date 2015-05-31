@@ -11,7 +11,12 @@ class AuthorTagLib {
         def result = ""
 
         authors.each { a ->
-            result += "${a.lastName} ${a.firstName.getAt(0)}.; "
+            if (a == authors.last()) {
+                result += "${a.lastName} ${a.firstName.getAt(0)}."
+            } else {
+                result += "${a.lastName} ${a.firstName.getAt(0)}.; "
+            }
+
         }
 
         out << result
