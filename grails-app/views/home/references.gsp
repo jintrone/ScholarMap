@@ -49,7 +49,7 @@
                                 <th style="width: 200px !important;">Authors</th>
                                 <th>Year</th>
                                 <th>Full Citation</th>
-                                <th>Votes</th>
+                                <th>Total Votes</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
