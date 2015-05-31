@@ -22,6 +22,6 @@ class AuthorTagLibSpec extends Specification {
         ReferenceAuthor.metaClass.'static'.findAllByReference = { ref -> [ra1, ra2] }
 
         expect:
-        tagLib.author() == "Matevosyan E.; Introne J.; "
+        tagLib.author() == "Matevosyan E.; Introne J."
     }
 }
