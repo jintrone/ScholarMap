@@ -65,7 +65,7 @@ class InterestsController {
         def selectedReferences = ReferenceVote.findAllByEntityAndReferenceIsNotNull(entity, [cache: true])?.reference?.unique()
         def available = Reference.createCriteria().list(max: Integer.parseInt(params.length), offset: params.start) {
             or {
-                ilike("citation", "%${params.'search[value]'}%")
+                ilike("citation", "${params.'search[value]'}%")
             }
             order("citation", params."order[0][dir]")
         }
@@ -76,7 +76,7 @@ class InterestsController {
 
         def count = Reference.createCriteria().count() {
             or {
-                ilike("citation", "%${params.'search[value]'}%")
+                ilike("citation", "${params.'search[value]'}%")
             }
         }
 
@@ -108,13 +108,13 @@ class InterestsController {
             def selectedReferencesVote = ReferenceVote.createCriteria().list(max: Integer.parseInt(params.length), offset: params.start) {
                 createAlias('reference', 'r')
                 eq("entity", entity)
-                ilike("r.citation", "%${params.'search[value]'}%")
+                ilike("r.citation", "${params.'search[value]'}%")
             }
 
             def count = ReferenceVote.createCriteria().count() {
                 createAlias('reference', 'r')
                 eq("entity", entity)
-                ilike("r.citation", "%${params.'search[value]'}%")
+                ilike("r.citation", "${params.'search[value]'}%")
             }
 
             def results
