@@ -196,8 +196,42 @@ class HomeController {
     }
 
     def references() {
-        def references = Reference.list()
+        if (request.method == "POST") {
+            def c = Reference.createCriteria()
+            def allReferences = c.list(max: Integer.parseInt(params.length), offset: params.start) {
+                ilike("citation", "${params.'search[value]'}%")
+                order("citation", params."order[0][dir]")
+            }
+            def count = Reference.createCriteria().count() {
+                ilike("citation", "${params.'search[value]'}%")
+            }
 
-        [references: references]
+            def json = JsonOutput.toJson(
+                    draw: params.draw,
+                    recordsTotal: allReferences.totalCount,
+                    recordsFiltered: count,
+                    data:
+                            allReferences.collect { reference ->
+                                [
+                                        year    : reference.year,
+                                        citation: reference.citation,
+                                        author  :
+                                                ReferenceAuthor.findAllByReference(reference).author.collect { a ->
+                                                    a.lastName + " " + a.firstName.getAt(0) + "."
+                                                },
+                                        votes   : "${ReferenceVote.findAllByReference(reference)?.unique()?.size()}",
+                                        id      : reference.id
+                                ]
+                            }
+            )
+
+            render(json)
+        } else {
+            render(view: 'references')
+        }
+
+//        def references = Reference.list()
+//
+//        [references: references]
     }
 }

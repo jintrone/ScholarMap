@@ -168,6 +168,7 @@ $(document).ready(function () {
     refVote();
     applyDatatable();
     showRefModal();
+    setExploreReferenceDataTable();
 
 });
 
@@ -375,6 +376,29 @@ function setSelectedRefsDataTable() {
                         return "<a class='glyphicon glyphicon-eye-open' href='/scholarMap/reference/view" + data + "'></a>";
                     }
 
+                }
+            }
+        ]
+    });
+}
+
+function setExploreReferenceDataTable() {
+    $("#exploreRefTable").dataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": './home/references',
+            "type": "POST"
+        },
+        "columns": [
+            {"data": "author[; ]"},
+            {"data": "year"},
+            {"data": "citation"},
+            {"data": "votes"},
+            {
+                "data": "id",
+                "mRender": function (data, type, full) {
+                    return "<a class='glyphicon glyphicon-eye-open' href='/scholarMap/reference/view/" + data + "'></a>";
                 }
             }
         ]

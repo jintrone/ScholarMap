@@ -43,7 +43,7 @@
                 <div class="panel-body">
 
                     <div class="table-responsive">
-                        <table class="table table-striped table-bordered">
+                        <table class="table table-striped table-bordered" id="exploreRefTable">
                             <thead>
                             <tr>
                                 <th style="width: 200px !important;">Authors</th>
@@ -55,16 +55,16 @@
                             </thead>
 
                             <tbody>
-                            <g:each in="${references}" var="reference">
-                                <tr>
-                                    <td><csst:author reference="${reference}"/></td>
-                                    <td>${reference.year}</td>
-                                    <td>${reference.citation}</td>
-                                    <td>${ReferenceVote.countByReference(reference)}</td>
-                                    <td><g:link class="glyphicon glyphicon-eye-open" controller="reference"
-                                                action="view" params="[id: reference.id]"/></td>
-                                </tr>
-                            </g:each>
+                            %{--<g:each in="${references}" var="reference">--}%
+                            %{--<tr>--}%
+                            %{--<td><csst:author reference="${reference}"/></td>--}%
+                            %{--<td>${reference.year}</td>--}%
+                            %{--<td>${reference.citation}</td>--}%
+                            %{--<td>${ReferenceVote.countByReference(reference)}</td>--}%
+                            %{--<td><g:link class="glyphicon glyphicon-eye-open" controller="reference"--}%
+                            %{--action="view" params="[id: reference.id]"/></td>--}%
+                            %{--</tr>--}%
+                            %{--</g:each>--}%
                             </tbody>
                         </table>
                     </div>
