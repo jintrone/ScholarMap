@@ -94,7 +94,7 @@ class InterestsController {
                                                 a.lastName + " " + a.firstName.getAt(0) + "."
                                             },
                                     votes   : "${ReferenceVote.findAllByReference(reference)?.unique()?.size()}",
-                                    id      : "?entity=" + entity.id + "&refId=" + reference.id
+                                    id: "?entity=" + entity.id + "&id=" + reference.id
                             ]
                         }
         ]
@@ -133,7 +133,7 @@ class InterestsController {
                                                         a.lastName + " " + a.firstName.getAt(0) + "."
                                                     },
                                             votes   : "${ReferenceVote.findAllByReference(vote.reference)?.unique()?.size()}",
-                                            id      : "?entityId=" + entity.id + "&id=" + vote.reference.id,
+                                            id: "?entity=" + entity.id + "&id=" + vote.reference.id,
                                             isOwner : true
                                     ]
                                 }
@@ -153,7 +153,7 @@ class InterestsController {
                                                         a.lastName + " " + a.firstName.getAt(0) + "."
                                                     },
                                             votes   : "${ReferenceVote.findAllByReference(vote.reference)?.unique()?.size()}",
-                                            id      : "?entityId=" + entity.id + "&id=" + vote.reference.id
+                                            id: "?entity=" + entity.id + "&id=" + vote.reference.id
                                     ]
                                 }
                 ]
