@@ -140,6 +140,7 @@ $(document).ready(function () {
     });
 
     $("#addNewEntity").click(function () {
+        resetFields($('#addInterestModal'));
         $('#addInterestModal').modal('show');
     });
 
