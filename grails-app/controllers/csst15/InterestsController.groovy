@@ -188,7 +188,7 @@ class InterestsController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def removeVote() {
         def reference = Reference.findById(params.id)
-        def entity = Entity.findById(params.entityId)
+        def entity = Entity.findById(params.entity)
         if (entity && reference) {
             def currentUser = springSecurityService.currentUser as User
             ReferenceVote.findByEntityAndReference(entity, reference, [cache: true]).collect { it.delete(flush: true) }
