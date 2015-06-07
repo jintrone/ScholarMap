@@ -50,6 +50,10 @@ class AdminController {
             it.delete(flush: true)
         }
 
+        UserEntity.findAllByUser(user).collect {
+            it.delete(flush: true)
+        }
+
         user.delete(flush: true)
         log.info("Deleted the user with id ${user.id}")
         redirect(action: 'board')
