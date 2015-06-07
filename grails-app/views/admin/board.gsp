@@ -185,6 +185,7 @@
                                 <tr>
                                     <th></th>
                                     <th>Actions</th>
+                                    <th>Authors</th>
                                     <th>Citation</th>
                                     <th>Year</th>
                                 </tr>
@@ -205,6 +206,7 @@
                                                         action="edit" params="[id: reference.id]"/>
                                             </sec:ifLoggedIn>
                                         </td>
+                                        <td><csst:author reference="${reference}"/></td>
                                         <td>${reference.citation}</td>
                                         <td>${reference.year}</td>
                                     </tr>
