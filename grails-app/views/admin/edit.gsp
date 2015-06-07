@@ -24,7 +24,7 @@
                             </div>
 
                             <div class="col-sm-6">
-                                <g:input type="text" class="form-control" name="username" placeholder="Not set"
+                                <g:textField type="text" class="form-control" name="username" placeholder="Not set"
                                        value="${user.username}"/>
                             </div>
 
@@ -42,7 +42,7 @@
                             </div>
 
                             <div class="col-sm-6">
-                                <g:input type="email" class="form-control" name="email" value="${user.email}"
+                                <g:textField type="email" class="form-control" name="email" value="${user.email}"
                                        placeholder="Not set"/>
                             </div>
 
@@ -60,7 +60,7 @@
                             </div>
 
                             <div class="col-sm-6">
-                                <g:input type="text" class="form-control" name="firstName" placeholder="Not set"
+                                <g:textField type="text" class="form-control" name="firstName" placeholder="Not set"
                                        value="${user.firstName}"/>
                             </div>
 
@@ -78,7 +78,7 @@
                             </div>
 
                             <div class="col-sm-6">
-                                <g:input type="text" class="form-control" name="lastName" placeholder="Not set"
+                                <g:textField type="text" class="form-control" name="lastName" placeholder="Not set"
                                        value="${user.lastName}"/>
                             </div>
 
@@ -96,7 +96,7 @@
                             </div>
 
                             <div class="col-sm-6">
-                                <g:input type="text" class="form-control" name="degreeYear"
+                                <g:textField type="text" class="form-control" name="degreeYear"
                                        placeholder="Not set"
                                        value="${user.degreeYear}"/>
                             </div>
@@ -115,7 +115,7 @@
                             </div>
 
                             <div class="col-sm-6">
-                                <g:input type="text" class="form-control" name="institution" placeholder="Not set"
+                                <g:textField type="text" class="form-control" name="institution" placeholder="Not set"
                                        value="${user.institution}"/>
                             </div>
 
