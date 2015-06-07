@@ -171,7 +171,7 @@
                         </div>
 
                         <div class="col-md-1">
-                            <a href="javascript:void(0);" id="addNewRefBtn" class="btn btn-success"
+                            <a href="javascript:void(0);" id="mergeRefBtn" class="btn btn-success"
                                title="Merge">Merge</a>
                         </div>
                     </div>
@@ -221,7 +221,16 @@
 
             <div role="tabpanel" class="tab-pane" id="settings" style="margin-top: 15px">
                 <section class="panel panel-default">
-                    <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Entities</strong>
+                    <div class="panel-heading" style="padding: 20px; height: 80px">
+
+                        <div class="col-md-11">
+                            <strong><span class="glyphicon glyphicon-th"></span> Entities</strong>
+                        </div>
+
+                        <div class="col-md-1">
+                            <a href="javascript:void(0);" id="mergeEntityBtn" class="btn btn-success"
+                               title="Merge">Merge</a>
+                        </div>
                     </div>
 
                     <div class="panel-body">
