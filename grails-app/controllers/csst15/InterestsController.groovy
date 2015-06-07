@@ -27,7 +27,12 @@ class InterestsController {
         def currentUser = springSecurityService.currentUser as User
 
         if (currentUser) {
-            def entity = Entity.findWhere(name: params.name) ?: new Entity(type: GeneralUtils.constructEntityType(params.type), name: params.name, description: params.description).save(flush: true)
+            def existedEntity = Entity.findWhere(name: params.name)
+            if (existedEntity) {
+                existedEntity.description = params.description
+                existedEntity.save(flush: true)
+            }
+            def entity = existedEntity ?: new Entity(type: GeneralUtils.constructEntityType(params.type), name: params.name, description: params.description).save(flush: true)
             if (entity?.id) {
                 UserEntity.create(currentUser, entity, true)
                 def entities = UserEntity.findAllByUser(currentUser)?.entity
