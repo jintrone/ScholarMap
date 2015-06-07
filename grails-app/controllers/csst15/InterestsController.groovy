@@ -29,7 +29,7 @@ class InterestsController {
         if (currentUser) {
             def entity = Entity.findWhere(name: params.name) ?: new Entity(type: GeneralUtils.constructEntityType(params.type), name: params.name, description: params.description).save(flush: true)
             if (entity?.id) {
-                UserEntity.create(currentUser, entity)
+                UserEntity.create(currentUser, entity, true)
                 def entities = UserEntity.findAllByUser(currentUser)?.entity
                 render(template: '/user/interestRecords', model: [newEntity: entity, entities: entities, user: currentUser])
             } else {
@@ -171,7 +171,7 @@ class InterestsController {
     @Transactional
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def referenceVote() {
-        def reference = Reference.get(params.refId)
+        def reference = Reference.get(params.id)
         def entity = Entity.get(params.entity)
         def currentUser = springSecurityService.currentUser as User
 
@@ -180,7 +180,7 @@ class InterestsController {
             log.info("Voted the reference with id ${reference.id}")
             redirect(action: 'references', params: [user: currentUser.id, entityId: entity.id])
         } else {
-            render(status: HttpStatus.BAD_REQUEST)
+            redirect(uri: '/not-found')
         }
     }
 

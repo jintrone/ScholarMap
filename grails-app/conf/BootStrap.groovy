@@ -21,8 +21,8 @@ class BootStrap {
     def init = { servletContext ->
         environments {
             development {
-                bootstrapUserDetailsDatabase()
-                bootstrapSpringSecurityDatabase()
+//                bootstrapUserDetailsDatabase()
+//                bootstrapSpringSecurityDatabase()
             }
             production {
                 bootstrapUserDetailsDatabase()

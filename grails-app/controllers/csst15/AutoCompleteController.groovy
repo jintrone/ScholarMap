@@ -37,15 +37,32 @@ class AutoCompleteController {
         def authorName = StringUtils.split(params.name, ',')
         def author = Author.findByFirstNameAndLastName(authorName[1].trim(), authorName[0].trim())
         def references = ReferenceAuthor.findAllByAuthor(author).reference.unique()
+        def entity = Entity.findById(params.entity)
+        def selectedReferences = ReferenceVote.findAllByEntityAndReferenceIsNotNull(entity, [cache: true])?.reference?.unique()
 
-        references = references.collect { reference ->
+
+        println "==============================="
+        println selectedReferences
+        println "==============================="
+        println references
+        println "==============================="
+
+        def filteredReferences = references.findAll { reference ->
+//            println "+++++++++++++++++++++++++++++++"
+//            println selectedReferences.id
+//            println reference.id
+//            println "+++++++++++++++++++++++++++++++"
+            !selectedReferences.id.contains(reference.id)
+        }
+
+        filteredReferences = filteredReferences.collect { reference ->
             [
                     citation: reference.citation,
                     id      : reference.id
             ]
         }
 
-        render(references as JSON)
+        render(filteredReferences as JSON)
     }
 
     def loadRefAuthorDetails() {

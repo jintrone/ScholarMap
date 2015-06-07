@@ -21,7 +21,8 @@
                     type: 'POST',
                     url: $("#loadAuthorRefs").val(),
                     data: {
-                        name: ui.item.value
+                        name: ui.item.value,
+                        entity: $("#entity").val()
                     },
                     dateType:'json',
                     success: function(data) {
