@@ -13035,3 +13035,13 @@ body {
     max-height: 200px;
     overflow-y: auto;
 }
+
+/*#addNewReferenceModal {*/
+/*width: 900px !important;*/
+/*margin: 30px auto !important;*/
+/*}*/
+
+#addNewReferenceModal .modal-dialog {
+    width: 900px !important;
+    margin: 30px auto !important;
+}

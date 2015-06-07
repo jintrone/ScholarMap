@@ -7,7 +7,7 @@ $(document).ready(function () {
 
     var i = 1;
     $("#add_row").click(function () {
-        $('#addr' + i).html("<td>" + (i + 1) + "</td><td><input name='fullName' type='text' placeholder='Last name, First name' class='form-control input-md ui-autocomplete-input'  /> </td>");
+        $('#addr' + i).html("<td><input name='fullName' type='text' placeholder='Last name, First name' class='form-control input-md ui-autocomplete-input'  /> </td>");
 
         $('#tab_logic').append('<tr id="addr' + (i + 1) + '"></tr>');
         i++;

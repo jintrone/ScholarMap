@@ -141,26 +141,30 @@
         </div>
 
         <div class="form-group">
-            <label for="citation">Full Citation</label>
-            <textarea maxlength="500" name="citation" rows="5" id="citation"
-                      class="form-control"
-                      placeholder="Not set"></textarea>
+            <div class="col-xs-6">
+                <label for="citation">Full Citation</label>
+                <textarea maxlength="500" name="citation" rows="5" id="citation"
+                          class="form-control"
+                          placeholder="Not set"></textarea>
+            </div>
+
+            <div class="col-xs-6" id="matchedRefTable">
+                <table class="table table-bordered table-hover" id="ref_tab" style="display: none">
+                    <thead>
+                    </thead>
+                    <tbody>
+                    <tr class="tempRow" style="cursor: pointer">
+                        <g:hiddenField name="tempId"/>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
-        <div class="form-group" id="matchedRefTable">
-            <table class="table table-bordered table-hover" id="ref_tab" style="display: none">
-                <thead>
-                </thead>
-                <tbody>
-                <tr class="tempRow" style="cursor: pointer">
-                    <g:hiddenField name="tempId"/>
-                    <td></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+        <div class="form-group" style="padding-bottom: 210px"></div>
 
-        <div class="modal-footer" style="margin-top: 60px">
+        <div class="modal-footer" style="padding-top: 10px">
             <button type="button" class="btn btn-default"
                     data-dismiss="modal">Cancel</button>
             <button id="addReferenceBtn" class="btn btn-primary">Add</button>

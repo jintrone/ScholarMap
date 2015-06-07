@@ -176,7 +176,7 @@ class InterestsController {
         def currentUser = springSecurityService.currentUser as User
 
         if (reference && entity) {
-            new ReferenceVote(user: currentUser, reference: reference, entity: entity).save(flush: true)
+            ReferenceVote.findByReferenceAndEntity(reference, entity) ?: new ReferenceVote(user: currentUser, reference: reference, entity: entity).save(flush: true)
             log.info("Voted the reference with id ${reference.id}")
             redirect(action: 'references', params: [user: currentUser.id, entityId: entity.id])
         } else {
