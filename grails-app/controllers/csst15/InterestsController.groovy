@@ -61,29 +61,55 @@ class InterestsController {
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def loadAvailableReferences() {
+        def columns = ['0': 'lastName', '1': 'year', '2': 'citation']
         def entity = Entity.get(params.entity)
         def selectedReferences = ReferenceVote.findAllByEntityAndReferenceIsNotNull(entity, [cache: true])?.reference?.unique()
-        def available = Reference.createCriteria().list(max: Integer.parseInt(params.length), offset: params.start) {
+        def available = ReferenceAuthor.createCriteria().list(max: Integer.parseInt(params.length), offset: params.start) {
+            createAlias('reference', 'r')
+            createAlias('author', 'a')
             or {
-                ilike("citation", "${params.'search[value]'}%")
+                ilike("r.citation", "${params.'search[value]'}%")
+                ilike("a.lastName", "${params.'search[value]'}%")
+                if (StringUtils.isNumeric(params.'search[value]')) {
+                    eq('r.year', Integer.parseInt(params.'search[value]'))
+                }
             }
-            order("citation", params."order[0][dir]")
+
+            if (params.'order[0][column]' == '0') {
+                order("a." + columns[params.'order[0][column]'], params."order[0][dir]")
+            } else {
+                order("r." + columns[params.'order[0][column]'], params."order[0][dir]")
+            }
+
+            projections {
+                distinct('reference')
+            }
         }
 
         def availableReferences = available.findAll { reference ->
             !selectedReferences.id.contains(reference.id)
         }
 
-        def count = Reference.createCriteria().count() {
+        def count = ReferenceAuthor.createCriteria().list {
+            createAlias('reference', 'r')
+            createAlias('author', 'a')
             or {
-                ilike("citation", "${params.'search[value]'}%")
+                ilike("r.citation", "${params.'search[value]'}%")
+                ilike("a.lastName", "${params.'search[value]'}%")
+                if (StringUtils.isNumeric(params.'search[value]')) {
+                    eq('r.year', Integer.parseInt(params.'search[value]'))
+                }
+            }
+
+            projections {
+                countDistinct('reference')
             }
         }
 
         def results = [
                 draw           : params.draw,
-                recordsTotal   : (available.totalCount - selectedReferences.size()),
-                recordsFiltered: (count - selectedReferences.size()),
+                recordsTotal   : (available[0].count() - selectedReferences.size()),
+                recordsFiltered: (count[0]),
                 data           :
                         availableReferences.collect { reference ->
                             [
