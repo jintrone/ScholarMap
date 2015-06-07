@@ -216,7 +216,7 @@ class InterestsController {
         if (referenceCommand.hasErrors()) {
             render(view: 'create', model: [referenceCommand: referenceCommand])
         } else {
-            def reference = referenceService.createReference(referenceCommand)
+            def reference = params.refId ? Reference.findById(params.refId) : referenceService.createReference(referenceCommand)
             def entity = Entity.get(params.entity)
             def authorName = []
             def author
@@ -227,7 +227,9 @@ class InterestsController {
             }
             if (reference) {
                 def currentUser = springSecurityService.currentUser as User
-                new ReferenceVote(user: currentUser, reference: reference, entity: entity).save(flush: true)
+                if (!ReferenceVote.findByReferenceAndEntity(reference, entity)) {
+                    new ReferenceVote(user: currentUser, reference: reference, entity: entity).save(flush: true)
+                }
                 redirect(action: 'references', params: [user: currentUser.id, entityId: entity.id])
             } else {
                 render(view: 'create', model: [referenceCommand: referenceCommand])

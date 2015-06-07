@@ -62,6 +62,7 @@
                         });
                         $("#citation").val(data[0].citation);
                         $("#year").val(data[0].year);
+                        $("#refId").val(data[0].id);
                     }
                 });
             });

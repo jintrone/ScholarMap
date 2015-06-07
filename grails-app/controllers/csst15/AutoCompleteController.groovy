@@ -40,18 +40,7 @@ class AutoCompleteController {
         def entity = Entity.findById(params.entity)
         def selectedReferences = ReferenceVote.findAllByEntityAndReferenceIsNotNull(entity, [cache: true])?.reference?.unique()
 
-
-        println "==============================="
-        println selectedReferences
-        println "==============================="
-        println references
-        println "==============================="
-
         def filteredReferences = references.findAll { reference ->
-//            println "+++++++++++++++++++++++++++++++"
-//            println selectedReferences.id
-//            println reference.id
-//            println "+++++++++++++++++++++++++++++++"
             !selectedReferences.id.contains(reference.id)
         }
 
@@ -71,6 +60,7 @@ class AutoCompleteController {
             def refAuthor = ReferenceAuthor.findAllByReference(reference)
             def results = refAuthor.collect { result ->
                 [
+                        id     : result.reference.id,
                         citation: result.reference.citation,
                         year   : result.reference.year,
                         authors:

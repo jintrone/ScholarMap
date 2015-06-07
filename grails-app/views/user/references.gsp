@@ -138,6 +138,7 @@
         <div class="form-group">
             <label for="year">Year</label>
             <g:textField class="form-control" name="year" placeholder="Not set"/>
+            <g:hiddenField class="form-control" name="refId" placeholder="Not set"/>
         </div>
 
         <div class="form-group">
