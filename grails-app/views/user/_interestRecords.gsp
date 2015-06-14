@@ -58,7 +58,7 @@
             </div>
 
             <div class="modal-body">
-                ${newEntity?.name} has been added. Please take the time to add a reference.
+                <b>${newEntity?.name}</b> has been added. Please take the time to add a reference.
             </div>
 
             <div class="modal-footer">
