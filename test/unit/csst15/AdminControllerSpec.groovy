@@ -13,7 +13,7 @@ import grails.test.mixin.TestFor
 import spock.lang.Specification
 
 @TestFor(AdminController)
-@Build([User, GeneralConf, FieldLockConf, Role, FieldMandatoryConf, FieldVisibilityConf, Entity, Reference, UserRole, ReferenceVote])
+@Build([User, GeneralConf, FieldLockConf, Role, FieldMandatoryConf, FieldVisibilityConf, Entity, Reference, UserRole, ReferenceVote, UserEntity])
 class AdminControllerSpec extends Specification {
     void "test the board action"() {
         given:
