@@ -68,7 +68,7 @@ class InterestsController {
     def loadAvailableReferences() {
         def columns = ['0': 'lastName', '1': 'year', '2': 'citation']
         def entity = Entity.get(params.entity)
-        def selectedReferences = ReferenceVote.findAllByEntityAndReferenceIsNotNull(entity, [cache: true])?.reference?.unique()
+        def selectedReferences = ReferenceVote.findAllByEntityAndUser(entity, springSecurityService.currentUser as User, [cache: true])?.reference?.unique()
         def available = ReferenceAuthor.createCriteria().list(max: Integer.parseInt(params.length), offset: params.start) {
             createAlias('reference', 'r')
             createAlias('author', 'a')
@@ -113,7 +113,7 @@ class InterestsController {
 
         def results = [
                 draw           : params.draw,
-                recordsTotal   : (available[0].count() - selectedReferences.size()),
+                recordsTotal   : (available[0] ? available[0]?.count() - selectedReferences?.size() : 0),
                 recordsFiltered: (count[0]),
                 data           :
                         availableReferences.collect { reference ->
@@ -124,8 +124,8 @@ class InterestsController {
                                             ReferenceAuthor.findAllByReference(reference).author.collect { a ->
                                                 a.lastName + " " + a.firstName.getAt(0) + "."
                                             },
-                                    votes   : "${ReferenceVote.findAllByReference(reference)?.unique()?.size()}",
-                                    id: "?entity=" + entity.id + "&id=" + reference.id
+                                    votes: "${ReferenceVote.findAllByReferenceAndEntity(reference, entity)?.unique()?.size()}",
+                                    id   : "?entity=" + entity.id + "&id=" + reference.id
                             ]
                         }
         ]
@@ -139,12 +139,14 @@ class InterestsController {
             def selectedReferencesVote = ReferenceVote.createCriteria().list(max: Integer.parseInt(params.length), offset: params.start) {
                 createAlias('reference', 'r')
                 eq("entity", entity)
+                eq("user", springSecurityService.currentUser as User)
                 ilike("r.citation", "${params.'search[value]'}%")
             }
 
             def count = ReferenceVote.createCriteria().count() {
                 createAlias('reference', 'r')
                 eq("entity", entity)
+                eq("user", springSecurityService.currentUser as User)
                 ilike("r.citation", "${params.'search[value]'}%")
             }
 
@@ -163,8 +165,8 @@ class InterestsController {
                                                     ReferenceAuthor.findAllByReference(vote.reference).author.collect { a ->
                                                         a.lastName + " " + a.firstName.getAt(0) + "."
                                                     },
-                                            votes   : "${ReferenceVote.findAllByReference(vote.reference)?.unique()?.size()}",
-                                            id: "?entity=" + entity.id + "&id=" + vote.reference.id,
+                                            votes: "${ReferenceVote.findAllByReferenceAndEntity(vote.reference, entity)?.unique()?.size()}",
+                                            id   : "?entity=" + entity.id + "&id=" + vote.reference.id,
                                             isOwner : true
                                     ]
                                 }
@@ -183,8 +185,8 @@ class InterestsController {
                                                     ReferenceAuthor.findAllByReference(vote.reference).author.collect { a ->
                                                         a.lastName + " " + a.firstName.getAt(0) + "."
                                                     },
-                                            votes   : "${ReferenceVote.findAllByReference(vote.reference)?.unique()?.size()}",
-                                            id: "?entity=" + entity.id + "&id=" + vote.reference.id
+                                            votes: "${ReferenceVote.findAllByReferenceAndEntity(vote.reference, entity)?.unique()?.size()}",
+                                            id   : "?entity=" + entity.id + "&id=" + vote.reference.id
                                     ]
                                 }
                 ]
@@ -207,7 +209,7 @@ class InterestsController {
         def currentUser = springSecurityService.currentUser as User
 
         if (reference && entity) {
-            ReferenceVote.findByReferenceAndEntity(reference, entity) ?: new ReferenceVote(user: currentUser, reference: reference, entity: entity).save(flush: true)
+            ReferenceVote.findByReferenceAndEntityAndUser(reference, entity, currentUser) ?: new ReferenceVote(user: currentUser, reference: reference, entity: entity).save(flush: true)
             log.info("Voted the reference with id ${reference.id}")
             redirect(action: 'references', params: [user: currentUser.id, entityId: entity.id])
         } else {

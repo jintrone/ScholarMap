@@ -29,7 +29,7 @@
                 </g:if>
                 <g:else>
                     <g:link controller="interests" action="references" params="[user: user.id, entityId: entity?.id]">
-                        ${ReferenceVote.findAllByReferenceNotIsNullAndEntity(entity)?.reference?.unique()?.size()}
+                        ${ReferenceVote.findAllByReferenceNotIsNullAndEntityAndUser(entity, user)?.reference?.unique()?.size()}
                     </g:link>
                 </g:else>
             </td>
