@@ -162,6 +162,7 @@
                                             <th style="width: 150px !important;">Authors</th>
                                             <th>Year</th>
                                             <th>Citation</th>
+                                            <th>Votes</th>
                                             <th>Action</th>
                                         </tr>
                                         </thead>
@@ -173,6 +174,7 @@
                                                 <td><csst:author reference="${reference}"/></td>
                                                 <td>${reference?.year}</td>
                                                 <td>${reference?.citation}</td>
+                                                <td>${ReferenceVote.findAllByEntityAndReference(entity, reference).size()}</td>
                                                 <td><g:link class="glyphicon glyphicon-eye-open" controller="reference"
                                                             action="view" params="[id: reference.id]"/></td>
                                             </tr>
