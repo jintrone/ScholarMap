@@ -9,3 +9,5 @@
 <g:hiddenField name="loadAuthorRefs" value="${createLink(controller: 'autoComplete', action: 'loadAuthorRefs')}"/>
 <g:hiddenField name="loadAuthorRefsDetails"
                value="${createLink(controller: 'autoComplete', action: 'loadRefAuthorDetails')}"/>
+<g:hiddenField name="mergeRefDialogURL" value="${createLink(controller: 'admin', action: 'openMergeRefDialog')}"/>
+<g:hiddenField name="mergeDialogURL" value="${createLink(controller: 'admin', action: 'openMergeDialog')}"/>

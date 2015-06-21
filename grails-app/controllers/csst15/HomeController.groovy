@@ -196,11 +196,17 @@ class HomeController {
     }
 
     def references() {
+        def columns = ['1': 'year', '2': 'citation']
         if (request.method == "POST") {
             def c = Reference.createCriteria()
             def allReferences = c.list(max: Integer.parseInt(params.length), offset: params.start) {
                 ilike("citation", "${params.'search[value]'}%")
-                order("citation", params."order[0][dir]")
+                if (params.'order[0][column]' == '0') {
+                    params.'order[0][column]' = '1'
+                    order(columns[params.'order[0][column]'], params."order[0][dir]")
+                } else {
+                    order(columns[params.'order[0][column]'], params."order[0][dir]")
+                }
             }
             def count = Reference.createCriteria().count() {
                 ilike("citation", "${params.'search[value]'}%")

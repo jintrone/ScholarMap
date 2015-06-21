@@ -15,10 +15,11 @@ class InterestsController {
     def referenceService
 
     static allowedMethods = [
-            deleteInterest: 'POST',
+            deleteInterest        : 'POST',
             addInterest            : "POST",
             loadAvailableReferences: 'POST',
-            loadSelectedReferences : 'POST'
+            loadSelectedReferences: 'POST',
+            loadInterestsRecord   : 'POST'
     ]
 
     @Transactional
@@ -44,6 +45,12 @@ class InterestsController {
         } else {
             redirect(controller: 'login', action: 'auth')
         }
+    }
+
+    def loadInterestsRecord() {
+        def currentUser = springSecurityService.currentUser as User
+        def entities = UserEntity.findAllByUser(currentUser)?.entity
+        render(template: '/user/interestRecords', model: [entities: entities, user: currentUser])
     }
 
     @Transactional

@@ -153,6 +153,18 @@
                     </div>
                 </div>
 
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        console.log("ready!");
+                        $.ajax({
+                            type: 'POST',
+                            url: "/scholarMap/interests/loadInterestsRecord",
+                            success: function (data) {
+                                $("#interestRecords").html(data);
+                            }
+                        });
+                    });
+                </script>
                 <div class="panel-body">
                     <div class="media">
                         <div class="media-body" id="interestRecords">

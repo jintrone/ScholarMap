@@ -1,5 +1,5 @@
 <g:applyLayout name="main">
-    <div role="tabpanel">
+    <div role="tabpanel" id="tabPanel">
 
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
@@ -195,7 +195,7 @@
                                 <g:each in="${references}" var="reference">
                                     <tr>
                                         <td>
-                                            <g:checkBox name="checkBox"/>
+                                            <g:checkBox class="ref_check" name="checkBox" id="${reference.id}"/>
                                         </td>
                                         <td>
                                             <g:link class="glyphicon glyphicon-eye-open" controller="reference"
@@ -250,7 +250,7 @@
                                 <g:each in="${entities}" var="entity">
                                     <tr>
                                         <td>
-                                            <g:checkBox name="checkBox"/>
+                                            <g:checkBox class="entity_check" name="checkBox" id="${entity.id}"/>
                                         </td>
                                         <td>
                                             <g:link class="glyphicon glyphicon-eye-open" controller="entity"

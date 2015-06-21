@@ -1,7 +1,9 @@
 package csst15
 
 import csst15.security.User
+import groovy.transform.ToString
 
+@ToString(includeNames = true)
 class ReferenceVote implements Serializable {
     Entity entity
     Reference reference

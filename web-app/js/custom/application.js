@@ -142,6 +142,14 @@ $(document).ready(function () {
     $("#addNewEntity").click(function () {
         resetFields($('#addInterestModal'));
         $('#addInterestModal').modal('show');
+        $("#addInterestModal").on('keydown', '#name', function (e) {
+            var keyCode = e.keyCode || e.which;
+
+            if (keyCode == 9 || keyCode == 13) {
+                e.preventDefault();
+                $("#addInterestModal").find("#description").focus();
+            }
+        });
     });
 
     $("#addInterestBtn").click(function () {
@@ -170,6 +178,24 @@ $(document).ready(function () {
     applyDatatable();
     showRefModal();
     setExploreReferenceDataTable();
+
+    $("#mergeRefBtn").click(function () {
+        var refForMerge = $(".ref_check:checkbox:checked");
+        var array = [];
+        refForMerge.each(function () {
+            array.push($(this).attr('id'));
+        });
+        showMergeDialog(array.toString(), true);
+    });
+
+    $("#mergeEntityBtn").click(function () {
+        var entityForMerge = $(".entity_check:checkbox:checked");
+        var array = [];
+        entityForMerge.each(function () {
+            array.push($(this).attr('id'));
+        });
+        showMergeDialog(array.toString());
+    });
 
 });
 
@@ -403,5 +429,39 @@ function setExploreReferenceDataTable() {
                 }
             }
         ]
+    });
+}
+
+function showMergeDialog(entity, isRef) {
+    console.log(entity);
+    var url = "";
+    if (typeof(isRef) === 'undefined') {
+        url = $("#mergeDialogURL").val();
+    } else {
+        url = $("#mergeRefDialogURL").val();
+    }
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: {
+            entities: entity
+        },
+        success: function (data) {
+            $("#tabPanel").append(data);
+            if ($('#mergeEntityModal').length > 0) {
+                $('#mergeEntityModal').modal('show');
+            } else {
+                $('#mergeReferenceModal').modal('show');
+            }
+            closeMergeDialog();
+        }
+    });
+}
+
+function closeMergeDialog() {
+    $('#cancelMergeModal').click(function () {
+        $('.modal-open').find('.modal-backdrop').remove();
+        $('#tabPanel').find('.modal').remove();
+        $('body').removeClass('modal-open');
     });
 }

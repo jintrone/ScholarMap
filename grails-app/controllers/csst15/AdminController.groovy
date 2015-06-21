@@ -11,6 +11,7 @@ import csst15.security.UserRole
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 import groovy.util.logging.Slf4j
+import org.apache.commons.lang3.StringUtils
 import org.springframework.http.HttpStatus
 
 @Slf4j
@@ -136,5 +137,95 @@ class AdminController {
         if (excelService.readExcelData(request, fileName)) {
             redirect(action: 'board')
         }
+    }
+
+    def openMergeRefDialog() {
+        def idList = StringUtils.split(params.entities, ",")
+        def references = []
+        flash.references = idList
+
+        idList.each { id ->
+            references.push(Reference.findById(id as Long))
+        }
+
+        render(template: 'mergeRefPopup', model: [references: references])
+    }
+
+    def openMergeDialog() {
+        def idList = StringUtils.split(params.entities, ",")
+        def entities = []
+        flash.entities = idList
+
+        idList.each { id ->
+            entities.push(Entity.findById(id as Long))
+        }
+
+        render(template: 'mergePopup', model: [entities: entities])
+    }
+
+    @Transactional
+    def mergeReferences() {
+        if (params.checkBox) {
+            def mReference = Reference.get(params.checkBox);
+
+            flash.references.each { id ->
+                if (id != params.checkBox) {
+                    def reference = Reference.get(id)
+                    if (reference) {
+                        Reference.withNewTransaction {
+                            ReferenceVote.findAllByReference(reference).collect {
+                                it.reference = mReference
+                                it.save(flush: true)
+                            }
+                        }
+
+                        Reference.withNewTransaction {
+                            ReferenceAuthor.findAllByReference(reference).collect {
+                                ReferenceAuthor.findByAuthorAndReference(it.author, mReference) ?: ReferenceAuthor.create(it.author, mReference, true)
+                                it.delete(flush: true)
+                            }
+                        }
+
+                        reference.delete(flush: true)
+                    }
+                }
+            }
+        }
+
+        redirect(action: 'board')
+    }
+
+    @org.springframework.transaction.annotation.Transactional
+    def mergeEntities() {
+        if (params.checkBox) {
+            def mEntity = Entity.get(params.checkBox);
+
+            flash.entities.each { id ->
+                if (id != params.checkBox) {
+                    def entity = Entity.get(id)
+                    if (entity) {
+                        Entity.withNewTransaction {
+                            ReferenceVote.findAllByEntity(entity).collect {
+                                it.entity = mEntity
+                                it.save(flush: true)
+                            }
+                        }
+
+                        Entity.withNewTransaction {
+                            UserEntity.findAllByEntity(entity).collect {
+                                UserEntity.create(it.user, mEntity, true)
+                                it.delete(flush: true)
+                            }
+                        }
+
+                        Entity.withNewTransaction {
+                            entity.delete(flush: true)
+                        }
+                    }
+                }
+            }
+        }
+
+        redirect(action: 'board')
     }
 }
