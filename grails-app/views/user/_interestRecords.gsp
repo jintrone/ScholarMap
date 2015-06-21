@@ -6,7 +6,7 @@
         <th>Name</th>
         <th>Description</th>
         <th>References</th>
-        <g:if test="${user.username.equals(sec.username().toString())}">
+        <g:if test="${user?.username?.equals(sec.username().toString())}">
             <th>Actions</th>
         </g:if>
     </tr>
@@ -62,7 +62,7 @@
             </div>
 
             <div class="modal-footer">
-                <g:link controller="interests" action="references" params="[user: user.id, entityId: newEntity?.id]"
+                <g:link controller="interests" action="references" params="[user: user?.id, entityId: newEntity?.id]"
                         class="btn btn-primary">Add Reference</g:link>
             </div>
         </div>

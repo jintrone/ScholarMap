@@ -48,9 +48,13 @@ class InterestsController {
     }
 
     def loadInterestsRecord() {
-        def currentUser = springSecurityService.currentUser as User
-        def entities = UserEntity.findAllByUser(currentUser)?.entity
-        render(template: '/user/interestRecords', model: [entities: entities, user: currentUser])
+        def user = User.findByUsername(params.username)
+        if (user) {
+            def entities = UserEntity.findAllByUser(user)?.entity
+            render(template: '/user/interestRecords', model: [entities: entities, user: user])
+        } else {
+            redirect(uri: '/not-found')
+        }
     }
 
     @Transactional

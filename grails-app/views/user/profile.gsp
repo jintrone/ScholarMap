@@ -159,12 +159,16 @@
                         $.ajax({
                             type: 'POST',
                             url: "/scholarMap/interests/loadInterestsRecord",
+                            data: {
+                                username: ${user?.username}
+                            },
                             success: function (data) {
                                 $("#interestRecords").html(data);
                             }
                         });
                     });
                 </script>
+
                 <div class="panel-body">
                     <div class="media">
                         <div class="media-body" id="interestRecords">
