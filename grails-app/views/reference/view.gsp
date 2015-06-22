@@ -28,11 +28,11 @@
                                       class="form-control" placeholder="Not set">${reference?.citation}</textarea>
                         </div>
 
-                        <div class="form-group">
-                            <label for="content">Content</label>
-                            <textarea maxlength="5000" name="content" rows="10" id="content"
-                                      class="form-control" placeholder="Not set">${reference?.content}</textarea>
-                        </div>
+                        %{--<div class="form-group">--}%
+                        %{--<label for="content">Content</label>--}%
+                        %{--<textarea maxlength="5000" name="content" rows="10" id="content"--}%
+                        %{--class="form-control" placeholder="Not set">${reference?.content}</textarea>--}%
+                        %{--</div>--}%
 
                     </div>
 

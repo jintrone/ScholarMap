@@ -21,8 +21,8 @@ class BootStrap {
     def init = { servletContext ->
         environments {
             development {
-//                bootstrapUserDetailsDatabase()
-//                bootstrapSpringSecurityDatabase()
+                bootstrapUserDetailsDatabase()
+                bootstrapSpringSecurityDatabase()
             }
             production {
                 bootstrapUserDetailsDatabase()
@@ -185,12 +185,12 @@ class BootStrap {
         ReferenceAuthor.withTransaction {
             def author = Author.findById(1) ?: new Author(firstName: 'Emil', lastName: 'Matevosyan').save(failOnError: true)
             def author2 = Author.findById(2) ?: new Author(firstName: 'Joshua', lastName: 'Introne').save(failOnError: true)
-            def author3 = Author.findById(3) ?: new Author(firstName: 'Joe', lastName: 'Doe').save(failOnError: true)
+            def author3 = Author.findById(3) ?: new Author(firstName: 'John', lastName: 'Doe').save(failOnError: true)
 
-            new ReferenceAuthor(author: author, reference: reference).save(failOnError: true)
-            new ReferenceAuthor(author: author2, reference: reference).save(failOnError: true)
-            new ReferenceAuthor(author: author3, reference: reference).save(failOnError: true)
-            new ReferenceAuthor(reference: reference1, author: author3).save(failOnError: true)
+            new ReferenceAuthor(author: author, reference: reference, authorOrder: 1).save(failOnError: true)
+            new ReferenceAuthor(author: author2, reference: reference, authorOrder: 2).save(failOnError: true)
+            new ReferenceAuthor(author: author3, reference: reference, authorOrder: 3).save(failOnError: true)
+            new ReferenceAuthor(reference: reference1, author: author3, authorOrder: 1).save(failOnError: true)
         }
     }
 

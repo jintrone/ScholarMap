@@ -17,7 +17,7 @@ hibernate {
 environments {
     development {
         dataSource {
-            logginsql = true
+            logSql = true
             dbCreate = "update"
             pooled = true
             driverClassName = "com.mysql.jdbc.Driver"
