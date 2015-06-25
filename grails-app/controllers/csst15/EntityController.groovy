@@ -68,7 +68,7 @@ class EntityController {
         }
     }
 
-    @Secured(['ROLE_USER'])
+    @Secured(['ROLE_USER', 'ROLE_ADMIN'])
     @Transactional
     def update(EntityCommand command) {
         if (command.hasErrors()) {
