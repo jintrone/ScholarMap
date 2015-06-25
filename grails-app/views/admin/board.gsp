@@ -201,10 +201,6 @@
                                             <g:link class="glyphicon glyphicon-eye-open" controller="reference"
                                                     action="view"
                                                     params="[id: reference.id]"/>
-                                            <sec:ifLoggedIn>
-                                                <g:link class="glyphicon glyphicon-edit" controller="reference"
-                                                        action="edit" params="[id: reference.id]"/>
-                                            </sec:ifLoggedIn>
                                         </td>
                                         <td><csst:author reference="${reference}"/></td>
                                         <td>${reference.citation}</td>
@@ -256,11 +252,6 @@
                                             <g:link class="glyphicon glyphicon-eye-open" controller="entity"
                                                     action="view"
                                                     params="[id: entity.id]"/>
-                                            <sec:ifLoggedIn>
-                                                <g:link class="glyphicon glyphicon-edit" controller="entity"
-                                                        params="[id: entity.id]"
-                                                        action="edit"/>
-                                            </sec:ifLoggedIn>
                                         </td>
                                         <td>${entity.name}</td>
                                         <td>${entity.type}</td>

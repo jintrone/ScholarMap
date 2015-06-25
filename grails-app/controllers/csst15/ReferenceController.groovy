@@ -59,7 +59,7 @@ class ReferenceController {
         }
     }
 
-    @Secured(['ROLE_USER'])
+    @Secured(['ROLE_USER', 'ROLE_ADMIN'])
     @Transactional
     def update(ReferenceCommand command) {
         if (command.hasErrors()) {

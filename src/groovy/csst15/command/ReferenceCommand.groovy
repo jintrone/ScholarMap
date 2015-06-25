@@ -11,10 +11,8 @@ import grails.validation.Validateable
 class ReferenceCommand {
     String year
     String citation
-    String fullName
 
     static constraints = {
         citation blank: false, maxSize: 500
-        fullName blank: false
     }
 }
