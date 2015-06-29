@@ -5,6 +5,21 @@
 
 $(document).ready(function () {
 
+    $("#sortable").sortable({
+        update: function (event, ui) {
+            var data = $(this).sortable('serialize', {key: "authorSort"}) + "&refId=" + $("#referenceId").val();
+            $.ajax({
+                type: 'POST',
+                url: $("#orderAuthorsURL").val(),
+                data: data,
+                success: function (data) {
+                    console.log('success');
+                }
+
+            })
+        }
+    });
+
     var i = 1;
     $("#add_row").click(function () {
         $('#addr' + i).html("<td><input name='fullName' type='text' placeholder='Last name, First name' class='form-control input-md ui-autocomplete-input'  /> </td>");

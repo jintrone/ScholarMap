@@ -160,7 +160,7 @@
                             type: 'POST',
                             url: "/scholarMap/interests/loadInterestsRecord",
                             data: {
-                                username: ${user?.username}
+                                username: "${user?.username}"
                             },
                             success: function (data) {
                                 $("#interestRecords").html(data);

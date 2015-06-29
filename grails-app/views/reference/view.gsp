@@ -28,12 +28,18 @@
                                       class="form-control" placeholder="Not set">${reference?.citation}</textarea>
                         </div>
 
-                        %{--<div class="form-group">--}%
-                        %{--<label for="content">Content</label>--}%
-                        %{--<textarea maxlength="5000" name="content" rows="10" id="content"--}%
-                        %{--class="form-control" placeholder="Not set">${reference?.content}</textarea>--}%
-                        %{--</div>--}%
-
+                        <div class="form-group">
+                            <label for="citation">Authors</label>
+                            <ul id="sortable" class="input-group">
+                                <g:each in="${refAuthor.author}" var="author" status="index">
+                                    <li class="ui-state-default" id="authorSort_${author.id}">
+                                        <g:hiddenField name="authorsId" value="${author.id}"/>
+                                        <input name="author_${author.id}" id="author_${index + 1}"
+                                               value="${author.firstName} ${author.lastName}"/>
+                                    </li>
+                                </g:each>
+                            </ul>
+                        </div>
                     </div>
 
                     <div class="modal-footer">

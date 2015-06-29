@@ -4,6 +4,7 @@ import csst15.command.ReferenceCommand
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 import groovy.util.logging.Slf4j
+import org.springframework.http.HttpStatus
 
 @Slf4j
 @Transactional(readOnly = true)
@@ -40,8 +41,9 @@ class ReferenceController {
     def view() {
         if (params.id) {
             def reference = Reference.findById(params.id)
-
-            [reference: reference]
+            def refAuthor = ReferenceAuthor.findAll("from ReferenceAuthor as b where b.reference=? order by b.authorOrder", [reference])
+//            def refAuthor = ReferenceAuthor.findAllByReference(reference)
+            [reference: reference, refAuthor: refAuthor]
         } else {
             log.info("Reference id not found")
             redirect(uri: '/not-found')
@@ -62,18 +64,35 @@ class ReferenceController {
     @Secured(['ROLE_USER', 'ROLE_ADMIN'])
     @Transactional
     def update(ReferenceCommand command) {
-        if (command.hasErrors()) {
-            render(view: 'edit', model: [reference: command])
-        } else {
+//        if (command.hasErrors()) {
+//            redirect(uri: '/not-found')
+//        } else {
             if (params.referenceId) {
                 def reference = Reference.findById(params.referenceId)
+                def refAuthor = ReferenceAuthor.findAllByReference(reference)
 
-                referenceService.updateReference(reference, command)
+                referenceService.updateReference(refAuthor, reference, params)
                 redirect(action: 'view', params: [id: reference.id])
             } else {
                 log.info("Reference id not found")
                 redirect(uri: '/not-found')
             }
+//        }
+    }
+
+    @Transactional
+    @Secured(['ROLE_USER', 'ROLE_ADMIN'])
+    def reorderAuthors() {
+        def reference = Reference.get(params.refId)
+        params.authorSort.eachWithIndex { id, index ->
+            def author = Author.get(id)
+            println "=================="
+            println index
+            println "=================="
+
+            def refAuthor = ReferenceAuthor.findByAuthorAndReference(author, reference)
+            refAuthor.authorOrder = index + 1
         }
+        render HttpStatus.OK
     }
 }
