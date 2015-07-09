@@ -23,6 +23,7 @@ class BootStrap {
             development {
                 bootstrapUserDetailsDatabase()
                 bootstrapSpringSecurityDatabase()
+               // bootstrapFullSampleData()
             }
             production {
                 bootstrapUserDetailsDatabase()
@@ -193,6 +194,144 @@ class BootStrap {
             new ReferenceAuthor(reference: reference1, author: author3, authorOrder: 1).save(failOnError: true)
         }
     }
+
+    private void addEntity(String name, String description, EntityType type) {
+        switch(type) {
+
+            case EntityType.FIELD:
+                Entity.findByName(name) ?: new Field(name: name, description: description, type: type).save(failOnError: true)
+                break
+
+            case EntityType.METHOD:
+                Entity.findByName(name) ?: new Method(name: name, description: description, type: type).save(failOnError: true)
+                break
+            case EntityType.VENUE:
+                Entity.findByName(name) ?: new Venue(name: name, description: description, type: type, kind: "brouhaha").save(failOnError: true)
+                break
+            case EntityType.THEORY:
+                Entity.findByName(name) ?: new Theory(name: name, description: description, type: type).save(failOnError: true)
+                break
+        }
+    }
+
+    private User addUser(String first, String last) {
+        String username = (first+last).toLowerCase()
+        String email = username+"@example.com"
+        User.findByEmail(email) ?: new User(
+                email: email,
+                username: username,
+                firstName: first,
+                lastName: last,
+                password: '1',
+                enabled: true,
+                lockConf: new FieldLockConf(),
+                visibilityConf: new FieldVisibilityConf()
+        ).save(failOnError: true)
+
+    }
+
+    private addReference(List authors, String title, String content, int year) {
+        List a = authors.collect { author ->
+            ReferenceAuthor.withTransaction {
+                Author.findByFirstNameAndLastName(author[0], author[1]) ?: new Author(firstName: author[0], lastName: author[1]).save(failOnError: true)
+            }
+        }
+        User user = User.findByEmail("user@example.com")
+
+        Reference r = Reference.withTransaction {
+            Reference.findByYearAndCitation(year, title) ?: new Reference(citation: title, content: content, year: year, creator: user, hash: GeneralUtils.generateMD5(title)).save(failOnError: true)
+        }
+
+        int count = ReferenceAuthor.findAllByReference(r).size()
+
+        ReferenceAuthor.withTransaction {
+            a.each { authorToAdd ->
+                ReferenceAuthor.where {
+                    author == authorToAdd && reference == r
+                }.find()?:new ReferenceAuthor(author: authorToAdd, reference: r, authorOrder: (++count)).save(failOnError: true)
+            }
+        }
+
+
+
+
+    }
+
+
+    private void bootstrapFullSampleData() {
+
+        List<String> termDictionary = new File("./words.csv").readLines()
+        List<String> descriptionDictionary = []+termDictionary
+        List<String> users = new File("./MOCK_USERS.csv").readLines()
+
+        Random rnd = new Random()
+        (0..<1200).each {
+            String name= (1..3).collect {
+                int x = rnd.nextInt(termDictionary.size())
+                termDictionary.remove(x)
+            }.join(" ")
+
+            String desc= (1..(50+rnd.nextInt(150))).collect {
+                descriptionDictionary.get(rnd.nextInt(descriptionDictionary.size()))
+            }.join(" ")
+
+
+            EntityType type = (EntityType.values() as List).get(rnd.nextInt(4))
+
+            addEntity(name,desc,type)
+
+        }
+
+        new File("./MOCK_REFS.csv").eachLine { String line->
+            def tokens = line.split(",")
+            List authors = (0..<(rnd.nextInt(6)+1)).collect {
+                String[] s = users.get(rnd.nextInt(users.size())).split(",")
+                [s[0],s[1]] as String[]
+            }
+            addReference(authors,tokens[0],tokens[1],tokens[2] as int)
+        }
+
+        int maxEntity = Entity.count()
+        int maxRefs = Reference.count()
+
+
+        users.each { String line ->
+            def tokens = line.split(",")
+            User u = addUser(tokens[0], tokens[1])
+            u.setDegreeYear(1980)
+            u.setDepartment(Department.get(tokens[3] as Integer))
+            u.setSpecialization(Specialization.get(tokens[2] as Integer))
+            u.setPosition(Position.get(tokens[4] as Integer))
+            u.save(failOnError: true)
+
+            (0..<(5 + rnd.nextInt(16))).each {
+                (rnd.nextInt(maxEntity) + 1).each {
+                    Entity e = Entity.get(it)
+                    UserEntity.create(u,e)
+
+                    (0..rnd.nextInt(5)).each {
+                        List<ReferenceVote> votes = ReferenceVote.findAllByEntity(e)
+                        if (rnd.nextBoolean() || !votes) {
+                            (rnd.nextInt(maxRefs) + 1).each {
+                                Reference ref = Reference.get(it)
+                                ReferenceVote.findByReferenceAndEntity(ref, e) ?: new ReferenceVote(reference: ref, user: u, entity: e).save(failOnError: true)
+                            }
+                        } else {
+
+                            Reference ref = votes.get(rnd.nextInt(votes.size())).reference
+                            if (ReferenceVote.countByUserAndEntityAndReference(u, e, ref) == 0) {
+                                new ReferenceVote(reference: ref, user: u, entity: e).save(failOnError: true)
+                            }
+
+                        }
+                    }
+                }
+            }
+
+
+        }
+    }
+
 
     private void executeSqlScript(String filePath) {
         Sql sql = new Sql(dataSource)

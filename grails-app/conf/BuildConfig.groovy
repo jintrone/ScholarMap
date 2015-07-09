@@ -85,6 +85,10 @@ grails.project.dependency.resolution = {
         runtime ":jquery:1.11.1"
         runtime ":resources:1.2.14"
 
+        provided(":coffee-asset-pipeline:2.0.7") {
+            excludes "asset-pipeline"
+        }
+
         // Uncomment these to enable additional asset-pipeline capabilities
         //compile ":sass-asset-pipeline:1.7.4"
         //compile ":less-asset-pipeline:1.7.0"
