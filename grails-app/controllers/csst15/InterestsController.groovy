@@ -146,18 +146,24 @@ class InterestsController {
 
     def loadSelectedReferences() {
         def entity = Entity.get(params.entity)
+        def user
         if (entity) {
+            if (params.isOwner == "false") {
+                user = User.get(params.user)
+            } else {
+                user = springSecurityService.currentUser as User
+            }
             def selectedReferencesVote = ReferenceVote.createCriteria().list(max: Integer.parseInt(params.length), offset: params.start) {
                 createAlias('reference', 'r')
                 eq("entity", entity)
-                eq("user", springSecurityService.currentUser as User)
+                eq("user", user)
                 ilike("r.citation", "${params.'search[value]'}%")
             }
 
             def count = ReferenceVote.createCriteria().count() {
                 createAlias('reference', 'r')
                 eq("entity", entity)
-                eq("user", springSecurityService.currentUser as User)
+                eq("user", user)
                 ilike("r.citation", "${params.'search[value]'}%")
             }
 

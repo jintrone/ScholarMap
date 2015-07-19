@@ -2,6 +2,7 @@
 <g:applyLayout name="main">
     <g:set var="isOwner" value="${sec.loggedInUserInfo(field: 'id') == user?.id?.toString()}"/>
     <g:hiddenField name="isOwner" value="${isOwner}"/>
+    <g:hiddenField name="user" value="${user.id}"/>
     <div class="row">
         <div class="col-md-1"></div>
 

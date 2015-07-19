@@ -393,7 +393,8 @@ function setSelectedRefsDataTable() {
             "type": "POST",
             'data': {
                 entity: $("#entity").val(),
-                isOwner: $("#isOwner").val()
+                isOwner: $("#isOwner").val(),
+                user: $("#user").val()
             }
         },
         "columns": [
