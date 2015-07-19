@@ -42,7 +42,6 @@ class ReferenceController {
         if (params.id) {
             def reference = Reference.findById(params.id)
             def refAuthor = ReferenceAuthor.findAll("from ReferenceAuthor as b where b.reference=? order by b.authorOrder", [reference])
-//            def refAuthor = ReferenceAuthor.findAllByReference(reference)
             [reference: reference, refAuthor: refAuthor]
         } else {
             log.info("Reference id not found")
@@ -64,20 +63,16 @@ class ReferenceController {
     @Secured(['ROLE_USER', 'ROLE_ADMIN'])
     @Transactional
     def update(ReferenceCommand command) {
-//        if (command.hasErrors()) {
-//            redirect(uri: '/not-found')
-//        } else {
-            if (params.referenceId) {
-                def reference = Reference.findById(params.referenceId)
-                def refAuthor = ReferenceAuthor.findAllByReference(reference)
+        if (params.referenceId) {
+            def reference = Reference.findById(params.referenceId)
+            def refAuthor = ReferenceAuthor.findAllByReference(reference)
 
-                referenceService.updateReference(refAuthor, reference, params)
-                redirect(action: 'view', params: [id: reference.id])
-            } else {
-                log.info("Reference id not found")
-                redirect(uri: '/not-found')
-            }
-//        }
+            referenceService.updateReference(refAuthor, reference, params)
+            redirect(action: 'view', params: [id: reference.id])
+        } else {
+            log.info("Reference id not found")
+            redirect(uri: '/not-found')
+        }
     }
 
     @Transactional
@@ -86,13 +81,24 @@ class ReferenceController {
         def reference = Reference.get(params.refId)
         params.authorSort.eachWithIndex { id, index ->
             def author = Author.get(id)
-            println "=================="
-            println index
-            println "=================="
 
             def refAuthor = ReferenceAuthor.findByAuthorAndReference(author, reference)
             refAuthor.authorOrder = index + 1
         }
         render HttpStatus.OK
+    }
+
+    @Transactional
+    @Secured(['ROLE_USER', 'ROLE_ADMIN'])
+    def deleteAuthor() {
+        def authorToDelete = Author.get(params.authorId)
+        def reference = Reference.get(params.refId)
+        def refAut = ReferenceAuthor.findByReferenceAndAuthor(reference, authorToDelete)
+        if (refAut) {
+            refAut.delete(flush: true)
+            render HttpStatus.OK
+        } else {
+            render HttpStatus.BAD_REQUEST
+        }
     }
 }

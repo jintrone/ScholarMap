@@ -43,6 +43,27 @@ class ReferenceService {
             log.info("Updated author with id ${author.id}")
         }
 
+        if (params.newAuthors) {
+            if (params.newAuthors?.class?.isArray()) {
+                params.newAuthors.each { name ->
+                    def names = []
+                    names = StringUtils.split(name, ' ')
+                    def author = Author.findByFirstNameAndLastName(names[0], names[1]) ?: new Author(firstName: names[0], lastName: names[1]).save(flush: true)
+                    log.info("Created new author with id ${author.id}")
+
+                    ReferenceAuthor.findByAuthorAndReference(author, reference) ?: new ReferenceAuthor(author: author, reference: reference).save(flush: true)
+                }
+            } else {
+                def names = []
+                names = StringUtils.split(params.newAuthors, ' ')
+                def author = Author.findByFirstNameAndLastName(names[0], names[1]) ?: new Author(firstName: names[0], lastName: names[1]).save(flush: true)
+                log.info("Created new author with id ${author.id}")
+
+                ReferenceAuthor.findByAuthorAndReference(author, reference) ?: new ReferenceAuthor(author: author, reference: reference).save(flush: true)
+            }
+        }
+
+
 
         if (reference.save(flush: true)) {
             log.info("Updated reference with id ${reference.id}")

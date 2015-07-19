@@ -36,15 +36,21 @@
                                         <g:hiddenField name="authorsId" value="${author.id}"/>
                                         <input name="author_${author.id}" id="author_${index + 1}"
                                                value="${author.firstName} ${author.lastName}"/>
+                                        <a href="javascript:void(0);"
+                                           class="glyphicon glyphicon-remove-sign removeAuthor" id="${author.id}"></a>
+                                        %{--controller="reference" action="deleteRef" params="[authorId: author.id, refId: reference.id]"--}%
                                     </li>
                                 </g:each>
                             </ul>
+
+                            <div style="padding-top: 20px; padding-bottom: 20px">
+                                <a id="add_author" class="btn btn-default pull-left">Add Author</a>
+                            </div>
                         </div>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default"
-                                data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </div>

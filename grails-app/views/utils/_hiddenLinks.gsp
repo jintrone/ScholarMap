@@ -12,3 +12,4 @@
 <g:hiddenField name="mergeRefDialogURL" value="${createLink(controller: 'admin', action: 'openMergeRefDialog')}"/>
 <g:hiddenField name="mergeDialogURL" value="${createLink(controller: 'admin', action: 'openMergeDialog')}"/>
 <g:hiddenField name="orderAuthorsURL" value="${createLink(controller: 'reference', action: 'reorderAuthors')}"/>
+<g:hiddenField name="deleteAuthorsURL" value="${createLink(controller: 'reference', action: 'deleteAuthor')}"/>

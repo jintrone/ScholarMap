@@ -126,7 +126,6 @@
                     <td class="ui-front">
                         <csst:authorsAutocomplete name="fullName" action="loadAuthors" class="form-control" id="name"
                                                   placeholder='Last name, First name'/>
-                        %{--<input type="text" name='fullName' placeholder='Last name, First name' class="form-control"/>--}%
                     </td>
                 </tr>
                 <tr id='addr1'></tr>

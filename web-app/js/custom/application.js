@@ -4,8 +4,9 @@
  */
 
 $(document).ready(function () {
+    var sortablePanel = $("#sortable");
 
-    $("#sortable").sortable({
+    sortablePanel.sortable({
         update: function (event, ui) {
             var data = $(this).sortable('serialize', {key: "authorSort"}) + "&refId=" + $("#referenceId").val();
             $.ajax({
@@ -18,6 +19,21 @@ $(document).ready(function () {
 
             })
         }
+    });
+
+    sortablePanel.find(".removeAuthor").click(function () {
+        var id = $(this).attr('id');
+        $.ajax({
+            type: 'POST',
+            url: $("#deleteAuthorsURL").val(),
+            data: {
+                refId: $("#referenceId").val(),
+                authorId: $(this).attr('id')
+            },
+            success: function (data) {
+                sortablePanel.find("#authorSort_" + id).remove();
+            }
+        });
     });
 
     var i = 1;
@@ -146,6 +162,10 @@ $(document).ready(function () {
 
     $(".edit-reference").click(function () {
         $('#editReferenceModal').modal('show');
+
+        $("#add_author").click(function () {
+            $('#sortable').find('li:last-child').after("<li class='ui-state-default'><input type='text' name='newAuthors' /></li>");
+        });
     });
 
     $("#addNewEntity").click(function () {
@@ -209,22 +229,8 @@ $(document).ready(function () {
 });
 
 function applyDatatable() {
-    //$("#availableReferences").dataTable({
-    //    "paging": true,
-    //    "ordering": true,
-    //    "info": false,
-    //    "bFilter": true
-    //});
-
     setAvailableRefsDataTable();
     setSelectedRefsDataTable();
-
-    //$("#selectedReferences").dataTable({
-    //    "paging": true,
-    //    "ordering": true,
-    //    "info": false,
-    //    "bFilter": true
-    //});
 }
 
 function resetFields(container) {
