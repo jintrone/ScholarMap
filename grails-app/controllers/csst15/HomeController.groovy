@@ -1,9 +1,7 @@
 package csst15
 
 import csst15.constants.EntityType
-import csst15.constants.Roles
-import csst15.security.Role
-import csst15.security.UserRole
+import csst15.security.User
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 import groovy.json.JsonOutput
@@ -24,8 +22,61 @@ class HomeController {
     }
 
     def list() {
-        def userList = UserRole.findAllByRole(Role.findByAuthority(Roles.USER.name)).user
-        render(view: '/list', model: [users: userList])
+        def columns = ['0': 'username', '1': 'lastName', '2': 'title', '3': 'name']
+        if (request.method == "POST") {
+            def c = User.createCriteria()
+            def allUsers = c.list(max: Integer.parseInt(params.length), offset: params.start) {
+                createAlias('department', 'd')
+                createAlias('position', 'p')
+                gt("id", 1L)
+                or {
+                    ilike("username", "${params.'search[value]'}%")
+                    ilike("firstName", "${params.'search[value]'}%")
+                    ilike("lastName", "${params.'search[value]'}%")
+                    ilike("d.title", "${params.'search[value]'}%")
+                    ilike("p.name", "${params.'search[value]'}%")
+                }
+
+                if (params.'order[0][column]' == '2') {
+                    order("d." + columns[params.'order[0][column]'], params."order[0][dir]")
+                } else if (params.'order[0][column]' == '3') {
+                    order("p." + columns[params.'order[0][column]'], params."order[0][dir]")
+                } else {
+                    order(columns[params.'order[0][column]'], params."order[0][dir]")
+                }
+            }
+            def count = User.createCriteria().count() {
+                createAlias('department', 'd')
+                createAlias('position', 'p')
+                gt("id", 1L)
+                or {
+                    ilike("username", "${params.'search[value]'}%")
+                    ilike("firstName", "${params.'search[value]'}%")
+                    ilike("lastName", "${params.'search[value]'}%")
+                    ilike("d.title", "${params.'search[value]'}%")
+                    ilike("p.name", "${params.'search[value]'}%")
+                }
+            }
+
+            def json = JsonOutput.toJson(
+                    draw: params.draw,
+                    recordsTotal: allUsers.totalCount,
+                    recordsFiltered: count,
+                    data:
+                            allUsers.collect { user ->
+                                [
+                                        username  : user.username,
+                                        fullName  : "${user.firstName} ${user.lastName}",
+                                        department: user.department?.title,
+                                        position  : user.position?.name
+                                ]
+                            }
+            )
+
+            render(json)
+        } else {
+            render(view: '/list')
+        }
     }
 
     def entities() {

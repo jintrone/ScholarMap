@@ -15,31 +15,6 @@
                 </tr>
                 </thead>
                 <tbody>
-                <g:each in="${users}" var="user">
-                    <g:if test="${user.visibilityConf.isUsernameVisible || (user.visibilityConf.isFirstNameVisible && user.visibilityConf.isLastNameVisible)}">
-                        <tr>
-                            <td>
-                                <g:link controller="user" action="profile"
-                                        params="[username: user.username]">${user.username}</g:link>
-                            </td>
-                            <td>
-                                <g:if test="${(user.visibilityConf.isFirstNameVisible && user.visibilityConf.isLastNameVisible)}">
-                                    ${user.firstName} ${user.lastName}
-                                </g:if>
-                            </td>
-                            <td>
-                                <g:if test="${user.visibilityConf.isDepartmentVisible}">
-                                    ${user.department?.title}
-                                </g:if>
-                            </td>
-                            <td>
-                                <g:if test="${user.visibilityConf.isPositionVisible}">
-                                    ${user.position?.name}
-                                </g:if>
-                            </td>
-                        </tr>
-                    </g:if>
-                </g:each>
                 </tbody>
             </table>
         </div>

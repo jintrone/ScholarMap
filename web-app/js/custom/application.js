@@ -39,6 +39,7 @@ $(document).ready(function () {
     setVenuesDataTable();
     setFieldsDataTable();
     setTheoriesDataTable();
+    setUsersDataTable();
 
     $("#addInterestModal").find("#type").change(function () {
         $("#addInterestModal").find("#name").attr("collectfield", $(this).val());
@@ -123,7 +124,7 @@ $(document).ready(function () {
 
     $("#usersTable").dataTable({});
 
-    $("#listTable").dataTable({});
+    //$("#listTable").dataTable({});
 
     $("#entityPeopleTable").dataTable({
         "paging": false,
@@ -309,6 +310,28 @@ function setVenuesDataTable() {
             },
             {"data": "description"},
             {"data": "references"}
+        ]
+    });
+}
+
+function setUsersDataTable() {
+    $("#listTable").dataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": './list',
+            "type": "POST"
+        },
+        "columns": [
+            {
+                "data": "username",
+                "mRender": function (data, type, full) {
+                    return "<a href='/scholarMap/user/" + data + "'>" + data + "</a>";
+                }
+            },
+            {"data": "fullName"},
+            {"data": "department"},
+            {"data": "position"}
         ]
     });
 }

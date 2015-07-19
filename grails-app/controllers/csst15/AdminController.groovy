@@ -173,7 +173,7 @@ class AdminController {
                     def reference = Reference.get(id)
                     if (reference) {
                         Reference.withNewTransaction {
-                            ReferenceVote.findAllByReference(reference).collect {
+                            ReferenceVote.findAllByReferenceAndUser(reference).collect {
                                 it.reference = mReference
                                 it.save(flush: true)
                             }
