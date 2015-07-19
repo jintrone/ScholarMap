@@ -164,6 +164,12 @@
                             },
                             success: function (data) {
                                 $("#interestRecords").html(data);
+                                $("#interestTable").dataTable({
+                                    "paging": false,
+                                    "ordering": true,
+                                    "info": false,
+                                    "bFilter": false
+                                });
                             }
                         });
                     });
@@ -171,7 +177,7 @@
 
                 <div class="panel-body">
                     <div class="media">
-                        <div class="media-body" id="interestRecords">
+                        <div class="media-body col-xs-12" id="interestRecords">
                             <g:render template="interestRecords"
                                       model="[entities: entities, user: user]"/>
                         </div>
