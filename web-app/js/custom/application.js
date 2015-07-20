@@ -388,6 +388,12 @@ function setTheoriesDataTable() {
 
 function setAvailableRefsDataTable() {
     $("#availableReferences").dataTable({
+        aoColumnDefs: [
+            {
+                bSortable: false,
+                aTargets: [-1]
+            }
+        ],
         "processing": true,
         "serverSide": true,
         "ajax": {
@@ -415,6 +421,12 @@ function setAvailableRefsDataTable() {
 
 function setSelectedRefsDataTable() {
     $("#selectedReferences").dataTable({
+        aoColumnDefs: [
+            {
+                bSortable: false,
+                aTargets: [-1]
+            }
+        ],
         "processing": true,
         "serverSide": true,
         "ajax": {

@@ -147,6 +147,7 @@ class InterestsController {
     def loadSelectedReferences() {
         def entity = Entity.get(params.entity)
         def user
+        def columns = ['0': 'lastName', '1': 'year', '2': 'citation']
         if (entity) {
             if (params.isOwner == "false") {
                 user = User.get(params.user)
@@ -157,14 +158,31 @@ class InterestsController {
                 createAlias('reference', 'r')
                 eq("entity", entity)
                 eq("user", user)
-                ilike("r.citation", "${params.'search[value]'}%")
+                or {
+                    ilike("r.citation", "${params.'search[value]'}%")
+                    if (StringUtils.isNumeric(params.'search[value]')) {
+                        eq('r.year', Integer.parseInt(params.'search[value]'))
+                    }
+                }
+
+                if (params.'order[0][column]' == '0') {
+                    order("r.year", params."order[0][dir]")
+                } else {
+                    order("r." + columns[params.'order[0][column]'], params."order[0][dir]")
+                }
             }
 
             def count = ReferenceVote.createCriteria().count() {
                 createAlias('reference', 'r')
                 eq("entity", entity)
                 eq("user", user)
-                ilike("r.citation", "${params.'search[value]'}%")
+                or {
+                    ilike("r.citation", "${params.'search[value]'}%")
+                    if (StringUtils.isNumeric(params.'search[value]')) {
+                        eq('r.year', Integer.parseInt(params.'search[value]'))
+                    }
+                }
+
             }
 
             def results
