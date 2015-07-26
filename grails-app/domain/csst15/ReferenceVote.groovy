@@ -11,11 +11,25 @@ class ReferenceVote implements Serializable {
     Date dateCreated
 
     static constraints = {
-        reference nullable: true
-        entity nullable: true
+        entity nullable: true, validator: { Entity e, ReferenceVote rv ->
+            if (rv.user == null) return
+            boolean existing = false
+            ReferenceVote.withNewSession {
+                existing = ReferenceVote.exists(rv.reference.id, e.id, rv.user.id)
+            }
+            if (existing) {
+                return 'referenceVote.exists'
+            }
+        }
     }
 
     static mapping = {
         version false
+    }
+
+    static boolean exists(long refId, long entityId, long userId) {
+        where {
+            reference == Reference.load(refId) && entity == Entity.load(entityId) && user == User.load(userId)
+        }.count() > 0
     }
 }

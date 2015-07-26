@@ -207,7 +207,11 @@ class AdminController {
                         Entity.withNewTransaction {
                             ReferenceVote.findAllByEntity(entity).collect {
                                 it.entity = mEntity
-                                it.save(flush: true)
+                                if (it.validate()) {
+                                    it.save(flush: true)
+                                } else {
+                                    it.delete(flush: true)
+                                }
                             }
                         }
 
